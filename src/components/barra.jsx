@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import AfterbitLogo from "../Imagenes/Afterbit_sin_fondo.png"; // asegúrate de la ruta correcta
 
 export default function Barra() {
   const [isOpen, setIsOpen] = useState(false);
@@ -7,7 +8,7 @@ export default function Barra() {
   const toggleMenu = () => setIsOpen(!isOpen);
   const toggleDarkMode = () => setIsDark(!isDark);
 
-  // Cambiar fondo de toda la página según el modo (solo menú)
+  // Cambiar fondo de toda la página según el modo
   useEffect(() => {
     document.documentElement.style.backgroundColor = isDark ? "#000000" : "#ffffff";
   }, [isDark]);
@@ -18,40 +19,48 @@ export default function Barra() {
         isDark ? "!bg-black" : "!bg-white"
       }`}
     >
-      <div className="container mx-auto px-4 py-3 flex justify-between items-center">
-        {/* Logo */}
-        <h1
-          className={`text-2xl font-bold transition-colors duration-500 ${
-            isDark ? "!text-white" : "!text-black"
-          }`}
-        >
-          Afterbit
-        </h1>
+      {/* Más alto y con el logo un poco más a la izquierda */}
+      <div className="container mx-auto px-6 lg:px-8 py-4 flex justify-between items-center h-[95px] gap-8">
+        {/* Logo ajustado con menos margen lateral y buen espaciado superior */}
+        <img
+          src={AfterbitLogo}
+          alt="Afterbit logo"
+          className="h-28 sm:h-32 md:h-35 lg:h-36 w-auto mt-3 ml-[-9px] transition-transform duration-500 hover:scale-105"
+        />
 
         {/* Botón hamburguesa móvil/tablet */}
         <button
           onClick={toggleMenu}
-          className={`lg:hidden focus:outline-none text-2xl transition-colors duration-500 px-3 py-2 rounded ${
+          className={`lg:hidden focus:outline-none text-2xl transition-all duration-500 px-3 py-1 rounded border ${
             isDark
-              ? "!bg-black !text-white !border !border-white"
-              : "!bg-white !text-black !border !border-black"
+              ? "!bg-black !text-white !border-white"
+              : "!bg-white !text-black !border-black"
           }`}
         >
-          {isOpen ? "✖" : "☰"}
+          <span
+            className={`transition-colors duration-500 ${
+              isDark ? "text-white" : "text-black"
+            }`}
+          >
+            {isOpen ? "✖" : "☰"}
+          </span>
         </button>
 
         {/* Menú */}
-          <ul
-            className={`flex flex-col lg:flex-row items-center lg:items-center lg:space-x-12 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
-              ${isOpen ? "top-20 opacity-100" : "top-[-400px] opacity-0 lg:opacity-100"}
-              ${isDark ? "bg-black pt-4 pb-2.5 lg:pt-0 lg:pb-0" : "bg-white pt-4 pb-2.5 lg:pt-0 lg:pb-0"} lg:bg-transparent`}
-          >
-
+        <ul
+          className={`flex flex-col lg:flex-row items-center lg:items-center lg:space-x-10 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
+            ${isOpen ? "top-28 opacity-100" : "top-[-400px] opacity-0 lg:opacity-100"}
+            ${
+              isDark
+                ? "bg-black pt-4 pb-5 lg:pt-0 lg:pb-0"
+                : "bg-white pt-4 pb-5 lg:pt-0 lg:pb-0"
+            } lg:bg-transparent`}
+        >
           {["Inicio", "Servicios", "Sobre mí", "Contacto"].map((item) => (
-            <li key={item} className="pt-2 lg:pt-0">
+            <li key={item} className="pt-1 lg:pt-0">
               <a
                 href="#"
-                className={`block py-2 px-4 hover:opacity-70 transition-colors duration-500 whitespace-nowrap text-sm lg:text-[0.875rem] lg:text-black ${
+                className={`block py-2 px-4 hover:opacity-70 transition-colors duration-500 whitespace-nowrap text-[0.95rem] lg:text-[0.9rem] ${
                   isDark ? "!text-white lg:text-black" : "!text-black lg:text-black"
                 }`}
               >
@@ -61,10 +70,10 @@ export default function Barra() {
           ))}
 
           {/* Botón toggle centrado en móvil/tablet */}
-          <li className="w-full flex justify-center mt-4 lg:mt-0">
+          <li className="w-full flex justify-center mt-3 lg:mt-0">
             <button
               onClick={toggleDarkMode}
-              className={`py-2 px-8 font-semibold rounded border-2 transition-colors duration-500
+              className={`py-2 px-7 font-semibold rounded border transition-colors duration-500 text-[0.9rem]
                 ${
                   isDark
                     ? "!bg-white !text-black !border-black lg:bg-transparent lg:text-black lg:border-transparent"
