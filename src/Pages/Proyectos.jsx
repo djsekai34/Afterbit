@@ -8,7 +8,9 @@ import { Link } from "react-router-dom";
 
 export default function Proyectos({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
+  // Color de acento base (usado en títulos/bordes)
   const accentColor = isDark ? "#ff0000" : "#cc0000";
+  const rodolfoGreen = "#008012";
 
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
@@ -36,14 +38,13 @@ export default function Proyectos({ isDark }) {
       </motion.h1>
 
       <div className="max-w-6xl mx-auto space-y-40">
-        
         {/* --- SECCIÓN 01: SUPER RODOLFO --- */}
         <motion.section
           id="rodolfo"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
           initial="hidden"
-          animate="visible" 
+          animate="visible"
           variants={itemVariants}
         >
           <div className="lg:col-span-5 space-y-6">
@@ -63,15 +64,15 @@ export default function Proyectos({ isDark }) {
                   >
                     {tag}
                   </span>
-                )
+                ),
               )}
             </div>
             <p
               className="text-lg opacity-90 leading-tight font-medium border-l-4 pl-4"
-              style={{ borderColor: accentColor }}
+              style={{ borderColor: rodolfoGreen }}
             >
               Mi juego final demostrando todo lo aprendido en el{" "}
-              <span className="text-red-600 font-bold">
+              <span style={{ color: rodolfoGreen }} className="font-bold">
                 Curso de Especialización en Desarrollo de Videojuegos y Realidad
                 Virtual
               </span>{" "}
@@ -87,7 +88,10 @@ export default function Proyectos({ isDark }) {
                 <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
                   Ejecutar_Rodolfo.exe
                 </span>
-                <div className="absolute -inset-y-1 -left-1 -right-1 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
+                <div
+                  className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
+                  style={{ backgroundColor: rodolfoGreen }}
+                />
               </button>
             </Link>
           </div>
@@ -102,7 +106,10 @@ export default function Proyectos({ isDark }) {
               alt="Rodolfo Logo"
               className="w-full h-full object-contain p-4 md:p-6 scale-125 md:scale-110 group-hover:scale-145 md:group-hover:scale-125 transition-transform duration-500"
             />
-            <div className="absolute top-4 right-4 bg-red-600 text-white px-3 py-1 font-mono text-[10px] uppercase font-bold">
+            <div
+              style={{ backgroundColor: rodolfoGreen }}
+              className="absolute top-4 right-4 text-white px-3 py-1 font-mono text-[10px] uppercase font-bold"
+            >
               Status: Gold_Build
             </div>
           </div>
@@ -218,21 +225,21 @@ export default function Proyectos({ isDark }) {
 
             <p
               className="text-xl opacity-90 leading-tight font-medium border-l-4 pl-4"
-              style={{ borderColor: accentColor }}
+              style={{ borderColor: "#0066ff" }}
             >
               Experiencias de realidad mixta donde exploro la interacción entre
               el mundo físico y digital. Desarrollado con{" "}
-              <span className="text-red-600 font-bold">Google ARCore</span>,
+              <span className="text-blue-600 font-bold">Google ARCore</span>,
               permitiendo manipular, rotar y posicionar objetos virtuales en
               entornos reales
             </p>
 
             <Link to="/Proyectos/XRAdventure" className="w-full md:w-auto">
               <button
-                className="group relative w-full md:w-auto border-4 py-4 px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
+                className="group relative w-full md:w-auto border-4 py-4 px-4 md:px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
                 style={{ borderColor: currentTextColor }}
               >
-                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                <span className="relative z-10 text-[10px] md:text-sm transition-colors duration-300 group-hover:text-white block text-center break-all">
                   Ejecutar_XR_Adventure.exe
                 </span>
                 <div className="absolute -inset-y-1 -left-1 -right-1 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
@@ -249,49 +256,11 @@ export default function Proyectos({ isDark }) {
             <img
               src={ImagenXR}
               alt="XR Adventure"
-              className="w-full h-full object-contain p-5 md:p-2"
+              className="w-full h-full object-contain p-2 md:p-4 scale-125"
             />
           </div>
         </motion.section>
       </div>
-
-      {/* FOOTER */}
-      <footer
-        className={`mt-40 border-t-4 py-12 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] transition-colors duration-300 ${
-          isDark
-            ? "border-white text-white opacity-80"
-            : "border-black text-black opacity-90"
-        }`}
-      >
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-10 px-2">
-          <div className="flex items-center gap-3">
-            <span
-              className={`w-2.5 h-2.5 rounded-full animate-pulse ${
-                isDark ? "bg-red-500" : "bg-red-600"
-              }`}
-            ></span>
-            <span className="font-bold">System_Status: Online</span>
-          </div>
-          <span className="font-black italic text-lg md:text-xl tracking-tighter border-x-2 px-4">
-            AFTERBIT_CORE_STATION
-          </span>
-          <div className="font-bold">
-            Build: {new Date().toLocaleDateString().replace(/\//g, ".")}
-          </div>
-        </div>
-        <div
-          className={`text-center pt-8 border-t-2 border-dashed ${
-            isDark ? "border-white/30" : "border-black/20"
-          }`}
-        >
-          <p className="font-black text-sm md:text-base mb-1">
-            David Jiménez Villena — Afterbit
-          </p>
-          <p className="opacity-60">
-            Copyright © {new Date().getFullYear()} // All rights reserved
-          </p>
-        </div>
-      </footer>
     </div>
   );
 }

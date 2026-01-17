@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Routes, Route } from "react-router-dom";
 import './App.css'
 import Menu from './components/Menu.jsx';
+import Footer from './components/Footer.jsx';
 import HomePage from "./Pages/Home.jsx";
 import SobreMi from "./Pages/SobreMi.jsx";
 import Contacto from "./Pages/Contacto.jsx";
@@ -19,6 +20,7 @@ import SuperRodolfoSonido from './Pages/Sonido.jsx';
 import SuperRodolfoProduccion from './Pages/ProduccionyArquitectura.jsx';
 import SuperRodolfoConceptos from './Pages/ConceptoyObjetivos.jsx';
 import "./index.css";
+import ChatIA from './components/IA.jsx';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -47,7 +49,9 @@ function App() {
         <Route path="/Proyectos/SuperRodolfo/ProduccionyArquitectura" element={<SuperRodolfoProduccion isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ConceptoyObjetivos" element={<SuperRodolfoConceptos isDark={isDark} />} />
       </Routes>
-      
+      <ChatIA isDark={isDark} />
+
+      <Footer isDark={isDark} setIsDark={setIsDark}/>
     </div>
   );
 }

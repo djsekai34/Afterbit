@@ -62,7 +62,7 @@ export default function XRAdventureExplicacion({ isDark }) {
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mt-4">
             <div className="font-mono text-[10px] md:text-xs space-y-2 opacity-80 uppercase tracking-widest flex flex-col items-center md:items-start">
               <p className="flex items-center gap-2">
-                <span 
+                <span
                   className="w-1.5 h-1.5 lg:w-2 lg:h-2 inline-block shrink-0"
                   style={{ backgroundColor: accentColor }}
                 ></span>
@@ -71,7 +71,7 @@ export default function XRAdventureExplicacion({ isDark }) {
                 </span>
               </p>
               <p className="flex items-center gap-2">
-                <span 
+                <span
                   className="w-2 h-2 inline-block shrink-0"
                   style={{ backgroundColor: accentColor }}
                 ></span>
@@ -90,7 +90,6 @@ export default function XRAdventureExplicacion({ isDark }) {
       </motion.header>
 
       <motion.main variants={itemVariants} className="max-w-5xl mx-auto">
-        
         {/* --- SECCIÓN: INTRODUCCIÓN Y GÉNESIS --- */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 items-start">
           <div className="space-y-6 pt-4">
@@ -109,9 +108,11 @@ export default function XRAdventureExplicacion({ isDark }) {
                     Curso de Especialización
                   </span>
                   . El objetivo: llevar la experiencia{" "}
-                  <span style={{ color: accentColor }} className="font-bold">Pokémon</span> más
-                  allá de la pantalla, integrándola en nuestro mundo mediante
-                  Realidad Aumentada avanzada.
+                  <span style={{ color: accentColor }} className="font-bold">
+                    Pokémon
+                  </span>{" "}
+                  más allá de la pantalla, integrándola en nuestro mundo
+                  mediante Realidad Aumentada avanzada.
                 </p>
 
                 <p className="border-l-2 pl-6 border-zinc-500 text-sm md:text-base">
@@ -149,7 +150,10 @@ export default function XRAdventureExplicacion({ isDark }) {
                       : "bg-zinc-100 border-black/10"
                   }`}
                 >
-                  <h4 style={{ color: accentColor }} className="font-black uppercase mb-3 tracking-widest">
+                  <h4
+                    style={{ color: accentColor }}
+                    className="font-black uppercase mb-3 tracking-widest"
+                  >
                     Interaction_Module:
                   </h4>
                   <p className="opacity-70 leading-relaxed italic">
@@ -177,9 +181,11 @@ export default function XRAdventureExplicacion({ isDark }) {
                 alt="AR Gameplay"
                 className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
               />
-              <div 
-                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" 
-                style={{ background: `linear-gradient(to top, ${accentColor}33, transparent)` }}
+              <div
+                className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                style={{
+                  background: `linear-gradient(to top, ${accentColor}33, transparent)`,
+                }}
               />
             </div>
           </div>
@@ -280,8 +286,10 @@ export default function XRAdventureExplicacion({ isDark }) {
                   key={tag}
                   className="font-mono text-[10px] border-2 px-3 py-1.5 opacity-60 hover:opacity-100 transition-all cursor-default"
                   style={{ borderColor: `${currentTextColor}40` }}
-                  onMouseEnter={(e) => e.currentTarget.style.borderColor = accentColor}
-                  onMouseLeave={(e) => e.currentTarget.style.borderColor = `${currentTextColor}40`}
+                  onMouseEnter={(e) =>
+                    (e.currentTarget.style.borderColor = accentColor)
+                  }
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")} // Esto limpia el color del hover y vuelve al original
                 >
                   {tag}
                 </span>
@@ -305,8 +313,8 @@ export default function XRAdventureExplicacion({ isDark }) {
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
                 VIEW_REPOSITORY
               </span>
-              <div 
-                className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" 
+              <div
+                className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
                 style={{ backgroundColor: accentColor }}
               />
             </button>
@@ -325,49 +333,14 @@ export default function XRAdventureExplicacion({ isDark }) {
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
                 PARTNER_PROFILE
               </span>
-              <div 
-                className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" 
+              <div
+                className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
                 style={{ backgroundColor: accentColor }}
               />
             </button>
           </a>
         </div>
       </motion.main>
-
-      {/* --- FOOTER --- */}
-      <motion.footer
-        variants={itemVariants}
-        className={`mt-40 border-t-4 py-12 font-mono text-[10px] md:text-xs uppercase tracking-[0.2em] transition-colors duration-300 ${
-          isDark
-            ? "border-white text-white opacity-80"
-            : "border-black text-black opacity-90"
-        }`}
-      >
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6 mb-10 px-2">
-          <div className="flex items-center gap-3">
-            <span
-              className={`w-2.5 h-2.5 rounded-full animate-pulse ${
-                isDark ? "bg-red-500" : "bg-red-600"
-              }`}
-            ></span>
-            <span className="font-bold">System_Status: Online</span>
-          </div>
-          <span className="font-black italic text-lg md:text-xl tracking-tighter border-x-2 px-4">
-            AFTERBIT_CORE_STATION
-          </span>
-          <div className="font-bold">
-            Build: {new Date().toLocaleDateString().replace(/\//g, ".")}
-          </div>
-        </div>
-        <div className="text-center pt-8 border-t-2 border-dashed border-zinc-500/30">
-          <p className="font-black text-sm mb-1">
-            David Jiménez Villena — Afterbit
-          </p>
-          <p className="opacity-60">
-            Copyright © {new Date().getFullYear()} // All rights reserved
-          </p>
-        </div>
-      </motion.footer>
     </motion.div>
   );
 }
