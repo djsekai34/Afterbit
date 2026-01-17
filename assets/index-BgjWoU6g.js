@@ -80,7 +80,7 @@ Puedo ayudarte con:
 • Datos de contacto y redes sociales.
 • Detalles de todos los Proyectos o uno en concreto.
 
-¿Qué deseas consultar?`,j=async()=>{if(!r.trim())return;const C=r;h(L=>[...L,{rol:"user",texto:C}]),f(""),p(!0);const V="https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=AIzaSyDsUqeSu17pyu37Ma7aEPNvcj2KTRr9g24";try{const z=await fetch(V,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:`Eres el asistente de Afterbit, el portfolio de David Jiménez.
+¿Qué deseas consultar?`,j=async()=>{if(!r.trim())return;const C=r;h(L=>[...L,{rol:"user",texto:C}]),f(""),p(!0);const V="https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=AIzaSyDYKaHkSTepDrFEAos19CqGSyJlAvp4iro";try{const z=await fetch(V,{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({contents:[{parts:[{text:`Eres el asistente de Afterbit, el portfolio de David Jiménez.
 
 PERFIL Y AFTERBIT:
 - David Jiménez: 22 años, Programador Web Junior con título DAW y cursando la especialización en Videojuegos y VR.
