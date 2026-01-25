@@ -5,9 +5,17 @@
   100% { transform: translateX(100%); }
 }
 
-body {
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+  /* Esta línea es clave para evitar que el scroll vertical "baile" */
+  scrollbar-gutter: stable; 
   margin: 0;
   padding: 0;
   /* Eliminamos cualquier color por defecto */
   color: unset !important; 
+}
+
+#root {
+  overflow-x: hidden;
 }

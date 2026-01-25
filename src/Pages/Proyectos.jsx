@@ -2,13 +2,13 @@ import React from "react";
 import { motion } from "framer-motion";
 
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
+import ImagenRodolfoStrike from "../Imagenes/LogoSRS.png";
 import ImagenMetroid from "../Imagenes/PixelMetroid.png";
 import ImagenXR from "../Imagenes/XRAdventure.jpeg";
 import { Link } from "react-router-dom";
 
 export default function Proyectos({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
-  // Color de acento base (usado en títulos/bordes)
   const accentColor = isDark ? "#ff0000" : "#cc0000";
   const rodolfoGreen = "#008012";
 
@@ -38,7 +38,7 @@ export default function Proyectos({ isDark }) {
       </motion.h1>
 
       <div className="max-w-6xl mx-auto space-y-40">
-        {/* --- SECCIÓN 01: SUPER RODOLFO --- */}
+        {/* --- SECCIÓN 01: SUPER RODOLFO (Texto Izq | Imagen Der) --- */}
         <motion.section
           id="rodolfo"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -115,7 +115,98 @@ export default function Proyectos({ isDark }) {
           </div>
         </motion.section>
 
-        {/* --- SECCIÓN 02: PIXEL METROID --- */}
+        {/* --- SECCIÓN 02: SUPER RODOLFO STRIKE  --- */}
+        <motion.section
+          id="rodolfo-strike"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
+          style={{ borderColor: currentTextColor }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={itemVariants}
+        >
+          <div
+            className={`lg:col-span-7 order-2 lg:order-1 aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 ${
+              isDark ? "bg-zinc-900" : "bg-zinc-500"
+            }`}
+            style={{ borderColor: currentTextColor }}
+          >
+            <img
+              src={ImagenRodolfoStrike}
+              alt="Rodolfo Strike Logo"
+              className="w-full h-full object-contain p-6 scale-110 hover:scale-125 transition-transform duration-500"
+            />
+          </div>
+
+          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
+            <span className="font-mono text-xs font-bold opacity-50 uppercase tracking-[0.4em] block">
+              [ CODE_02 ] // MOBILE_SPIN_OFF
+            </span>
+            <h2 className="text-3xl md:text-5xl font-black italic uppercase leading-[0.85] tracking-tighter">
+              Super Rodolfo Strike
+            </h2>
+            <div className="flex flex-wrap justify-center lg:justify-center gap-2 py-4 w-full">
+              {["Unity Mobile", "Android", "C#", "Touch Controls"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="border-2 px-2 py-1 text-[9px] font-black uppercase italic"
+                    style={{ borderColor: currentTextColor }}
+                  >
+                    {tag}
+                  </span>
+                ),
+              )}
+            </div>
+            <p
+              className="text-xl opacity-90 leading-tight font-medium border-l-4 pl-4"
+              style={{ borderColor: rodolfoGreen }}
+            >
+              Spin-off móvil donde jugamos a los bolos con{" "}
+              <span style={{ color: rodolfoGreen }} className="font-bold">
+                Rodolfo
+              </span>{" "}
+              y los bolos son los{" "}
+              <span style={{ color: rodolfoGreen }} className="font-bold">
+                enemigos del Santo Reino
+              </span>
+              . Un proyecto clave para dominar la clase{" "}
+              <span
+                style={{ color: rodolfoGreen }}
+                className="font-bold italic"
+              >
+                TouchScreen
+              </span>{" "}
+              y hacer build para dispositivos Android bajo el sello de{" "}
+              <span
+                style={{ color: rodolfoGreen }}
+                className="font-bold italic"
+              >
+                Afterbit
+              </span>
+              .
+            </p>
+            <Link
+              to="/Proyectos/SuperRodolfoStrike"
+              className="w-full md:w-auto"
+            >
+              <button
+                className="group relative w-full md:w-auto border-4 py-4 px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
+                style={{ borderColor: currentTextColor }}
+              >
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                  Ejecutar_SRStrike.apk
+                </span>
+                <div
+                  className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
+                  style={{ backgroundColor: rodolfoGreen }}
+                />
+              </button>
+            </Link>
+          </div>
+        </motion.section>
+
+        {/* --- SECCIÓN 03: PIXEL METROID --- */}
         <motion.section
           id="metroid"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -125,20 +216,9 @@ export default function Proyectos({ isDark }) {
           viewport={{ once: true, amount: 0.2 }}
           variants={itemVariants}
         >
-          <div
-            className="lg:col-span-7 order-2 lg:order-1 aspect-video bg-zinc-900 overflow-hidden border-4"
-            style={{ borderColor: currentTextColor }}
-          >
-            <img
-              src={ImagenMetroid}
-              alt="Metroid"
-              className="w-full h-full object-cover"
-            />
-          </div>
-
-          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
+          <div className="lg:col-span-5 space-y-6">
             <span className="font-mono text-xs font-bold opacity-50 uppercase tracking-[0.4em] block">
-              [ CODE_02 ] // CORE_LEARNING_STATION
+              [ CODE_03 ] // CORE_LEARNING_STATION
             </span>
             <h2 className="text-5xl md:text-7xl font-black italic uppercase leading-[0.85] tracking-tighter">
               Pixel Metroid 2D
@@ -186,9 +266,19 @@ export default function Proyectos({ isDark }) {
               </button>
             </Link>
           </div>
+          <div
+            className={`lg:col-span-7 group relative aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 bg-zinc-900`}
+            style={{ borderColor: currentTextColor }}
+          >
+            <img
+              src={ImagenMetroid}
+              alt="Metroid"
+              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+            />
+          </div>
         </motion.section>
 
-        {/* --- SECCIÓN 03: XR ADVENTURE --- */}
+        {/* --- SECCIÓN 04: XR ADVENTURE --- */}
         <motion.section
           id="xr"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -198,14 +288,23 @@ export default function Proyectos({ isDark }) {
           viewport={{ once: true, amount: 0.2 }}
           variants={itemVariants}
         >
-          <div className="lg:col-span-5 space-y-6">
+          <div
+            className={`lg:col-span-7 order-2 lg:order-1 group relative aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 ${isDark ? "bg-zinc-900" : "bg-zinc-500"}`}
+            style={{ borderColor: currentTextColor }}
+          >
+            <img
+              src={ImagenXR}
+              alt="XR Adventure"
+              className="w-full h-full object-contain p-2 md:p-4 scale-125 transition-transform duration-500 group-hover:scale-145"
+            />
+          </div>
+          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
             <span className="font-mono text-xs font-bold opacity-50 uppercase tracking-[0.4em] block">
-              [ CODE_03 ] // INMERSIVE_TECH
+              [ CODE_04 ] // INMERSIVE_TECH
             </span>
             <h2 className="text-5xl md:text-6xl font-black italic uppercase leading-[0.85] tracking-tighter">
               XR Adventure
             </h2>
-
             <div className="flex flex-wrap justify-center lg:justify-center gap-1.5 py-4 w-full">
               {[
                 "ANDROID_BUILD",
@@ -222,7 +321,6 @@ export default function Proyectos({ isDark }) {
                 </span>
               ))}
             </div>
-
             <p
               className="text-xl opacity-90 leading-tight font-medium border-l-4 pl-4"
               style={{ borderColor: "#0066ff" }}
@@ -231,33 +329,19 @@ export default function Proyectos({ isDark }) {
               el mundo físico y digital. Desarrollado con{" "}
               <span className="text-blue-600 font-bold">Google ARCore</span>,
               permitiendo manipular, rotar y posicionar objetos virtuales en
-              entornos reales
+              entornos reales.
             </p>
-
             <Link to="/Proyectos/XRAdventure" className="w-full md:w-auto">
               <button
                 className="group relative w-full md:w-auto border-4 py-4 px-4 md:px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
                 style={{ borderColor: currentTextColor }}
               >
                 <span className="relative z-10 text-[10px] md:text-sm transition-colors duration-300 group-hover:text-white block text-center break-all">
-                  Ejecutar_XR_Adventure.exe
+                  Ejecutar_XR_Adventure.apk
                 </span>
                 <div className="absolute -inset-y-1 -left-1 -right-1 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
               </button>
             </Link>
-          </div>
-
-          <div
-            className={`lg:col-span-7 group relative aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 ${
-              isDark ? "bg-zinc-900" : "bg-zinc-500"
-            }`}
-            style={{ borderColor: currentTextColor }}
-          >
-            <img
-              src={ImagenXR}
-              alt="XR Adventure"
-              className="w-full h-full object-contain p-2 md:p-4 scale-125"
-            />
           </div>
         </motion.section>
       </div>

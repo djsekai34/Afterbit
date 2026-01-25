@@ -395,7 +395,7 @@ export default function SobreMi({ isDark }) {
             >
               {/* BOTÓN PORTAFOLIO */}
               <a
-                href="https://djsekai34.github.io/portfolio/"
+                href="https://djsekai34.github.io/DJVPortFolio/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`group flex-1 border-4 py-6 px-8 transition-all duration-300 transform hover:scale-[1.02] hover:-rotate-1 active:scale-95

@@ -19,8 +19,8 @@ import SuperRodolfoUI from './Pages/InterfazyUI.jsx';
 import SuperRodolfoSonido from './Pages/Sonido.jsx'; 
 import SuperRodolfoProduccion from './Pages/ProduccionyArquitectura.jsx';
 import SuperRodolfoConceptos from './Pages/ConceptoyObjetivos.jsx';
+import SuperRodolfoStrike from './Pages/SuperRodolfoStrike.jsx';
 import "./index.css";
-import ChatIA from './components/IA.jsx';
 
 function App() {
   const [isDark, setIsDark] = useState(true);
@@ -48,8 +48,8 @@ function App() {
         <Route path="/Proyectos/SuperRodolfo/Sonido" element={<SuperRodolfoSonido isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ProduccionyArquitectura" element={<SuperRodolfoProduccion isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ConceptoyObjetivos" element={<SuperRodolfoConceptos isDark={isDark} />} />
+        <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
       </Routes>
-      <ChatIA isDark={isDark} />
 
       <Footer isDark={isDark} setIsDark={setIsDark}/>
     </div>

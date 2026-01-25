@@ -156,13 +156,22 @@ export default function SuperRodolfoGDD({ isDark }) {
         className="max-w-6xl mx-auto mb-32 space-y-16"
       >
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <div className="w-full max-w-[280px] flex justify-center">
+          <motion.div
+            animate={{ y: [0, -15, 0], rotate: [0, 3, 0] }}
+            transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+            className="relative w-full max-w-[280px] flex justify-center items-center group"
+          >
             <img
               src={LogoRodolfo}
               alt="Logo"
-              className="w-full h-auto drop-shadow-[0_0_20px_rgba(0,128,18,0.2)]"
+              className="relative z-10 w-full h-auto transition-all duration-500 ease-out group-hover:scale-110"
+              style={{
+                filter: isDark
+                  ? `drop-shadow(0 5px 15px rgba(0,0,0,0.8))`
+                  : `drop-shadow(0 5px 15px rgba(0,0,0,0.1))`,
+              }}
             />
-          </div>
+          </motion.div>
           <div className="flex-1 space-y-8">
             <div className="space-y-4">
               <h2
@@ -279,7 +288,7 @@ export default function SuperRodolfoGDD({ isDark }) {
                 <h2 className="text-2xl md:text-4xl font-black italic uppercase leading-none group-hover:text-[#008012] transition-colors">
                   {section.title}
                 </h2>
-                
+
                 <div className="hidden md:flex items-center gap-2 font-mono text-[10px] opacity-40 uppercase tracking-widest group-hover:opacity-100 group-hover:text-[#008012] transition-all">
                   <span>Acceder</span> <FaArrowRight />
                 </div>

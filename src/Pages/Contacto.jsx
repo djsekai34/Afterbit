@@ -7,18 +7,18 @@ export default function Contacto({ isDark }) {
   const [enviado, setEnviado] = useState(false);
   const [cargando, setCargando] = useState(false);
 
-  // --- LÓGICA DE ENVÍO (EMAILJS) ---
+  // --- LÓGICA DE ENVÍO (PROTEGIDA CON VARIABLES DE ENTORNO) ---
   const sendEmail = (e) => {
     e.preventDefault();
-    if (e.target.bot_field.value) return;
+    if (e.target.bot_field.value) return; // Filtro anti-spam
     setCargando(true);
 
     emailjs
       .sendForm(
-        "service_ejavni3",
-        "template_q2faekl",
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
         form.current,
-        "VzhXwXSzp3zgMwKUP",
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY,
       )
       .then(
         () => {
@@ -63,15 +63,16 @@ export default function Contacto({ isDark }) {
 
   return (
     <motion.div
-      /* AJUSTE DE ESPACIADO: pt-28 (más arriba) y pb-12 (menos abajo) */
-      className={`min-h-screen pt-28 pb-12 transition-colors duration-500 overflow-x-hidden max-w-full relative ${
+      className={`min-h-screen pt-30 pb-12 transition-colors duration-500 overflow-hidden w-full relative ${
         isDark ? "text-white bg-black" : "text-black bg-white"
       }`}
       initial="hidden"
       animate="visible"
     >
-      <div className="relative z-10 px-4 md:px-8 lg:px-16 w-full overflow-x-hidden">
+      <div className="relative z-10 px-4 md:px-8 lg:px-16 w-full">
         <div className="max-w-6xl mx-auto relative">
+          
+          {/* SECCIÓN 1: TÍTULO PRINCIPAL */}
           <motion.h1
             className="text-4xl md:text-8xl font-black italic mb-20 uppercase tracking-tighter text-center"
             variants={itemVariants}
@@ -80,10 +81,13 @@ export default function Contacto({ isDark }) {
           </motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
+            
+            {/* COLUMNA IZQUIERDA: INFORMACIÓN Y LINKS */}
             <motion.div
               variants={itemVariants}
               className="lg:col-span-5 space-y-12 flex flex-col items-start md:items-center lg:items-start"
             >
+              {/* Texto de introducción */}
               <div className="space-y-6 text-center lg:text-center">
                 <h3 className="text-3xl font-black italic uppercase text-red-600">
                   ¿Hablamos?
@@ -96,13 +100,13 @@ export default function Contacto({ isDark }) {
                   .
                   <br />
                   <br />
-                  Si buscas a alguien que no solo escriba código, sino que ayude
-                  a <Highlight>hacer crecer tu empresa</Highlight> aportando
-                  soluciones creativas y escalables, has llegado al sitio
-                  correcto.
+                  Si buscas a alguien que ayude a{" "}
+                  <Highlight>hacer crecer tu empresa</Highlight> aportando
+                  soluciones creativas.
                 </p>
               </div>
 
+              {/* Datos de contacto */}
               <div className="space-y-8 font-mono flex flex-col items-start md:items-center lg:items-start w-full overflow-hidden">
                 <a
                   href="https://www.google.com/maps/place/Ja%C3%A9n"
@@ -110,7 +114,7 @@ export default function Contacto({ isDark }) {
                   rel="noreferrer"
                   className="flex items-center gap-6 group cursor-pointer w-fit"
                 >
-                  <span className="text-red-600 text-xs font-bold border border-red-600 px-2 py-1 flex-shrink-0">
+                  <span className="text-red-600 text-xs font-bold border border-red-600 px-2 py-1">
                     LOC
                   </span>
                   <span className="group-hover:text-red-600 transition-colors uppercase tracking-widest text-sm md:text-base">
@@ -121,7 +125,7 @@ export default function Contacto({ isDark }) {
                   href="mailto:davidjimenezvillena@gmail.com"
                   className="flex items-center gap-6 group cursor-pointer w-fit max-w-full"
                 >
-                  <span className="text-red-600 text-[10px] md:text-xs font-bold border border-red-600 px-2 py-1 flex-shrink-0">
+                  <span className="text-red-600 text-[10px] md:text-xs font-bold border border-red-600 px-2 py-1">
                     MSG
                   </span>
                   <span className="group-hover:text-red-600 transition-colors uppercase tracking-tighter md:tracking-widest text-[11px] md:text-base truncate">
@@ -130,40 +134,41 @@ export default function Contacto({ isDark }) {
                 </a>
               </div>
 
+              {/* SECCIÓN CONNECT_HUB */}
               <div className="pt-8 w-full text-center">
                 <p className="text-[10px] font-bold mb-6 opacity-40 tracking-[0.4em] uppercase">
                   Connect_Hub
                 </p>
-                <div className="flex flex-wrap items-center justify-center gap-x-3 md:gap-x-6 gap-y-4 font-black italic text-[17px] md:text-xl">
+                <div className="flex flex-wrap items-center justify-center gap-x-3 md:gap-x-6 gap-y-4 font-black italic text-[17px] md:text-xl pb-4">
                   <a
-                    href="https://djsekai34.github.io/portfolio/"
+                    href="https://djsekai34.github.io/DJVPortFolio/"
                     target="_blank"
                     rel="noreferrer"
-                    className="relative group opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
+                    className="relative group inline-block opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
                   >
                     <span className="relative z-10">PORTFOLIO</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                   </a>
-                  <span className="opacity-20 font-thin italic select-none">
-                    |
-                  </span>
+
+                  <span className="opacity-20 font-thin italic select-none">|</span>
+
                   <a
                     href="https://www.linkedin.com/in/david-jimenez-villena/"
                     target="_blank"
                     rel="noreferrer"
-                    className="relative group opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
+                    className="relative group inline-block opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
                   >
                     <span className="relative z-10">LINKEDIN</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                   </a>
-                  <span className="opacity-20 font-thin italic select-none">
-                    |
-                  </span>
+
+                  <span className="opacity-20 font-thin italic select-none">|</span>
+
                   <a
                     href="https://github.com/djsekai34"
                     target="_blank"
                     rel="noreferrer"
-                    className="relative group opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
+                    className="relative group inline-block opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"
                   >
                     <span className="relative z-10">GITHUB</span>
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
@@ -172,12 +177,14 @@ export default function Contacto({ isDark }) {
               </div>
             </motion.div>
 
+            {/* COLUMNA DERECHA: FORMULARIO DE CONTACTO */}
             <motion.div variants={itemVariants} className="lg:col-span-7">
               <form
                 ref={form}
                 onSubmit={sendEmail}
                 className="flex flex-col gap-10"
               >
+                {/* Inputs ocultos para seguridad y metadatos */}
                 <input
                   type="text"
                   name="bot_field"
@@ -186,6 +193,7 @@ export default function Contacto({ isDark }) {
                 />
                 <input type="hidden" name="date" value={fechaActual} />
 
+                {/* Campos de Nombre y Email */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
                   <input
                     type="text"
@@ -203,6 +211,7 @@ export default function Contacto({ isDark }) {
                   />
                 </div>
 
+                {/* Campo Asunto */}
                 <input
                   type="text"
                   name="user_subject"
@@ -211,6 +220,7 @@ export default function Contacto({ isDark }) {
                   className={`w-full bg-transparent border-b-2 p-4 outline-none font-black italic focus:border-red-600 transition-all ${isDark ? "border-white/10" : "border-black/10"}`}
                 />
 
+                {/* Campo Mensaje */}
                 <textarea
                   name="message"
                   required
@@ -219,6 +229,7 @@ export default function Contacto({ isDark }) {
                   className={`w-full bg-transparent border-b-2 p-4 outline-none font-black italic focus:border-red-600 transition-all resize-none ${isDark ? "border-white/10" : "border-black/10"}`}
                 ></textarea>
 
+                {/* Botón de Envío*/}
                 <button
                   type="submit"
                   disabled={cargando || enviado}
@@ -237,14 +248,13 @@ export default function Contacto({ isDark }) {
                   <div
                     className={`absolute inset-0 w-full h-full -translate-x-full group-hover:animate-[shimmer_2s_infinite] z-0 pointer-events-none ${isDark ? "bg-black/20" : "bg-white/20"}`}
                   ></div>
-
                   <AnimatePresence mode="wait">
                     <motion.div
                       key={cargando ? "l" : enviado ? "s" : "i"}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, y: -10 }}
-                      className="relative z-10 flex flex-col items-center pointer-events-none"
+                      className="relative z-10 flex flex-col items-center"
                     >
                       {cargando ? (
                         <span className="flex items-center gap-2">

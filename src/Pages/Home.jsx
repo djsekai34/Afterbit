@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import Metroid2d from "../Imagenes/Pixelmetroid.png";
 import XRAdventure from "../Imagenes/XRAdventure.jpeg";
+import SuperRodolofStrike from "../Imagenes/LogoSRS.png";
 
 export default function Cuerpo({ isDark }) {
   const fadeInUp = {
@@ -39,6 +40,14 @@ export default function Cuerpo({ isDark }) {
       tag: "Mixed Reality Experience",
       image: XRAdventure,
       link: "/Proyectos/XRAdventure",
+    },
+    {
+      id: 4,
+      title: "Super Rodolfo Strike",
+      desc: "Videojuego 2D de movil estilo bolos, donde jugamos a la bolera con Rodolfo.",
+      tag: "Mobile Game",
+      image: SuperRodolofStrike,
+      link: "/Proyectos/SuperRodolfoStrike",
     },
   ];
 
@@ -299,11 +308,16 @@ export default function Cuerpo({ isDark }) {
                   className="absolute inset-0 z-0 grayscale contrast-110 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 opacity-30 group-hover:opacity-70"
                   style={{
                     backgroundImage: `url(${proyecto.image})`,
-                    backgroundSize: proyecto.id === 1 ? "80% auto" : "cover",
+                    backgroundSize:
+                      proyecto.id === 1 || proyecto.id === 4
+                        ? "80% auto"
+                        : "cover",
                     backgroundRepeat: "no-repeat",
                     backgroundPosition:
-                      proyecto.id === 1 ? "top center" : "center",
-                    paddingTop: proyecto.id === 1 ? "0px" : "0px",
+                      proyecto.id === 1 || proyecto.id === 4
+                        ? "top center"
+                        : "center",
+                    paddingTop: "0px",
                     backgroundOrigin: "content-box",
                   }}
                 ></div>
@@ -339,9 +353,11 @@ export default function Cuerpo({ isDark }) {
                     </span>
                     <h3
                       className={`font-black mt-5 mb-3 uppercase italic tracking-tighter leading-[0.9] transition-transform duration-500 group-hover:translate-x-2 ${
-                        proyecto.title.length > 25
-                          ? "text-2xl md:text-3xl"
-                          : "text-4xl md:text-5xl"
+                        proyecto.id === 4
+                          ? "text-4xl"
+                          : proyecto.title.length > 25
+                            ? "text-2xl md:text-3xl"
+                            : "text-4xl md:text-5xl"
                       }`}
                     >
                       {proyecto.title}

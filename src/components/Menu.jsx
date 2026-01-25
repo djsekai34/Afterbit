@@ -142,6 +142,17 @@ export default function Barra({ isDark, setIsDark }) {
                 </ul>
               </li>
 
+              {/* SUB APARTADO: SUPER RODOLFO STRIKE */}
+              <li
+                className={`border-2 border-t-0 ${
+                  isDark ? "border-white bg-black" : "border-black bg-white"
+                }`}
+              >
+                <Link to="/Proyectos/SuperRodolfoStrike" className={dropdownItemStyles} onClick={closeMenu}>
+                  Super Rodolfo Strike
+                </Link>
+              </li>
+
               {/* OTROS PROYECTOS */}
               <li
                 className={`border-2 border-t-0 ${
