@@ -279,7 +279,7 @@ export default function Cuerpo({ isDark }) {
         </div>
       </section>
 
-      {/* SECCIÓN: PROYECTOS */}
+     {/* SECCIÓN: PROYECTOS */}
       <section className="py-24 px-6 container mx-auto">
         <motion.h2
           initial="hidden"
@@ -348,16 +348,18 @@ export default function Cuerpo({ isDark }) {
                         : "group-hover:text-white"
                     }
                   >
-                    <span className="font-mono text-xs tracking-widest uppercase border border-current px-2 py-1">
+                    <span className={`font-mono tracking-widest uppercase border border-current px-2 py-1 ${proyecto.id === 3 ? "text-[8px] md:text-xs" : "text-xs"}`}>
                       {proyecto.tag}
                     </span>
                     <h3
                       className={`font-black mt-5 mb-3 uppercase italic tracking-tighter leading-[0.9] transition-transform duration-500 group-hover:translate-x-2 ${
                         proyecto.id === 4
                           ? "text-4xl"
-                          : proyecto.title.length > 25
-                            ? "text-2xl md:text-3xl"
-                            : "text-4xl md:text-5xl"
+                          : proyecto.id === 3 
+                            ? "text-2xl md:text-4xl lg:text-5xl" // Ajuste solo para el 3 en móvil
+                            : proyecto.title.length > 25
+                              ? "text-2xl md:text-3xl"
+                              : "text-4xl md:text-5xl"
                       }`}
                     >
                       {proyecto.title}
@@ -454,13 +456,13 @@ export default function Cuerpo({ isDark }) {
             </div>
           </Link>
 
-          <div className="mt-12 text-center">
+         <div className="mt-12 text-center px-4">
             <p className="font-mono text-sm opacity-50 tracking-widest uppercase">
               O escribe directamente a:
             </p>
             <a
               href="mailto:davidjimenezvillena@gmail.com"
-              className="text-lg font-bold hover:opacity-100 transition-opacity border-b-2"
+              className="text-base md:text-lg font-bold hover:opacity-100 transition-opacity border-b-2 break-all md:break-normal"
               style={{
                 color: currentTextColor,
                 borderColor: `${currentTextColor}44`,

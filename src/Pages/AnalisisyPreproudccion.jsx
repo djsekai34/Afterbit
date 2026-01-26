@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
 import { useState } from "react";
 
 // ASSETS
@@ -13,16 +13,42 @@ import RefImg1 from "../Imagenes/DBZ_Adventure.png";
 import RefImg2 from "../Imagenes/Sonic.jpg";
 import RefImg3 from "../Imagenes/MarioBros.png";
 import RefImg4 from "../Imagenes/BT2.jpg";
+import RefImg5 from "../Imagenes/Jaen.jpg"
+
+// DEFINICIÓN DE ANIMACIONES REPLICADAS
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, filter: "blur(10px)" },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: "blur(0px)",
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
+};
 
 const FasePreproduccion = ({
   isDark,
   currentTextColor,
-  containerVariants,
-  itemVariants,
 }) => {
   const accentGreen = "#008012";
   const [selectedRef, setSelectedRef] = useState(null);
   const [activeAnalysis, setActiveAnalysis] = useState("DAFO");
+
+  // Lógica para la barra de progreso de lectura
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
 
   const referentesData = [
     {
@@ -45,6 +71,11 @@ const FasePreproduccion = ({
       img: RefImg4,
       desc: "Mi videojuego mas jugado de dragon ball en mi infancia, el cual me inspiro para para el tema de los enemigos.",
     },
+    {
+      id: 5,
+      img: RefImg5,
+      desc: "Es la comarca donde vivo, por lo que utilizo distintos lugares como inspiración para ambientar el juego, basándome en el lore del Santo Reino de Jaén del siglo XIII.",
+    },
   ];
 
   return (
@@ -56,6 +87,7 @@ const FasePreproduccion = ({
         isDark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
+
       {/* SECCIÓN: CABECERA */}
       <motion.header
         variants={itemVariants}
@@ -80,20 +112,28 @@ const FasePreproduccion = ({
           <h2 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter">
             ESTUDIO DE <span style={{ color: accentGreen }}>MERCADO</span>
           </h2>
-          <p className={`text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
-            El proceso comenzó con un análisis exhaustivo del sector de los
-            juegos de plataformas. Utilizando herramientas como{" "}
-            <span style={{ color: accentGreen }}>Steam</span>, se evaluó el
-            volumen de ventas y la media de usuarios activos para medir el
-            interés comercial. Complementariamente, se exploró{" "}
-            <span style={{ color: accentGreen }}>Itch.io</span> para identificar
-            tendencias en la escena indie. Tras este análisis, se detectó una
-            baja saturación de títulos con este estilo específico, revelando una{" "}
-            <span style={{ color: accentGreen }} className="font-bold">
-              oportunidad estratégica
-            </span>{" "}
-            para el éxito del proyecto.
-          </p>
+          <div className={`space-y-6 text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+            <p>
+              El proceso comenzó con un análisis exhaustivo del sector de los
+              juegos de plataformas. Utilizando herramientas como{" "}
+              <span style={{ color: accentGreen }}>Steam</span>, se evaluó el
+              volumen de ventas y la media de usuarios activos para medir el
+              interés comercial. Complementariamente, se exploró{" "}
+              <span style={{ color: accentGreen }}>Itch.io</span> para identificar
+              tendencias en la escena indie. Tras este análisis, se detectó una
+              baja saturación de títulos con este estilo específico, revelando una{" "}
+              <span style={{ color: accentGreen }} className="font-bold">
+                oportunidad estratégica
+              </span>{" "}
+              para el éxito del proyecto.
+            </p>
+            
+            <p>
+              Tras el análisis del mercado hemos detectado que los jugadores de{" "}
+              <span className="font-bold" style={{ color: accentGreen }}>7 años o más</span> (ya que es nuestro pegi) le gusta los videojuegos de acción y plataformas con un{" "}
+              <span className="italic">lore divertido y curioso</span> con una jugabilidad fácil, corta y que sea agradable.
+            </p>
+          </div>
 
           <div className={`p-8 border-2 ${isDark ? "bg-zinc-900/30 border-zinc-800" : "bg-zinc-50 border-zinc-200"} rounded-sm relative overflow-hidden w-full`}>
             <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: accentGreen }} />
@@ -115,7 +155,7 @@ const FasePreproduccion = ({
           </div>
         </motion.section>
 
-        {/* SECCIÓN 2: REFERENTES VISUALES */}
+       {/* SECCIÓN 2: REFERENTES VISUALES */}
         <motion.section variants={itemVariants} className="space-y-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
@@ -127,9 +167,8 @@ const FasePreproduccion = ({
             <p className={`text-lg leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
               Aqui puedes ver mis referentes que me ayudo a hacer{" "}
               <span className="font-bold" style={{ color: accentGreen }}>
-                Super Rodolfo
-              </span>{" "}
-              y la{" "}
+                Super Rodolfo y las{" "}
+              </span>
               <span className="font-bold" style={{ color: accentGreen }}>
                 esferas del Santo Reino
               </span>
@@ -138,12 +177,13 @@ const FasePreproduccion = ({
             </p>
           </div>
 
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          {/* CONTENEDOR FLEXIBLE: Centra los elementos sobrantes */}
+          <div className="flex flex-wrap justify-center gap-4">
             {referentesData.map((ref) => (
               <div
                 key={ref.id}
                 onClick={() => setSelectedRef(selectedRef === ref.id ? null : ref.id)}
-                className={`relative aspect-square rounded-sm cursor-pointer border transition-all duration-300 overflow-hidden ${
+                className={`relative w-[calc(50%-1rem)] md:w-[calc(25%-1rem)] aspect-square rounded-sm cursor-pointer border transition-all duration-300 overflow-hidden ${
                   selectedRef === ref.id
                     ? "border-green-500 ring-2 ring-green-500/20 scale-[1.02]"
                     : "border-zinc-500/10 opacity-80 hover:opacity-100"
@@ -247,7 +287,6 @@ const FasePreproduccion = ({
                 </div>
               </div>
 
-              {/* Lógica de transición de imágenes de análisis */}
               <div className="md:col-span-3">
                 <AnimatePresence mode="wait">
                   <motion.div

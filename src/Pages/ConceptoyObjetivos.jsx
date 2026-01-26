@@ -184,23 +184,6 @@ export default function ConceptosObjetivos({ isDark }) {
                {">"} desliza la tabla para ver todos los parámetros
              </p>
           </div>
-
-          <div className="flex justify-center pt-12">
-            <motion.a
-              href={imagenResumen}
-              download={isDark ? "GDD_Una_Hoja_Negro.jpg" : "GDD_Una_Hoja_Blanco.jpg"}
-              target="_blank"
-              rel="noopener noreferrer"
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative w-full md:w-auto border-4 py-4 px-8 font-black italic uppercase overflow-hidden transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
-              style={{ borderColor: currentTextColor }}
-            >
-              <div className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-200 ease-out z-0" style={{ backgroundColor: accentGreen }} />
-              <FaFileDownload className="relative z-10 text-lg transition-all duration-200 group-hover:text-white" />
-              <span className="relative z-10 transition-colors duration-200 group-hover:text-white text-xs md:text-sm tracking-widest">Te invito a descargar el resumen en una hoja</span>
-            </motion.a>
-          </div>
         </motion.section>
       </main>
     </motion.div>
