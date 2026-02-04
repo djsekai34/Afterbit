@@ -1,14 +1,30 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 import AfterbitLogo from "../Imagenes/Afterbit_sin_fondo.png";
 
 export default function Barra({ isDark, setIsDark }) {
   const [isOpen, setIsOpen] = useState(false);
+  const [subMenuDirection, setSubMenuDirection] = useState("left-full");
+  const rodolfoRef = useRef(null);
 
   // --- MANEJADORES DE ESTADO ---
   const toggleMenu = () => setIsOpen(!isOpen);
   const closeMenu = () => setIsOpen(false);
   const toggleDarkMode = () => setIsDark(!isDark);
+
+  // --- DETECCIÓN DE ESPACIO PARA EL SUBMENÚ ---
+  const handleMouseEnter = () => {
+    if (rodolfoRef.current) {
+      const rect = rodolfoRef.current.getBoundingClientRect();
+      const spaceRight = window.innerWidth - rect.right;
+      // Si hay menos de 300px a la derecha, ábrelo a la izquierda
+      if (spaceRight < 300) {
+        setSubMenuDirection("right-full mr-[2px]");
+      } else {
+        setSubMenuDirection("left-full ml-[2px]");
+      }
+    }
+  };
 
   // --- EFECTO DE FONDO DEL BODY ---
   useEffect(() => {
@@ -85,6 +101,8 @@ export default function Barra({ isDark, setIsDark }) {
               
               {/* SUB-SUBMENÚ: SUPER RODOLFO */}
               <li
+                ref={rodolfoRef}
+                onMouseEnter={handleMouseEnter}
                 className={`border-2 ${
                   isDark ? "border-white bg-black" : "border-black bg-white"
                 } relative group/rodolfo`}
@@ -95,9 +113,9 @@ export default function Barra({ isDark, setIsDark }) {
                 </Link>
 
                 <ul
-                  className={`absolute top-[-2px] left-full ml-[2px] min-w-[280px] invisible group-hover/rodolfo:visible opacity-0 group-hover/rodolfo:opacity-100 transition-all duration-300 flex flex-col border-2 ${
+                  className={`absolute top-[-2px] ${subMenuDirection} min-w-[280px] max-h-[80vh] overflow-y-auto invisible group-hover/rodolfo:visible opacity-0 group-hover/rodolfo:opacity-100 transition-all duration-300 flex flex-col border-2 ${
                     isDark ? "border-white bg-black" : "border-black bg-white"
-                  }`}
+                  } shadow-2xl`}
                 >
                   <li className="border-b border-zinc-500/30">
                     <Link to="/Proyectos/SuperRodolfo/ConceptoyObjetivos" className={dropdownItemStyles} onClick={closeMenu}>
