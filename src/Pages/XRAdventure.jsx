@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import ImagenVerticalAR from "../Imagenes/XRAdventure.jpeg";
 
 const containerVariants = {
@@ -36,7 +36,7 @@ export default function XRAdventureExplicacion({ isDark }) {
   );
 
   return (
-    <motion.div
+    <Motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -45,7 +45,7 @@ export default function XRAdventureExplicacion({ isDark }) {
       }`}
     >
       {/* --- SECCIÓN: HEADER TÉCNICO --- */}
-      <motion.header
+      <Motion.header
         variants={itemVariants}
         className="max-w-6xl mx-auto border-b-8 pb-8 mb-16"
         style={{ borderColor: currentTextColor }}
@@ -87,9 +87,9 @@ export default function XRAdventureExplicacion({ isDark }) {
             </div>
           </div>
         </div>
-      </motion.header>
+      </Motion.header>
 
-      <motion.main variants={itemVariants} className="max-w-5xl mx-auto">
+      <Motion.main variants={itemVariants} className="max-w-5xl mx-auto">
         {/* --- SECCIÓN: INTRODUCCIÓN Y GÉNESIS --- */}
         <section className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32 items-start">
           <div className="space-y-6 pt-4">
@@ -289,7 +289,7 @@ export default function XRAdventureExplicacion({ isDark }) {
                   onMouseEnter={(e) =>
                     (e.currentTarget.style.borderColor = accentColor)
                   }
-                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")} // Esto limpia el color del hover y vuelve al original
+                  onMouseLeave={(e) => (e.currentTarget.style.borderColor = "")}
                 >
                   {tag}
                 </span>
@@ -340,7 +340,7 @@ export default function XRAdventureExplicacion({ isDark }) {
             </button>
           </a>
         </div>
-      </motion.main>
-    </motion.div>
+      </Motion.main>
+    </Motion.div>
   );
 }

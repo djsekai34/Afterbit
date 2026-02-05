@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import Metroid2d from "../Imagenes/Pixelmetroid.png";
@@ -72,7 +72,7 @@ export default function Cuerpo({ isDark }) {
           AFTERBIT
         </div>
         <div className="container mx-auto flex flex-col items-center">
-          <motion.div
+          <Motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
@@ -88,7 +88,7 @@ export default function Cuerpo({ isDark }) {
                   boxShadow: `0 0 20px ${currentTextColor}22`,
                 }}
               >
-                <motion.span
+                <Motion.span
                   animate={{
                     opacity: [1, 0.4, 1],
                     scale: [1, 1.2, 1],
@@ -113,23 +113,23 @@ export default function Cuerpo({ isDark }) {
               className="text-7xl sm:text-8xl md:text-9xl lg:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] transition-colors duration-500 mb-6 text-center"
               style={{ color: currentTextColor }}
             >
-              <motion.span
+              <Motion.span
                 initial={{ letterSpacing: "0.1em", filter: "blur(8px)" }}
                 animate={{ letterSpacing: "-0.05em", filter: "blur(0px)" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="inline-block"
               >
                 AFTERBIT
-              </motion.span>
+              </Motion.span>
             </h1>
 
-            <motion.div
+            <Motion.div
               initial={{ width: 0 }}
               animate={{ width: "100%" }}
               transition={{ delay: 0.4, duration: 0.8 }}
               className="h-[5px] mb-10 mx-auto"
               style={{ backgroundColor: currentTextColor }}
-            ></motion.div>
+            ></Motion.div>
 
             <div className="flex flex-col md:flex-row justify-between items-start gap-8 px-2">
               <p className="text-xl md:text-2xl font-medium tracking-tight uppercase leading-[1.1] transition-colors duration-500 text-left max-w-md">
@@ -148,10 +148,10 @@ export default function Cuerpo({ isDark }) {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
 
-        <motion.div
+        <Motion.div
           animate={{ y: [0, 12, 0] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
           className="mt-32 md:mt-40 flex flex-col items-center gap-4 z-10"
@@ -165,7 +165,7 @@ export default function Cuerpo({ isDark }) {
             </span>
           </div>
           <div className="w-[2px] h-20 bg-current opacity-30 relative overflow-hidden">
-            <motion.div
+            <Motion.div
               className="absolute top-0 left-0 w-full bg-current"
               animate={{
                 height: ["0%", "100%", "0%"],
@@ -174,13 +174,13 @@ export default function Cuerpo({ isDark }) {
               transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
             />
           </div>
-        </motion.div>
+        </Motion.div>
       </section>
 
       {/* SECCIÓN: ESTUDIO */}
       <section className="py-32 px-6 container mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          <motion.div
+          <Motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -202,9 +202,9 @@ export default function Cuerpo({ isDark }) {
             <p className="font-mono text-xs uppercase tracking-[0.4em] opacity-60">
               Establecido en 2025 / Jaén, España
             </p>
-          </motion.div>
+          </Motion.div>
 
-          <motion.div
+          <Motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
@@ -227,7 +227,7 @@ export default function Cuerpo({ isDark }) {
               <p className="text-lg md:text-xl opacity-90 leading-snug">
                 Esta plataforma representa el culmen técnico y creativo
                 desarrollado como proyecto final para el
-                <motion.span
+                <Motion.span
                   initial="tapado"
                   whileHover="destapado"
                   className="relative inline-block mx-2 cursor-help align-bottom group"
@@ -236,7 +236,7 @@ export default function Cuerpo({ isDark }) {
                     Curso de Especialización en Desarrollo de videojuegos y
                     realidad virtual
                   </span>
-                  <motion.span
+                  <Motion.span
                     variants={{
                       tapado: { scaleX: 1 },
                       destapado: { scaleX: 0 },
@@ -245,7 +245,7 @@ export default function Cuerpo({ isDark }) {
                     className="absolute inset-0 z-20 origin-left hidden lg:block"
                     style={{ backgroundColor: currentTextColor }}
                   />
-                </motion.span>
+                </Motion.span>
                 demostrando la capacidad de transformar código en puro
                 entretenimiento digital.
               </p>
@@ -275,13 +275,13 @@ export default function Cuerpo({ isDark }) {
                 </div>
               ))}
             </div>
-          </motion.div>
+          </Motion.div>
         </div>
       </section>
 
-     {/* SECCIÓN: PROYECTOS */}
+      {/* SECCIÓN: PROYECTOS */}
       <section className="py-24 px-6 container mx-auto">
-        <motion.h2
+        <Motion.h2
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -290,12 +290,12 @@ export default function Cuerpo({ isDark }) {
           style={{ borderColor: currentTextColor }}
         >
           / Proyectos
-        </motion.h2>
+        </Motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
           {proyectos.map((proyecto) => (
             <Link key={proyecto.id} to={proyecto.link}>
-              <motion.div
+              <Motion.div
                 initial="hidden"
                 whileInView="visible"
                 viewport={{ once: true, margin: "-50px" }}
@@ -356,7 +356,7 @@ export default function Cuerpo({ isDark }) {
                         proyecto.id === 4
                           ? "text-4xl"
                           : proyecto.id === 3 
-                            ? "text-2xl md:text-4xl lg:text-5xl" // Ajuste solo para el 3 en móvil
+                            ? "text-2xl md:text-4xl lg:text-5xl" 
                             : proyecto.title.length > 25
                               ? "text-2xl md:text-3xl"
                               : "text-4xl md:text-5xl"
@@ -375,7 +375,7 @@ export default function Cuerpo({ isDark }) {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </Motion.div>
             </Link>
           ))}
         </div>
@@ -390,7 +390,7 @@ export default function Cuerpo({ isDark }) {
           color: currentBgColor,
         }}
       >
-        <motion.div
+        <Motion.div
           animate={{ x: [0, -1000] }}
           transition={{ repeat: Infinity, duration: 20, ease: "linear" }}
           className="text-6xl md:text-8xl font-black uppercase whitespace-nowrap flex gap-20"
@@ -405,12 +405,12 @@ export default function Cuerpo({ isDark }) {
             • Motor Unity • Especialización XR • Made in Jaén • Cultura Pixel •
             Afterbit •
           </span>
-        </motion.div>
+        </Motion.div>
       </section>
 
       {/* SECCIÓN: CONTACTO */}
       <section className="py-40 px-6 flex flex-col items-center justify-center overflow-hidden">
-        <motion.div
+        <Motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
@@ -456,7 +456,7 @@ export default function Cuerpo({ isDark }) {
             </div>
           </Link>
 
-         <div className="mt-12 text-center px-4">
+          <div className="mt-12 text-center px-4">
             <p className="font-mono text-sm opacity-50 tracking-widest uppercase">
               O escribe directamente a:
             </p>
@@ -471,7 +471,7 @@ export default function Cuerpo({ isDark }) {
               DAVIDJIMENEZVILLENA@GMAIL.COM
             </a>
           </div>
-        </motion.div>
+        </Motion.div>
       </section>
     </main>
   );

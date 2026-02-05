@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import ImagenRodolfoStrike from "../Imagenes/LogoSRS.png";
@@ -28,18 +28,18 @@ export default function Proyectos({ isDark }) {
       }`}
     >
       {/* TÍTULO PRINCIPAL */}
-      <motion.h1
+      <Motion.h1
         className="text-4xl md:text-7xl lg:text-9xl font-black italic uppercase mb-20 tracking-tighter"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
         / PROYECTS<span style={{ color: accentColor }}>_</span>
-      </motion.h1>
+      </Motion.h1>
 
       <div className="max-w-6xl mx-auto space-y-40">
         {/* --- SECCIÓN 01: SUPER RODOLFO (Texto Izq | Imagen Der) --- */}
-        <motion.section
+        <Motion.section
           id="rodolfo"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
@@ -113,10 +113,10 @@ export default function Proyectos({ isDark }) {
               Status: Gold_Build
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
-        {/* --- SECCIÓN 02: SUPER RODOLFO STRIKE  --- */}
-        <motion.section
+        {/* --- SECCIÓN 02: SUPER RODOLFO STRIKE   --- */}
+        <Motion.section
           id="rodolfo-strike"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
@@ -204,10 +204,10 @@ export default function Proyectos({ isDark }) {
               </button>
             </Link>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* --- SECCIÓN 03: PIXEL METROID --- */}
-        <motion.section
+        <Motion.section
           id="metroid"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
@@ -276,10 +276,10 @@ export default function Proyectos({ isDark }) {
               className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
             />
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* --- SECCIÓN 04: XR ADVENTURE --- */}
-        <motion.section
+        <Motion.section
           id="xr"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
@@ -343,7 +343,7 @@ export default function Proyectos({ isDark }) {
               </button>
             </Link>
           </div>
-        </motion.section>
+        </Motion.section>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaGamepad, FaArrowRight } from "react-icons/fa";
 
@@ -95,7 +95,7 @@ export default function SuperRodolfoGDD({ isDark }) {
   ];
 
   return (
-    <motion.div
+    <Motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -104,7 +104,7 @@ export default function SuperRodolfoGDD({ isDark }) {
       }`}
     >
       {/* --- HEADER TÉCNICO --- */}
-      <motion.header
+      <Motion.header
         variants={itemVariants}
         className="max-w-6xl mx-auto border-b-8 pb-8 mb-16"
         style={{ borderColor: currentTextColor }}
@@ -148,15 +148,15 @@ export default function SuperRodolfoGDD({ isDark }) {
             </div>
           </div>
         </div>
-      </motion.header>
+      </Motion.header>
 
       {/* --- SECCIÓN: EL PORQUÉ Y SINOPSIS --- */}
-      <motion.section
+      <Motion.section
         variants={itemVariants}
         className="max-w-6xl mx-auto mb-32 space-y-16"
       >
         <div className="flex flex-col lg:flex-row items-center gap-12">
-          <motion.div
+          <Motion.div
             animate={{ y: [0, -15, 0], rotate: [0, 3, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative w-full max-w-[280px] flex justify-center items-center group"
@@ -171,7 +171,7 @@ export default function SuperRodolfoGDD({ isDark }) {
                   : `drop-shadow(0 5px 15px rgba(0,0,0,0.1))`,
               }}
             />
-          </motion.div>
+          </Motion.div>
           <div className="flex-1 space-y-8">
             <div className="space-y-4">
               <h2
@@ -228,10 +228,10 @@ export default function SuperRodolfoGDD({ isDark }) {
             </div>
           </div>
         </div>
-      </motion.section>
+      </Motion.section>
 
       {/* --- INTRODUCCIÓN AL GDD --- */}
-      <motion.section
+      <Motion.section
         variants={itemVariants}
         className="max-w-3xl mx-auto mb-12 text-center"
       >
@@ -250,10 +250,10 @@ export default function SuperRodolfoGDD({ isDark }) {
           narrativa y la arquitectura que dan vida a este proyecto. Explora cada
           sección para conocer el proceso de desarrollo.
         </p>
-      </motion.section>
+      </Motion.section>
 
       {/* --- ÍNDICE --- */}
-      <motion.div variants={itemVariants} className="max-w-6xl mx-auto mb-40">
+      <Motion.div variants={itemVariants} className="max-w-6xl mx-auto mb-40">
         <div
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 border-2 p-2"
           style={{ borderColor: isDark ? "#ffffff20" : "#00000020" }}
@@ -269,10 +269,10 @@ export default function SuperRodolfoGDD({ isDark }) {
             </a>
           ))}
         </div>
-      </motion.div>
+      </Motion.div>
 
       {/* --- CUERPO --- */}
-      <motion.main
+      <Motion.main
         variants={itemVariants}
         className="max-w-6xl mx-auto space-y-40"
       >
@@ -338,10 +338,10 @@ export default function SuperRodolfoGDD({ isDark }) {
             </Link>
           </section>
         ))}
-      </motion.main>
+      </Motion.main>
 
       {/* --- INVITACIÓN AL JUEGO --- */}
-      <motion.div
+      <Motion.div
         variants={itemVariants}
         className="max-w-6xl mx-auto mt-40 flex flex-col items-center text-center"
       >
@@ -373,7 +373,7 @@ export default function SuperRodolfoGDD({ isDark }) {
             <FaGamepad size={22} /> Ver Repositorio y Jugar
           </span>
         </a>
-      </motion.div>
-    </motion.div>
+      </Motion.div>
+    </Motion.div>
   );
 }

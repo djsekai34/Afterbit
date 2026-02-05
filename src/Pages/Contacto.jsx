@@ -1,5 +1,5 @@
 import React, { useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
 
 export default function Contacto({ isDark }) {
@@ -62,7 +62,7 @@ export default function Contacto({ isDark }) {
   );
 
   return (
-    <motion.div
+    <Motion.div
       className={`min-h-screen pt-30 pb-12 transition-colors duration-500 overflow-hidden w-full relative ${
         isDark ? "text-white bg-black" : "text-black bg-white"
       }`}
@@ -73,17 +73,17 @@ export default function Contacto({ isDark }) {
         <div className="max-w-6xl mx-auto relative">
           
           {/* SECCIÓN 1: TÍTULO PRINCIPAL */}
-          <motion.h1
+          <Motion.h1
             className="text-4xl md:text-8xl font-black italic mb-20 uppercase tracking-tighter text-center"
             variants={itemVariants}
           >
             / CONTACTO<span className="text-red-600">.</span>
-          </motion.h1>
+          </Motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
             
             {/* COLUMNA IZQUIERDA: INFORMACIÓN Y LINKS */}
-            <motion.div
+            <Motion.div
               variants={itemVariants}
               className="lg:col-span-5 space-y-12 flex flex-col items-start md:items-center lg:items-start"
             >
@@ -175,10 +175,10 @@ export default function Contacto({ isDark }) {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </Motion.div>
 
             {/* COLUMNA DERECHA: FORMULARIO DE CONTACTO */}
-            <motion.div variants={itemVariants} className="lg:col-span-7">
+            <Motion.div variants={itemVariants} className="lg:col-span-7">
               <form
                 ref={form}
                 onSubmit={sendEmail}
@@ -249,7 +249,7 @@ export default function Contacto({ isDark }) {
                     className={`absolute inset-0 w-full h-full -translate-x-full group-hover:animate-[shimmer_2s_infinite] z-0 pointer-events-none ${isDark ? "bg-black/20" : "bg-white/20"}`}
                   ></div>
                   <AnimatePresence mode="wait">
-                    <motion.div
+                    <Motion.div
                       key={cargando ? "l" : enviado ? "s" : "i"}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -275,14 +275,14 @@ export default function Contacto({ isDark }) {
                           </span>
                         </>
                       )}
-                    </motion.div>
+                    </Motion.div>
                   </AnimatePresence>
                 </button>
               </form>
-            </motion.div>
+            </Motion.div>
           </div>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }

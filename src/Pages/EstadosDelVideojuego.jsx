@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { FaHammer, FaArrowLeft, FaExclamationTriangle } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
@@ -28,7 +28,7 @@ export default function UnderConstruction({ isDark }) {
   };
 
   return (
-    <motion.div
+    <Motion.div
       initial="hidden"
       animate="visible"
       className={`min-h-screen pt-32 pb-20 px-4 md:px-12 lg:px-24 flex flex-col ${
@@ -38,11 +38,11 @@ export default function UnderConstruction({ isDark }) {
       {/* --- CONTENIDO PRINCIPAL --- */}
       <main className="flex-grow flex flex-col items-center justify-center max-w-6xl mx-auto w-full">
         
-        <motion.div variants={terminalVariants} className="text-center space-y-12">
+        <Motion.div variants={terminalVariants} className="text-center space-y-12">
           
           {/* ICONO CON CICLO DE COLORES */}
           <div className="relative inline-block">
-            <motion.div
+            <Motion.div
               animate={{ 
                 scale: [1, 1.1, 1],
                 color: [accentRed, accentBlue, accentGreen, accentRed] 
@@ -51,15 +51,15 @@ export default function UnderConstruction({ isDark }) {
               className="text-7xl md:text-9xl mb-6 flex justify-center"
             >
               <FaHammer />
-            </motion.div>
-            <motion.div 
+            </Motion.div>
+            <Motion.div 
               animate={{ opacity: [1, 0, 1] }}
               transition={{ repeat: Infinity, duration: 1 }}
               className="absolute -top-4 -right-4 text-3xl md:text-4xl"
               style={{ color: accentRed }}
             >
               <FaExclamationTriangle />
-            </motion.div>
+            </Motion.div>
           </div>
 
           {/* TEXTO CON LOS COLORES SOLICITADOS */}
@@ -90,7 +90,7 @@ export default function UnderConstruction({ isDark }) {
 
           {/* BOTÓN DE RETORNO CON ROTACIÓN FIJA Y FIX DE BORDES TOTAL */}
           <Link to="/">
-            <motion.button
+            <Motion.button
               onMouseLeave={nextColor} // Al salir, prepara el siguiente color del ciclo
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -106,10 +106,10 @@ export default function UnderConstruction({ isDark }) {
               <span className="relative z-10 flex items-center gap-3 group-hover:text-white transition-all duration-300">
                 <FaArrowLeft /> VOLVER AL ACCESO PRINCIPAL
               </span>
-            </motion.button>
+            </Motion.button>
           </Link>
-        </motion.div>
+        </Motion.div>
       </main>
-    </motion.div>
+    </Motion.div>
   );
 }

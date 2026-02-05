@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import {
   FaBullseye,
   FaLightbulb,
@@ -7,15 +7,10 @@ import {
   FaFileDownload,
 } from "react-icons/fa";
 
-// OPCIÓN 2: Importación desde src/Imagenes/
-import fotoNegro from "../Imagenes/GDD_Una_Hoja_Negro.jpg";
-import fotoBlanco from "../Imagenes/GDD_Una_Hoja_Blanco.jpg";
 
 export default function ConceptosObjetivos({ isDark }) {
   const accentGreen = "#008012";
   const currentTextColor = isDark ? "white" : "black";
-
-  const imagenResumen = isDark ? fotoNegro : fotoBlanco;
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -66,7 +61,7 @@ export default function ConceptosObjetivos({ isDark }) {
   ];
 
   return (
-    <motion.div
+    <Motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -75,7 +70,7 @@ export default function ConceptosObjetivos({ isDark }) {
       }`}
     >
       {/* HEADER */}
-      <motion.header
+      <Motion.header
         variants={itemVariants}
         className="max-w-6xl mx-auto border-b-8 pb-8 mb-20"
         style={{ borderColor: currentTextColor }}
@@ -86,11 +81,11 @@ export default function ConceptosObjetivos({ isDark }) {
         <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
           CONCEPTOS <span style={{ color: accentGreen }}>Y OBJETIVOS</span>
         </h1>
-      </motion.header>
+      </Motion.header>
 
       <main className="max-w-6xl mx-auto space-y-32">
         {/* SECCIÓN 1: OBJETIVOS */}
-        <motion.section variants={itemVariants} className="space-y-12">
+        <Motion.section variants={itemVariants} className="space-y-12">
           <div
             className="flex items-center gap-3 md:gap-4 border-b-2 pb-4"
             style={{ borderColor: isDark ? "#ffffff10" : "#00000010" }}
@@ -107,7 +102,7 @@ export default function ConceptosObjetivos({ isDark }) {
               <div className="text-lg md:text-xl leading-relaxed opacity-80 italic border-l-4 pl-6 space-y-4" style={{ borderColor: accentGreen }}>
                 <p>Desarrollar un videojuego funcional que ofrezca libertad total al jugador desde el primer día, integrando un <strong>Modo Historia</strong> y un <strong>Selector de Niveles</strong> accesible de forma inmediata.</p>
                 <p>Entender y dominar la lógica de creación desde el "scripting" puro hasta el despliegue final, complementándolo con la creación de <strong>arte original y personalizado</strong>, asegurando que cada asset visual refleje la identidad única del proyecto.</p>
-                <p>El fin último es garantizar una experiencia 100% jugable donde la técnica y la estética propia converjan en un producto sólido.</p>
+                <p>El fin último es garantizar una experiencia 100% jugable donde la técnica y la estética propia converjan en un product sólido.</p>
               </div>
             </div>
 
@@ -129,10 +124,10 @@ export default function ConceptosObjetivos({ isDark }) {
               </div>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* SECCIÓN 2: BRAINSTORMING */}
-        <motion.section variants={itemVariants} className="space-y-8">
+        <Motion.section variants={itemVariants} className="space-y-8">
           <div className="flex items-center gap-3 md:gap-4 border-b-2 pb-4" style={{ borderColor: isDark ? "#ffffff10" : "#00000010" }}>
             <FaLightbulb className="text-[18px] md:text-[24px]" style={{ color: accentGreen }} />
             <h2 className="text-lg md:text-xl font-black uppercase tracking-[0.1em] md:tracking-[0.3em] italic leading-none">// INITIAL_BRAINSTORMING</h2>
@@ -149,10 +144,10 @@ export default function ConceptosObjetivos({ isDark }) {
               </p>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* SECCIÓN 3: DATA SHEET */}
-        <motion.section variants={itemVariants} className="space-y-8 pb-20">
+        <Motion.section variants={itemVariants} className="space-y-8 pb-20">
           <div className="flex items-center gap-3 md:gap-4 border-b-2 pb-4" style={{ borderColor: isDark ? "#ffffff10" : "#00000010" }}>
             <FaTable className="text-[18px] md:text-[24px]" style={{ color: accentGreen }} />
             <h2 className="text-lg md:text-xl font-black uppercase tracking-[0.1em] md:tracking-[0.3em] italic leading-none">// DATA_SHEET</h2>
@@ -184,8 +179,8 @@ export default function ConceptosObjetivos({ isDark }) {
                {">"} desliza la tabla para ver todos los parámetros
              </p>
           </div>
-        </motion.section>
+        </Motion.section>
       </main>
-    </motion.div>
+    </Motion.div>
   );
 }

@@ -109,7 +109,9 @@ export default function Barra({ isDark, setIsDark }) {
               >
                 <Link to="/Proyectos/SuperRodolfo" className={dropdownItemStyles} onClick={closeMenu}>
                   <span className="max-w-[220px]">SUPER RODOLFO Y LAS ESFERAS DEL SANTO REINO</span>
-                  <span className="text-lg leading-none ml-4">→</span>
+                  <span className="text-lg leading-none ml-4 transition-transform duration-300">
+                    {subMenuDirection.includes("right-full") ? "←" : "→"}
+                  </span>
                 </Link>
 
                 <ul

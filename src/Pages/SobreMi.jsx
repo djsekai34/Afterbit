@@ -1,5 +1,5 @@
 import React from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import MiFoto from "../Imagenes/Foto_Mia.jpg";
 import LogoGithubBlanco from "../Imagenes/githubBlanco.png";
@@ -32,7 +32,7 @@ export default function SobreMi({ isDark }) {
   };
 
   return (
-    <motion.div
+    <Motion.div
       className={`min-h-screen pt-32 pb-16 px-4 md:px-8 lg:px-16 ${
         isDark ? "text-white bg-black" : "text-black bg-white"
       }`}
@@ -41,17 +41,17 @@ export default function SobreMi({ isDark }) {
       variants={containerVariants}
     >
       {/* TÍTULO PRINCIPAL */}
-      <motion.h1
+      <Motion.h1
         className="text-center text-5xl md:text-7xl font-black italic mb-12 uppercase"
         variants={itemVariants}
       >
         / ¿QUIÉN SOY?
-      </motion.h1>
+      </Motion.h1>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
         {/* COLUMNA FOTO Y REDES */}
         <div className="lg:col-span-1 flex flex-col items-center lg:items-start">
-          <motion.div
+          <Motion.div
             className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden border-4"
             style={{ borderColor: currentTextColor }}
             variants={itemVariants}
@@ -61,23 +61,23 @@ export default function SobreMi({ isDark }) {
               alt="David Jiménez"
               className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500"
             />
-          </motion.div>
+          </Motion.div>
 
-          <motion.h2
+          <Motion.h2
             className="text-3xl font-black italic mt-6 hidden lg:block"
             variants={itemVariants}
           >
             David Jiménez Villena
-          </motion.h2>
-          <motion.p
+          </Motion.h2>
+          <Motion.p
             className="text-lg opacity-70 mb-8 hidden lg:block"
             variants={itemVariants}
           >
             Desarrollador de Videojuegos & Desarrollador Web
-          </motion.p>
+          </Motion.p>
           
           {/* BOTONES GITHUB Y LINKEDIN */}
-          <motion.div
+          <Motion.div
             className="flex space-x-10 mt-12 justify-center w-full"
             variants={itemVariants}
           >
@@ -127,26 +127,26 @@ export default function SobreMi({ isDark }) {
                 LinkedIn
               </span>
             </a>
-          </motion.div>
+          </Motion.div>
         </div>
 
         {/* COLUMNA CONTENIDO PRINCIPAL */}
         <div className="lg:col-span-2">
-          <motion.h2
+          <Motion.h2
             className="text-3xl font-black italic mt-6 lg:hidden text-center"
             variants={itemVariants}
           >
             David Jiménez Villena
-          </motion.h2>
-          <motion.p
+          </Motion.h2>
+          <Motion.p
             className="text-lg opacity-70 mb-8 lg:hidden text-center"
             variants={itemVariants}
           >
             Desarrollador de Videojuegos & Desarrollador Web
-          </motion.p>
+          </Motion.p>
 
           {/* SECCIÓN PERFIL BIO */}
-          <motion.section className="mb-20" variants={itemVariants}>
+          <Motion.section className="mb-20" variants={itemVariants}>
             <div
               className="flex justify-between items-end border-b-4 pb-2 mb-10"
               style={{ borderColor: currentTextColor }}
@@ -276,10 +276,10 @@ export default function SobreMi({ isDark }) {
                 </p>
               </div>
             </div>
-          </motion.section>
+          </Motion.section>
 
           {/* SECCIÓN HOJA DE RUTA */}
-          <motion.section className="mb-12" variants={itemVariants}>
+          <Motion.section className="mb-12" variants={itemVariants}>
             <h3
               className="text-xl md:text-2xl font-black italic mb-8 uppercase tracking-[0.3em]"
               style={{
@@ -366,10 +366,10 @@ export default function SobreMi({ isDark }) {
                 mi curso de especialización.
               </p>
             </div>
-          </motion.section>
+          </Motion.section>
 
           {/* SECCIÓN CONTACTO Y BOTONES */}
-          <motion.section className="mt-20" variants={itemVariants}>
+          <Motion.section className="mt-20" variants={itemVariants}>
             <div
               className="border-t-4 mb-10 opacity-100"
               style={{ borderColor: currentTextColor }}
@@ -389,7 +389,7 @@ export default function SobreMi({ isDark }) {
               </h4>
             </div>
 
-            <motion.div
+            <Motion.div
               className="flex flex-col md:flex-row gap-6"
               variants={itemVariants}
             >
@@ -444,10 +444,10 @@ export default function SobreMi({ isDark }) {
                   </span>
                 </div>
               </Link>
-            </motion.div>
-          </motion.section>
+            </Motion.div>
+          </Motion.section>
         </div>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 }

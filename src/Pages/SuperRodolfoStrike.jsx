@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { motion } from "framer-motion";
+import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import LogoSRS from "../Imagenes/LogoSRS.png";
 import JuegoRodolfo from "../Imagenes/RodolfoStrike.jpeg";
@@ -44,7 +44,7 @@ export default function SuperRodolfoStrike({ isDark }) {
     >
       <div className="container mx-auto max-w-6xl">
         {/* SECTION_01: HEADER & TECH_STACK */}
-        <motion.section
+        <Motion.section
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -90,16 +90,16 @@ export default function SuperRodolfoStrike({ isDark }) {
               </div>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* SECTION_02: BRANDING & CONCEPT_OVERVIEW */}
-        <motion.section
+        <Motion.section
           initial="hidden"
           animate="visible"
           variants={fadeIn}
           className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center mb-40 py-10 -mt-10"
         >
-          <motion.div
+          <Motion.div
             animate={{ y: [0, -25, 0], rotate: [0, 5, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="relative flex justify-center items-center group cursor-pointer"
@@ -119,7 +119,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               className="relative z-10 w-full max-w-[450px] transition-all duration-500 ease-out group-hover:scale-110"
               style={{ filter: `drop-shadow(0 10px 25px ${srsGreen}88)` }}
             />
-          </motion.div>
+          </Motion.div>
 
           <div>
             <h3
@@ -145,10 +145,10 @@ export default function SuperRodolfoStrike({ isDark }) {
               </p>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* Bolera 1 */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -165,7 +165,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               <span className="absolute left-[20%]">{">>>"}</span>
               <span className="absolute left-[50%]">{">>>"}</span>
             </div>
-            <motion.div
+            <Motion.div
               className="absolute z-20 w-8 h-8 flex items-center justify-center"
               animate={{
                 left: ["-15%", "85%", "140%", "140%", "-15%", "-15%"],
@@ -184,8 +184,8 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bola"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
-            <motion.div
+            </Motion.div>
+            <Motion.div
               className="absolute z-10 w-8 h-8 flex items-center justify-center"
               style={{ left: "85%" }}
               animate={{
@@ -206,12 +206,12 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bolo"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* SECTION_03: TECHNICAL_SPECIFICATIONS_GRID */}
-        <motion.section
+        <Motion.section
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -259,10 +259,10 @@ export default function SuperRodolfoStrike({ isDark }) {
               </div>
             ))}
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* Bolera 2 */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -279,7 +279,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               <span className="absolute left-[20%]">{">>>"}</span>
               <span className="absolute left-[50%]">{">>>"}</span>
             </div>
-            <motion.div
+            <Motion.div
               className="absolute z-20 w-8 h-8 flex items-center justify-center"
               animate={{
                 left: ["-15%", "85%", "140%", "140%", "-15%", "-15%"],
@@ -298,8 +298,8 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bola"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
-            <motion.div
+            </Motion.div>
+            <Motion.div
               className="absolute z-10 w-8 h-8 flex items-center justify-center"
               style={{ left: "85%" }}
               animate={{
@@ -320,12 +320,12 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bolo"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* SECTION_04: LEARNING_GOALS_&_OUTCOMES */}
-        <motion.section
+        <Motion.section
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -392,10 +392,10 @@ export default function SuperRodolfoStrike({ isDark }) {
               ))}
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* Bolera 3 */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -412,7 +412,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               <span className="absolute left-[20%]">{">>>"}</span>
               <span className="absolute left-[50%]">{">>>"}</span>
             </div>
-            <motion.div
+            <Motion.div
               className="absolute z-20 w-8 h-8 flex items-center justify-center"
               animate={{
                 left: ["-15%", "85%", "140%", "140%", "-15%", "-15%"],
@@ -431,8 +431,8 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bola"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
-            <motion.div
+            </Motion.div>
+            <Motion.div
               className="absolute z-10 w-8 h-8 flex items-center justify-center"
               style={{ left: "85%" }}
               animate={{
@@ -453,12 +453,12 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bolo"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
+        </Motion.div>
 
         {/* SECTION_05: CALL_TO_ACTION_&_GAME_PREVIEW */}
-        <motion.section
+        <Motion.section
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -504,10 +504,10 @@ export default function SuperRodolfoStrike({ isDark }) {
               <span className="mr-2">🎮</span> ¡JUGAR AHORA!
             </a>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* Bolera 4 */}
-        <motion.div
+        <Motion.div
           initial="hidden"
           animate="visible"
           variants={fadeIn}
@@ -524,7 +524,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               <span className="absolute left-[20%]">{">>>"}</span>
               <span className="absolute left-[50%]">{">>>"}</span>
             </div>
-            <motion.div
+            <Motion.div
               className="absolute z-20 w-8 h-8 flex items-center justify-center"
               animate={{
                 left: ["-15%", "85%", "140%", "140%", "-15%", "-15%"],
@@ -543,8 +543,8 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bola"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
-            <motion.div
+            </Motion.div>
+            <Motion.div
               className="absolute z-10 w-14 h-14 flex items-center justify-center"
               style={{ left: "85%" }}
               animate={{
@@ -565,9 +565,9 @@ export default function SuperRodolfoStrike({ isDark }) {
                 alt="Bolo"
                 className="w-full h-full object-contain drop-shadow-md"
               />
-            </motion.div>
+            </Motion.div>
           </div>
-        </motion.div>
+        </Motion.div>
       </div>
     </main>
   );

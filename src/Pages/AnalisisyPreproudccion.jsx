@@ -1,4 +1,4 @@
-import { motion, AnimatePresence, useScroll, useSpring } from "framer-motion";
+import { motion as Motion, AnimatePresence} from "framer-motion";
 import { useState } from "react";
 
 // ASSETS
@@ -42,13 +42,6 @@ const FasePreproduccion = ({
   const [selectedRef, setSelectedRef] = useState(null);
   const [activeAnalysis, setActiveAnalysis] = useState("DAFO");
 
-  // Lógica para la barra de progreso de lectura
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
 
   const referentesData = [
     {
@@ -79,7 +72,7 @@ const FasePreproduccion = ({
   ];
 
   return (
-    <motion.div
+    <Motion.div
       variants={containerVariants}
       initial="hidden"
       animate="visible"
@@ -89,7 +82,7 @@ const FasePreproduccion = ({
     >
 
       {/* SECCIÓN: CABECERA */}
-      <motion.header
+      <Motion.header
         variants={itemVariants}
         className="max-w-6xl mx-auto border-b-8 pb-8 mb-20"
         style={{ borderColor: currentTextColor }}
@@ -100,12 +93,12 @@ const FasePreproduccion = ({
         <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
           ANÁLISIS <span style={{ color: accentGreen }}>Y PREPRODUCCIÓN</span>
         </h1>
-      </motion.header>
+      </Motion.header>
 
       <div className="max-w-6xl mx-auto space-y-40">
         
         {/* SECCIÓN 1: ESTUDIO DE MERCADO */}
-        <motion.section
+        <Motion.section
           variants={itemVariants}
           className="space-y-6 text-left mb-32 w-full"
         >
@@ -153,10 +146,10 @@ const FasePreproduccion = ({
               ))}
             </ul>
           </div>
-        </motion.section>
+        </Motion.section>
 
        {/* SECCIÓN 2: REFERENTES VISUALES */}
-        <motion.section variants={itemVariants} className="space-y-8">
+        <Motion.section variants={itemVariants} className="space-y-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
               <h3 className="text-xl font-bold uppercase tracking-widest opacity-80">
@@ -200,7 +193,7 @@ const FasePreproduccion = ({
 
           <AnimatePresence>
             {selectedRef && (
-              <motion.div
+              <Motion.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -212,13 +205,13 @@ const FasePreproduccion = ({
                   </span>
                   {referentesData.find((r) => r.id === selectedRef)?.desc}
                 </div>
-              </motion.div>
+              </Motion.div>
             )}
           </AnimatePresence>
-        </motion.section>
+        </Motion.section>
 
         {/* SECCIÓN 3: DIAGNÓSTICO ESTRATÉGICO (DAFO/CAME) */}
-        <motion.section variants={itemVariants} className="space-y-12">
+        <Motion.section variants={itemVariants} className="space-y-12">
           <div className="flex flex-col gap-8">
             <div className="flex items-center justify-between border-b border-zinc-500/20 pb-4">
               <h2 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter">
@@ -245,7 +238,7 @@ const FasePreproduccion = ({
               <div className="md:col-span-2 flex flex-col justify-center space-y-8 min-h-full">
                 <div className="space-y-6">
                   <AnimatePresence mode="wait">
-                    <motion.div
+                    <Motion.div
                       key={activeAnalysis}
                       initial={{ opacity: 0, x: -10 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -262,7 +255,7 @@ const FasePreproduccion = ({
                           : "Análisis concreto para Corregir, Afrontar, Mantener y Explotar los resultados obtenidos tanto del juego como personales."}
                       </p>
 
-                      <motion.a
+                      <Motion.a
                         href={activeAnalysis === "DAFO" ? (isDark ? DAFO_Dark : DAFO_Light) : (isDark ? CAME_Dark : CAME_Light)}
                         download={`Analisis_${activeAnalysis}_SuperRodolfo.png`}
                         whileHover={{ scale: 1.05 }}
@@ -281,15 +274,15 @@ const FasePreproduccion = ({
                             {activeAnalysis === "DAFO" ? "Descargar Informe DAFO" : "Descargar Informe CAME"}
                           </span>
                         </div>
-                      </motion.a>
-                    </motion.div>
+                      </Motion.a>
+                    </Motion.div>
                   </AnimatePresence>
                 </div>
               </div>
 
               <div className="md:col-span-3">
                 <AnimatePresence mode="wait">
-                  <motion.div
+                  <Motion.div
                     key={activeAnalysis}
                     initial={{ opacity: 0, scale: 0.98, filter: "blur(8px)" }}
                     animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
@@ -302,15 +295,15 @@ const FasePreproduccion = ({
                       alt={activeAnalysis}
                       className="w-full h-auto border border-zinc-500/10 rounded-sm shadow-2xl"
                     />
-                  </motion.div>
+                  </Motion.div>
                 </AnimatePresence>
               </div>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
 
         {/* SECCIÓN 4: MOODBOARD VISUAL (SCOUTER) */}
-        <motion.section
+        <Motion.section
           variants={itemVariants}
           className="relative pt-10 pb-20 flex flex-col items-center justify-center overflow-hidden px-4"
         >
@@ -363,7 +356,7 @@ const FasePreproduccion = ({
 
             <div className="absolute bottom-6 left-6 md:bottom-10 md:left-10 z-50 flex items-end gap-1">
               {[1, 2, 3, 4, 5, 6].map((i) => (
-                <motion.div
+                <Motion.div
                   key={i}
                   animate={{ height: [10, 30, 10] }}
                   transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.05 }}
@@ -386,10 +379,10 @@ const FasePreproduccion = ({
               100% { transform: translate(1px, -1px); }
             }
           `}</style>
-        </motion.section>
+        </Motion.section>
 
         {/* SECCIÓN 5: PLAN DE FINANCIACIÓN */}
-        <motion.section
+        <Motion.section
           variants={itemVariants}
           className="relative pt-10 md:pt-16 pb-20 md:pb-24 border-t border-zinc-500/10"
         >
@@ -478,9 +471,9 @@ const FasePreproduccion = ({
               </div>
             </div>
           </div>
-        </motion.section>
+        </Motion.section>
       </div>
-    </motion.div>
+    </Motion.div>
   );
 };
 
