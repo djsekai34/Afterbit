@@ -51,7 +51,7 @@ export default function XRAdventureExplicacion({ isDark }) {
         style={{ borderColor: currentTextColor }}
       >
         <div className="flex flex-col gap-6">
-          <span className="font-mono text-sm font-bold opacity-60 tracking-[0.5em] block">
+          <span className="font-mono text-xs md:text-sm font-bold opacity-60 tracking-[0.5em] block mt-8 md:mt-0">
             // ACADEMIC_MODULE: AUGMENTED_REALITY
           </span>
 
@@ -61,12 +61,12 @@ export default function XRAdventureExplicacion({ isDark }) {
 
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mt-4">
             <div className="font-mono text-[10px] md:text-xs space-y-2 opacity-80 uppercase tracking-widest flex flex-col items-center md:items-start">
-              <p className="flex items-center gap-2">
+              <p className="flex items-start sm:items-center gap-2 mt-4 md:mt-0">
                 <span
-                  className="w-1.5 h-1.5 lg:w-2 lg:h-2 inline-block shrink-0"
+                  className="w-1.5 h-1.5 lg:w-2 lg:h-2 inline-block shrink-0 mt-1 lg:mt-0"
                   style={{ backgroundColor: accentColor }}
                 ></span>
-                <span className="text-[8px] md:text-[11px] lg:text-xs leading-none">
+                <span className="font-mono text-[10px] sm:text-[11px] lg:text-xs leading-relaxed uppercase tracking-tight sm:tracking-normal opacity-80">
                   [ COLLABORATIVE_PROJECT: DAVID_JIMENEZ & PARTNER ]
                 </span>
               </p>

@@ -236,13 +236,14 @@ export default function Cuerpo({ isDark }) {
                     Curso de Especialización en Desarrollo de videojuegos y
                     realidad virtual
                   </span>
+
                   <Motion.span
                     variants={{
                       tapado: { scaleX: 1 },
                       destapado: { scaleX: 0 },
                     }}
                     transition={{ duration: 0.6, ease: [0.65, 0, 0.35, 1] }}
-                    className="absolute inset-0 z-20 origin-left hidden lg:block"
+                    className="absolute inset-0 z-20 origin-left hidden lg:block max-lg:hidden [@media(hover:none)]:hidden"
                     style={{ backgroundColor: currentTextColor }}
                   />
                 </Motion.span>
@@ -348,15 +349,17 @@ export default function Cuerpo({ isDark }) {
                         : "group-hover:text-white"
                     }
                   >
-                    <span className={`font-mono tracking-widest uppercase border border-current px-2 py-1 ${proyecto.id === 3 ? "text-[8px] md:text-xs" : "text-xs"}`}>
+                    <span
+                      className={`font-mono tracking-widest uppercase border border-current px-2 py-1 ${proyecto.id === 3 ? "text-[8px] md:text-xs" : "text-xs"}`}
+                    >
                       {proyecto.tag}
                     </span>
                     <h3
                       className={`font-black mt-5 mb-3 uppercase italic tracking-tighter leading-[0.9] transition-transform duration-500 group-hover:translate-x-2 ${
                         proyecto.id === 4
                           ? "text-4xl"
-                          : proyecto.id === 3 
-                            ? "text-2xl md:text-4xl lg:text-5xl" 
+                          : proyecto.id === 3
+                            ? "text-2xl md:text-4xl lg:text-5xl"
                             : proyecto.title.length > 25
                               ? "text-2xl md:text-3xl"
                               : "text-4xl md:text-5xl"
@@ -457,12 +460,12 @@ export default function Cuerpo({ isDark }) {
           </Link>
 
           <div className="mt-12 text-center px-4">
-            <p className="font-mono text-sm opacity-50 tracking-widest uppercase">
+            <p className="font-mono text-[10px] sm:text-sm opacity-50 tracking-widest uppercase">
               O escribe directamente a:
             </p>
             <a
               href="mailto:davidjimenezvillena@gmail.com"
-              className="text-base md:text-lg font-bold hover:opacity-100 transition-opacity border-b-2 break-all md:break-normal"
+              className="text-xs sm:text-base md:text-lg font-bold hover:opacity-100 transition-opacity border-b-2 break-all md:break-normal tracking-wider"
               style={{
                 color: currentTextColor,
                 borderColor: `${currentTextColor}44`,

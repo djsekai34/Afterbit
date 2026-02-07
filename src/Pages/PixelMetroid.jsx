@@ -1,5 +1,5 @@
 import React from "react";
-import { motion as Motion } from "framer-motion"; 
+import { motion as Motion } from "framer-motion";
 import ImagenMetroid from "../Imagenes/PixelMetroid.png";
 import JuegoMetroid from "../Imagenes/PixelMetroidjuego.png";
 
@@ -8,19 +8,19 @@ const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.2, delayChildren: 0.1 }
-  }
+    transition: { staggerChildren: 0.2, delayChildren: 0.1 },
+  },
 };
 
 // 2. Definimos el movimiento individual: suave subida con desenfoque (Fade + Blur)
 const itemVariants = {
   hidden: { opacity: 0, y: 20, filter: "blur(8px)" },
-  visible: { 
-    opacity: 1, 
-    y: 0, 
+  visible: {
+    opacity: 1,
+    y: 0,
     filter: "blur(0px)",
-    transition: { duration: 0.6, ease: "easeOut" }
-  }
+    transition: { duration: 0.6, ease: "easeOut" },
+  },
 };
 
 export default function PixelMetroidExplicacion({ isDark }) {
@@ -42,7 +42,7 @@ export default function PixelMetroidExplicacion({ isDark }) {
         style={{ borderColor: currentTextColor }}
       >
         <div className="flex flex-col gap-6">
-          <span className="font-mono text-sm font-bold opacity-60 tracking-[0.5em] block">
+          <span className="font-mono text-xs md:text-sm font-bold opacity-60 tracking-[0.5em] block mt-6 md:mt-0">
             // ACADEMIC_MODULE: CORE_SKILLS
           </span>
 
@@ -51,13 +51,17 @@ export default function PixelMetroidExplicacion({ isDark }) {
           </h1>
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mt-4">
             <div className="font-mono text-[10px] md:text-xs space-y-2 opacity-80 uppercase tracking-widest flex flex-col items-center md:items-start">
-              <p className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-red-600 inline-block shrink-0"></span>
-                <span>[ COURSE: ESPECIALIZACIÓN_VIDEOJUEGOS_Y_VR ]</span>
+              <p className="flex items-start sm:items-center gap-2 mt-4 md:mt-0">
+                <span className="w-2 h-2 bg-red-600 inline-block shrink-0 mt-1.5 sm:mt-0"></span>
+                <span className="font-mono text-[10px] xs:text-xs sm:text-sm opacity-80 leading-relaxed uppercase tracking-tight sm:tracking-normal">
+                  [ COURSE: ESPECIALIZACIÓN_VIDEOJUEGOS_Y_VR ]
+                </span>
               </p>
-              <p className="flex items-center gap-2">
-                <span className="w-2 h-2 bg-red-600 inline-block shrink-0"></span>
-                <span>[ LOCATION: IES_VIRGEN_DEL_CARMEN_JAEN ]</span>
+              <p className="flex items-start sm:items-center gap-2 mt-3 md:mt-0">
+                <span className="w-2 h-2 bg-red-600 inline-block shrink-0 mt-1.5 sm:mt-0"></span>
+                <span className="font-mono text-[10px] xs:text-xs sm:text-sm opacity-80 leading-relaxed uppercase tracking-tight sm:tracking-normal">
+                  [ LOCATION: IES_VIRGEN_DEL_CARMEN_JAEN ]
+                </span>
               </p>
             </div>
 

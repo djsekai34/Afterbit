@@ -56,7 +56,7 @@ export default function SuperRodolfoStrike({ isDark }) {
           }}
         >
           <div className="relative z-10 flex flex-col gap-6">
-            <span className="font-mono text-xs md:text-sm font-bold opacity-60 tracking-[0.5em] block text-center uppercase">
+            <span className="font-mono text-xs md:text-sm font-bold opacity-60 tracking-[0.5em] block text-center uppercase mt-6 md:mt-0">
               // ACADEMIC_MODULE: MOBILE_GAME
             </span>
 

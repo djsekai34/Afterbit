@@ -111,9 +111,10 @@ export default function NarrativaPage({ isDark }) {
                   </div>
 
                   <p className="text-lg opacity-80">
-                    Acechado por enemigos que ansían la inmortalidad, Rodolfo
-                    deberá decidir: ¿Mantendrá la pureza de su corazón o
-                    sucumbirá ante el poder corruptor de las esferas?
+                    Acechado por enemigos que ansían la inmortalidad y controlar
+                    el Santo Reino, Rodolfo deberá derrotarlos y decidir:
+                    ¿Mantendrá la pureza de su corazón o sucumbirá ante el poder
+                    corruptor de las esferas?
                   </p>
                 </div>
               </div>
@@ -294,9 +295,9 @@ export default function NarrativaPage({ isDark }) {
               { id: "03", nombre: "Vegeta", img: aliado03 },
             ].map((aliado) => (
               <div
-                key={aliado.id}
-                className="space-y-4 group w-[calc(45%-1.5rem)] md:w-[calc(33.33%-1.5rem)] min-w-[150px]"
-              >
+  key={aliado.id}
+  className="space-y-4 group w-[calc(50%-0.75rem)] md:w-[calc(30%-1.5rem)] min-w-[140px] flex-grow-0"
+>
                 <div
                   className={`aspect-square border-2 transition-all duration-300 ${
                     isDark
@@ -431,7 +432,8 @@ export default function NarrativaPage({ isDark }) {
             <div className="h-[2px] w-full bg-zinc-500/20"></div>
           </div>
 
-          <div className="flex flex-wrap justify-center gap-8">
+          {/* gap-4 en móvil para que quepan dos, gap-8 en el resto */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
             {[
               { id: "01", nombre: "Frieza", img: FriezaImg },
               { id: "02", nombre: "Broly", img: Broly },
@@ -443,7 +445,7 @@ export default function NarrativaPage({ isDark }) {
             ].map((enemy) => (
               <div
                 key={enemy.id}
-                className="group flex flex-col w-[calc(45%-1rem)] md:w-[calc(30%-1.5rem)] lg:w-[calc(18%-1.5rem)] min-w-[160px]"
+                className="group flex flex-col w-[calc(50%-1rem)] md:w-[calc(30%-1.5rem)] lg:w-[calc(18%-1.5rem)] min-w-[140px] md:min-w-[160px] flex-grow-0"
               >
                 <div
                   className={`aspect-square border-2 transition-all duration-500 relative overflow-hidden flex flex-col p-4
@@ -469,7 +471,7 @@ export default function NarrativaPage({ isDark }) {
                   </div>
 
                   <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none flex items-center justify-center z-0">
-                    <span className="font-black text-2xl uppercase italic tracking-tighter">
+                    <span className="font-black text-xl md:text-2xl uppercase italic tracking-tighter">
                       DANGER_FILE
                     </span>
                   </div>

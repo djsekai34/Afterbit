@@ -197,6 +197,12 @@ export default function Barra({ isDark, setIsDark }) {
           </li>
 
           <li>
+            <Link to="/Eventos" className={linkStyles} onClick={closeMenu}>
+              Eventos
+            </Link>
+          </li>
+
+          <li>
             <Link to="/SobreMi" className={linkStyles} onClick={closeMenu}>Sobre mí</Link>
           </li>
           <li>

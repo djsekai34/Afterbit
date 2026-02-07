@@ -20,6 +20,7 @@ import SuperRodolfoSonido from './Pages/Sonido.jsx';
 import SuperRodolfoProduccion from './Pages/ProduccionyArquitectura.jsx';
 import SuperRodolfoConceptos from './Pages/ConceptoyObjetivos.jsx';
 import SuperRodolfoStrike from './Pages/SuperRodolfoStrike.jsx';
+import Eventos from './Pages/Eventos.jsx';
 import "./index.css";
 
 function App() {
@@ -37,6 +38,7 @@ function App() {
         <Route path="/SobreMi" element={<SobreMi isDark={isDark} />} />
         <Route path="/Contacto" element={<Contacto isDark={isDark} />} />
         <Route path="/Proyectos" element={<Proyectos isDark={isDark} />} />
+        <Route path="/Eventos" element={<Eventos isDark={isDark} />} />
         <Route path="/Proyectos/PixelMetroid2D" element={<PixelMetroid isDark={isDark} />} />
         <Route path="/Proyectos/XRAdventure" element={<XRAdventure isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo" element={<SuperRodolfoGDD isDark={isDark} />} />
