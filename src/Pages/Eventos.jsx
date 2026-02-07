@@ -1,55 +1,77 @@
-// src/components/Eventos.jsx (o donde tengas tu vista)
 import { useState, useMemo } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
-
-// IMPORTACIÓN DE DATOS EXTERNOS
 import { eventsData } from "../data/eventsData";
 
 export default function Eventos({ isDark }) {
   const accentGreen = "#008000";
 
-  // --- ESTADOS ---
+  // --- ESTADOS DE CONTROL ---
   const [viewDate, setViewDate] = useState(new Date());
   const [selectedEvent, setSelectedEvent] = useState(null);
   const [hoveredDay, setHoveredDay] = useState(null);
   const [showSelector, setShowSelector] = useState(false);
-  
   const [tempSelection, setTempSelection] = useState({
     month: viewDate.getMonth(),
     year: viewDate.getFullYear(),
   });
 
-  // --- LÓGICA DE CALENDARIO ---
+  // --- LÓGICA DE EXPORTACIÓN ---
+  
   const generateGoogleCalendarLink = (event) => {
     const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
     const titulo = encodeURIComponent(event.titulo);
     const descripcion = encodeURIComponent(`${event.descripcion}\n\nUbicación: ${event.ubicacion}`);
     const ubicacion = encodeURIComponent(event.ubicacion);
-    const formatDate = (date) => new Date(date).toISOString().replace(/-|:|\.\d+/g, "");
+    
+    const formatDate = (date) => {
+      const d = new Date(date);
+      return d.toISOString().replace(/-|:|\.\d+/g, "").slice(0, 8);
+    };
 
-    let dates;
+    let start, end;
     if (event.especificos) {
-      const d = new Date(event.especificos[0]);
-      dates = `${formatDate(d)}/${formatDate(d)}`;
+      start = formatDate(event.especificos[0]);
+      // CRÍTICO: Google Calendar es exclusivo en fecha final, sumamos +1 día
+      const dEnd = new Date(event.especificos[event.especificos.length - 1]);
+      dEnd.setDate(dEnd.getDate() + 1);
+      end = formatDate(dEnd);
     } else {
-      const start = formatDate(event.inicio);
-      const end = event.fin ? formatDate(event.fin) : formatDate(event.inicio);
-      dates = `${start}/${end}`;
+      start = formatDate(event.inicio);
+      const dEnd = new Date(event.fin || event.inicio);
+      dEnd.setDate(dEnd.getDate() + 1);
+      end = formatDate(dEnd);
     }
-    return `${baseUrl}&text=${titulo}&details=${descripcion}&location=${ubicacion}&dates=${dates}`;
+
+    return `${baseUrl}&text=${titulo}&details=${descripcion}&location=${ubicacion}&dates=${start}/${end}`;
   };
 
   const downloadIcsFile = (event) => {
-    const formatDate = (date) => new Date(date).toISOString().replace(/-|:|\.\d+/g, "").slice(0, 15) + "Z";
-    const start = event.especificos ? formatDate(event.especificos[0]) : formatDate(event.inicio);
-    const end = event.fin ? formatDate(event.fin) : start;
+    const formatDate = (date) => {
+      const d = new Date(date);
+      const year = d.getFullYear();
+      const month = String(d.getMonth() + 1).padStart(2, '0');
+      const day = String(d.getDate()).padStart(2, '0');
+      return `${year}${month}${day}`;
+    };
+    
+    const startDate = event.especificos ? new Date(event.especificos[0]) : new Date(event.inicio);
+    const endDate = event.especificos 
+      ? new Date(event.especificos[event.especificos.length - 1]) 
+      : new Date(event.fin || event.inicio);
+    
+    // CRÍTICO: Estándar RFC 5545 requiere que DTEND sea el día posterior al último día del evento
+    endDate.setDate(endDate.getDate() + 1);
+
+    const start = formatDate(startDate);
+    const end = formatDate(endDate);
 
     const icsContent = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
+      "PRODID:-//Afterbit//Calendar//ES",
       "BEGIN:VEVENT",
-      `DTSTART:${start}`,
-      `DTEND:${end}`,
+      `DTSTART;VALUE=DATE:${start}`,
+      `DTEND;VALUE=DATE:${end}`,
       `SUMMARY:${event.titulo}`,
       `DESCRIPTION:${event.descripcion}`,
       `LOCATION:${event.ubicacion}`,
@@ -66,6 +88,8 @@ export default function Eventos({ isDark }) {
     document.body.removeChild(link);
   };
 
+  // --- UTILIDADES VISUALES Y FORMATO ---
+
   const getVisibleColor = (hexColor) => {
     if (!hexColor) return accentGreen;
     const hex = hexColor.replace("#", "");
@@ -73,6 +97,8 @@ export default function Eventos({ isDark }) {
     const g = parseInt(hex.substring(2, 4), 16);
     const b = parseInt(hex.substring(4, 6), 16);
     const brightness = (r * 299 + g * 587 + b * 114) / 1000;
+    
+    // Ajuste dinámico de legibilidad según el tema
     if (isDark) {
       if (brightness < 60) return `rgb(${Math.min(r + 90, 255)}, ${Math.min(g + 90, 255)}, ${Math.min(b + 120, 255)})`;
     } else {
@@ -87,6 +113,8 @@ export default function Eventos({ isDark }) {
     if (!event.fin) return `${f(event.inicio)} - PRESENTE (∞)`;
     return `${f(event.inicio)} al ${f(event.fin)}`;
   };
+
+  // --- LÓGICA DE NAVEGACIÓN TEMPORAL ---
 
   const changeMonth = (offset) => {
     const newDate = new Date(viewDate.getFullYear(), viewDate.getMonth() + offset, 1);
@@ -112,11 +140,14 @@ export default function Eventos({ isDark }) {
     setShowSelector(!showSelector);
   };
 
+  // --- PROCESAMIENTO DE DATOS DEL CALENDARIO ---
+
   const daysInMonth = useMemo(() => {
     const year = viewDate.getFullYear();
     const month = viewDate.getMonth();
     const firstDay = new Date(year, month, 1).getDay();
     const days = new Date(year, month + 1, 0).getDate();
+    // Ajuste para que la semana empiece en Lunes
     const startOffset = firstDay === 0 ? 6 : firstDay - 1;
     const calendarDays = [];
     for (let i = 0; i < startOffset; i++) calendarDays.push(null);
@@ -157,6 +188,8 @@ export default function Eventos({ isDark }) {
   const months = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
   const years = Array.from({ length: 21 }, (_, i) => 2025 + i);
 
+  // --- RENDERIZADO DE COMPONENTE ---
+
   return (
     <Motion.div 
       initial={{ opacity: 0, y: 20 }}
@@ -164,6 +197,7 @@ export default function Eventos({ isDark }) {
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`min-h-screen pt-28 pb-12 px-6 lg:px-20 transition-colors duration-500 ${isDark ? "bg-black text-white" : "bg-white text-black"}`}
     >
+      {/* HEADER DE SECCIÓN */}
       <div className="flex items-center gap-6 mb-12">
         <h2 className="text-3xl sm:text-4xl font-black italic uppercase tracking-tighter whitespace-nowrap">
           <span style={{ color: accentGreen }}>EVENTOS</span> Afterbit
@@ -172,8 +206,12 @@ export default function Eventos({ isDark }) {
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+        
+        {/* COLUMNA IZQUIERDA: CALENDARIO INTERACTIVO */}
         <div className="lg:col-span-8">
           <div className={`relative border-2 ${isDark ? "border-zinc-800 bg-zinc-900/20" : "border-zinc-200 bg-zinc-50"} p-6 shadow-2xl`}>
+            
+            {/* CONTROLES DE NAVEGACIÓN */}
             <div className="flex justify-between items-center mb-8">
               <button onClick={() => changeMonth(-1)} className="hover:scale-125 transition-transform p-2 font-black text-xl">{"<<"}</button>
               
@@ -188,6 +226,7 @@ export default function Eventos({ isDark }) {
                   <span className="text-[10px] opacity-50">{showSelector ? "▲" : "▼"}</span>
                 </button>
 
+                {/* SELECTOR DE FECHA FLOTANTE */}
                 <AnimatePresence>
                   {showSelector && (
                     <Motion.div
@@ -198,12 +237,7 @@ export default function Eventos({ isDark }) {
                     >
                       <div className="flex justify-between items-center mb-4 pb-2 border-b border-zinc-500/20">
                         <p className="text-[9px] opacity-50 font-mono font-bold uppercase tracking-widest">// SELECCIÓN_FECHA</p>
-                        <button 
-                          onClick={jumpToToday}
-                          className="text-[9px] font-black uppercase px-2 py-0.5 border border-current hover:bg-[#008000] hover:text-white transition-colors"
-                        >
-                          Ir a Hoy [NOW]
-                        </button>
+                        <button onClick={jumpToToday} className="text-[9px] font-black uppercase px-2 py-0.5 border border-current hover:bg-[#008000] hover:text-white transition-colors">Ir a Hoy [NOW]</button>
                       </div>
 
                       <div className="grid grid-cols-2 gap-8 mb-6">
@@ -251,6 +285,7 @@ export default function Eventos({ isDark }) {
               <button onClick={() => changeMonth(1)} className="hover:scale-125 transition-transform p-2 font-black text-xl">{">>"}</button>
             </div>
 
+            {/* GRILLA DEL CALENDARIO */}
             <div className="grid grid-cols-7 border-t border-l border-zinc-500/20">
               {weekDays.map((day) => (
                 <div key={day} className="p-2 sm:p-4 text-center font-mono text-[10px] opacity-40 border-r border-b border-zinc-500/20">{day}</div>
@@ -286,6 +321,7 @@ export default function Eventos({ isDark }) {
               })}
             </div>
 
+            {/* LEYENDA DEL MES */}
             <div className="mt-8 flex flex-wrap gap-6 border-t border-zinc-500/20 pt-6">
               {currentMonthEvents.length > 0 ? (
                 currentMonthEvents.map((e) => (
@@ -304,6 +340,7 @@ export default function Eventos({ isDark }) {
           </div>
         </div>
 
+        {/* COLUMNA DERECHA: LOG DE EVENTO SELECCIONADO */}
         <div className="lg:col-span-4">
           <div className="sticky top-32">
             <h3 className="font-mono text-xs opacity-50 mb-4 uppercase tracking-[0.3em]">// EVENT_LOG</h3>
@@ -339,6 +376,7 @@ export default function Eventos({ isDark }) {
                       </div>
                     </div>
 
+                    {/* SECCIÓN DE EXPORTACIÓN */}
                     {(selectedEvent.fin || selectedEvent.inicio) >= new Date().setHours(0, 0, 0, 0) && (
                       <div className="mt-8 pt-6 border-t border-zinc-500/20 space-y-3">
                         <p className="text-[9px] opacity-50 uppercase tracking-widest">// GUARDAR EN AGENDA</p>
