@@ -11,6 +11,8 @@ import Janemba from "../Imagenes/ImagenesSR/Janemba.png";
 import Hit from "../Imagenes/ImagenesSR/Hit.png";
 import Turles from "../Imagenes/ImagenesSR/Turles.png";
 import Cell from "../Imagenes/ImagenesSR/Cell Perfecto.png";
+import bt2Ref from "../Imagenes/CinematicaBT2.png";
+import bt3Ref from "../Imagenes/CinematicaBT3.png";
 
 export default function NarrativaPage({ isDark }) {
   const accentGreen = "#008012";
@@ -53,8 +55,8 @@ export default function NarrativaPage({ isDark }) {
           // Documentación_Fase_03
         </span>
         <h1 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
-          NARRATIVA{" "}
-          <span style={{ color: accentGreen }}>Y DISEÑO DE MUNDO</span>
+          Guion{" "}
+          <span style={{ color: accentGreen }}>Y Narrativa</span>
         </h1>
       </Motion.header>
 
@@ -189,7 +191,231 @@ export default function NarrativaPage({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* SECCIÓN 2: PROTAGONISTA */}
+{/* SECCIÓN 2: Cienamticas */}
+<Motion.section variants={itemVariants} className="py-12 space-y-16">
+  {/* HEADER DE SECCIÓN */}
+  <div className="flex items-center gap-4">
+    <h2 className="text-4xl font-black italic uppercase tracking-tighter">
+      Planificación <span style={{ color: accentGreen }}>Cinemática</span>
+    </h2>
+    <div className="h-[2px] flex-grow bg-zinc-500/20"></div>
+    <span className="font-mono text-[10px] opacity-40 uppercase">Ref: Plantilla_Guion_v1</span>
+  </div>
+
+  {/* BLOQUE DE REFERENCIAS VISUALES (DB BT2/BT3) */}
+  <div className={`p-8 border-2 border-dashed ${isDark ? "border-zinc-800 bg-zinc-900/20" : "border-zinc-200 bg-zinc-50"}`}>
+    <div className="mb-8">
+      <h3 className="text-2xl font-black uppercase italic mb-2 tracking-tighter">Estilo de <span style={{ color: accentGreen }}>Referencia Visual</span></h3>
+      <p className="text-sm opacity-70 font-mono leading-relaxed">
+        Nuestras cinemáticas se basarán en la estética y narrativa visual de los videojuegos: 
+        <span className="text-white bg-red-600 px-2 mx-1 italic font-bold">Dragon Ball Budokai Tenkaichi 2</span> y 
+        <span className="text-white bg-blue-600 px-2 mx-1 italic font-bold">Dragon Ball Budokai Tenkaichi 3</span>.
+      </p>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="aspect-video bg-zinc-800 relative overflow-hidden group border border-zinc-700 shadow-xl">
+        <img src={bt2Ref} alt="BT2 Ref" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" />
+        <div className="absolute bottom-0 p-3 text-[10px] font-bold uppercase tracking-widest text-white w-full bg-black/90 border-t border-zinc-700">Visual_Style: Budokai Tenkaichi 2</div>
+      </div>
+      <div className="aspect-video bg-zinc-800 relative overflow-hidden group border border-zinc-700 shadow-xl">
+        <img src={bt3Ref} alt="BT3 Ref" className="w-full h-full object-cover opacity-70 group-hover:opacity-100 transition-all duration-500 group-hover:scale-105" />
+        <div className="absolute bottom-0 p-3 text-[10px] font-bold uppercase tracking-widest text-white w-full bg-black/90 border-t border-zinc-700">Visual_Style: Budokai Tenkaichi 3</div>
+      </div>
+    </div>
+  </div>
+
+  {/* ITERACIÓN DINÁMICA DE LAS ESCENAS DEL GUION */}
+  {[
+    {
+      id: "01",
+      titulo: "El viaje de Rodolfo comienza",
+      tipo: "Introducción",
+      entorno: "Alcalá la Real",
+      objetivo: "Dar contexto al origen de la aventura de Rodolfo por el Santo Reino.",
+      personajes: "Rodolfo, Goku, Vegeta y Gohan",
+      storyboard: [
+        { n: "1", t: "0-5s", plano: "Plano General", accion: "Sacar un texto que es el siguiente: Hace tiempo, en el Santo Reino, nacieron unas bolas mágicas.", cam: "Fija" },
+        { n: "2", t: "5-10s", plano: "Plano General", accion: "Sacamos las bolas mágicas.", cam: "Fija" },
+        { n: "3", t: "10-15s", plano: "Plano General", accion: "Estas bolas mágicas han sido defendidas siempre por nuestros héroes.", cam: "Fija" },
+        { n: "4", t: "15-20s", plano: "Plano General", accion: "Sacamos a Goku, Vegeta y Gohan.", cam: "Fija" },
+        { n: "5", t: "20-25s", plano: "Plano General", accion: "Sacar un texto: Pero algo ocurrió en el Santo Reino. Todos nuestros héroes han muerto en combate, menos uno: Rodolfo, que fue entrenado por nuestros héroes.", cam: "Fija" },
+        { n: "6", t: "25-30s", plano: "Plano General", accion: "Sacamos a Rodolfo haciendo el Shagami-dō.", cam: "Fija" },
+        { n: "7", t: "30-35s", plano: "Plano General", accion: "Sacar un texto: ¿Podrá Rodolfo devolver la paz y enfrentarse a los enemigos que quieren atacar el Santo Reino?", cam: "Fija" },
+        { n: "8", t: "35-40s", plano: "Plano General", accion: "Botón para continuar.", cam: "Fija" },
+      ],
+      audio: "Música de introducción estilo DBZ, pero de forma de menú introductorio.",
+      vfx: "No dispondrá de VFX."
+    },
+    {
+      id: "02",
+      titulo: "Pedir los posibles Deseos",
+      tipo: "Intro / Nivel Extra",
+      entorno: "Shenron",
+      objetivo: "Rodolfo encontró las 7 bolas mágicas e invoca a Shenron para un deseo.",
+      personajes: "Shenron (De fondo)",
+      storyboard: [
+        { n: "1", t: "0-5s", plano: "Plano General", accion: "Sacar un texto: Has reunido las 7 bolas mágicas, puedes pedir tu deseo.", cam: "Fija" },
+        { n: "2", t: "5-10s", plano: "Plano General", accion: "Sacamos una 1ª opción: Devolver la paz y resucitar a mis amigos.", cam: "Fija" },
+        { n: "3", t: "10-15s", plano: "Plano General", accion: "Sacamos una 2ª opción: Ir al infierno y acabar con ellos para siempre jugándome mi vida para resucitar a mis amigos.", cam: "Fija" },
+        { n: "4", t: "15-20s", plano: "Plano General", accion: "Sacamos una 3ª opción: Ser el amo del Santo Reino.", cam: "Fija" },
+      ],
+      audio: "Música de alegría estilo DBZ, pero de victoria.",
+      vfx: "No dispondrá de VFX."
+    },
+    {
+      id: "03",
+      titulo: "Final Bueno: Rodolfo salva el Reino",
+      tipo: "Final / Conclusión",
+      entorno: "Alcalá la Real",
+      objetivo: "El viaje de Rodolfo culmina con la resurrección de sus amigos y la paz.",
+      personajes: "Rodolfo, Goku, Vegeta, Gohan",
+      storyboard: [
+        { n: "1", t: "0-5s", plano: "Plano General", accion: "Sacar un texto: Tras el duro viaje, Rodolfo resucitó a sus amigos y devolvió la paz al Santo Reino.", cam: "Fija" },
+        { n: "2", t: "5-10s", plano: "Plano General", accion: "Sacamos a Rodolfo, Goku, Vegeta y Gohan.", cam: "Fija" },
+        { n: "3", t: "10-15s", plano: "Plano General", accion: "Sacar un texto: Ahora podrán vivir en paz sin las amenazas de enemigos que desean el mal para el Santo Reino.", cam: "Fija" },
+        { n: "4", t: "15-20s", plano: "Plano General", accion: "Sacar un texto: ¿Qué será lo próximo en el viaje de Rodolfo?", cam: "Fija" },
+        { n: "5", t: "20-25s", plano: "Plano General", accion: "Botón para volver al menú.", cam: "Fija" },
+      ],
+      audio: "Música de alegría estilo DBZ, pero de victoria.",
+      vfx: "No dispondrá de VFX."
+    },
+    {
+      id: "04",
+      titulo: "Final Bueno: Rodolfo salva el Reino (Nivel Extra)",
+      tipo: "Final / Conclusión",
+      entorno: "Alcalá la Real",
+      objetivo: "Culminación tras derrotar definitivamente a los enemigos en el infierno.",
+      personajes: "Rodolfo, Goku, Vegeta, Gohan",
+      storyboard: [
+        { n: "1", t: "0-5s", plano: "Plano General", accion: "Sacar un texto: Tras el duro viaje donde Rodolfo fue al infierno para matar definitivamente a sus enemigos, resucitó a sus amigos y devolvió la paz.", cam: "Fija" },
+        { n: "2", t: "5-10s", plano: "Plano General", accion: "Sacamos a Rodolfo, Goku, Vegeta y Gohan.", cam: "Fija" },
+        { n: "3", t: "10-15s", plano: "Plano General", accion: "Sacar un texto: Ahora podrán vivir en paz sin las amenazas de enemigos que desean el mal.", cam: "Fija" },
+        { n: "4", t: "15-20s", plano: "Plano General", accion: "Sacar un texto: ¿Qué será lo próximo en el viaje de Rodolfo?", cam: "Fija" },
+        { n: "5", t: "20-25s", plano: "Plano General", accion: "Botón para volver al menú.", cam: "Fija" },
+      ],
+      audio: "Música de alegría estilo DBZ, pero de victoria.",
+      vfx: "No dispondrá de VFX."
+    },
+    {
+      id: "05",
+      titulo: "Final Malo: Rodolfo sucumbe al poder",
+      tipo: "Final / Conclusión",
+      entorno: "Alcalá la Real",
+      objetivo: "Rodolfo sucumbe al poder corruptor, transformándose en un nuevo antagonista.",
+      personajes: "Rodolfo, Goku, Vegeta, Gohan",
+      storyboard: [
+        { n: "1", t: "0-5s", plano: "Plano General", accion: "Sacar un texto: Tras el duro viaje, Rodolfo sucumbe al poder de las esferas y se transforma, deseando el control del Santo Reino.", cam: "Fija" },
+        { n: "2", t: "5-10s", plano: "Plano General", accion: "Sacamos a Rodolfo.", cam: "Fija" },
+        { n: "3", t: "10-15s", plano: "Plano General", accion: "Sacar un texto: ¿Qué será lo próximo en el Santo Reino?", cam: "Fija" },
+        { n: "4", t: "15-20s", plano: "Plano General", accion: "Sacar un texto: ¿Podrán Goku, Vegeta y Gohan detener a Rodolfo y defender el Santo Reino?", cam: "Fija" },
+        { n: "5", t: "20-25s", plano: "Plano General", accion: "Sacamos a Goku, Vegeta y Gohan.", cam: "Fija" },
+        { n: "6", t: "25-30s", plano: "Plano General", accion: "Sacar un texto: ¿Podrá Rodolfo volver a ser un ser puro?", cam: "Fija" },
+        { n: "7", t: "30-35s", plano: "Plano General", accion: "Botón para volver al menú.", cam: "Fija" },
+      ],
+      audio: "Música de suspense estilo DBZ.",
+      vfx: "No dispondrá de VFX."
+    }
+  ].map((cine) => (
+    <div key={cine.id} className={`border-l-8 ${isDark ? "bg-zinc-900/40 border-zinc-800" : "bg-zinc-50 border-zinc-200"} p-6 md:p-10 relative overflow-hidden mb-12`} style={{ borderLeftColor: accentGreen }}>
+      
+      {/* METADATOS Y CABECERA DE ESCENA */}
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+        <div className="lg:col-span-2 flex flex-col justify-center">
+          <span className="text-[10px] font-mono opacity-50 block mb-1 uppercase tracking-widest">DATA_FILE: SEQ_{cine.id}</span>
+          <h3 className="text-3xl font-black uppercase italic leading-tight mb-2">{cine.titulo}</h3>
+          
+          <p className={`text-sm mb-2 ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+            <span className="font-bold uppercase text-[10px]" style={{ color: accentGreen }}>OBJETIVO:</span> {cine.objetivo}
+          </p>
+
+          <p className={`text-sm ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+            <span className="font-bold uppercase text-[10px]" style={{ color: accentGreen }}>PERSONAJES:</span> {cine.personajes}
+          </p>
+        </div>
+        
+        {/* BLOQUES DE ESTADO */}
+        <div className="flex gap-4 lg:justify-end">
+          <div className="w-32 h-20 p-2 border border-zinc-700/30 text-center flex flex-col justify-center items-center shrink-0">
+            <span className="block text-[9px] opacity-40 uppercase mb-1">Finalidad</span>
+            <span className="font-bold text-[10px] leading-tight" style={{ color: accentGreen }}>{cine.tipo}</span>
+          </div>
+          <div className="w-32 h-20 p-2 border border-zinc-700/30 text-center flex flex-col justify-center items-center shrink-0">
+            <span className="block text-[9px] opacity-40 uppercase mb-1">Entorno</span>
+            <span className="font-bold text-[10px] leading-tight">{cine.entorno}</span>
+          </div>
+        </div>
+      </div>
+
+      {/* TABLA DE STORYBOARD */}
+      <div className="mb-10">
+        <h4 className="text-xs font-bold uppercase tracking-[0.2em] mb-4 opacity-70 flex items-center gap-2">
+          <span className="w-4 h-px bg-current"></span> Storyboard / Secuencia de Planos
+        </h4>
+        <div className="overflow-x-auto">
+          <table className="w-full text-left text-[11px] font-mono border-collapse">
+            <thead>
+              <tr className={isDark ? "bg-zinc-800/50" : "bg-zinc-200/50"}>
+                <th className="p-3 border border-zinc-700/20">Nº</th>
+                <th className="p-3 border border-zinc-700/20">TIEMPO</th>
+                <th className="p-3 border border-zinc-700/20 uppercase font-bold text-[9px]">Plano</th>
+                <th className="p-3 border border-zinc-700/20 uppercase font-bold text-[9px]">Acción / Qué se ve</th>
+                <th className="p-3 border border-zinc-700/20 uppercase font-bold text-[9px]">Cámara</th>
+              </tr>
+            </thead>
+            <tbody>
+              {cine.storyboard.map((plano, i) => (
+                <tr key={i} className="hover:bg-green-500/5 transition-colors">
+                  <td className="p-3 border border-zinc-700/10 font-bold">{plano.n}</td>
+                  <td className="p-3 border border-zinc-700/10" style={{ color: accentGreen }}>{plano.t}</td>
+                  <td className="p-3 border border-zinc-700/10 uppercase font-black">{plano.plano}</td>
+                  <td className="p-3 border border-zinc-700/10 opacity-90 italic leading-relaxed py-3">{plano.accion}</td>
+                  <td className="p-3 border border-zinc-700/10 text-zinc-500">{plano.cam}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      {/* BLOQUE TÉCNICO: AUDIO Y VFX */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className={`p-4 rounded border ${isDark ? "border-zinc-800 bg-black/20" : "border-zinc-200 bg-white"}`}>
+          <h5 className="text-[10px] font-black uppercase mb-2 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accentGreen }}></div>
+            Audio
+          </h5>
+          <p className="text-xs font-mono opacity-70 italic">{cine.audio}</p>
+        </div>
+        <div className={`p-4 rounded border ${isDark ? "border-zinc-800 bg-black/20" : "border-zinc-200 bg-white"}`}>
+          <h5 className="text-[10px] font-black uppercase mb-2 flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: accentGreen }}></div>
+            VFX
+          </h5>
+          <p className="text-xs font-mono opacity-70 italic">{cine.vfx}</p>
+        </div>
+      </div>
+    </div>
+  ))}
+
+  {/* NOTAS OPERATIVAS FINALES */}
+  <div className={`p-8 border-t-4 ${isDark ? "bg-zinc-900/60 border-zinc-700" : "bg-zinc-100 border-zinc-300"}`}>
+    <h3 className="text-xl font-black uppercase italic mb-4">Notas de las cinematicas</h3>
+    <ul className="space-y-3 text-xs font-mono opacity-80">
+      <li className="flex gap-2">
+        <span style={{ color: accentGreen }}>[!]</span> La musica sonara de fondo en toda la cinemaitica.
+      </li>
+      <li className="flex gap-2">
+        <span style={{ color: accentGreen }}>[!]</span> En Escena 02, el bucle será infinito hasta selección de opción por el jugador.
+      </li>
+      <li className="flex gap-2">
+        <span style={{ color: accentGreen }}>[!]</span> Estilo visual minimalista basado en texto plano (referencia DBZ).
+      </li>
+    </ul>
+  </div>
+</Motion.section>
+
+        {/* SECCIÓN 3: PROTAGONISTA */}
         <Motion.section variants={itemVariants} className="relative py-12">
           <header className="mb-12">
             <h2
@@ -282,7 +508,7 @@ export default function NarrativaPage({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* SECCIÓN 3: ALIADOS */}
+        {/* SECCIÓN 4: ALIADOS */}
         <Motion.section variants={itemVariants} className="py-12">
           <h2 className="text-4xl font-black italic uppercase tracking-tighter mb-12">
             Aliados <span className="opacity-20">/ Secundarios</span>
@@ -423,7 +649,7 @@ export default function NarrativaPage({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* SECCIÓN 4: ENEMIGOS */}
+        {/* SECCIÓN 5: ENEMIGOS */}
         <Motion.section variants={itemVariants} className="py-12">
           <div className="flex items-center gap-6 mb-12">
             <h2 className="text-3xl sm:text-4xl font-black italic uppercase tracking-tight sm:tracking-tighter whitespace-nowrap">
@@ -494,7 +720,7 @@ export default function NarrativaPage({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* SECCIÓN 5: PROGRESO */}
+        {/* SECCIÓN 6: PROGRESO */}
         <Motion.section
           variants={itemVariants}
           className="grid grid-cols-1 lg:grid-cols-12 gap-12"
@@ -529,7 +755,7 @@ export default function NarrativaPage({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* SECCIÓN 6: Diseño Mecanicas e Historia */}
+        {/* SECCIÓN 7: Diseño Mecanicas e Historia */}
         <Motion.section variants={itemVariants} className="pb-20">
           <div
             className={`relative p-8 md:p-20 border-4 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden flex flex-col items-center text-center`}
