@@ -425,7 +425,7 @@ export default function Cuerpo({ isDark }) {
           </h2>
 
           <Link
-            to="/contacto"
+            to="/Contacto"
             className="group relative w-full flex items-center justify-between p-8 md:p-12 border-4 transition-all duration-500 overflow-hidden"
             style={{ borderColor: currentTextColor }}
           >
