@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import MiFoto from "../Imagenes/Foto_Mia.jpg";
 import LogoGithubBlanco from "../Imagenes/githubBlanco.png";
 import LogoGithubNegro from "../Imagenes/githubNegro.png";
-import Linkedin from "../Imagenes/linkedin.png";
+import Linkedin from "../Imagenes/Linkedin.png";
 
 export default function SobreMi({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
