@@ -1,7 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
-import ImagenMetroid from "../Imagenes/PixelMetroid.png";
-import JuegoMetroid from "../Imagenes/PixelMetroidjuego.png";
+import ImagenMetroid from "../Imagenes/Pixelmetroid.png";
+import JuegoMetroid from "../Imagenes/Pixelmetroidjuego.png";
 
 // 1. Definimos la coreografía: los hijos aparecen uno tras otro (Stagger)
 const containerVariants = {
