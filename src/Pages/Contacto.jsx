@@ -141,7 +141,7 @@ export default function Contacto({ isDark }) {
                 </p>
                 <div className="flex flex-wrap items-center justify-center gap-x-3 md:gap-x-6 gap-y-4 font-black italic text-[17px] md:text-xl pb-4">
                   <a
-                    href="https://djsekai34.github.io/DJVPortFolio/"
+                    href="https://djvportfolio.vercel.app"
                     target="_blank"
                     rel="noreferrer"
                     className="relative group inline-block opacity-80 hover:opacity-100 hover:text-red-600 transition-all hover:-translate-y-1 duration-300 cursor-pointer tracking-tighter"

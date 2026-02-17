@@ -3,7 +3,7 @@ import { motion as Motion } from "framer-motion";
 
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import ImagenRodolfoStrike from "../Imagenes/LogoSRS.png";
-import ImagenMetroid from "../Imagenes/PixelMetroid.png";
+import ImagenMetroid from "../Imagenes/Pixelmetroid.png";
 import ImagenXR from "../Imagenes/XRAdventure.jpeg";
 import { Link } from "react-router-dom";
 
