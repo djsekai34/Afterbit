@@ -110,11 +110,11 @@ export default function Cuerpo({ isDark }) {
             </div>
 
             <h1
-              className="text-7xl sm:text-8xl md:text-9xl lg:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] transition-colors duration-500 mb-6 text-center"
+              className="text-6xl sm:text-8xl md:text-9xl lg:text-[13rem] font-black uppercase tracking-tighter leading-[0.75] transition-colors duration-500 mb-6 text-center"
               style={{ color: currentTextColor }}
             >
               <Motion.span
-                initial={{ letterSpacing: "0.1em", filter: "blur(8px)" }}
+                initial={{ letterSpacing: "0.05em", filter: "blur(8px)" }} // Bajado de 0.1em a 0.05em
                 animate={{ letterSpacing: "-0.05em", filter: "blur(0px)" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="inline-block"
