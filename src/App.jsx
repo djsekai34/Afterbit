@@ -21,6 +21,7 @@ import SuperRodolfoProduccion from './Pages/ProduccionyArquitectura.jsx';
 import SuperRodolfoConceptos from './Pages/ConceptoyObjetivos.jsx';
 import SuperRodolfoStrike from './Pages/SuperRodolfoStrike.jsx';
 import Eventos from './Pages/Eventos.jsx';
+import IA from "./components/IA.jsx"
 import "./index.css";
 
 function App() {
@@ -52,7 +53,7 @@ function App() {
         <Route path="/Proyectos/SuperRodolfo/ConceptoyObjetivos" element={<SuperRodolfoConceptos isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
       </Routes>
-
+      <IA/>
       <Footer isDark={isDark} setIsDark={setIsDark}/>
     </div>
   );

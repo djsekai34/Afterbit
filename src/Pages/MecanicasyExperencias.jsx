@@ -387,8 +387,10 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
             </div>
           </div>
           <div className="space-y-6">
-            <h2 className="text-3xl font-black italic uppercase tracking-widest text-right">
-              <span className="text-red-600">Penalización</span> .05
+            <h2 className="text-3xl font-black italic uppercase tracking-widest text-left md:text-right">
+              <span className="inline md:hidden">05. </span>
+              <span className="text-red-600">Penalización</span>
+              <span className="hidden md:inline"> .05</span>
             </h2>
             <div
               className={`p-6 border-r-4 border-red-600 ${isDark ? "bg-zinc-900/50" : "bg-zinc-50"} text-right`}

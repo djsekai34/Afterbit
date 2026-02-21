@@ -223,7 +223,7 @@ export default function SuperRodolfoStrike({ isDark }) {
           >
             // TECH_SPECIFICATIONS: CORE_LOGIC
           </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               {
                 id: "// 01_INPUT",
@@ -236,7 +236,12 @@ export default function SuperRodolfoStrike({ isDark }) {
                 desc: "Cálculo de fuerza de impacto para derribar correctamente los bolos.",
               },
               {
-                id: "// 03_ACADEMY",
+                id: "// 03_DESIGN",
+                title: "Botones Personalizados",
+                desc: "Fusión con la asignatura de diseño 2D y 3D para la creación e implementación de botones con estética propia.",
+              },
+              {
+                id: "// 04_ACADEMY",
                 title: "IES Virgen del Carmen",
                 desc: "Desarrollado en clase dentro de la especialización para aprender a hacer un juego móvil.",
               },
@@ -346,6 +351,7 @@ export default function SuperRodolfoStrike({ isDark }) {
               >
                 Objetivo de Aprendizaje Cumplido
               </h4>
+
               <p className="opacity-90 leading-relaxed mb-4">
                 <span className="font-bold">Super Rodolfo Strike</span> fue mi
                 primer juego de móvil realizado. Este proyecto me sirvió para
@@ -358,11 +364,28 @@ export default function SuperRodolfoStrike({ isDark }) {
                 </span>{" "}
                 correctamente, gestionando entradas táctiles de forma precisa.
               </p>
+
+              {/* NUEVO PÁRRAFO DE DISEÑO */}
+              <p className="opacity-90 leading-relaxed mb-4">
+                Este desarrollo permitió una{" "}
+                <span className="font-bold">fusión estratégica</span> con la
+                asignatura de
+                <span className="italic"> Diseño 2D y 3D</span>, donde creé e
+                implementé
+                <span style={{ color: srsGreen }} className="font-bold">
+                  {" "}
+                  botones personalizados
+                </span>{" "}
+                con una estética propia, asegurando una interfaz coherente y
+                profesional.
+              </p>
+
               <p className="opacity-90 leading-relaxed mb-4">
                 También cumplí el objetivo crítico de exportar el proyecto a un
                 dispositivo real, asegurando que el juego se visualizara y
                 rindiera correctamente en pantallas móviles.
               </p>
+
               <p className="opacity-90 leading-relaxed">
                 Además, profundicé en el pulido profesional del juego,
                 aprendiendo a configurar el{" "}
@@ -371,29 +394,31 @@ export default function SuperRodolfoStrike({ isDark }) {
                 la aplicación.
               </p>
             </div>
-            <div className="flex flex-wrap gap-3 mt-8 font-mono text-[10px] md:text-xs justify-center">
+
+            <div className="flex flex-wrap lg:flex-nowrap gap-1.5 mt-8 font-mono text-[9px] md:text-[12px] justify-center">
               {[
                 "UNITY_MOBILE",
                 "TOUCHSCREEN_CLASS",
+                "CUSTOM_UI_DESING",
+                "2D_3D_FUSION",
                 "MOBILE_OPTIMIZATION",
                 "AFTERBIT_SPLASH_SCREEN",
-                "ANDROID_BUILD_SUCCESS",
+                "ANDORID_BUILD_SUCCESS",
               ].map((tag, idx) => (
                 <span
                   key={idx}
-                  className="border px-3 py-1.5 transition-all duration-300 opacity-60"
+                  className="border-[1px] px-1.5 py-0.5 transition-all duration-300 opacity-40 hover:opacity-100 whitespace-nowrap"
                   style={{
                     borderColor: currentTextColor,
                     color: currentTextColor,
                   }}
                 >
-                  # {tag}
+                  #{tag}
                 </span>
               ))}
             </div>
           </div>
         </Motion.section>
-
         {/* Bolera 3 */}
         <Motion.div
           initial="hidden"
@@ -492,16 +517,28 @@ export default function SuperRodolfoStrike({ isDark }) {
                 className="w-full max-w-xs mx-auto rounded-lg shadow-lg"
               />
               <p className="font-mono text-[10px] mt-4 opacity-40">
-                / BUILD_VERSION: 1.0.0 / LAST_UPDATE: 2026.01.22
+                / BUILD_VERSION: 1.2.0 / LAST_UPDATE: 2026.02.21
               </p>
             </div>
             <a
               href="https://github.com/djsekai34/SuperRodolfoStrike"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-md shadow-sm text-white bg-gradient-to-r from-green-500 to-green-700 hover:from-green-600 hover:to-green-800 transition-all duration-300 transform hover:-translate-y-1 hover:scale-105"
+              className="relative inline-flex items-center justify-center px-10 py-4 font-black tracking-tighter text-white transition-all duration-300 group"
             >
-              <span className="mr-2">🎮</span> ¡JUGAR AHORA!
+              <span className="absolute inset-0 w-full h-full rounded-xl bg-gradient-to-r from-green-400 to-green-600 blur-sm opacity-50 group-hover:opacity-100 group-hover:blur-md transition-all duration-500"></span>
+              <span className="absolute inset-0 w-full h-full rounded-xl bg-black border-2 border-green-500"></span>
+
+              <span className="absolute bottom-0 left-0 h-1 bg-green-400 transition-all duration-500 w-0 group-hover:w-full"></span>
+
+              <span className="relative flex items-center gap-3">
+                <span className="text-xl animate-bounce group-hover:scale-125 transition-transform">
+                  🎮
+                </span>
+                <span className="uppercase italic text-lg lg:text-xl">
+                  ¡JUGAR AHORA!
+                </span>
+              </span>
             </a>
           </div>
         </Motion.section>
