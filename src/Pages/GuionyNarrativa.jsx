@@ -13,7 +13,6 @@ import Turles from "../Imagenes/ImagenesSR/Turles.png";
 import Cell from "../Imagenes/ImagenesSR/Cell Perfecto.png";
 import bt2Ref from "../Imagenes/CinematicaBT2.png";
 import bt3Ref from "../Imagenes/CinematicaBT3.png";
-import { cinematicas } from "../data/cinematicas";
 
 export default function NarrativaPage({ isDark }) {
   const accentGreen = "#008012";
@@ -67,119 +66,184 @@ export default function NarrativaPage({ isDark }) {
         {/* SECCIÓN 1: HISTORIA DEL SANTO REINO */}
         <Motion.section variants={itemVariants} className="relative py-12">
           <div
-            className={`relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-0 border-2 ${isDark ? "border-zinc-800/50" : "border-zinc-200"} rounded-lg overflow-hidden`}
+            className={`relative z-10 border-2 ${isDark ? "border-zinc-800/50" : "border-zinc-200"} rounded-lg overflow-hidden`}
           >
-            <div
-              className={`lg:col-span-7 p-8 md:p-12 border-b-2 lg:border-b-0 lg:border-r-2 ${isDark ? "border-zinc-800/50 bg-zinc-900/40" : "border-zinc-200 bg-white"}`}
-            >
-              <div className="max-w-2xl h-full flex flex-col">
+            {/* GRID SUPERIOR: HISTORIA + MUNDO */}
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-0 border-b-2 border-zinc-800/50">
+              {/* COLUMNA IZQUIERDA: HISTORIA */}
+              <div
+                className={`lg:col-span-7 p-8 md:p-12 border-b-2 lg:border-b-0 lg:border-r-2 ${isDark ? "border-zinc-800/50 bg-zinc-900/40" : "border-zinc-200 bg-white"}`}
+              >
+                <div className="max-w-2xl h-full flex flex-col">
+                  <header className="mb-10">
+                    <h2
+                      className={`text-3xl md:text-4xl lg:text-[2.50rem] font-black italic uppercase tracking-[-0.05em] leading-none ${isDark ? "text-white" : "text-zinc-900"}`}
+                    >
+                      Historia del{" "}
+                      <span style={{ color: accentGreen }}>Santo Reino</span>
+                    </h2>
+                  </header>
+
+                  <div
+                    className={`text-xl leading-relaxed space-y-8 flex-grow ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
+                  >
+                    <p>
+                      En un mundo donde la leyenda de las{" "}
+                      <span className="text-orange-500 font-bold italic">
+                        Bolas de Dragón
+                      </span>{" "}
+                      cobra vida, el Santo Reino se enfrenta a su hora más
+                      oscura. Todos los grandes guerreros han caído; ahora, la
+                      esperanza recae en{" "}
+                      <span
+                        style={{ color: accentGreen }}
+                        className="font-bold"
+                      >
+                        Rodolfo
+                      </span>
+                      , un héroe inesperado forjado bajo la tutela de leyendas
+                      como Goku, Vegeta y Gohan.
+                    </p>
+
+                    <div
+                      className={`relative p-6 border-l-4 italic ${isDark ? "bg-orange-500/5" : "bg-orange-500/10"}`}
+                      style={{ borderColor: accentGreen }}
+                    >
+                      A pesar de dominar únicamente el arte del{" "}
+                      <span className="font-bold uppercase tracking-widest text-sm px-2 py-0.5 rounded bg-zinc-800 text-white">
+                        Shagami-dō
+                      </span>
+                      , su determinación es inquebrantable: recorrer todo el
+                      Santo Reino para reunir las siete bolas magicas y devolver
+                      la vida a sus aliados.
+                    </div>
+
+                    <p className="text-lg opacity-80">
+                      Acechado por enemigos que ansían la inmortalidad y
+                      controlar el Santo Reino, Rodolfo deberá derrotarlos y
+                      decidir: ¿Mantendrá la pureza de su corazón o sucumbirá
+                      ante el poder corruptor de las esferas?
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* COLUMNA DERECHA: EL MUNDO */}
+              <div
+                className={`lg:col-span-5 p-8 md:p-12 flex flex-col ${isDark ? "bg-zinc-900/80" : "bg-zinc-50"}`}
+              >
                 <header className="mb-10">
                   <h2
-                    className={`text-3xl md:text-4xl lg:text-[2.50rem] font-black italic uppercase tracking-[-0.05em] leading-none ${isDark ? "text-white" : "text-zinc-900"}`}
+                    className={`text-3xl md:text-4xl font-black italic uppercase tracking-tighter leading-none ${isDark ? "text-white" : "text-zinc-900"}`}
                   >
-                    Historia del{" "}
-                    <span style={{ color: accentGreen }}>Santo Reino</span>
+                    El Mundo:{" "}
+                    <span style={{ color: accentGreen }}>Mezcla Única</span>
                   </h2>
                 </header>
 
                 <div
-                  className={`text-xl leading-relaxed space-y-8 flex-grow ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
+                  className={`text-xl leading-relaxed space-y-8 flex-grow ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
                 >
                   <p>
-                    En un mundo donde la leyenda de las{" "}
-                    <span className="text-orange-500 font-bold italic">
-                      Bolas de Dragón
+                    La ambientación se inspira en lugares emblemáticos de la
+                    comarca jiennense, trazando una ruta desde{" "}
+                    <span
+                      className={`font-bold italic ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
+                    >
+                      Alcalá la Real
                     </span>{" "}
-                    cobra vida, el Santo Reino se enfrenta a su hora más oscura.
-                    Todos los grandes guerreros han caído; ahora, la esperanza
-                    recae en{" "}
-                    <span style={{ color: accentGreen }} className="font-bold">
-                      Rodolfo
+                    hasta{" "}
+                    <span
+                      className={`font-bold italic ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
+                    >
+                      Martos
                     </span>
-                    , un héroe inesperado forjado bajo la tutela de leyendas
-                    como Goku, Vegeta y Gohan.
+                    . Un mapa que recorre montañas, ríos y ciudades para
+                    capturar la esencia de nuestra tierra.
                   </p>
 
                   <div
-                    className={`relative p-6 border-l-4 italic ${isDark ? "bg-orange-500/5" : "bg-orange-500/10"}`}
-                    style={{ borderColor: accentGreen }}
+                    className={`p-6 border-2 border-dashed rounded-lg ${isDark ? "border-zinc-800 bg-zinc-900/50" : "border-zinc-300 bg-white"}`}
                   >
-                    A pesar de dominar únicamente el arte del{" "}
-                    <span className="font-bold uppercase tracking-widest text-sm px-2 py-0.5 rounded bg-zinc-800 text-white">
-                      Shagami-dō
-                    </span>
-                    , su determinación es inquebrantable: reunir las siete bolas
-                    magicas y devolver la vida a sus aliados.
+                    <h3
+                      className="text-lg font-black italic uppercase mb-3"
+                      style={{ color: accentGreen }}
+                    >
+                      Estética Híbrida
+                    </h3>
+                    <p
+                      className={`text-lg leading-relaxed ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
+                    >
+                      Los escenarios fusionan la identidad de la comarca con el
+                      lenguaje visual de{" "}
+                      <span className="text-orange-500 font-bold">
+                        Dragon Ball Z
+                      </span>
+                      . Una mezcla donde el paisaje rural de Jaén convive con
+                      auras de energía y mística ancestral.
+                    </p>
                   </div>
-
-                  <p className="text-lg opacity-80">
-                    Acechado por enemigos que ansían la inmortalidad y controlar
-                    el Santo Reino, Rodolfo deberá derrotarlos y decidir:
-                    ¿Mantendrá la pureza de su corazón o sucumbirá ante el poder
-                    corruptor de las esferas?
-                  </p>
                 </div>
               </div>
             </div>
 
+            {/* SECCIÓN Loop */}
             <div
-              className={`lg:col-span-5 p-8 md:p-12 flex flex-col ${isDark ? "bg-zinc-900/80" : "bg-zinc-50"}`}
+              className={`p-8 md:p-12 ${isDark ? "bg-zinc-900/90" : "bg-zinc-100/50"} flex flex-col md:flex-row items-center justify-between gap-8`}
             >
-              <header className="mb-10">
-                <h2
-                  className={`text-3xl md:text-4xl font-black italic uppercase tracking-tighter leading-none ${isDark ? "text-white" : "text-zinc-900"}`}
+              <div className="max-w-4xl">
+                <h3 className="text-sm font-bold uppercase tracking-[0.3em] mb-4 opacity-50">
+                  // CORE_GAMEPLAY_LOOP
+                </h3>
+                <p
+                  className={`text-xl md:text-2xl font-light leading-relaxed ${isDark ? "text-white" : "text-zinc-900"}`}
                 >
-                  El Mundo:{" "}
-                  <span style={{ color: accentGreen }}>Mezcla Única</span>
-                </h2>
-              </header>
-
-              <div
-                className={`text-xl leading-relaxed space-y-8 flex-grow ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-              >
-                <p>
-                  La ambientación se inspira en lugares emblemáticos de la
-                  comarca jiennense, trazando una ruta desde{" "}
+                  El objetivo de{" "}
                   <span
-                    className={`font-bold italic ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
+                    className="font-bold underline"
+                    style={{ textDecorationColor: accentGreen }}
                   >
-                    Alcalá la Real
+                    todas las misiones
                   </span>{" "}
-                  hasta{" "}
+                  es idéntico a lo largo de{" "}
+                  <span className="font-bold italic">todo el Santo Reino</span>:
+                  una lucha por la supervivencia donde deberás{" "}
                   <span
-                    className={`font-bold italic ${isDark ? "text-zinc-100" : "text-zinc-900"}`}
-                  >
-                    Martos
-                  </span>
-                  . Un mapa que recorre montañas, ríos y ciudades para capturar
-                  la esencia de nuestra tierra.
-                </p>
-
-                <div
-                  className={`p-6 border-2 border-dashed rounded-lg ${isDark ? "border-zinc-800 bg-zinc-900/50" : "border-zinc-300 bg-white"}`}
-                >
-                  <h3
-                    className="text-lg font-black italic uppercase mb-3"
                     style={{ color: accentGreen }}
+                    className="font-bold uppercase tracking-tighter"
                   >
-                    Estética Híbrida
-                  </h3>
-                  <p
-                    className={`text-lg leading-relaxed ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
-                  >
-                    Los escenarios fusionan la identidad de la comarca con el
-                    lenguaje visual de{" "}
-                    <span className="text-orange-500 font-bold">
-                      Dragon Ball Z
-                    </span>
-                    . Una mezcla donde el paisaje rural de Jaén convive con
-                    auras de energía y mística ancestral.
-                  </p>
+                    matar y sobrevivir a los enemigos
+                  </span>{" "}
+                  para asegurar la{" "}
+                  <span className="text-orange-500 font-bold">bola mágica</span>{" "}
+                  <span className="text-sm opacity-60 font-mono tracking-tighter">
+                    (unidades del 1 al 7 de valor equivalente, desplegadas de
+                    forma <span className="underline">aleatoria</span> para su
+                    recolección)
+                  </span>
+                  , requisito indispensable para viajar al siguiente destino del
+                  Santo Reino.
+                </p>
+              </div>
+              <div className="flex-shrink-0">
+                <div className="relative w-20 h-20 flex items-center justify-center">
+                  <div
+                    className="absolute inset-0 border-2 rounded-full opacity-20"
+                    style={{ borderColor: accentGreen }}
+                  ></div>
+                  <div
+                    className="absolute inset-2 border rounded-full opacity-40"
+                    style={{ borderColor: accentGreen }}
+                  ></div>
+                  <div className="relative flex items-center justify-center">
+                    <div className="w-3 h-3 rounded-full shadow-[0_0_15px_rgba(249,115,22,1)] bg-orange-500 animate-pulse"></div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
 
+          {/* MARCA DE AGUA FONDO */}
           <div className="absolute inset-0 pointer-events-none hidden lg:flex items-center justify-center overflow-hidden z-[20]">
             <span
               className={`font-black italic select-none tracking-tighter text-center leading-[0.8]
@@ -255,7 +319,293 @@ export default function NarrativaPage({ isDark }) {
           </div>
 
           {/* RENDERIZADO DINÁMICO DE ESCENAS */}
-          {cinematicas.map((cine) => (
+          {[
+            {
+              id: "01",
+              titulo: "El viaje de Rodolfo comienza",
+              tipo: "Introducción",
+              entorno: "Alcalá la Real",
+              objetivo:
+                "Dar contexto al origen de la aventura de Rodolfo por el Santo Reino.",
+              personajes: "Rodolfo, Goku, Vegeta y Gohan",
+              storyboard: [
+                {
+                  n: "1",
+                  t: "0-5s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Hace tiempo, en el Santo Reino, nacieron unas bolas mágicas.",
+                  cam: "Fija",
+                },
+                {
+                  n: "2",
+                  t: "5-10s",
+                  plano: "Plano General",
+                  accion: "Sacamos las bolas mágicas.",
+                  cam: "Fija",
+                },
+                {
+                  n: "3",
+                  t: "10-15s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Estas bolas mágicas han sido defendidas siempre por nuestros héroes.",
+                  cam: "Fija",
+                },
+                {
+                  n: "4",
+                  t: "15-20s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Goku, Vegeta y Gohan.",
+                  cam: "Fija",
+                },
+                {
+                  n: "5",
+                  t: "20-25s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Pero algo ocurrió en el Santo Reino. Todos nuestros héroes han muerto en combate, menos uno: Rodolfo, que fue entrenado por nuestros héroes.",
+                  cam: "Fija",
+                },
+                {
+                  n: "6",
+                  t: "25-30s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Rodolfo haciendo el Shagami-dō.",
+                  cam: "Fija",
+                },
+                {
+                  n: "7",
+                  t: "30-35s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Podrá Rodolfo devolver la paz y enfrentarse a los enemigos que quieren atacar el Santo Reino?",
+                  cam: "Fija",
+                },
+                {
+                  n: "8",
+                  t: "35-40s",
+                  plano: "Plano General",
+                  accion: "Botón para continuar.",
+                  cam: "Fija",
+                },
+              ],
+              audio: "Música de introducción estilo DBZ.",
+              vfx: "No dispondrá de VFX.",
+            },
+            {
+              id: "02",
+              titulo: "Pedir los posibles Deseos",
+              tipo: "Final / Nivel Extra",
+              entorno: "Shenron",
+              objetivo:
+                "Rodolfo encontró las 7 bolas mágicas e invoca a Shenron para un deseo.",
+              personajes: "Shenron (De fondo)",
+              storyboard: [
+                {
+                  n: "1",
+                  t: "0-5s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Has reunido las 7 bolas mágicas, puedes pedir tu deseo.",
+                  cam: "Fija",
+                },
+                {
+                  n: "2",
+                  t: "5-10s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacamos una 1ª opción: Devolver la paz y resucitar a mis amigos.",
+                  cam: "Fija",
+                },
+                {
+                  n: "3",
+                  t: "10-15s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacamos una 2ª opción: Ir al infierno y acabar con ellos para siempre jugandose la vida para resucitar a mis amigos.",
+                  cam: "Fija",
+                },
+                {
+                  n: "4",
+                  t: "15-20s",
+                  plano: "Plano General",
+                  accion: "Sacamos una 3ª opción: Ser el amo del Santo Reino.",
+                  cam: "Fija",
+                },
+              ],
+              audio: "Música de pedir un deseo estilo DBZ.",
+              vfx: "No dispondrá de VFX.",
+            },
+            {
+              id: "03",
+              titulo: "Final Bueno: Rodolfo salva el Reino",
+              tipo: "Final / Conclusión",
+              entorno: "Alcalá la Real",
+              objetivo:
+                "El viaje de Rodolfo culmina con la resurrección de sus amigos y la paz.",
+              personajes: "Rodolfo, Goku, Vegeta, Gohan",
+              storyboard: [
+                {
+                  n: "1",
+                  t: "0-5s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Tras el duro viaje, Rodolfo resucitó a sus amigos y devolvió la paz al Santo Reino.",
+                  cam: "Fija",
+                },
+                {
+                  n: "2",
+                  t: "5-10s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Rodolfo, Goku, Vegeta y Gohan.",
+                  cam: "Fija",
+                },
+                {
+                  n: "3",
+                  t: "10-15s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Ahora podrán vivir en paz sin las amenazas de enemigos que desean el mal para el Santo Reino.",
+                  cam: "Fija",
+                },
+                {
+                  n: "4",
+                  t: "15-20s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Qué será lo próximo en el viaje de Rodolfo?",
+                  cam: "Fija",
+                },
+                {
+                  n: "5",
+                  t: "20-25s",
+                  plano: "Plano General",
+                  accion: "Botón para volver al menú.",
+                  cam: "Fija",
+                },
+              ],
+              audio: "Música de alegría estilo DBZ.",
+              vfx: "No dispondrá de VFX.",
+            },
+            {
+              id: "04",
+              titulo: "Final Bueno: Rodolfo salva el Reino (Nivel Extra)",
+              tipo: "Final / Conclusión",
+              entorno: "Alcalá la Real",
+              objetivo:
+                "Culminación tras derrotar definitivamente a los enemigos en el infierno, resucitando a sus amigos.",
+              personajes: "Rodolfo, Goku, Vegeta, Gohan",
+              storyboard: [
+                {
+                  n: "1",
+                  t: "0-5s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Tras el duro viaje donde Rodolfo fue al infierno para matar definitivamente a sus enemigos, resucitó a sus amigos y devolvió la paz.",
+                  cam: "Fija",
+                },
+                {
+                  n: "2",
+                  t: "5-10s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Rodolfo, Goku, Vegeta y Gohan.",
+                  cam: "Fija",
+                },
+                {
+                  n: "3",
+                  t: "10-15s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Ahora podrán vivir en paz sin las amenazas de enemigos que desean el mal.",
+                  cam: "Fija",
+                },
+                {
+                  n: "4",
+                  t: "15-20s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Qué será lo próximo en el viaje de Rodolfo?",
+                  cam: "Fija",
+                },
+                {
+                  n: "5",
+                  t: "20-25s",
+                  plano: "Plano General",
+                  accion: "Botón para volver al menú.",
+                  cam: "Fija",
+                },
+              ],
+              audio: "Música de alegría estilo DBZ.",
+              vfx: "No dispondrá de VFX.",
+            },
+            {
+              id: "05",
+              titulo: "Final Malo: Rodolfo sucumbe al poder",
+              tipo: "Final / Conclusión",
+              entorno: "Alcalá la Real",
+              objetivo:
+                "Rodolfo sucumbe al poder corruptor, transformándose en un nuevo antagonista.",
+              personajes: "Rodolfo, Goku, Vegeta, Gohan",
+              storyboard: [
+                {
+                  n: "1",
+                  t: "0-5s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: Tras el duro viaje, Rodolfo sucumbe al poder de las esferas y se transforma, deseando el control del Santo Reino.",
+                  cam: "Fija",
+                },
+                {
+                  n: "2",
+                  t: "5-10s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Rodolfo.",
+                  cam: "Fija",
+                },
+                {
+                  n: "3",
+                  t: "10-15s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Qué será lo próximo en el Santo Reino?",
+                  cam: "Fija",
+                },
+                {
+                  n: "4",
+                  t: "15-20s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Podrán Goku, Vegeta y Gohan detener a Rodolfo y defender el Santo Reino?",
+                  cam: "Fija",
+                },
+                {
+                  n: "5",
+                  t: "20-25s",
+                  plano: "Plano General",
+                  accion: "Sacamos a Goku, Vegeta y Gohan.",
+                  cam: "Fija",
+                },
+                {
+                  n: "6",
+                  t: "25-30s",
+                  plano: "Plano General",
+                  accion:
+                    "Sacar un texto: ¿Podrá Rodolfo volver a ser un ser puro?",
+                  cam: "Fija",
+                },
+                {
+                  n: "7",
+                  t: "30-35s",
+                  plano: "Plano General",
+                  accion: "Botón para volver al menú.",
+                  cam: "Fija",
+                },
+              ],
+              audio: "Música de suspense estilo DBZ.",
+              vfx: "No dispondrá de VFX.",
+            },
+          ].map((cine) => (
             <div
               key={cine.id}
               className={`border-l-8 ${isDark ? "bg-zinc-900/40 border-zinc-800" : "bg-zinc-50 border-zinc-200"} p-5 md:p-10 relative overflow-hidden mb-12`}
@@ -621,7 +971,7 @@ export default function NarrativaPage({ isDark }) {
             </div>
 
             <h5
-              className="text-[15px] sm:text-xl font-black uppercase italic mb-4 flex items-center gap-2 sm:gap-3 whitespace-nowrap"
+              className="text-lg sm:text-xl font-black uppercase italic mb-4 flex items-center gap-3 whitespace-nowrap"
               style={{ color: accentGreen }}
             >
               <span
@@ -646,8 +996,13 @@ export default function NarrativaPage({ isDark }) {
                 <p className="font-medium italic">
                   Sin embargo, al reunirnos con ellos en el Reino Celestial, nos
                   otorgarán su fuerza espiritual para devolver la paz al Santo
-                  Reino. Esta conexión mística se manifiesta como una{" "}
-                  <span className="px-0.5 py-0.5 rounded bg-orange-500 text-white font-bold uppercase text-sm tracking-widest">
+                  Reino. Esta conexión mística, sellada en un instante sagrado
+                  al{" "}
+                  <span style={{ color: accentGreen }} className="font-bold">
+                    chocar nuestras manos o sentir su palma sobre nuestro pecho
+                  </span>
+                  , que se manifestara como una{" "}
+                  <span className="px-1.5 py-0.5 rounded bg-orange-500 text-white font-bold uppercase text-sm tracking-widest">
                     Vida Extra
                   </span>{" "}
                   , permitiendo que Rodolfo trascienda sus límites cuando todo
@@ -701,8 +1056,8 @@ export default function NarrativaPage({ isDark }) {
             <div className="h-[2px] w-full bg-zinc-500/20"></div>
           </div>
 
-          {/* gap-4 en móvil para que quepan dos, gap-8 en el resto */}
-          <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+          {/* GRID DE ENEMIGOS */}
+          <div className="flex flex-wrap justify-center gap-4 md:gap-8 mb-16">
             {[
               { id: "01", nombre: "Frieza", img: FriezaImg },
               { id: "02", nombre: "Broly", img: Broly },
@@ -738,12 +1093,6 @@ export default function NarrativaPage({ isDark }) {
                       className="w-full h-full object-contain grayscale group-hover:grayscale-0 group-hover:scale-110 transition-all duration-700 ease-out"
                     />
                   </div>
-
-                  <div className="absolute inset-0 opacity-0 group-hover:opacity-10 transition-opacity pointer-events-none flex items-center justify-center z-0">
-                    <span className="font-black text-xl md:text-2xl uppercase italic tracking-tighter">
-                      DANGER_FILE
-                    </span>
-                  </div>
                 </div>
 
                 <div className="mt-4 text-center">
@@ -761,8 +1110,32 @@ export default function NarrativaPage({ isDark }) {
               </div>
             ))}
           </div>
+          <div
+            className={`w-full p-8 md:p-12 border-l-4 ${isDark ? "bg-red-950/10 border-red-600/50" : "bg-red-50 border-red-500"}`}
+          >
+            <p
+              className={`text-xl md:text-2xl leading-relaxed italic ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
+            >
+              No subestimes su presencia;{" "}
+              <span className="font-bold underline decoration-red-500 underline-offset-4">
+                todos estos enemigos comparten un mismo propósito
+              </span>
+              .
+              <span className="font-bold text-red-500 uppercase">
+                {" "}
+                patrullar incansablemente cada rincón del Santo Reino
+              </span>{" "}
+              con un único fin: adelantarse en la búsqueda de las{" "}
+              <span className="text-orange-500 font-bold">
+                bolas mágicas
+              </span>{" "}
+              y, en el momento en que detecten tu rastro, desplegar su más feroz
+              y destructivo ataque para{" "}
+              <span className="font-bold">acabar con tu vida</span> y aniquilar
+              cualquier esperanza del Santo Reino.
+            </p>
+          </div>
         </Motion.section>
-
         {/* SECCIÓN 6: PROGRESO */}
         <Motion.section
           variants={itemVariants}
@@ -826,20 +1199,42 @@ export default function NarrativaPage({ isDark }) {
                     Super Rodolfo y las esferas del Santo Reino
                   </span>
                   , las mecánicas y la narrativa están intrínsecamente
-                  relacionadas. Por ejemplo, cuando atacamos con Rodolfo para
-                  derrotar a nuestros enemigos, utilizamos la legendaria técnica
-                  del{" "}
+                  relacionadas. Para explorar cada rincón, nos movemos con las
+                  teclas{" "}
+                  <span className="font-bold text-zinc-900 dark:text-white underline decoration-accentGreen">
+                    A y D o las flechas
+                  </span>
+                  , utilizando el{" "}
+                  <span className="font-bold text-zinc-900 dark:text-white">
+                    Shift
+                  </span>{" "}
+                  para correr ante el peligro y el
+                  <span className="font-bold text-zinc-900 dark:text-white italic">
+                    {" "}
+                    Espacio
+                  </span>{" "}
+                  para saltar sobre los obstáculos. Incluso en el fragor de la
+                  batalla, siempre podemos pulsar{" "}
+                  <span className="font-bold text-zinc-900 dark:text-white">
+                    Esc
+                  </span>{" "}
+                  para tomarnos una necesaria pausa.
+                </p>
+
+                <p>
+                  Cuando atacamos para derrotar a nuestros enemigos, pulsamos la
+                  tecla{" "}
+                  <span className="font-bold text-zinc-900 dark:text-white">
+                    Q
+                  </span>{" "}
+                  para utilizar la técnica del{" "}
                   <span
                     style={{ color: accentGreen }}
                     className="font-bold uppercase tracking-widest"
                   >
                     Shagami-dō
                   </span>
-                  .
-                </p>
-
-                <p>
-                  Nuestra misión requiere la recolección de las{" "}
+                  . Nuestra misión requiere la recolección de las{" "}
                   <span className="italic font-semibold">bolas mágicas</span>{" "}
                   para obtener nuestro deseo final. Además, contamos con el
                   apoyo de nuestros aliados, a quienes veremos en el cielo para

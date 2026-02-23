@@ -7,6 +7,7 @@ import shagamido1 from "../Imagenes/shagamido1.png";
 import shagamido2 from "../Imagenes/shagamido2.png";
 import shagamido3 from "../Imagenes/shagamido3.png";
 
+// ANIMATION CONFIG
 const containerVariants = {
   hidden: { opacity: 0 },
   visible: {
@@ -24,6 +25,113 @@ const itemVariants = {
   },
 };
 
+/**
+ * COMPONENTE: FichaMecanica
+ * Estructura base para cada mecánica del GDD.
+ * Incluye efecto hover tricolor (Bandera Francia) y soporte dinámico Dark/Light.
+ */
+const FichaMecanica = ({
+  titulo,
+  categoria,
+  datos,
+  isDark,
+  accentGreen,
+  children,
+}) => (
+  <div
+    className={`
+    relative group mb-16 border-2 p-6 md:p-10 rounded-sm transition-all duration-300
+    ${isDark ? "border-zinc-800 bg-zinc-900/20" : "border-zinc-300 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)]"}
+    hover:border-transparent
+  `}
+  >
+    {/* EFECTO VISUAL: Borde Tricolor en Hover */}
+    <div
+      className={`
+      absolute -inset-[2px] rounded-sm opacity-0 group-hover:opacity-100 
+      transition-opacity duration-300 pointer-events-none
+    `}
+      style={{
+        background:
+          "linear-gradient(to right, #002395 33.3%, #ffffff 33.3%, #ffffff 66.6%, #ed2939 66.6%)",
+        padding: "2px",
+        WebkitMask:
+          "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
+        WebkitMaskComposite: "xor",
+        maskComposite: "exclude",
+      }}
+    />
+
+    <div className="flex justify-between items-start mb-8 border-b pb-4 border-zinc-500/20">
+      <div>
+        <span className="font-mono text-[10px] uppercase tracking-widest opacity-50 block mb-1">
+          Mecánica Core:
+        </span>
+        <h3
+          className="text-2xl md:text-3xl font-black italic uppercase"
+          style={{ color: accentGreen }}
+        >
+          {titulo}
+        </h3>
+      </div>
+      <div className="text-right hidden sm:block">
+        <span className="font-mono text-[10px] uppercase tracking-widest opacity-50 block mb-1">
+          Categoría:
+        </span>
+        <span
+          className={`text-[10px] font-bold uppercase px-2 py-1 rounded ${isDark ? "bg-white text-black" : "bg-black text-white"}`}
+        >
+          {categoria}
+        </span>
+      </div>
+    </div>
+
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* Visual Display: Área de Sprites/GIFs */}
+      <div
+        className={`flex flex-col items-center justify-center rounded-lg p-4 italic ${isDark ? "bg-black/20" : "bg-zinc-50 border border-zinc-100"}`}
+      >
+        {children}
+      </div>
+
+      {/* Technical Data: Grid de información técnica */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-6 text-left">
+        {Object.entries(datos)
+          .filter(([key]) => key !== "flujo")
+          .map(([campo, descripcion]) => (
+            <div key={campo} className="border-b border-zinc-500/10 pb-2">
+              <span
+                className="font-mono text-[9px] font-bold uppercase block mb-1 opacity-40"
+                style={{ color: accentGreen }}
+              >
+                {campo}
+              </span>
+              <p
+                className={`text-xs md:text-sm leading-snug ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
+              >
+                {descripcion}
+              </p>
+            </div>
+          ))}
+      </div>
+    </div>
+
+    {/* Logic Diagram: Pseudocódigo o flujo de la mecánica */}
+    {datos.flujo && (
+      <div
+        className={`mt-10 p-4 font-mono text-[11px] border ${isDark ? "bg-black/40 border-zinc-800" : "bg-white border-zinc-200 shadow-inner"}`}
+      >
+        <span className="text-red-500 font-bold block mb-2 underline decoration-red-500/30 tracking-tighter">
+          📝 DIAGRAMA DE LÓGICA (PSEUDOCÓDIGO):
+        </span>
+        <div className="opacity-70 space-y-1 whitespace-pre-line leading-relaxed italic">
+          {datos.flujo}
+        </div>
+      </div>
+    )}
+  </div>
+);
+
 const Mecanicas = ({ isDark, currentTextColor }) => {
   const accentGreen = "#008012";
   const imagenesShagami = [shagamido1, shagamido2, shagamido3];
@@ -37,7 +145,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
         isDark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-      {/* --- CABECERA --- */}
+      {/* SECTION: CABECERA PRINCIPAL */}
       <Motion.header
         variants={itemVariants}
         className="max-w-6xl mx-auto border-b-8 pb-8 mb-20"
@@ -53,205 +161,151 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
       </Motion.header>
 
       <div className="max-w-6xl mx-auto space-y-40">
-        {/* --- 01. MECÁNICAS SISTÉMICAS --- */}
-        <Motion.div
-          variants={itemVariants}
-          className="flex items-center gap-4 mb-12"
-        >
-          <h2 className="text-3xl font-black italic uppercase tracking-widest">
-            01. <span style={{ color: accentGreen }}>Mecánicas Sistémicas</span>
-          </h2>
-          <div
-            className={`h-px flex-1 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`}
-          ></div>
-        </Motion.div>
-
-        <div className="space-y-40">
-          {/* MOVIMIENTO */}
-          <Motion.section
-            variants={itemVariants}
-            className="flex flex-col md:flex-row gap-12 items-center justify-between"
-          >
-            <div className="space-y-6 max-w-xl">
-              <h2 className="text-3xl font-black italic uppercase tracking-tighter text-center md:text-right">
-                <span style={{ color: accentGreen }}>Movimiento</span>
+        {/* SECTION 01: MECÁNICAS SISTÉMICAS (Locomoción y Habilidades) */}
+        <div className="space-y-4">
+          <div className="space-y-4">
+            <Motion.div
+              variants={itemVariants}
+              className="flex items-center gap-4 mb-12"
+            >
+              <h2 className="text-3xl font-black italic uppercase tracking-widest">
+                01.{" "}
+                <span style={{ color: accentGreen }}>Mecánicas Sistémicas</span>
               </h2>
-              <p
-                className={`text-lg leading-relaxed text-center md:text-right ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-              >
-                Control de desplazamiento fluido con respuesta instantánea. La
-                velocidad base de exploración se transforma en una carrera
-                táctica al mantener pulsada la tecla{" "}
-                <span
-                  className={`font-mono font-bold ${isDark ? "text-white" : "text-black"}`}
-                >
-                  [SHIFT]
-                </span>
-                , permitiendo a Rodolfo cruzar el Reino con una agilidad
-                superior.
-              </p>
-            </div>
-            <div
-              className={`w-72 h-72 border-2 overflow-hidden rounded-sm flex-shrink-0 flex items-center justify-center transition-all duration-300
-    ${isDark ? "bg-zinc-900 border-[#008012]/30" : "bg-zinc-100 border-[#008012]/30"}`}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderWidth = "6px";
-                e.currentTarget.style.borderImage =
-                  "linear-gradient(to right, #002654 33%, #FFFFFF 33%, #FFFFFF 66%, #ED2939 66%) 1";
 
-                if (isDark) {
-                  e.currentTarget.style.boxShadow =
-                    "-10px 0 20px -10px rgba(0,38,84,0.8), 10px 0 20px -10px rgba(237,41,57,0.8)";
-                } else {
-                  e.currentTarget.style.boxShadow =
-                    "0 0 0 1px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.1)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderWidth = "2px";
-                e.currentTarget.style.borderImage = "none";
-                e.currentTarget.style.borderColor = "#0080124d";
-                e.currentTarget.style.boxShadow = "none";
+              <div
+                className={`h-px flex-1 ${isDark ? "bg-zinc-800" : "bg-zinc-200"}`}
+              />
+            </Motion.div>
+          </div>
+
+          <Motion.section variants={itemVariants}>
+            <FichaMecanica
+              titulo="Movimiento horizontal"
+              categoria="Locomoción Principal"
+              isDark={isDark}
+              accentGreen={accentGreen}
+              datos={{
+                Definición:
+                  "Control de desplazamiento lateral con inercia controlada.",
+                Acción: "[A] [D] o [←] [→] (Pulsación mantenida).",
+                Lógica:
+                  "Caminata progresiva hasta Max (6.5 units/s). El correr aumenta su velocidad maximo a (8 units/s).",
+                "Reglas y Límites":
+                  "Velocidad aumentada cuando pulsas Shift (carrera).",
+                "Feedback Visual":
+                  "Visualizacion los diferentes sprites de caminata.",
+                "Feedback Sonoro": "No existe.",
               }}
             >
               <img
                 src={ImgMovimiento}
                 alt="Movimiento"
-                className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-                style={{ imageRendering: "pixelated" }}
+                className="w-64 h-64 object-contain pixelated"
               />
-            </div>
+            </FichaMecanica>
           </Motion.section>
 
-          {/* SALTO */}
-          <Motion.section
-            variants={itemVariants}
-            className="flex flex-col md:flex-row gap-12 items-center justify-between"
-          >
-            <div
-              className={`order-last md:order-first w-72 h-72 border-2 overflow-hidden rounded-sm flex-shrink-0 flex items-center justify-center transition-all duration-300
-    ${isDark ? "bg-zinc-900 border-[#008012]/30" : "bg-zinc-100 border-[#008012]/30"}`}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.borderWidth = "6px";
-                e.currentTarget.style.borderImage =
-                  "linear-gradient(to right, #002654 33%, #FFFFFF 33%, #FFFFFF 66%, #ED2939 66%) 1";
-
-                if (isDark) {
-                  e.currentTarget.style.boxShadow =
-                    "-10px 0 20px -10px rgba(0,38,84,0.8), 10px 0 20px -10px rgba(237,41,57,0.8)";
-                } else {
-                  e.currentTarget.style.boxShadow =
-                    "0 0 0 1px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.1)";
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.borderWidth = "2px";
-                e.currentTarget.style.borderImage = "none";
-                e.currentTarget.style.borderColor = "#0080124d";
-                e.currentTarget.style.boxShadow = "none";
+          <Motion.section variants={itemVariants}>
+            <FichaMecanica
+              titulo="Salto Vertical"
+              categoria="Locomoción Vertical"
+              isDark={isDark}
+              accentGreen={accentGreen}
+              datos={{
+                Definición:
+                  "Impulso instantáneo en el eje Y con gravedad adaptativa.",
+                Acción: "[ESPACIO] (Pulsación única).",
+                Lógica:
+                  "Impulso ascendente + herencia de inercia lateral. Gravedad aumentada en el descenso.",
+                "Reglas y Límites":
+                  "Se permite salto infinito. Con el Shift este salto aumenta su altura.",
+                "Feedback Visual":
+                  "Visualizacion los diferentes sprites de salto.",
+                "Feedback Sonoro": "No existe.",
               }}
             >
               <img
                 src={ImgSalto}
                 alt="Salto"
-                className="w-full h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                style={{ imageRendering: "pixelated" }}
+                className="w-64 h-64 object-contain pixelated"
               />
-            </div>
-            <div className="space-y-6 max-w-xl">
-              <h2 className="text-3xl font-black italic uppercase tracking-tighter text-center md:text-left">
-                <span style={{ color: accentGreen }}>Salto</span>
-              </h2>
-              <p
-                className={`text-lg leading-relaxed text-center md:text-left ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-              >
-                Sistema de salto dinámico: vertical en reposo y parabólico en
-                carrera. La fuerza del impulso se puede potenciar mediante la
-                tecla{" "}
-                <span
-                  className={`font-mono font-bold ${isDark ? "text-white" : "text-black"}`}
-                >
-                  [SHIFT]
-                </span>
-                , permitiendo a Rodolfo superar obstáculos de gran envergadura y
-                ajustar su trayectoria en el aire.
-              </p>
-            </div>
+            </FichaMecanica>
           </Motion.section>
 
-          {/* SHAGAMI-DŌ */}
-          <Motion.section
-            variants={itemVariants}
-            className="space-y-12 w-full block"
-          >
-            <div className="text-center max-w-3xl mx-auto space-y-4">
-              <h2 className="text-4xl md:text-5xl font-black italic uppercase tracking-tighter">
-                EL ARTE DEL{" "}
-                <span style={{ color: accentGreen }}>SHAGAMI-DŌ</span>
-              </h2>
-              <p
-                className={`text-lg leading-relaxed max-w-2xl mx-auto ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-              >
-                Técnica milenaria perfeccionada por el propio Rodolfo,
-                convertida en su sello de identidad. Al ejecutar el comando{" "}
-                <span
-                  className={`font-mono font-bold ${isDark ? "text-white" : "text-black"}`}
-                >
-                  [Q]
-                </span>
-                , se desata una secuencia de tres estados críticos que definen
-                el arte del combate y la supervivencia en el Santo Reino.
-              </p>
-            </div>
-            <div className="flex flex-wrap justify-center gap-8 w-full">
-              {imagenesShagami.map((img, index) => (
-                <div
-                  key={`shagami-${index}`}
-                  className="flex flex-col items-center space-y-4"
-                >
+          {/* CRÍTICO: Galería masiva El Arte del Shagami-Dō */}
+          <Motion.section variants={itemVariants}>
+            <FichaMecanica
+              titulo="El Arte del Shagami-Dō"
+              categoria="Habilidad Especial."
+              isDark={isDark}
+              accentGreen={accentGreen}
+              datos={{
+                Definición: "Ataque legendario de Rodolfo.",
+                Acción: "[Q] (Ejecución instantánea).",
+                Lógica: "Activa la animacion de la habilidad.",
+                "Reglas y Límites":
+                  "Rodolfo es inmortal, puede quedarse suspendido en el aire para realizarlo y es inmortal.",
+                "Feedback Visual":
+                  "Visualización de los diferentes sprites de la habilidad mas salida de la bola que hara daño.",
+                "Feedback Sonoro": "Audio 'FAHHHHH'.",
+              }}
+            >
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full min-h-[450px]">
+                {/* Imagen 01 - Escala Principal */}
+                <div className="relative flex items-center justify-center bg-white rounded-xl overflow-hidden border-2 border-zinc-200 shadow-sm">
+                  <img
+                    src={imagenesShagami[0]}
+                    alt="Shagami-do_01"
+                    className="w-full h-full object-contain pixelated transform scale-[1.5] transition-transform hover:scale-[1.7]"
+                    style={{ imageRendering: "pixelated" }}
+                  />
                   <div
-                    className="w-64 h-64 border-2 overflow-hidden rounded-sm bg-white flex items-center justify-center transition-all duration-300"
-                    style={{ borderColor: "#00801280" }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.borderWidth = "6px";
-                      e.currentTarget.style.borderImage =
-                        "linear-gradient(to right, #002654 33%, #ffffff 33%, #ffffff 66%, #ed2939 66%) 1";
-
-                      if (!isDark) {
-                        e.currentTarget.style.boxShadow =
-                          "0 0 0 1px rgba(0,0,0,0.1), 0 10px 20px rgba(0,0,0,0.05)";
-                      } else {
-                        e.currentTarget.style.boxShadow =
-                          "-10px 0 20px -10px rgba(0,38,84,0.8), 10px 0 20px -10px rgba(237,41,57,0.8)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.borderWidth = "2px";
-                      e.currentTarget.style.borderImage = "none";
-                      e.currentTarget.style.borderColor = "#00801280";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  >
-                    <img
-                      src={img}
-                      alt={`Shagami-do fase ${index + 1}`}
-                      className="w-full h-full object-contain transition-transform duration-300 hover:scale-105"
-                      style={{ imageRendering: "pixelated" }}
-                    />
-                  </div>
-                  <div
-                    className="font-mono text-[10px] font-bold uppercase tracking-[0.3em] text-center"
+                    className="absolute bottom-2 right-2 font-mono text-[10px] font-black uppercase tracking-wider"
                     style={{ color: accentGreen }}
                   >
-                    // SHAGAMI-DŌ_STATE_0{index + 1}
+                    Shagami-do_01
                   </div>
                 </div>
-              ))}
-            </div>
+
+                <div className="grid grid-rows-2 gap-4">
+                  {/* Imagen 02 - Escala Secundaria */}
+                  <div className="relative flex items-center justify-center bg-white rounded-lg overflow-hidden border border-zinc-200 shadow-sm">
+                    <img
+                      src={imagenesShagami[1]}
+                      alt="Shagami-do_02"
+                      className="w-full h-full max-h-[200px] object-contain pixelated transform scale-125 transition-transform hover:scale-150"
+                      style={{ imageRendering: "pixelated" }}
+                    />
+                    <div
+                      className="absolute bottom-2 right-2 font-mono text-[10px] font-black uppercase tracking-wider"
+                      style={{ color: accentGreen }}
+                    >
+                      Shagami-do_02
+                    </div>
+                  </div>
+                  {/* Imagen 03 - Escala Reducida */}
+                  <div className="relative flex items-center justify-center bg-white rounded-lg overflow-hidden border border-zinc-200 shadow-sm">
+                    <img
+                      src={imagenesShagami[2]}
+                      alt="Shagami-do_03"
+                      className="w-full h-full max-h-[200px] object-contain pixelated transform scale-110 transition-transform hover:scale-125"
+                      style={{ imageRendering: "pixelated" }}
+                    />
+                    <div
+                      className="absolute bottom-2 right-2 font-mono text-[10px] font-black uppercase tracking-wider"
+                      style={{ color: accentGreen }}
+                    >
+                      Shagami-do_03
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </FichaMecanica>
           </Motion.section>
         </div>
 
-        {/* --- 02. ACCIONES DEL JUGADOR --- */}
+        {/* SECTION 02: INPUT MAPPING (Acciones del Jugador) */}
         <Motion.section variants={itemVariants} className="space-y-12">
           <div className="flex items-center gap-4">
             <div
@@ -290,7 +344,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
           </div>
         </Motion.section>
 
-        {/* --- 03. REGLAS DEL MUNDO --- */}
+        {/* SECTION 03: WORLD RULES (Lógica de juego) */}
         <Motion.section variants={itemVariants} className="space-y-8">
           <div className="flex items-center gap-4">
             <h2 className="text-3xl font-black italic uppercase tracking-widest">
@@ -355,7 +409,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
           </div>
         </Motion.section>
 
-        {/* --- 04. RECOMPENSAS Y PENALIZACIÓN --- */}
+        {/* SECTION 04: ECONOMY & RISK (Recompensas / Penalización) */}
         <Motion.section
           variants={itemVariants}
           className="grid grid-cols-1 md:grid-cols-2 gap-12"
@@ -372,8 +426,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
                   <span className="text-green-500">✔</span>
                   <span>
                     Vínculo Celestial: Al reunirnos con nuestros amigos en el
-                    cielo, estos nos otorgan una vida extra, transfiriendo su
-                    fuerza a Rodolfo para continuar el camino.
+                    cielo, estos nos otorgan una vida extra.
                   </span>
                 </li>
                 <li className="flex gap-3">
@@ -400,15 +453,14 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
                 <span className="text-red-600 font-bold uppercase">
                   Colapso del Ciclo
                 </span>
-                . Si la vida de Rodolfo llega a cero, se produce un reinicio
-                absoluto del nivel actual, invalidando cualquier progreso en el
-                nivel y obligando a una recalibración total de la estrategia.
+                . Si la vida llega a cero, se produce un reinicio absoluto del
+                nivel actual.
               </p>
             </div>
           </div>
         </Motion.section>
 
-        {/* --- 05. EXPERIENCIA DEL JUGADOR --- */}
+        {/* SECTION 05: UX (Sensación de juego y Pilares) */}
         <Motion.section
           variants={itemVariants}
           className="pt-10 pb-20 relative overflow-hidden"
@@ -419,16 +471,14 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
             </span>
           </div>
           <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-            <div className="inline-block px-3 py-1 border border-zinc-500 rounded-full font-mono text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] opacity-50 max-w-[90vw] truncate md:max-w-none">
+            <div className="inline-block px-3 py-1 border border-zinc-500 rounded-full font-mono text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] opacity-50 truncate">
               // Final_User_Experience_Report_v1.0
             </div>
-            <div className="space-y-2">
-              <h2 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-[0.85]">
-                MÁXIMA <span style={{ color: accentGreen }}>PRECISIÓN</span>{" "}
-                <br />
-                <span className="opacity-20">FLUJO CONSTANTE</span>
-              </h2>
-            </div>
+            <h2 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-[0.85]">
+              MÁXIMA <span style={{ color: accentGreen }}>PRECISIÓN</span>{" "}
+              <br />
+              <span className="opacity-20">FLUJO CONSTANTE</span>
+            </h2>
             <div
               className={`relative p-6 md:p-10 border ${isDark ? "border-zinc-800 bg-zinc-900/40" : "border-zinc-200 bg-zinc-50/50"} rounded-3xl backdrop-blur-sm`}
             >
@@ -477,8 +527,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
                     {pilar.t}
                   </div>
                   <p
-                    className={`text-xs md:text-sm font-medium italic leading-relaxed border-l-2 pl-4 transition-opacity duration-300
-        ${isDark ? "text-zinc-400 opacity-80" : "text-zinc-600 opacity-90"}`}
+                    className={`text-xs md:text-sm font-medium italic leading-relaxed border-l-2 pl-4 transition-opacity duration-300 ${isDark ? "text-zinc-400 opacity-80" : "text-zinc-600 opacity-90"}`}
                     style={{ borderColor: `${accentGreen}40` }}
                   >
                     {pilar.d}
