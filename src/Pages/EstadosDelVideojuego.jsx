@@ -114,11 +114,10 @@ const AfterbitGDD = ({ isDark, currentTextColor }) => {
       </Motion.header>
 
       <div className="max-w-6xl mx-auto space-y-12 px-4 py-10">
-        {/* SECCIÓN DESCRIPTIVA */}
         {/* SECCIÓN: ESTADOS DE SUPER RODOLFO */}
         <Motion.div variants={itemVariants} className="mb-12">
           <h2
-            className={`text-3xl md:text-4xl font-black uppercase tracking-tighter ${
+            className={`text-3xl md:text-3xl font-black uppercase tracking-tighter ${
               isDark ? "text-white" : "text-zinc-900"
             }`}
           >
@@ -317,8 +316,10 @@ const AfterbitGDD = ({ isDark, currentTextColor }) => {
                         isDark ? "border-zinc-800" : "border-zinc-100"
                       }`}
                     >
-                      <div className="flex items-center justify-between group/logic">
-                        <div className="flex items-center gap-2 mr-12">
+                      {/* flex-col en móvil / md:flex-row en PC */}
+                      <div className="flex flex-col md:flex-row md:items-center justify-between gap-3 md:gap-0 group/logic">
+                        {/* Etiqueta Transition_Logic */}
+                        <div className="flex items-center gap-2 md:mr-12">
                           <div
                             className={`w-1.5 h-1.5 rounded-full ${
                               isDark ? "bg-zinc-700" : "bg-zinc-300"
@@ -329,8 +330,9 @@ const AfterbitGDD = ({ isDark, currentTextColor }) => {
                           </span>
                         </div>
 
+                        {/* Recuadro de contenido: Ocupa todo el ancho en móvil, se ajusta a la derecha en PC */}
                         <div
-                          className={`relative px-4 py-1.5 overflow-hidden transition-all duration-300 flex-1 max-w-fit ml-auto ${
+                          className={`relative px-4 py-1.5 overflow-hidden transition-all duration-300 w-full md:w-auto md:max-w-fit md:ml-auto ${
                             isDark
                               ? "bg-green-500/5 border-green-500/20"
                               : "bg-green-50 border-green-600/10"
@@ -338,7 +340,7 @@ const AfterbitGDD = ({ isDark, currentTextColor }) => {
                         >
                           <div className="absolute top-0 left-0 w-[2px] h-full bg-green-500"></div>
                           <span
-                            className={`font-mono text-[10px] font-black uppercase tracking-tighter ${
+                            className={`font-mono text-[10px] font-black uppercase tracking-tighter block md:inline ${
                               isDark ? "text-green-400" : "text-green-700"
                             }`}
                           >

@@ -1,4 +1,4 @@
-import { motion as Motion, AnimatePresence} from "framer-motion";
+import { motion as Motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 
 // ASSETS
@@ -6,14 +6,14 @@ import DAFO_Dark from "../Imagenes/DAFO_Negro_Super_Rodolfo.png";
 import DAFO_Light from "../Imagenes/DAFO_Blanco_Super_Rodolfo.png";
 import CAME_Dark from "../Imagenes/Analisis_CAME_Negro_Super_Rodolfo.png";
 import CAME_Light from "../Imagenes/Analisis_CAME_Blanco_Super_Rodolfo.png";
-import Moodboard_Dark from "../Imagenes/GDD_Una_Hoja_Negro.jpg";
+import GDDFinal from "../Imagenes/GDDUnaHojaFinal.jpg";
 import Moodboard_Light from "../Imagenes/GDD_Una_Hoja_Blanco.jpg";
 
 import RefImg1 from "../Imagenes/DBZ_Adventure.png";
 import RefImg2 from "../Imagenes/Sonic.jpg";
 import RefImg3 from "../Imagenes/MarioBros.png";
 import RefImg4 from "../Imagenes/BT2.jpg";
-import RefImg5 from "../Imagenes/Jaen.jpg"
+import RefImg5 from "../Imagenes/Jaen.jpg";
 
 // DEFINICIÓN DE ANIMACIONES REPLICADAS
 const containerVariants = {
@@ -34,14 +34,10 @@ const itemVariants = {
   },
 };
 
-const FasePreproduccion = ({
-  isDark,
-  currentTextColor,
-}) => {
+const FasePreproduccion = ({ isDark, currentTextColor }) => {
   const accentGreen = "#008012";
   const [selectedRef, setSelectedRef] = useState(null);
   const [activeAnalysis, setActiveAnalysis] = useState("DAFO");
-
 
   const referentesData = [
     {
@@ -80,7 +76,6 @@ const FasePreproduccion = ({
         isDark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
-
       {/* SECCIÓN: CABECERA */}
       <Motion.header
         variants={itemVariants}
@@ -96,7 +91,6 @@ const FasePreproduccion = ({
       </Motion.header>
 
       <div className="max-w-6xl mx-auto space-y-40">
-        
         {/* SECCIÓN 1: ESTUDIO DE MERCADO */}
         <Motion.section
           variants={itemVariants}
@@ -105,32 +99,48 @@ const FasePreproduccion = ({
           <h2 className="text-3xl md:text-4xl font-black italic uppercase tracking-tighter">
             ESTUDIO DE <span style={{ color: accentGreen }}>MERCADO</span>
           </h2>
-          <div className={`space-y-6 text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+          <div
+            className={`space-y-6 text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+          >
             <p>
               El proceso comenzó con un análisis exhaustivo del sector de los
               juegos de plataformas. Utilizando herramientas como{" "}
               <span style={{ color: accentGreen }}>Steam</span>, se evaluó el
               volumen de ventas y la media de usuarios activos para medir el
               interés comercial. Complementariamente, se exploró{" "}
-              <span style={{ color: accentGreen }}>Itch.io</span> para identificar
-              tendencias en la escena indie. Tras este análisis, se detectó una
-              baja saturación de títulos con este estilo específico, revelando una{" "}
+              <span style={{ color: accentGreen }}>Itch.io</span> para
+              identificar tendencias en la escena indie. Tras este análisis, se
+              detectó una baja saturación de títulos con este estilo específico,
+              revelando una{" "}
               <span style={{ color: accentGreen }} className="font-bold">
                 oportunidad estratégica
               </span>{" "}
               para el éxito del proyecto.
             </p>
-            
+
             <p>
               Tras el análisis del mercado hemos detectado que los jugadores de{" "}
-              <span className="font-bold" style={{ color: accentGreen }}>7 años o más</span> (ya que es nuestro pegi) le gusta los videojuegos de acción y plataformas con un{" "}
-              <span className="italic">lore divertido y curioso</span> con una jugabilidad fácil, corta y que sea agradable.
+              <span className="font-bold" style={{ color: accentGreen }}>
+                7 años o más
+              </span>{" "}
+              (ya que es nuestro pegi) le gusta los videojuegos de acción y
+              plataformas con un{" "}
+              <span className="italic">lore divertido y curioso</span> con una
+              jugabilidad fácil, corta y que sea agradable.
             </p>
           </div>
 
-          <div className={`p-8 border-2 ${isDark ? "bg-zinc-900/30 border-zinc-800" : "bg-zinc-50 border-zinc-200"} rounded-sm relative overflow-hidden w-full`}>
-            <div className="absolute top-0 left-0 w-full h-1" style={{ backgroundColor: accentGreen }} />
-            <h4 className="font-mono text-sm font-bold mb-6 uppercase" style={{ color: accentGreen }}>
+          <div
+            className={`p-8 border-2 ${isDark ? "bg-zinc-900/30 border-zinc-800" : "bg-zinc-50 border-zinc-200"} rounded-sm relative overflow-hidden w-full`}
+          >
+            <div
+              className="absolute top-0 left-0 w-full h-1"
+              style={{ backgroundColor: accentGreen }}
+            />
+            <h4
+              className="font-mono text-sm font-bold mb-6 uppercase"
+              style={{ color: accentGreen }}
+            >
               // Análisis_Plataformas
             </h4>
             <ul className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 text-sm font-bold italic uppercase">
@@ -148,7 +158,7 @@ const FasePreproduccion = ({
           </div>
         </Motion.section>
 
-       {/* SECCIÓN 2: REFERENTES VISUALES */}
+        {/* SECCIÓN 2: REFERENTES VISUALES */}
         <Motion.section variants={itemVariants} className="space-y-8">
           <div className="flex flex-col gap-6">
             <div className="flex items-center gap-4">
@@ -157,7 +167,9 @@ const FasePreproduccion = ({
               </h3>
               <div className="h-[1px] flex-grow bg-zinc-500/20"></div>
             </div>
-            <p className={`text-lg leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+            <p
+              className={`text-lg leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+            >
               Aqui puedes ver mis referentes que me ayudo a hacer{" "}
               <span className="font-bold" style={{ color: accentGreen }}>
                 Super Rodolfo y las{" "}
@@ -175,7 +187,9 @@ const FasePreproduccion = ({
             {referentesData.map((ref) => (
               <div
                 key={ref.id}
-                onClick={() => setSelectedRef(selectedRef === ref.id ? null : ref.id)}
+                onClick={() =>
+                  setSelectedRef(selectedRef === ref.id ? null : ref.id)
+                }
                 className={`relative w-[calc(50%-1rem)] md:w-[calc(25%-1rem)] aspect-square rounded-sm cursor-pointer border transition-all duration-300 overflow-hidden ${
                   selectedRef === ref.id
                     ? "border-green-500 ring-2 ring-green-500/20 scale-[1.02]"
@@ -199,8 +213,13 @@ const FasePreproduccion = ({
                 exit={{ height: 0, opacity: 0 }}
                 className="overflow-hidden"
               >
-                <div className={`p-6 border-l-4 font-mono text-sm ${isDark ? "bg-zinc-900/50 border-green-700" : "bg-zinc-50 border-green-600"}`}>
-                  <span style={{ color: accentGreen }} className="font-bold uppercase tracking-tighter mr-2">
+                <div
+                  className={`p-6 border-l-4 font-mono text-sm ${isDark ? "bg-zinc-900/50 border-green-700" : "bg-zinc-50 border-green-600"}`}
+                >
+                  <span
+                    style={{ color: accentGreen }}
+                    className="font-bold uppercase tracking-tighter mr-2"
+                  >
                     // INFO_REF:
                   </span>
                   {referentesData.find((r) => r.id === selectedRef)?.desc}
@@ -247,31 +266,62 @@ const FasePreproduccion = ({
                       className="space-y-6"
                     >
                       <h3 className="text-2xl font-black italic uppercase tracking-tighter">
-                        {activeAnalysis === "DAFO" ? "Análisis DAFO" : "Análisis CAME"}
+                        {activeAnalysis === "DAFO"
+                          ? "Análisis DAFO"
+                          : "Análisis CAME"}
                       </h3>
-                      <p className={`text-lg leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                      <p
+                        className={`text-lg leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+                      >
                         {activeAnalysis === "DAFO"
                           ? "Identificación de fortalezas internas amenazas externas, debilidades personales y oportunidades para asegurar la viabilidad del videojuego."
                           : "Análisis concreto para Corregir, Afrontar, Mantener y Explotar los resultados obtenidos tanto del juego como personales."}
                       </p>
 
                       <Motion.a
-                        href={activeAnalysis === "DAFO" ? (isDark ? DAFO_Dark : DAFO_Light) : (isDark ? CAME_Dark : CAME_Light)}
+                        href={
+                          activeAnalysis === "DAFO"
+                            ? isDark
+                              ? DAFO_Dark
+                              : DAFO_Light
+                            : isDark
+                              ? CAME_Dark
+                              : CAME_Light
+                        }
                         download={`Analisis_${activeAnalysis}_SuperRodolfo.png`}
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.98 }}
                         className="relative inline-flex items-center gap-3 px-8 py-4 font-mono text-xs font-bold uppercase tracking-[0.2em] overflow-hidden group transition-all duration-300 border border-[#008012]/30"
-                        style={{ backgroundColor: isDark ? "rgba(24, 24, 27, 0.5)" : "rgba(250, 250, 250, 0.5)" }}
+                        style={{
+                          backgroundColor: isDark
+                            ? "rgba(24, 24, 27, 0.5)"
+                            : "rgba(250, 250, 250, 0.5)",
+                        }}
                       >
-                        <div className="absolute bottom-0 left-0 w-full h-0 bg-[#008012] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:h-full" style={{ zIndex: 0 }} />
+                        <div
+                          className="absolute bottom-0 left-0 w-full h-0 bg-[#008012] transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] group-hover:h-full"
+                          style={{ zIndex: 0 }}
+                        />
                         <div className="relative z-10 flex items-center gap-3 transition-colors duration-300 group-hover:text-white">
-                          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-500 group-hover:-translate-y-1">
+                          <svg
+                            width="18"
+                            height="18"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            strokeWidth="2.5"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            className="transition-transform duration-500 group-hover:-translate-y-1"
+                          >
                             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
                             <polyline points="7 10 12 15 17 10" />
                             <line x1="12" y1="15" x2="12" y2="3" />
                           </svg>
                           <span className="relative">
-                            {activeAnalysis === "DAFO" ? "Descargar Informe DAFO" : "Descargar Informe CAME"}
+                            {activeAnalysis === "DAFO"
+                              ? "Descargar Informe DAFO"
+                              : "Descargar Informe CAME"}
                           </span>
                         </div>
                       </Motion.a>
@@ -291,7 +341,15 @@ const FasePreproduccion = ({
                     className="relative"
                   >
                     <img
-                      src={activeAnalysis === "DAFO" ? (isDark ? DAFO_Dark : DAFO_Light) : (isDark ? CAME_Dark : CAME_Light)}
+                      src={
+                        activeAnalysis === "DAFO"
+                          ? isDark
+                            ? DAFO_Dark
+                            : DAFO_Light
+                          : isDark
+                            ? CAME_Dark
+                            : CAME_Light
+                      }
                       alt={activeAnalysis}
                       className="w-full h-auto border border-zinc-500/10 rounded-sm shadow-2xl"
                     />
@@ -308,14 +366,22 @@ const FasePreproduccion = ({
           className="relative pt-10 pb-20 flex flex-col items-center justify-center overflow-hidden px-4"
         >
           <div className="mb-8 md:mb-12 text-center relative z-30">
-            <h2 className={`text-3xl md:text-5xl font-black italic uppercase tracking-tighter flex flex-col items-center transition-all duration-300 ${isDark ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]" : "text-black"}`}>
+            <h2
+              className={`text-3xl md:text-5xl font-black italic uppercase tracking-tighter flex flex-col items-center transition-all duration-300 ${isDark ? "text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]" : "text-black"}`}
+            >
               <span className="md:whitespace-nowrap">
                 Moodboard <span style={{ color: accentGreen }}>Visual</span>
               </span>
             </h2>
-            <p className={`mt-4 font-mono text-xs md:text-sm max-w-2xl mx-auto leading-relaxed transition-all duration-300 ${isDark ? "text-gray-200 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] group-hover:text-white" : "text-gray-700 group-hover:text-black font-medium"}`}>
+            <p
+              className={`mt-4 font-mono text-xs md:text-sm max-w-2xl mx-auto leading-relaxed transition-all duration-300 ${isDark ? "text-gray-200 drop-shadow-[0_2px_4px_rgba(0,0,0,1)] group-hover:text-white" : "text-gray-700 group-hover:text-black font-medium"}`}
+            >
               Echa un vistazo al moodboard de{" "}
-              <span style={{ color: accentGreen }} className="font-bold">Super Rodolfo y las Esferas del Santo Reino</span>, no dudes en poner el ratón encima para ver la sorpresa y poder descargarlo.
+              <span style={{ color: accentGreen }} className="font-bold">
+                Super Rodolfo y las Esferas del Santo Reino
+              </span>
+              , no dudes en poner el ratón encima para ver la sorpresa y poder
+              descargarlo.
             </p>
           </div>
 
@@ -329,16 +395,26 @@ const FasePreproduccion = ({
             <div className="absolute inset-0 border-2 border-[#008012]/30 rounded-[1.5rem] md:rounded-[2rem] pointer-events-none transition-all duration-200 group-hover:border-yellow-500 group-hover:opacity-0" />
 
             <div className="relative overflow-hidden rounded-xl border-2 md:border-4 border-[#008012]/20 group-hover:border-yellow-500 shadow-[0_0_20px_rgba(0,128,18,0.2)] md:shadow-[0_0_40px_rgba(0,128,18,0.2)] group-hover:shadow-[0_0_100px_rgba(234,179,8,0.6)] transition-all duration-200">
-              <a href={isDark ? Moodboard_Dark : Moodboard_Light} download="SuperRodolfo_Moodboard" className="block relative z-10">
+              <a
+                href={GDDFinal}
+                download="SuperRodolfo_Moodboard"
+                className="block relative z-10"
+              >
                 <img
-                  src={isDark ? Moodboard_Dark : Moodboard_Light}
+                  src={GDDFinal}
                   alt="Moodboard"
                   className={`w-full h-auto transition-all duration-300 group-hover:saturate-[1.5] ${isDark ? "group-hover:brightness-125" : "group-hover:brightness-105"}`}
                 />
               </a>
 
               <div className="absolute inset-0 z-30 opacity-0 group-hover:opacity-100 transition-opacity duration-100 pointer-events-none">
-                <div className={`absolute inset-0 ${isDark ? "bg-white/20" : "bg-black/10"}`} style={{ clipPath: "polygon(48% 48%, 52% 48%, 100% 0, 100% 5%, 52% 52%, 55% 100%, 45% 100%, 48% 52%, 0 40%, 0 35%)" }} />
+                <div
+                  className={`absolute inset-0 ${isDark ? "bg-white/20" : "bg-black/10"}`}
+                  style={{
+                    clipPath:
+                      "polygon(48% 48%, 52% 48%, 100% 0, 100% 5%, 52% 52%, 55% 100%, 45% 100%, 48% 52%, 0 40%, 0 35%)",
+                  }}
+                />
               </div>
 
               <div className="absolute inset-0 z-20 pointer-events-none group-hover:opacity-0 transition-opacity duration-100">
@@ -359,7 +435,11 @@ const FasePreproduccion = ({
                 <Motion.div
                   key={i}
                   animate={{ height: [10, 30, 10] }}
-                  transition={{ repeat: Infinity, duration: 0.8, delay: i * 0.05 }}
+                  transition={{
+                    repeat: Infinity,
+                    duration: 0.8,
+                    delay: i * 0.05,
+                  }}
                   className="w-1 md:w-2 bg-[#008012] group-hover:bg-yellow-400 group-hover:shadow-[0_0_100px_rgba(234,179,8,1)] group-hover:animate-[shake_0.1s_infinite]"
                 />
               ))}
@@ -367,16 +447,38 @@ const FasePreproduccion = ({
           </div>
 
           <style jsx>{`
-            @keyframes scan { 0% { top: 0%; } 100% { top: 100%; } }
-            @keyframes aura-flow { 
-              0% { transform: translateY(0%) scale(1); opacity: 0.5; }
-              50% { transform: translateY(-5%) scale(1.1); opacity: 0.8; }
-              100% { transform: translateY(-10%) scale(1.2); opacity: 0; }
+            @keyframes scan {
+              0% {
+                top: 0%;
+              }
+              100% {
+                top: 100%;
+              }
+            }
+            @keyframes aura-flow {
+              0% {
+                transform: translateY(0%) scale(1);
+                opacity: 0.5;
+              }
+              50% {
+                transform: translateY(-5%) scale(1.1);
+                opacity: 0.8;
+              }
+              100% {
+                transform: translateY(-10%) scale(1.2);
+                opacity: 0;
+              }
             }
             @keyframes shake {
-              0% { transform: translate(1px, 1px); }
-              50% { transform: translate(-1px, -1px); }
-              100% { transform: translate(1px, -1px); }
+              0% {
+                transform: translate(1px, 1px);
+              }
+              50% {
+                transform: translate(-1px, -1px);
+              }
+              100% {
+                transform: translate(1px, -1px);
+              }
             }
           `}</style>
         </Motion.section>
@@ -402,7 +504,10 @@ const FasePreproduccion = ({
             <div className="pt-0 md:pt-4 order-first lg:order-last">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#008012]/10 border border-[#008012]/20 mb-6">
                 <span className="w-2 h-2 rounded-full bg-[#008012] animate-pulse" />
-                <span className="text-[10px] font-bold uppercase tracking-widest" style={{ color: accentGreen }}>
+                <span
+                  className="text-[10px] font-bold uppercase tracking-widest"
+                  style={{ color: accentGreen }}
+                >
                   Plan Estratégico
                 </span>
               </div>
@@ -412,7 +517,9 @@ const FasePreproduccion = ({
                 <span style={{ color: accentGreen }}>del Desarrollo</span>
               </h2>
 
-              <div className={`space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed max-w-2xl ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+              <div
+                className={`space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed max-w-2xl ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+              >
                 <p>
                   El dinero para{" "}
                   <span style={{ color: accentGreen }} className="font-bold">
@@ -428,13 +535,16 @@ const FasePreproduccion = ({
               </div>
             </div>
 
-            <div className={`p-6 md:p-10 rounded-2xl md:rounded-3xl border w-full ${isDark ? "bg-zinc-900/40 border-zinc-800" : "bg-white border-zinc-200 shadow-xl"}`}>
+            <div
+              className={`p-6 md:p-10 rounded-2xl md:rounded-3xl border w-full ${isDark ? "bg-zinc-900/40 border-zinc-800" : "bg-white border-zinc-200 shadow-xl"}`}
+            >
               <div className="mb-8 md:mb-10">
                 <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-zinc-500 mb-2">
                   Funding_Sources
                 </h3>
                 <p className="text-2xl md:text-3xl font-black tracking-tight">
-                  ¿Cómo se financia el <span style={{ color: accentGreen }}>Reino</span>?
+                  ¿Cómo se financia el{" "}
+                  <span style={{ color: accentGreen }}>Reino</span>?
                 </p>
               </div>
 
@@ -456,14 +566,21 @@ const FasePreproduccion = ({
                     className={`group p-5 md:p-6 rounded-xl md:rounded-2xl border transition-all duration-300 ${isDark ? "hover:bg-zinc-800/50 border-transparent" : "hover:bg-zinc-50 border-transparent"}`}
                   >
                     <div className="flex justify-between items-center mb-2">
-                      <span className="font-black text-xs md:text-sm uppercase tracking-widest" style={{ color: accentGreen }}>
+                      <span
+                        className="font-black text-xs md:text-sm uppercase tracking-widest"
+                        style={{ color: accentGreen }}
+                      >
                         {item.title}
                       </span>
-                      <span className={`text-lg md:text-xl font-black ${isDark ? "text-white" : "text-zinc-900"}`}>
+                      <span
+                        className={`text-lg md:text-xl font-black ${isDark ? "text-white" : "text-zinc-900"}`}
+                      >
                         {item.amount}
                       </span>
                     </div>
-                    <p className={`text-xs md:text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}>
+                    <p
+                      className={`text-xs md:text-sm leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+                    >
                       {item.desc}
                     </p>
                   </div>

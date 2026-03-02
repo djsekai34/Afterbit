@@ -440,7 +440,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
             </div>
           </div>
           <div className="space-y-6">
-            <h2 className="text-3xl font-black italic uppercase tracking-widest text-left md:text-right">
+            <h2 className="text-3xl font-black italic uppercase tracking-widest flex items-center justify-center md:justify-end">
               <span className="inline md:hidden">05. </span>
               <span className="text-red-600">Penalización</span>
               <span className="hidden md:inline"> .05</span>
