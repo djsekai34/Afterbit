@@ -6,8 +6,8 @@ import DAFO_Dark from "../Imagenes/DAFO_Negro_Super_Rodolfo.png";
 import DAFO_Light from "../Imagenes/DAFO_Blanco_Super_Rodolfo.png";
 import CAME_Dark from "../Imagenes/Analisis_CAME_Negro_Super_Rodolfo.png";
 import CAME_Light from "../Imagenes/Analisis_CAME_Blanco_Super_Rodolfo.png";
-import GDDFinal from "../Imagenes/GDDUnaHojaFinal.jpg";
-import Moodboard_Light from "../Imagenes/GDD_Una_Hoja_Blanco.jpg";
+import GDDFinal from "../Imagenes/GddUnaHojaFinal.jpg";
+
 
 import RefImg1 from "../Imagenes/DBZ_Adventure.png";
 import RefImg2 from "../Imagenes/Sonic.jpg";
