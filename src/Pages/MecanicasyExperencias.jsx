@@ -415,9 +415,9 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
           className="grid grid-cols-1 md:grid-cols-2 gap-12"
         >
           <div className="space-y-6">
-            <h2 className="text-3xl font-black italic uppercase tracking-widest">
-              04. <span style={{ color: accentGreen }}>Recompensas</span>
-            </h2>
+            <h2 className="text-3xl font-black italic uppercase tracking-widest text-center lg:text-left">
+  04. <span style={{ color: accentGreen }}>Recompensas</span>
+</h2>
             <div
               className={`p-6 border-l-4 border-green-600 ${isDark ? "bg-zinc-900/50" : "bg-zinc-50"}`}
             >
@@ -440,11 +440,13 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
             </div>
           </div>
           <div className="space-y-6">
-            <h2 className="text-3xl font-black italic uppercase tracking-widest flex items-center justify-center md:justify-end">
-              <span className="inline md:hidden">05. </span>
-              <span className="text-red-600">Penalización</span>
-              <span className="hidden md:inline"> .05</span>
-            </h2>
+<h2 className="text-3xl font-black italic uppercase tracking-widest flex flex-col lg:flex-row items-center justify-center lg:justify-end gap-2 lg:gap-0">
+  <span className="inline lg:hidden text-center">05.</span>
+  
+  <span className="text-red-600 text-center">Penalización</span>
+  
+  <span className="hidden lg:inline whitespace-pre"> .05</span>
+</h2>
             <div
               className={`p-6 border-r-4 border-red-600 ${isDark ? "bg-zinc-900/50" : "bg-zinc-50"} text-right`}
             >

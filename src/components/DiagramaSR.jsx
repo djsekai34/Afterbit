@@ -348,32 +348,128 @@ const SRDiagrama = ({ isDark }) => {
   /* RENDERIZADO DEL DIAGRAMA */
   return (
     <div
-      className={`w-full h-[850px] mt-10 border-2 rounded-3xl overflow-hidden shadow-2xl transition-colors duration-500 ${isDark ? "border-zinc-800 bg-zinc-950/20" : "border-zinc-200 bg-white"}`}
+      className={`w-full h-auto mt-10 border-2 rounded-3xl overflow-hidden shadow-2xl transition-colors duration-500 ${isDark ? "border-zinc-800 bg-zinc-950/20" : "border-zinc-200 bg-white"}`}
     >
-      <ReactFlow
-        nodes={nodes}
-        edges={edges}
-        edgeTypes={edgeTypes}
-        onNodesChange={onNodesChange}
-        onEdgesChange={onEdgesChange}
-        fitView
-        colorMode={isDark ? "dark" : "light"}
-        minZoom={0.85}
-        maxZoom={1.5}
-        panOnDrag={true}
-        zoomOnScroll={true}
-        translateExtent={[
-          [-300, -100],
-          [1300, 950],
-        ]}
-        nodesDraggable={false}
-        nodesConnectable={false}
-        elementsSelectable={false}
-        proOptions={{ hideAttribution: true }}
+      <div className="w-full h-[850px]">
+        <ReactFlow
+          nodes={nodes}
+          edges={edges}
+          edgeTypes={edgeTypes}
+          onNodesChange={onNodesChange}
+          onEdgesChange={onEdgesChange}
+          fitView
+          colorMode={isDark ? "dark" : "light"}
+          minZoom={0.85}
+          maxZoom={1.5}
+          panOnDrag={true}
+          zoomOnScroll={true}
+          translateExtent={[
+            [-300, -100],
+            [1300, 950],
+          ]}
+          nodesDraggable={false}
+          nodesConnectable={false}
+          elementsSelectable={false}
+          proOptions={{ hideAttribution: true }}
+        >
+          <Background
+            color={isDark ? "#222" : "#ddd"}
+            gap={25}
+            variant="lines"
+          />
+          <Controls showInteractive={false} />
+        </ReactFlow>
+      </div>
+
+      {/* LEYENDA TÉCNICA */}
+      <div
+        className={`p-6 border-t ${isDark ? "bg-black/20 border-zinc-800" : "bg-zinc-50 border-zinc-200"}`}
       >
-        <Background color={isDark ? "#222" : "#ddd"} gap={25} variant="lines" />
-        <Controls showInteractive={false} />
-      </ReactFlow>
+        {/* Título de la Leyenda */}
+        <div className="flex items-center gap-2 mb-6 opacity-60">
+          <div
+            className="w-1 h-3"
+            style={{ backgroundColor: colors.accentGreen }}
+          ></div>
+          <h3
+            className={`font-mono text-[10px] font-black uppercase tracking-[0.3em] ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
+          >
+            Leyenda de Estados y Protocolos de Super Rodolfo y las Esferas del
+            Santo Reino
+          </h3>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+          {[
+            {
+              label: "Sistema / Navegación",
+              color: colors.textMuted,
+              desc: "Flujos base",
+            },
+            {
+              label: "Gameplay / Acción",
+              color: colors.accentGreen,
+              desc: "Modo Historia / Selector del nivel y gameplay",
+            },
+            {
+              label: "Menús / Info",
+              color: colors.accentBlue,
+              desc: "Créditos/Controles",
+            },
+            {
+              label: "Interrupción",
+              color: colors.pausePurple,
+              desc: "Pausa/Retorno",
+            },
+            {
+              label: "Fracaso",
+              color: colors.deathRed,
+              desc: "Muerte/Game Over",
+            },
+            {
+              label: "Éxito",
+              color: colors.victoryGold,
+              desc: "Victoria/Logro",
+            },
+            {
+              label: "Terminar App",
+              color: colors.accentRed,
+              desc: "Salir (Exit)",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className={`flex flex-col p-2.5 border transition-all duration-300 overflow-hidden ${
+                isDark
+                  ? "bg-zinc-900/40 border-zinc-800"
+                  : "bg-white border-zinc-200"
+              }`}
+            >
+              {/* Cabecera: Punto + Título */}
+              <div className="flex items-center gap-2 mb-1">
+                <div
+                  className="w-1.5 h-1.5 rounded-full shadow-sm flex-shrink-0"
+                  style={{ backgroundColor: item.color }}
+                />
+                <span
+                  className={`font-mono text-[7.5px] md:text-[9px] font-black uppercase tracking-tighter whitespace-nowrap ${isDark ? "text-zinc-200" : "text-zinc-800"}`}
+                >
+                  {item.label}
+                </span>
+              </div>
+
+              <div
+                className={`h-[1px] w-full mb-1.5 ${isDark ? "bg-zinc-800" : "bg-zinc-100"}`}
+              />
+
+              {/* Descripción */}
+              <p className="font-mono text-[8px] text-zinc-500 lowercase opacity-80 leading-none">
+                {`> ${item.desc}`}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };
