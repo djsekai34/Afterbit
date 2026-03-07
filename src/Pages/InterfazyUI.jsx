@@ -141,18 +141,18 @@ export default function ProtocoloUI({ isDark, currentTextColor }) {
             <div className="w-full lg:w-[45%] flex flex-col space-y-12 pt-4">
               <div>
                 <h2
-                  className={`
-  font-black uppercase tracking-tighter italic mb-4 
-  ${isDark ? "text-white" : "text-zinc-900"}
-  ${
-    p.id === "07" || p.id === "09"
-      ? "text-3xl md:text-4xl whitespace-nowrap"
-      : "text-4xl md:text-5xl"
-  }
-`}
-                >
-                  {p.titulo}
-                </h2>
+  className={`
+    font-black uppercase tracking-tighter italic mb-4 
+    ${isDark ? "text-white" : "text-zinc-900"}
+    ${
+      p.id === "07" || p.id === "09"
+        ? "text-2xl md:text-4xl lg:text-5xl md:whitespace-nowrap" 
+        : "text-4xl md:text-5xl"
+    }
+  `}
+>
+  {p.titulo}
+</h2>
                 <div className="w-20 h-2 bg-green-500 mb-6" />
                 <p
                   className={`text-[14px] leading-relaxed font-medium ${isDark ? "text-zinc-400" : "text-zinc-600"}`}

@@ -14,7 +14,7 @@ import img12 from "../Imagenes/shagamido3.png";
 import img13 from "../Imagenes/Vegeta.png";
 import img14 from "../Imagenes/GohanSSJ2.png";
 import img15 from "../Imagenes/LogoJuego.png";
-
+import img16 from "../Imagenes/ImagenesSR/TurlesMuere.png"
 
 // audios
 import audioMenuPrincipal from "../audio/MenuPrincipal.mp3";
@@ -33,6 +33,7 @@ import audioUbeda from "../audio/MusicaUbeda.mp3";
 import audioTorredonjimeno from "../audio/NivelTorredonjimeno.mp3";
 import audioAlcala from "../audio/NivelAlcala.mp3";
 import audioIntroudccion from "../audio/Introduccion.mp3";
+import audioFinalMalo from "../audio/FinalMalo.mp3"
 
 export const playlist = [
   {
@@ -178,5 +179,14 @@ export const playlist = [
     url: audioFinal,
     cover: img01,
     experiencia: "Le ofrece una experiencia triunfal y alegre al jugador que sepa que ha ganado.",
+  },
+  {
+    id: "17",
+    title: "Final Malo",
+    desc: "Rodolfo ha sucumbido al poder de las bolas magicas, ahora es una mala persona y controla el Santo Reino con maldad.",
+    type: "star",
+    url: audioFinalMalo,
+    cover: img16,
+    experiencia: "Le ofrecemos una experencia triste al jugador nuestro heroe favorito ahora se ha convertido en mala persona, lo cual es un momento triste y se lo reflejamos asi.",
   },
 ];

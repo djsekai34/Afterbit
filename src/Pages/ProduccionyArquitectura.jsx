@@ -58,7 +58,7 @@ export default function Documentacion({ isDark }) {
           style={{ borderColor: currentTextColor }}
         >
           <span className="font-mono text-xs font-bold opacity-60 tracking-[0.4em] block mb-4 uppercase">
-            // Documentación_Fase_07
+            // Documentación_Fase_08
           </span>
           <h1 className="text-4xl md:text-7xl font-black italic uppercase tracking-tighter">
             Producción y <span style={{ color: accentGreen }}>Arquitectura</span>
@@ -151,9 +151,9 @@ export default function Documentacion({ isDark }) {
         {/* SECCIÓN: DIARIO DE TRABAJO */}
         <section className="mt-40">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8 gap-8">
-            <h2 className="text-4xl md:text-6xl font-black uppercase italic tracking-tighter leading-none">
-              Diario_de_<span style={{ color: accentGreen }}>Trabajo</span>
-            </h2>
+            <h2 className="text-2xl md:text-4xl lg:text-6xl font-black uppercase italic tracking-tighter leading-none break-all md:break-normal">
+  Diario_de_<span style={{ color: accentGreen }}>Trabajo</span>
+</h2>
             
             <div className="flex w-full lg:w-auto gap-3">
               <button onClick={prevPage} className="flex-1 lg:flex-none whitespace-nowrap px-6 py-3 border text-[10px] md:text-xs font-mono font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2" style={{ borderColor: subtleBorder }}>
@@ -214,10 +214,10 @@ export default function Documentacion({ isDark }) {
         {/* SECCIÓN: CONCLUSIONES Y FIRMA OFICIAL */}
         <section className="mt-40 border-t-8 pt-20" style={{ borderColor: currentTextColor }}>
           <div className="w-full relative overflow-visible"> 
-            <h2 className="text-3xl font-black uppercase mb-12 italic flex items-center gap-4">
-              <span className="w-12 h-[2px]" style={{ backgroundColor: accentGreen }}></span>
-              Conclusiones_Finales
-            </h2>
+            <h2 className="text-xl md:text-3xl font-black uppercase mb-12 italic flex items-center gap-2 md:gap-4 break-words">
+  <span className="w-8 md:w-12 h-[2px] shrink-0" style={{ backgroundColor: accentGreen }}></span>
+  <span className="truncate md:whitespace-normal">Conclusiones_Finales</span>
+</h2>
             
             <p className="text-lg md:text-2xl font-light leading-relaxed italic opacity-90 max-w-5xl mb-16">
               "Este es nuestro primer proyecto. Como <strong className="font-extrabold" style={{ color: accentGreen }}>David Jiménez</strong>, fundador de Afterbit y estudiante del curso de especialización en Videojuegos y VR, debo decir que este camino ha sido hermoso. Ha tenido sus complicaciones, como es normal al tratarse de mi primer videojuego, pero estoy feliz con el resultado. Quién me iba a decir a mí, a ese niño de 6 años, que algún día crearía un videojuego. Me alegra tener bien planteado en nuestra web oficial todo lo relacionado con nuestra primera IP, y que el juego salga de manera adecuada y totalmente profesional."
@@ -252,22 +252,24 @@ export default function Documentacion({ isDark }) {
               </div>
 
               {/* SELLO DE IDENTIDAD */}
-              <div className="flex items-center md:border-l md:pl-16" style={{ borderColor: subtleBorder }}>
-                <div className="relative group">
-                  <span className="absolute -top-5 left-0 font-mono text-[8px] opacity-30 uppercase tracking-widest">Official_Identity_Seal</span>
-                  
-                  <div 
-                    className="w-24 h-24 md:w-32 md:h-32 bg-white flex items-center justify-center shadow-2xl rounded-sm border relative overflow-visible"
-                    style={{ borderColor: `${currentTextColor}15` }}
-                  >
-                    <img 
-                      src={Firma} 
-                      alt="Firma Gigante David Jiménez" 
-                      className="absolute w-full h-full object-contain p-0 transform scale-[2.2] origin-center opacity-80 top-[10%] left-[-9%]" 
-                    />
-                  </div>
-                </div>
-              </div>
+              <div className="flex items-center justify-center md:justify-start md:border-l md:pl-16" style={{ borderColor: subtleBorder }}>
+  <div className="relative group">
+    <span className="absolute -top-5 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 font-mono text-[8px] opacity-30 uppercase tracking-widest whitespace-nowrap">
+      Official_Identity_Seal
+    </span>
+    
+    <div 
+      className="w-24 h-24 md:w-32 md:h-32 bg-white flex items-center justify-center shadow-2xl rounded-sm border relative overflow-visible"
+      style={{ borderColor: `${currentTextColor}15` }}
+    >
+      <img 
+        src={Firma} 
+        alt="Firma Gigante David Jiménez" 
+        className="absolute w-full h-full object-contain p-0 transform scale-[2.2] origin-center opacity-80 top-[10%] left-[-9%]" 
+      />
+    </div>
+  </div>
+</div>
 
             </div>
           </div>

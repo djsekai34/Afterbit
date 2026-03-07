@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AfterbitLogo from "../Imagenes/Afterbit_sin_fondo.png";
-import { mapaWeb } from "../data/mapaweb"; // <-- IMPORTANTE: Asegúrate de que la ruta sea correcta
+import { mapaWeb } from "../data/mapaweb"; 
 
 export default function Barra({ isDark, setIsDark }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -29,6 +29,10 @@ export default function Barra({ isDark, setIsDark }) {
     setIsOpen(false); 
     setSearchQuery(""); 
     setShowSuggestions(false); 
+    // Forzamos el desenfoque de cualquier input para resetear el zoom de iOS
+    if (document.activeElement instanceof HTMLElement) {
+      document.activeElement.blur();
+    }
   };
   const toggleDarkMode = () => setIsDark(!isDark);
 
@@ -80,7 +84,7 @@ export default function Barra({ isDark, setIsDark }) {
           ${isOpen ? "top-[95px] opacity-100 p-8" : "top-[-800px] opacity-0 lg:opacity-100"}
           ${isDark ? "bg-black" : "bg-white"} lg:bg-transparent`}>
           
-          {/* BUSCADOR */}
+          {/* BUSCADOR: Ajuste Anti-Zoom iPhone 15 */}
           <li className="relative py-2 lg:py-0 lg:mr-4" ref={searchRef}>
             <div className={`flex items-center group border-b-2 transition-all duration-300 ${
               isDark ? "border-white/10 focus-within:border-white" : "border-black/10 focus-within:border-black"
@@ -97,7 +101,10 @@ export default function Barra({ isDark, setIsDark }) {
                   setSearchQuery(e.target.value);
                   setShowSuggestions(true);
                 }}
-                className={`w-28 lg:w-36 bg-transparent font-mono text-[10px] tracking-[0.15em] outline-none transition-all focus:w-48 py-1 uppercase ${
+                /* AJUSTE CRÍTICO: text-[16px] evita zoom en iOS. 
+                   scale-75 y origin-left mantienen la estética pequeña original.
+                */
+                className={`w-28 lg:w-36 bg-transparent font-mono text-[16px] lg:text-[10px] tracking-[0.15em] outline-none transition-all focus:w-48 py-1 uppercase scale-75 lg:scale-100 origin-left ${
                   isDark ? "text-white placeholder-white/20" : "text-black placeholder-black/20"
                 }`}
               />
@@ -140,11 +147,15 @@ export default function Barra({ isDark, setIsDark }) {
 
           <li><Link to="/" className={linkStyles} onClick={closeMenu}>Inicio</Link></li>
 
-          {/* DROPDOWN PROYECTOS */}
+          {/* DROPDOWN PROYECTOS: Ajuste Flecha en Tablets */}
           <li className="relative group py-2">
             <Link to="/Proyectos" onClick={closeMenu} className="group">
               <button className={`font-bold uppercase tracking-widest text-sm flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}>
-                Proyectos <span className="text-[12px] group-hover:rotate-180 hidden xl:inline">↓</span>
+                Proyectos 
+                {/* AJUSTE: Cambiado a 2xl:inline para que en tablets horizontales (xl) 
+                   la flecha no aparezca y no ensucie el diseño comprimido.
+                */}
+                <span className="text-[12px] group-hover:rotate-180 hidden 2xl:inline transition-transform duration-300">↓</span>
               </button>
             </Link>
             <ul className="absolute left-1/2 -translate-x-1/2 lg:left-0 lg:translate-x-0 top-[100%] pt-2 min-w-[320px] invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-300 flex flex-col z-[110]">

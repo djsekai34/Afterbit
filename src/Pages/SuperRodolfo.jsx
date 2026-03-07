@@ -8,7 +8,6 @@ import { sections } from "../data/SeccionSR";
 
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
-// Mantenemos RodolfoHola aquí solo si lo necesitas para la lógica del condicional del renderizado de la imagen
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -37,7 +36,7 @@ export default function SuperRodolfoGDD({ isDark }) {
       variants={containerVariants}
       initial="hidden"
       animate="visible"
-      className={`min-h-screen pt-32 pb-20 px-4 md:px-12 lg:px-24 ${
+      className={`min-h-screen pt-32 pb-20 px-4 md:px-12 lg:px-24 transition-colors duration-500 ${
         isDark ? "bg-black text-white" : "bg-white text-black"
       }`}
     >
@@ -48,7 +47,7 @@ export default function SuperRodolfoGDD({ isDark }) {
         style={{ borderColor: currentTextColor }}
       >
         <div className="flex flex-col gap-6">
-          <span className="font-mono text-sm font-bold opacity-60 tracking-[0.5em] block">
+          <span className="font-mono text-xs md:text-sm font-bold opacity-60 tracking-[0.3em] md:tracking-[0.5em] block">
             // MASTER_PROJECT: GAME_DESIGN_DOCUMENT
           </span>
           <h1 className="text-3xl md:text-5xl lg:text-6xl font-black italic uppercase leading-[1.1] tracking-tighter break-words">
@@ -64,7 +63,7 @@ export default function SuperRodolfoGDD({ isDark }) {
                   className="w-1.5 h-1.5 lg:w-2 lg:h-2 inline-block shrink-0"
                   style={{ backgroundColor: accentGreen }}
                 ></span>
-                <span className="text-[10px] md:text-xs leading-none">
+                <span className="text-[9px] md:text-xs leading-none">
                   [ AUTHOR: DAVID_JIMENEZ ]
                 </span>
               </p>
@@ -73,7 +72,7 @@ export default function SuperRodolfoGDD({ isDark }) {
                   className="w-1.5 h-1.5 lg:w-2 lg:h-2 inline-block shrink-0"
                   style={{ backgroundColor: accentGreen }}
                 ></span>
-                <span className="text-[10px] md:text-xs leading-none">
+                <span className="text-[9px] md:text-xs leading-none">
                   [ STATUS: EXPERIMENTAL_BUILD ]
                 </span>
               </p>
@@ -97,7 +96,7 @@ export default function SuperRodolfoGDD({ isDark }) {
           <Motion.div
             animate={{ y: [0, -15, 0], rotate: [0, 3, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-full max-w-[280px] flex justify-center items-center group"
+            className="relative w-full max-w-[240px] md:max-w-[280px] flex justify-center items-center group"
           >
             <img
               src={LogoRodolfo}
@@ -113,7 +112,7 @@ export default function SuperRodolfoGDD({ isDark }) {
           <div className="flex-1 space-y-8">
             <div className="space-y-4">
               <h2
-                className="text-xl font-black uppercase tracking-widest italic"
+                className="text-lg md:text-xl font-black uppercase tracking-widest italic"
                 style={{ color: accentGreen }}
               >
                 // EL PORQUÉ DEL PROYECTO
@@ -129,65 +128,31 @@ export default function SuperRodolfoGDD({ isDark }) {
                 <span className="font-bold" style={{ color: accentGreen }}>
                   todo el arsenal técnico y creativo adquirido durante mi
                   formación
-                </span>
-                . Con él, busco reflejar mi capacidad para gestionar
-                integralmente el desarrollo de una experiencia de juego sólida,
-                funcional y que represente mi evolución como desarrollador.
+                </span>. Con él, busco reflejar mi capacidad para gestionar
+                integralmente el desarrollo de una experiencia de juego sólida.
               </p>
             </div>
             <div className="space-y-4">
               <h2
-                className="text-xl font-black uppercase tracking-widest italic"
+                className="text-lg md:text-xl font-black uppercase tracking-widest italic"
                 style={{ color: accentGreen }}
               >
                 // SINOPSIS
               </h2>
               <p
-                className="text-lg md:text-xl opacity-90 leading-relaxed italic border-l-4 pl-6"
+                className="text-base md:text-xl opacity-90 leading-relaxed italic border-l-4 pl-6"
                 style={{ borderColor: accentGreen }}
               >
                 "En las tierras del Santo Reino, la armonía se ha quebrado. Solo
-                Rodolfo, un héroe inesperado, emprenderá una épica travesía que
-                lo llevará a recorrer cada rincón del reino: desde sus sierras
-                más profundas hasta sus pueblos y fortalezas más antiguas. Su
+                Rodolfo, un héroe inesperado, emprenderá una épica travesía... Su
                 misión es recuperar las{" "}
                 <span className="font-bold" style={{ color: accentGreen }}>
                   bolas mágicas
-                </span>{" "}
-                esparcidas por todo el reino con un único fin:{" "}
-                <span className="font-bold" style={{ color: accentGreen }}>
-                  resucitar a sus amigos caídos y devolver la paz a su hogar
-                </span>
-                . En este viaje, no estará solo; deberá enfrentarse a legiones
-                de enemigos atraídos por el poder de las bolas, quienes ansían
-                reclamarlas para alcanzar la inmortalidad y someter al reino
-                bajo su control eterno."
+                </span> para resucitar a sus amigos caídos y devolver la paz."
               </p>
             </div>
           </div>
         </div>
-      </Motion.section>
-
-      {/* --- INTRODUCCIÓN AL GDD --- */}
-      <Motion.section
-        variants={itemVariants}
-        className="max-w-3xl mx-auto mb-12 text-center"
-      >
-        <div
-          className="inline-block px-6 py-2 border-x-2 mb-6"
-          style={{ borderColor: accentGreen }}
-        >
-          <span className="font-mono text-xs font-bold tracking-[0.3em] uppercase opacity-60">
-            Game Design Document (GDD)
-          </span>
-        </div>
-        <p className="text-lg opacity-70 italic">
-          A continuación se presenta el{" "}
-          <span className="font-bold">Game Design Document</span> detallado. Un
-          desglose técnico y creativo donde se analizan las mecánicas, la
-          narrativa y la arquitectura que dan vida a este proyecto. Explora cada
-          sección para conocer el proceso de desarrollo.
-        </p>
       </Motion.section>
 
       {/* --- ÍNDICE --- */}
@@ -200,7 +165,7 @@ export default function SuperRodolfoGDD({ isDark }) {
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="font-mono text-[10px] p-4 text-center hover:bg-[#008012] hover:text-white transition-all duration-300 uppercase font-black border flex-grow sm:flex-grow-0 basis-full sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-8px)]"
+              className="font-mono text-[9px] md:text-[10px] p-4 text-center hover:bg-[#008012] hover:text-white transition-all duration-300 uppercase font-black border flex-grow sm:flex-grow-0 basis-full sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-8px)]"
               style={{ borderColor: isDark ? "#ffffff10" : "#00000010" }}
             >
               {section.title}
@@ -209,7 +174,7 @@ export default function SuperRodolfoGDD({ isDark }) {
         </div>
       </Motion.div>
 
-      {/* --- CUERPO --- */}
+      {/* --- CUERPO: Ajuste Crítico ID 08 --- */}
       <Motion.main
         variants={itemVariants}
         className="max-w-6xl mx-auto space-y-40"
@@ -223,7 +188,7 @@ export default function SuperRodolfoGDD({ isDark }) {
           >
             <Link to={section.path} className="group block">
               <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-                <h2 className="text-2xl md:text-4xl font-black italic uppercase leading-none group-hover:text-[#008012] transition-colors">
+                <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-black italic uppercase leading-tight md:leading-none group-hover:text-[#008012] transition-colors break-words max-w-full">
                   {section.title}
                 </h2>
 
@@ -233,7 +198,7 @@ export default function SuperRodolfoGDD({ isDark }) {
               </div>
 
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div className="text-lg opacity-70 leading-relaxed">
+                <div className="text-base md:text-lg opacity-70 leading-relaxed">
                   <p>{section.desc}</p>
                   <div
                     className="mt-6 inline-block border-b-2 pb-1"
@@ -260,9 +225,9 @@ export default function SuperRodolfoGDD({ isDark }) {
                     <img
                       src={section.img}
                       alt={section.title}
-                      className={`w-full h-64 object-contain grayscale group-hover:grayscale-0 transition-all duration-700 shadow-xl ${
+                      className={`w-full h-48 md:h-64 object-contain grayscale group-hover:grayscale-0 transition-all duration-700 shadow-xl ${
                         section.img === RodolfoHola
-                          ? "scale-[3] group-hover:scale-[3.4]"
+                          ? "scale-[2.5] md:scale-[3] group-hover:scale-[2.8] md:group-hover:scale-[3.4]"
                           : "scale-100"
                       }`}
                     />
@@ -285,22 +250,21 @@ export default function SuperRodolfoGDD({ isDark }) {
       >
         <div className="mb-10 space-y-4">
           <h3
-            className="text-2xl md:text-3xl font-black uppercase italic"
+            className="text-xl md:text-3xl font-black uppercase italic"
             style={{ color: accentGreen }}
           >
             ¿LISTO PARA LA AVENTURA?
           </h3>
-          <p className="max-w-xl mx-auto text-lg opacity-80 italic">
+          <p className="max-w-xl mx-auto text-base md:text-lg opacity-80 italic">
             No te quedes solo en el papel. Te invito a sumergirte en el Santo
-            Reino, poner a prueba las mecánicas y ver el código fuente en
-            acción. ¡Dale play al proyecto!
+            Reino y ver el código fuente en acción.
           </p>
         </div>
         <a
           href="https://github.com/djsekai34"
           target="_blank"
           rel="noopener noreferrer"
-          className="group relative px-12 py-6 font-mono text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:text-white"
+          className="group relative px-8 md:px-12 py-5 md:py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:text-white"
           style={{
             borderColor: accentGreen,
             color: isDark ? "white" : "black",
