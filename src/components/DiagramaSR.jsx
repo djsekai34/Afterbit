@@ -385,7 +385,6 @@ const SRDiagrama = ({ isDark }) => {
       <div
         className={`p-6 border-t ${isDark ? "bg-black/20 border-zinc-800" : "bg-zinc-50 border-zinc-200"}`}
       >
-        {/* Título de la Leyenda */}
         <div className="flex items-center gap-2 mb-6 opacity-60">
           <div
             className="w-1 h-3"
@@ -405,16 +404,19 @@ const SRDiagrama = ({ isDark }) => {
               label: "Sistema / Navegación",
               color: colors.textMuted,
               desc: "Flujos base",
+              smallerLabel: true, // Flag para reducir tamaño
             },
             {
               label: "Gameplay / Acción",
               color: colors.accentGreen,
               desc: "Modo Historia / Selector del nivel y gameplay",
+              smallerLabel: true, // Flag para reducir tamaño
             },
             {
               label: "Menús / Info",
               color: colors.accentBlue,
               desc: "Créditos/Controles",
+              smallerDesc: true, // Flag para reducir tamaño desc
             },
             {
               label: "Interrupción",
@@ -430,6 +432,7 @@ const SRDiagrama = ({ isDark }) => {
               label: "Éxito",
               color: colors.victoryGold,
               desc: "Victoria/Logro",
+              smallerDesc: true, // Flag para reducir tamaño desc
             },
             {
               label: "Terminar App",
@@ -445,14 +448,13 @@ const SRDiagrama = ({ isDark }) => {
                   : "bg-white border-zinc-200"
               }`}
             >
-              {/* Cabecera: Punto + Título */}
               <div className="flex items-center gap-2 mb-1">
                 <div
                   className="w-1.5 h-1.5 rounded-full shadow-sm flex-shrink-0"
                   style={{ backgroundColor: item.color }}
                 />
                 <span
-                  className={`font-mono text-[7.5px] md:text-[9px] font-black uppercase tracking-tighter whitespace-nowrap ${isDark ? "text-zinc-200" : "text-zinc-800"}`}
+                  className={`font-mono font-black uppercase tracking-tighter whitespace-nowrap ${isDark ? "text-zinc-200" : "text-zinc-800"} ${item.smallerLabel ? "text-[6.5px] md:text-[9px]" : "text-[7.5px] md:text-[9px]"}`}
                 >
                   {item.label}
                 </span>
@@ -462,8 +464,9 @@ const SRDiagrama = ({ isDark }) => {
                 className={`h-[1px] w-full mb-1.5 ${isDark ? "bg-zinc-800" : "bg-zinc-100"}`}
               />
 
-              {/* Descripción */}
-              <p className="font-mono text-[8px] text-zinc-500 lowercase opacity-80 leading-none">
+              <p
+                className={`font-mono text-zinc-500 lowercase opacity-80 leading-none ${item.smallerDesc ? "text-[7px] md:text-[8px]" : "text-[8px]"}`}
+              >
                 {`> ${item.desc}`}
               </p>
             </div>

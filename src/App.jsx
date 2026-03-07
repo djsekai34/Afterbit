@@ -22,6 +22,7 @@ import SuperRodolfoConceptos from './Pages/ConceptoyObjetivos.jsx';
 import SuperRodolfoStrike from './Pages/SuperRodolfoStrike.jsx';
 import Eventos from './Pages/Eventos.jsx';
 import IA from "./components/IA.jsx"
+import Marketing from "./Pages/Marketing.jsx"
 import "./index.css";
 
 function App() {
@@ -42,6 +43,7 @@ function App() {
         <Route path="/Eventos" element={<Eventos isDark={isDark} />} />
         <Route path="/Proyectos/PixelMetroid2D" element={<PixelMetroid isDark={isDark} />} />
         <Route path="/Proyectos/XRAdventure" element={<XRAdventure isDark={isDark} />} />
+        <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo" element={<SuperRodolfoGDD isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/AnalisisyPreproduccion" element={<SuperRodolfoAnalisis isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/GuionyNarrativa" element={<SuperRodolfoGuion isDark={isDark} />} />
@@ -51,7 +53,8 @@ function App() {
         <Route path="/Proyectos/SuperRodolfo/Sonido" element={<SuperRodolfoSonido isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ProduccionyArquitectura" element={<SuperRodolfoProduccion isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ConceptoyObjetivos" element={<SuperRodolfoConceptos isDark={isDark} />} />
-        <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
+        <Route path="/Proyectos/SuperRodolfo/Marketing" element={<Marketing isDark={isDark} />} />
+
       </Routes>
       <IA/>
       <Footer isDark={isDark} setIsDark={setIsDark}/>

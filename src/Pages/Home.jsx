@@ -1,10 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import ImagenRodolfo from "../Imagenes/LogoJuego.png";
-import Metroid2d from "../Imagenes/Pixelmetroid.png";
-import XRAdventure from "../Imagenes/XRAdventure.jpeg";
-import SuperRodolofStrike from "../Imagenes/LogoSRS.png";
+import { proyectos } from "../data/proyectos"; // Importación del nuevo archivo
 
 export default function Cuerpo({ isDark }) {
   const fadeInUp = {
@@ -15,41 +12,6 @@ export default function Cuerpo({ isDark }) {
       transition: { duration: 0.8, ease: "easeOut" },
     },
   };
-
-  const proyectos = [
-    {
-      id: 1,
-      title: "Super Rodolfo y las Esferas del Santo Reino",
-      desc: "Proyecto Final: Plataformas 2D ambientado en Jaén, desarrollado para el dominio de mecánicas clásicas y diseño de niveles.",
-      tag: "Gamedev",
-      image: ImagenRodolfo,
-      link: "/Proyectos/SuperRodolfo",
-    },
-    {
-      id: 2,
-      title: "Pixel Metroid 2D",
-      desc: "Dominio técnico de Unity 2D: mecánicas de exploración, arquitectura de estados y gestión de físicas.",
-      tag: "Learning",
-      image: Metroid2d,
-      link: "/Proyectos/PixelMetroid2D",
-    },
-    {
-      id: 3,
-      title: "XRAdventure",
-      desc: "Aplicacion movil de realidad aumentada para posicionar objetos y rotarlos en un entorno real.",
-      tag: "Mixed Reality Experience",
-      image: XRAdventure,
-      link: "/Proyectos/XRAdventure",
-    },
-    {
-      id: 4,
-      title: "Super Rodolfo Strike",
-      desc: "Videojuego 2D de movil estilo bolos, donde jugamos a la bolera con Rodolfo.",
-      tag: "Mobile Game",
-      image: SuperRodolofStrike,
-      link: "/Proyectos/SuperRodolfoStrike",
-    },
-  ];
 
   const currentTextColor = isDark ? "#ffffff" : "#000000";
   const currentBgColor = isDark ? "#000000" : "#ffffff";
@@ -114,7 +76,7 @@ export default function Cuerpo({ isDark }) {
               style={{ color: currentTextColor }}
             >
               <Motion.span
-                initial={{ letterSpacing: "0.05em", filter: "blur(8px)" }} // Bajado de 0.1em a 0.05em
+                initial={{ letterSpacing: "0.05em", filter: "blur(8px)" }}
                 animate={{ letterSpacing: "-0.05em", filter: "blur(0px)" }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="inline-block"

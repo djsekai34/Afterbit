@@ -1,4 +1,3 @@
-// src/data/cinematicas.js
 export const cinematicas = [
   {
     id: "01",

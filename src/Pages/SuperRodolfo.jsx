@@ -3,15 +3,12 @@ import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import { FaGamepad, FaArrowRight } from "react-icons/fa";
 
+// IMPORTAMOS LOS DATOS Y LAS IMÁGENES DESDE EL OTRO ARCHIVO
+import { sections } from "../data/SeccionSR";
+
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
-import FriezaImg from "../Imagenes/ImagenesSR/Frieza.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
-import Broly from "../Imagenes/ImagenesSR/Broly.png";
-import Kefla from "../Imagenes/ImagenesSR/Klefa.png";
-import Janemba from "../Imagenes/ImagenesSR/Janemba.png";
-import Hit from "../Imagenes/ImagenesSR/Hit.png";
-import Turles from "../Imagenes/ImagenesSR/Turles.png";
-import Cell from "../Imagenes/ImagenesSR/Cell Perfecto.png";
+// Mantenemos RodolfoHola aquí solo si lo necesitas para la lógica del condicional del renderizado de la imagen
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -34,65 +31,6 @@ const itemVariants = {
 export default function SuperRodolfoGDD({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
   const accentGreen = "#008012";
-
-  const sections = [
-    {
-      id: "conceptos",
-      title: "01. CONCEPTOS Y OBJETIVOS",
-      path: "/Proyectos/SuperRodolfo/ConceptoyObjetivos",
-      desc: "En este apartado vamos a descubrir los objetivos generales, particulares y personales de nuestro juego, el brainstorming inicial de nuestro proyecto, los datos principales del título y el PEGI que usamos.",
-      img: RodolfoHola,
-    },
-    {
-      id: "preproduccion",
-      title: "02. ANÁLISIS Y PREPRODUCCIÓN",
-      path: "/Proyectos/SuperRodolfo/AnalisisyPreproduccion",
-      desc: "Hacemos un estudio del mercado inicial, referentes también el análisis del DAFO y CAME, los moodboards y plantearnos cómo monetizarlo",
-      img: FriezaImg,
-    },
-    {
-      id: "narrativa",
-      title: "03. GUIÓN Y NARRATIVA",
-      path: "/Proyectos/SuperRodolfo/GuionyNarrativa",
-      desc: "Decimos la historia general, el mundo, los personajes principales y secundarios, los enemigos, también las misiones principales y secundarias, cómo esto lo ligamos con la narrativa y mecánicas del juego",
-      img: Broly,
-    },
-    {
-      id: "mecanicas",
-      title: "04. MECÁNICAS Y EXPERIENCIAS",
-      path: "/Proyectos/SuperRodolfo/MecanicasyExperiencias",
-      desc: "Definimos las mecánicas principales y secundarias de nuestro juego, las acciones que hará el jugador, reglas, sistemas de recompensas y penalización, también la experiencia que tendrá el jugador",
-      img: Kefla,
-    },
-    {
-      id: "estados",
-      title: "05. ESTADOS DEL VIDEOJUEGO",
-      path: "/Proyectos/SuperRodolfo/EstadosDelVideojuego",
-      desc: "Vamos a identificar y damos una descripción de los estados del videojuego como puede ser la pantalla de inicio, menú, etc. Donde vamos a incluir un diagrama simple de transición de esos estados",
-      img: Janemba,
-    },
-    {
-      id: "interfaz",
-      title: "06. INTERFAZ Y UI",
-      path: "/Proyectos/SuperRodolfo/InterfazyUI",
-      desc: "Diseño de la interfaz de cada estado como puede ser el HUD, los elementos interactivos y bocetos o wireframes",
-      img: Hit,
-    },
-    {
-      id: "sonido",
-      title: "07. SONIDO",
-      path: "/Proyectos/SuperRodolfo/Sonido",
-      desc: "Determinamos la música de cada escena, los efectos de sonido, voces si tenemos en nuestro juego y la relación entre el sonido, estado y experiencia de nuestro juego",
-      img: Turles,
-    },
-    {
-      id: "arquitectura",
-      title: "08. PRODUCCIÓN Y ARQUITECTURA",
-      path: "/Proyectos/SuperRodolfo/ProduccionyArquitectura",
-      desc: "Organización del proyecto, los roles que hay en el proyecto y la arquitectura del software que usamos (motor, estructura de carpetas, escenas y assets). Las conclusiones y el diario de trabajo",
-      img: Cell,
-    },
-  ];
 
   return (
     <Motion.div
@@ -255,14 +193,14 @@ export default function SuperRodolfoGDD({ isDark }) {
       {/* --- ÍNDICE --- */}
       <Motion.div variants={itemVariants} className="max-w-6xl mx-auto mb-40">
         <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 border-2 p-2"
+          className="flex flex-wrap justify-center gap-2 border-2 p-2"
           style={{ borderColor: isDark ? "#ffffff20" : "#00000020" }}
         >
           {sections.map((section) => (
             <a
               key={section.id}
               href={`#${section.id}`}
-              className="font-mono text-[10px] p-4 text-center hover:bg-[#008012] hover:text-white transition-all duration-300 uppercase font-black border"
+              className="font-mono text-[10px] p-4 text-center hover:bg-[#008012] hover:text-white transition-all duration-300 uppercase font-black border flex-grow sm:flex-grow-0 basis-full sm:basis-[calc(50%-8px)] lg:basis-[calc(25%-8px)]"
               style={{ borderColor: isDark ? "#ffffff10" : "#00000010" }}
             >
               {section.title}

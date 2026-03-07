@@ -1,4 +1,3 @@
-// Exportamos la constante para poder importarla en cualquier sitio
 export const eventsData = [
   {
     id: 1,
