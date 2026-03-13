@@ -71,17 +71,18 @@ export default function Contacto({ isDark }) {
     >
       <div className="relative z-10 px-4 md:px-8 lg:px-16 w-full">
         <div className="max-w-6xl mx-auto relative">
-          
           {/* SECCIÓN 1: TÍTULO PRINCIPAL */}
           <Motion.h1
             className="text-4xl md:text-8xl font-black italic mb-20 uppercase tracking-tighter text-center"
             variants={itemVariants}
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
           >
             / CONTACTO<span className="text-red-600">.</span>
           </Motion.h1>
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16">
-            
             {/* COLUMNA IZQUIERDA: INFORMACIÓN Y LINKS */}
             <Motion.div
               variants={itemVariants}
@@ -150,7 +151,9 @@ export default function Contacto({ isDark }) {
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                   </a>
 
-                  <span className="opacity-20 font-thin italic select-none">|</span>
+                  <span className="opacity-20 font-thin italic select-none">
+                    |
+                  </span>
 
                   <a
                     href="https://www.linkedin.com/in/david-jimenez-villena/"
@@ -162,7 +165,9 @@ export default function Contacto({ isDark }) {
                     <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-red-600 transition-all duration-300 group-hover:w-full"></span>
                   </a>
 
-                  <span className="opacity-20 font-thin italic select-none">|</span>
+                  <span className="opacity-20 font-thin italic select-none">
+                    |
+                  </span>
 
                   <a
                     href="https://github.com/djsekai34"

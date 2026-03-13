@@ -42,10 +42,13 @@ export default function SobreMi({ isDark }) {
     >
       {/* TÍTULO PRINCIPAL */}
       <Motion.h1
-        className="text-center text-5xl md:text-7xl font-black italic mb-12 uppercase"
+        className="text-4xl md:text-8xl font-black italic mb-20 uppercase tracking-tighter text-center"
         variants={itemVariants}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8 }}
       >
-        / ¿QUIÉN SOY?
+        / ¿ QUIÉN SOY ?<span className="text-red-600">.</span>
       </Motion.h1>
 
       <div className="max-w-4xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-12 lg:gap-16">
@@ -75,7 +78,7 @@ export default function SobreMi({ isDark }) {
           >
             Desarrollador de Videojuegos & Desarrollador Web
           </Motion.p>
-          
+
           {/* BOTONES GITHUB Y LINKEDIN */}
           <Motion.div
             className="flex space-x-10 mt-12 justify-center w-full"
@@ -246,7 +249,8 @@ export default function SobreMi({ isDark }) {
                   </span>
                   , el paso definitivo para fusionar mis dos grandes pasiones:
                   jugar y crear. He pasado de ser un espectador a ser el
-                  arquitecto que diseña cada interacción detrás de la pantalla.{" "}
+                  arquitecto que diseña cada interacción detrás de la
+                  pantalla.{" "}
                 </p>
 
                 <p

@@ -29,12 +29,12 @@ export default function Proyectos({ isDark }) {
     >
       {/* TÍTULO PRINCIPAL */}
       <Motion.h1
-        className="text-4xl md:text-7xl lg:text-9xl font-black italic uppercase mb-20 tracking-tighter"
+        className="text-4xl md:text-8xl font-black italic mb-20 uppercase tracking-tighter text-center"
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.8 }}
       >
-        / PROYECTS<span style={{ color: accentColor }}>_</span>
+        / PROYECTOS<span className="text-red-600">.</span>
       </Motion.h1>
 
       <div className="max-w-6xl mx-auto space-y-40">

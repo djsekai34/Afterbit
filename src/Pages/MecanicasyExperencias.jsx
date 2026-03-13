@@ -186,17 +186,22 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
               isDark={isDark}
               accentGreen={accentGreen}
               datos={{
-                Definición:
-                  "Control de desplazamiento lateral con inercia controlada.",
+                Definición: "Control de desplazamiento lateral con inercia controlada.",
                 Acción: "[A] [D] o [←] [→] (Pulsación mantenida).",
-                Lógica:
-                  "Caminata progresiva hasta Max (6.5 units/s). El correr aumenta su velocidad maximo a (8 units/s).",
-                "Reglas y Límites":
-                  "Velocidad aumentada cuando pulsas Shift (carrera).",
-                "Feedback Visual":
-                  "Visualizacion los diferentes sprites de caminata.",
+                Lógica: "Caminata progresiva hasta Max (6.5 units/s). El correr aumenta su velocidad maximo a (8 units/s).",
+                "Reglas y Límites": "Velocidad aumentada cuando pulsas Shift (carrera).",
+                "Feedback Visual": "Visualizacion los diferentes sprites de caminata.",
                 "Feedback Sonoro": "No existe.",
+                flujo: `IF input_horizontal != 0 THEN
+                  acceleration = (is_sprinting) ? 8.0 : 6.5
+                  velocity.x = lerp(current, target * acceleration, friction)
+                  play_animation("Walk_Cycle")
+                ELSE
+                  velocity.x = lerp(current, 0, floor_friction)
+                  play_animation("Idle")
+                ENDIF`
               }}
+              
             >
               <img
                 src={ImgMovimiento}
@@ -212,17 +217,20 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
               categoria="Locomoción Vertical"
               isDark={isDark}
               accentGreen={accentGreen}
-              datos={{
-                Definición:
-                  "Impulso instantáneo en el eje Y con gravedad adaptativa.",
+             datos={{
+                Definición: "Impulso instantáneo en el eje Y con gravedad adaptativa.",
                 Acción: "[ESPACIO] (Pulsación única).",
-                Lógica:
-                  "Impulso ascendente + herencia de inercia lateral. Gravedad aumentada en el descenso.",
-                "Reglas y Límites":
-                  "Se permite salto infinito. Con el Shift este salto aumenta su altura.",
-                "Feedback Visual":
-                  "Visualizacion los diferentes sprites de salto.",
+                Lógica: "Impulso ascendente + herencia de inercia lateral. Gravedad aumentada en el descenso.",
+                "Reglas y Límites": "Se permite salto infinito. Con el Shift este salto aumenta su altura.",
+                "Feedback Visual": "Visualizacion los diferentes sprites de salto.",
                 "Feedback Sonoro": "No existe.",
+                flujo: `WHEN key_pressed("SPACE") DO
+                  jump_force = (is_sprinting) ? 12.0 : 9.5
+                  velocity.y = jump_force
+                  SET gravity_scale = 0.8 (ascend)
+                IF velocity.y < 0 THEN
+                  SET gravity_scale = 2.5 (descend_fast)
+                ENDIF`
               }}
             >
               <img
@@ -233,7 +241,7 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
             </FichaMecanica>
           </Motion.section>
 
-          {/* CRÍTICO: Galería masiva El Arte del Shagami-Dō */}
+          {/*El Arte del Shagami-Dō */}
           <Motion.section variants={itemVariants}>
             <FichaMecanica
               titulo="El Arte del Shagami-Dō"
@@ -244,11 +252,19 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
                 Definición: "Ataque legendario de Rodolfo.",
                 Acción: "[Q] (Ejecución instantánea).",
                 Lógica: "Activa la animacion de la habilidad.",
-                "Reglas y Límites":
-                  "Rodolfo es inmortal, puede quedarse suspendido en el aire para realizarlo y es inmortal.",
-                "Feedback Visual":
-                  "Visualización de los diferentes sprites de la habilidad mas salida de la bola que hara daño.",
+                "Reglas y Límites": "Rodolfo es inmortal, puede quedarse suspendido en el aire para realizarlo.",
+                "Feedback Visual": "Visualización de los diferentes sprites + proyectil de daño.",
                 "Feedback Sonoro": "Audio 'FAHHHHH'.",
+                // REINCORPORACIÓN DEL FLUJO
+                flujo: `WHEN key_pressed("Q") DO
+                  SET is_invulnerable = TRUE
+                  SET gravity = 0
+                  play_animation("ShagamiDO")
+                  WAIT 0.5s
+                  instantiate_projectile("Holy_Sphere")
+                  SET gravity = normal_gravity
+                  SET is_invulnerable = FALSE
+                END`
               }}
             >
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 w-full min-h-[450px]">

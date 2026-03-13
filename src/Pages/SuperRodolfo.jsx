@@ -8,6 +8,7 @@ import { sections } from "../data/SeccionSR";
 
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
+import GDDRodolfo from "../PDF/GDDSuperRodolfoylasEsferasdelSantoReino.pdf"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -128,7 +129,8 @@ export default function SuperRodolfoGDD({ isDark }) {
                 <span className="font-bold" style={{ color: accentGreen }}>
                   todo el arsenal técnico y creativo adquirido durante mi
                   formación
-                </span>. Con él, busco reflejar mi capacidad para gestionar
+                </span>
+                . Con él, busco reflejar mi capacidad para gestionar
                 integralmente el desarrollo de una experiencia de juego sólida.
               </p>
             </div>
@@ -144,11 +146,12 @@ export default function SuperRodolfoGDD({ isDark }) {
                 style={{ borderColor: accentGreen }}
               >
                 "En las tierras del Santo Reino, la armonía se ha quebrado. Solo
-                Rodolfo, un héroe inesperado, emprenderá una épica travesía... Su
-                misión es recuperar las{" "}
+                Rodolfo, un héroe inesperado, emprenderá una épica travesía...
+                Su misión es recuperar las{" "}
                 <span className="font-bold" style={{ color: accentGreen }}>
                   bolas mágicas
-                </span> para resucitar a sus amigos caídos y devolver la paz."
+                </span>{" "}
+                para resucitar a sus amigos caídos y devolver la paz."
               </p>
             </div>
           </div>
@@ -243,38 +246,84 @@ export default function SuperRodolfoGDD({ isDark }) {
         ))}
       </Motion.main>
 
-      {/* --- INVITACIÓN AL JUEGO --- */}
+      {/* --- SECCIÓN FINAL: INVITACIÓN Y DESCARGAS --- */}
       <Motion.div
         variants={itemVariants}
-        className="max-w-6xl mx-auto mt-40 flex flex-col items-center text-center"
+        className="max-w-6xl mx-auto mt-40 flex flex-col items-center text-center px-4"
       >
-        <div className="mb-10 space-y-4">
+        <div className="mb-16 space-y-4">
           <h3
-            className="text-xl md:text-3xl font-black uppercase italic"
+            className="text-2xl md:text-4xl font-black uppercase italic tracking-tighter"
             style={{ color: accentGreen }}
           >
-            ¿LISTO PARA LA AVENTURA?
+            <span className="mr-2">¿</span>LISTO PARA LA AVENTURA?
           </h3>
-          <p className="max-w-xl mx-auto text-base md:text-lg opacity-80 italic">
+          <p className="max-w-2xl mx-auto text-base md:text-lg opacity-80 italic">
             No te quedes solo en el papel. Te invito a sumergirte en el Santo
-            Reino y ver el código fuente en acción.
+            Reino, poner a prueba las mecánicas o revisar la documentación
+            técnica completa.
           </p>
         </div>
-        <a
-          href="https://github.com/djsekai34"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="group relative px-8 md:px-12 py-5 md:py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:text-white"
-          style={{
-            borderColor: accentGreen,
-            color: isDark ? "white" : "black",
-          }}
-        >
-          <div className="absolute inset-0 w-0 bg-[#008012] transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
-          <span className="flex items-center gap-3">
-            <FaGamepad size={22} /> Ver Repositorio y Jugar
-          </span>
-        </a>
+
+        {/* CONTENEDOR DE BOTONES DE JUGAR Y PDF*/}
+        <div className="flex flex-col lg:flex-row gap-8 w-full max-w-4xl justify-center items-stretch">
+          {/* BOTÓN 1: JUGAR */}
+          <div className="flex-1 flex flex-col gap-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-50">
+              // <span className="mr-1">¿</span>Deseas jugar?
+            </p>
+            <a
+              href="https://github.com/djsekai34"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group relative px-8 py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:!text-white flex items-center justify-center gap-3"
+              style={{
+                borderColor: accentGreen,
+                color: isDark ? "white" : "black",
+              }}
+            >
+              <div className="absolute inset-0 w-0 bg-[#008012] transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
+              <FaGamepad
+                size={22}
+                className="shrink-0 transition-colors duration-300"
+              />
+              <span>Ver Repositorio y Jugar</span>
+            </a>
+          </div>
+
+          {/* BOTÓN 2: DESCARGAR PDF */}
+          <div className="flex-1 flex flex-col gap-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-50">
+              // ¿Quieres verlo resumido en una hoja?
+            </p>
+            <a
+              href= {GDDRodolfo}
+              download
+              className={`group relative px-8 py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 border-red-600 transition-all duration-300 flex items-center justify-center gap-3 hover:text-white ${
+                isDark ? "text-white" : "text-black"
+              }`}
+            >
+              <div className="absolute inset-0 w-0 bg-red-600 transition-all duration-500 ease-out group-hover:w-full -z-10"></div>
+
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="3"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="shrink-0"
+              >
+                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                <polyline points="7 10 12 15 17 10" />
+                <line x1="12" y1="15" x2="12" y2="3" />
+              </svg>
+              <span>Descargar GDD PDF</span>
+            </a>
+          </div>
+        </div>
       </Motion.div>
     </Motion.div>
   );
