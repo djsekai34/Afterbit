@@ -37,11 +37,13 @@ export default function Eventos({ isDark }) {
       
       if (timeStr) {
         const [hh, mm] = timeStr.split(":");
-        // IMPORTANTE: Sin la 'Z' al final para que sea hora local (España)
         return `${y}${m}${day}T${hh}${mm}00`;
       }
       return `${y}${m}${day}`;
     };
+
+    // 1. AÑADIMOS UBICACIÓN AL INICIO Y CABECERA LIMPIA
+    scheduleDesc = `📍 UBICACIÓN: ${event.ubicacion}\n\n--- HORARIOS DETALLADOS ---`;
 
     if (event.horariosPorDia) {
       const dayKeys = Object.keys(event.horariosPorDia).sort();
@@ -54,12 +56,11 @@ export default function Eventos({ isDark }) {
       start = formatLocal(parseInt(firstDay), firstDayHours[0].inicio);
       end = formatLocal(parseInt(lastDay), lastDayHours[lastDayHours.length - 1].fin);
 
-      // Generamos el detalle para la descripción (lo que soluciona el problema de los turnos)
-      scheduleDesc = "\n\n--- HORARIOS DETALLADOS ---\n";
+      // 2. LISTADO CON PUNTOS PARA LECTURA FÁCIL (25/4 al 26/4, etc.)
       Object.entries(event.horariosPorDia).sort().forEach(([ts, hrs]) => {
         const dateStr = new Date(parseInt(ts)).toLocaleDateString("es-ES");
         const hoursStr = hrs.map(h => `${h.inicio} a ${h.fin}`).join(" y ");
-        scheduleDesc += `${dateStr}: ${hoursStr}\n`;
+        scheduleDesc += `\n• ${dateStr}: ${hoursStr}`;
       });
     } else if (event.horarios && event.horarios.length > 0) {
       const firstDate = event.especificos ? event.especificos[0] : event.inicio;
@@ -67,20 +68,20 @@ export default function Eventos({ isDark }) {
       start = formatLocal(firstDate, event.horarios[0].inicio);
       end = formatLocal(lastDate, event.horarios[event.horarios.length - 1].fin);
       
+      const horasStr = event.horarios.map(h => `${h.inicio} a ${h.fin}`).join(" y ");
+      scheduleDesc += `\n• Horario: ${horasStr}`;
+
       if (event.especificos && event.especificos.length > 1) {
-        scheduleDesc = "\n\n--- DÍAS DEL EVENTO ---\n";
-        event.especificos.forEach(t => {
-          scheduleDesc += `${new Date(t).toLocaleDateString("es-ES")}\n`;
-        });
+        scheduleDesc += `\n• Días: ${event.especificos.map(t => new Date(t).toLocaleDateString("es-ES")).join(", ")}`;
       }
     } else {
-      // Caso de día completo
       const firstDate = event.especificos ? event.especificos[0] : event.inicio;
       const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
       start = formatLocal(firstDate);
       const dEnd = new Date(lastDate);
       dEnd.setDate(dEnd.getDate() + 1);
       end = formatLocal(dEnd);
+      scheduleDesc += `\n• Todo el día`;
     }
 
     return { start, end, scheduleDesc };
@@ -90,10 +91,9 @@ export default function Eventos({ isDark }) {
     const { start, end, scheduleDesc } = getEventScheduleInfo(event);
     const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
     const titulo = encodeURIComponent(event.titulo);
-    const descripcion = encodeURIComponent(`${event.descripcion}${scheduleDesc}\n\nUbicación: ${event.ubicacion}`);
+    const descripcion = encodeURIComponent(`${event.descripcion}\n\n${scheduleDesc}`);
     const ubicacion = encodeURIComponent(event.ubicacion);
     
-    // ct=Europe/Madrid fuerza la zona horaria correcta en Google
     return `${baseUrl}&text=${titulo}&details=${descripcion}&location=${ubicacion}&dates=${start}/${end}&ctz=Europe/Madrid`;
   };
 
@@ -101,6 +101,7 @@ export default function Eventos({ isDark }) {
     const { start, end, scheduleDesc } = getEventScheduleInfo(event);
     const isAllDay = !start.includes("T");
     const valueProp = isAllDay ? ";VALUE=DATE" : "";
+    const cleanDesc = `${event.descripcion}\\n\\n${scheduleDesc}`.replace(/\n/g, "\\n");
 
     const icsContent = [
       "BEGIN:VCALENDAR",
@@ -111,7 +112,7 @@ export default function Eventos({ isDark }) {
       `DTSTART${valueProp}:${start}`,
       `DTEND${valueProp}:${end}`,
       `SUMMARY:${event.titulo}`,
-      `DESCRIPTION:${event.descripcion.replace(/\n/g, "\\n")}${scheduleDesc.replace(/\n/g, "\\n")}`,
+      `DESCRIPTION:${cleanDesc}`,
       `LOCATION:${event.ubicacion}`,
       "END:VEVENT",
       "END:VCALENDAR",
