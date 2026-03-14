@@ -445,8 +445,8 @@ const SeccionSonido = ({ isDark }) => {
                   </span>
                 </div>
 
-                {/* Input Seek Bar con visualizador SoundBars */}
-                <div className="relative w-full h-10 bg-zinc-500/10 mb-6 flex items-center overflow-hidden">
+                {/* Input Seek Bar CORREGIDA (Más visible y ancha) */}
+                <div className="relative w-full h-12 bg-zinc-800/40 border border-white/5 mb-6 flex items-center overflow-hidden">
                   <input
                     type="range"
                     min="0"
@@ -455,11 +455,12 @@ const SeccionSonido = ({ isDark }) => {
                     onChange={handleProgressChange}
                     className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-30"
                   />
+                  {/* Fondo de progreso más marcado */}
                   <div
-                    className="absolute h-full left-0 bg-zinc-500/20"
+                    className="absolute h-full left-0 bg-zinc-500/30"
                     style={{
                       width: `${progress}%`,
-                      borderRight: `2px solid ${accentGreen}`,
+                      borderRight: `3px solid ${accentGreen}`,
                     }}
                   />
                   <SoundBars isPlaying={isPlaying} />
@@ -484,18 +485,29 @@ const SeccionSonido = ({ isDark }) => {
                   </button>
                   <div className="h-10 w-[1px] bg-current opacity-20 mx-2"></div>
 
-                  {/* Control de Volumen */}
+                  {/* Control de Volumen / Mute CORREGIDO para iPhone */}
                   <div className="flex items-center gap-3 flex-grow max-w-[150px]">
                     <button
-                      onClick={toggleMute}
+                      onClick={() => {
+                        // Lógica blindada para iOS: usamos la propiedad .muted directamente
+                        if (audioRef.current) {
+                          audioRef.current.muted = !audioRef.current.muted;
+                          // Actualizamos el estado para que la UI reaccione
+                          if (audioRef.current.muted) setVolume(0);
+                          else setVolume(audioRef.current.volume || 1);
+                        }
+                      }}
                       className="shrink-0 hover:scale-110"
                     >
-                      {isMuted || volume === 0 ? (
-                        <VolumeX size={20} />
+                      {/* Detectamos el estado de mute real del elemento de audio */}
+                      {audioRef.current?.muted || volume === 0 ? (
+                        <VolumeX size={24} style={{ color: accentGreen }} />
                       ) : (
-                        <Volume2 size={20} />
+                        <Volume2 size={24} />
                       )}
                     </button>
+
+                    {/* Slider oculto en móviles por incompatibilidad de API, visible en Desktop */}
                     <input
                       type="range"
                       min="0"
@@ -503,7 +515,7 @@ const SeccionSonido = ({ isDark }) => {
                       step="0.01"
                       value={volume}
                       onChange={handleVolumeChange}
-                      className="w-full h-1 accent-[#008012] cursor-pointer"
+                      className="hidden md:block w-full h-1 accent-[#008012] cursor-pointer"
                     />
                   </div>
                 </div>

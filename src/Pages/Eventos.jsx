@@ -23,99 +23,95 @@ export default function Eventos({ isDark }) {
     year: viewDate.getFullYear(),
   });
 
-  // --- LÓGICA DE EXPORTACIÓN (CORREGIDA PARA GOOGLE) ---
+  // --- LÓGICA DE EXPORTACIÓN BLINDADA (ZONA HORARIA ESPAÑA) ---
 
-  const generateGoogleCalendarLink = (event) => {
-    const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
-    const titulo = encodeURIComponent(event.titulo);
-    const descripcion = encodeURIComponent(`${event.descripcion}\n\nUbicación: ${event.ubicacion}`);
-    const ubicacion = encodeURIComponent(event.ubicacion);
+  const getEventScheduleInfo = (event) => {
+    let start, end, scheduleDesc = "";
+    const pad = (n) => String(n).padStart(2, "0");
 
-    const formatDate = (date, timeStr) => {
+    const formatLocal = (date, timeStr) => {
       const d = new Date(date);
+      const y = d.getFullYear();
+      const m = pad(d.getMonth() + 1);
+      const day = pad(d.getDate());
+      
       if (timeStr) {
         const [hh, mm] = timeStr.split(":");
-        d.setHours(parseInt(hh), parseInt(mm), 0);
-        return d.toISOString().replace(/-|:|\.\d+/g, "").slice(0, 15) + "Z";
+        // IMPORTANTE: Sin la 'Z' al final para que sea hora local (España)
+        return `${y}${m}${day}T${hh}${mm}00`;
       }
-      // Formato para todo el día: YYYYMMDD
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
       return `${y}${m}${day}`;
     };
 
-    let start, end;
-    const firstDate = event.especificos ? event.especificos[0] : event.inicio;
-    const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
-
     if (event.horariosPorDia) {
       const dayKeys = Object.keys(event.horariosPorDia).sort();
-      const firstDayHours = event.horariosPorDia[dayKeys[0]];
-      const lastDayHours = event.horariosPorDia[dayKeys[dayKeys.length - 1]];
-      start = formatDate(parseInt(dayKeys[0]), firstDayHours[0].inicio);
-      end = formatDate(parseInt(dayKeys[dayKeys.length - 1]), lastDayHours[lastDayHours.length - 1].fin);
+      const firstDay = dayKeys[0];
+      const lastDay = dayKeys[dayKeys.length - 1];
+      const firstDayHours = event.horariosPorDia[firstDay];
+      const lastDayHours = event.horariosPorDia[lastDay];
+
+      // Bloque total desde el primer turno hasta el último
+      start = formatLocal(parseInt(firstDay), firstDayHours[0].inicio);
+      end = formatLocal(parseInt(lastDay), lastDayHours[lastDayHours.length - 1].fin);
+
+      // Generamos el detalle para la descripción (lo que soluciona el problema de los turnos)
+      scheduleDesc = "\n\n--- HORARIOS DETALLADOS ---\n";
+      Object.entries(event.horariosPorDia).sort().forEach(([ts, hrs]) => {
+        const dateStr = new Date(parseInt(ts)).toLocaleDateString("es-ES");
+        const hoursStr = hrs.map(h => `${h.inicio} a ${h.fin}`).join(" y ");
+        scheduleDesc += `${dateStr}: ${hoursStr}\n`;
+      });
     } else if (event.horarios && event.horarios.length > 0) {
-      start = formatDate(firstDate, event.horarios[0].inicio);
-      end = formatDate(lastDate, event.horarios[event.horarios.length - 1].fin);
+      const firstDate = event.especificos ? event.especificos[0] : event.inicio;
+      const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
+      start = formatLocal(firstDate, event.horarios[0].inicio);
+      end = formatLocal(lastDate, event.horarios[event.horarios.length - 1].fin);
+      
+      if (event.especificos && event.especificos.length > 1) {
+        scheduleDesc = "\n\n--- DÍAS DEL EVENTO ---\n";
+        event.especificos.forEach(t => {
+          scheduleDesc += `${new Date(t).toLocaleDateString("es-ES")}\n`;
+        });
+      }
     } else {
-      // DÍA COMPLETO: Google requiere que 'end' sea el día siguiente al último día del evento
-      start = formatDate(firstDate);
+      // Caso de día completo
+      const firstDate = event.especificos ? event.especificos[0] : event.inicio;
+      const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
+      start = formatLocal(firstDate);
       const dEnd = new Date(lastDate);
       dEnd.setDate(dEnd.getDate() + 1);
-      end = formatDate(dEnd);
+      end = formatLocal(dEnd);
     }
 
-    return `${baseUrl}&text=${titulo}&details=${descripcion}&location=${ubicacion}&dates=${start}/${end}`;
+    return { start, end, scheduleDesc };
+  };
+
+  const generateGoogleCalendarLink = (event) => {
+    const { start, end, scheduleDesc } = getEventScheduleInfo(event);
+    const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
+    const titulo = encodeURIComponent(event.titulo);
+    const descripcion = encodeURIComponent(`${event.descripcion}${scheduleDesc}\n\nUbicación: ${event.ubicacion}`);
+    const ubicacion = encodeURIComponent(event.ubicacion);
+    
+    // ct=Europe/Madrid fuerza la zona horaria correcta en Google
+    return `${baseUrl}&text=${titulo}&details=${descripcion}&location=${ubicacion}&dates=${start}/${end}&ctz=Europe/Madrid`;
   };
 
   const downloadIcsFile = (event) => {
-    const formatDate = (date, timeStr) => {
-      const d = new Date(date);
-      if (timeStr) {
-        const [hh, mm] = timeStr.split(":");
-        d.setHours(parseInt(hh), parseInt(mm), 0);
-        const iso = d.toISOString().replace(/-|:|\.\d+/g, "").slice(0, 15);
-        return `${iso}Z`;
-      }
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return `${y}${m}${day}`;
-    };
-
-    let dtStart, dtEnd, valueProp;
-    const firstDate = event.especificos ? event.especificos[0] : event.inicio;
-    const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
-
-    if (event.horariosPorDia) {
-      const dayKeys = Object.keys(event.horariosPorDia).sort();
-      const firstDayHours = event.horariosPorDia[dayKeys[0]];
-      const lastDayHours = event.horariosPorDia[dayKeys[dayKeys.length - 1]];
-      dtStart = formatDate(parseInt(dayKeys[0]), firstDayHours[0].inicio);
-      dtEnd = formatDate(parseInt(dayKeys[dayKeys.length - 1]), lastDayHours[lastDayHours.length - 1].fin);
-      valueProp = "";
-    } else if (event.horarios && event.horarios.length > 0) {
-      dtStart = formatDate(firstDate, event.horarios[0].inicio);
-      dtEnd = formatDate(lastDate, event.horarios[event.horarios.length - 1].fin);
-      valueProp = "";
-    } else {
-      dtStart = formatDate(firstDate);
-      const dEnd = new Date(lastDate);
-      dEnd.setDate(dEnd.getDate() + 1);
-      dtEnd = formatDate(dEnd);
-      valueProp = ";VALUE=DATE";
-    }
+    const { start, end, scheduleDesc } = getEventScheduleInfo(event);
+    const isAllDay = !start.includes("T");
+    const valueProp = isAllDay ? ";VALUE=DATE" : "";
 
     const icsContent = [
       "BEGIN:VCALENDAR",
       "VERSION:2.0",
       "PRODID:-//Afterbit//Calendar//ES",
+      "X-WR-TIMEZONE:Europe/Madrid",
       "BEGIN:VEVENT",
-      `DTSTART${valueProp}:${dtStart}`,
-      `DTEND${valueProp}:${dtEnd}`,
+      `DTSTART${valueProp}:${start}`,
+      `DTEND${valueProp}:${end}`,
       `SUMMARY:${event.titulo}`,
-      `DESCRIPTION:${event.descripcion}`,
+      `DESCRIPTION:${event.descripcion.replace(/\n/g, "\\n")}${scheduleDesc.replace(/\n/g, "\\n")}`,
       `LOCATION:${event.ubicacion}`,
       "END:VEVENT",
       "END:VCALENDAR",
@@ -130,7 +126,7 @@ export default function Eventos({ isDark }) {
     document.body.removeChild(link);
   };
 
-  // --- UTILIDADES VISUALES Y FORMATO ---
+  // --- VISUALIZACIÓN Y CALENDARIO ---
 
   const getVisibleColor = (hexColor) => {
     if (!hexColor) return accentGreen;
@@ -222,7 +218,6 @@ export default function Eventos({ isDark }) {
     setShowSelector(!showSelector);
   };
 
-  // --- PROCESAMIENTO ---
   const daysInMonth = useMemo(() => {
     const year = viewDate.getFullYear();
     const month = viewDate.getMonth();
