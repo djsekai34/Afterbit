@@ -72,7 +72,7 @@ export default function Barra({ isDark, setIsDark }) {
   }, [isDark]);
 
   // --- ESTILOS COMPARTIDOS ---
-  const linkStyles = `relative block py-2 font-bold uppercase tracking-widest text-sm transition-all duration-300
+  const linkStyles = `relative block py-2 font-bold uppercase tracking-widest text-sm transition-all duration-300 whitespace-nowrap
     after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-0 after:h-[3px] after:transition-all after:duration-300
     hover:after:w-full ${isDark ? "text-white after:bg-white" : "text-black after:bg-black"}`;
 
@@ -92,13 +92,13 @@ export default function Barra({ isDark, setIsDark }) {
         </div>
 
         {/* SECCIÓN: NAVEGACIÓN PRINCIPAL */}
-        <ul className={`flex flex-col lg:flex-row items-center lg:gap-10 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
+        <ul className={`flex flex-col lg:flex-row items-center lg:gap-8 xl:gap-10 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
           ${isOpen ? "top-[95px] opacity-100 p-8" : "top-[-800px] opacity-0 lg:opacity-100"}
           ${isDark ? "bg-black" : "bg-white"} lg:bg-transparent`}>
           
-          {/* COMPONENTE: BUSCADOR (Ajustado para visibilidad y anti-zoom) */}
-          <li className="relative py-2 lg:py-0 lg:mr-6" ref={searchRef}>
-            <div className={`flex items-center group border-b-2 transition-all duration-300 ${isDark ? "border-white/30 focus-within:border-white shadow-[0_1px_0_0_rgba(255,255,255,0.1)]" : "border-black/30 focus-within:border-black shadow-[0_1px_0_0_rgba(0,0,0,0.05)]"}`}>
+          {/* COMPONENTE: BUSCADOR */}
+          <li className="relative py-2 lg:py-0 lg:mr-2 xl:mr-6" ref={searchRef}>
+            <div className={`flex items-center group border-b-2 transition-all duration-300 lg:min-w-[180px] xl:min-w-[220px] ${isDark ? "border-white/30 focus-within:border-white shadow-[0_1px_0_0_rgba(255,255,255,0.1)]" : "border-black/30 focus-within:border-black shadow-[0_1px_0_0_rgba(0,0,0,0.05)]"}`}>
               <span className={`font-mono text-[12px] font-black px-2 transition-all duration-300 ${searchQuery || showSuggestions ? "opacity-100 scale-110" : "opacity-50"} ${isDark ? "text-white" : "text-black"}`}>
                 {">"}
               </span>
@@ -108,22 +108,22 @@ export default function Barra({ isDark, setIsDark }) {
                 value={searchQuery}
                 onFocus={() => setShowSuggestions(true)}
                 onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
-                className={`w-36 lg:w-44 bg-transparent font-mono text-[16px] lg:text-[11px] font-bold tracking-[0.2em] outline-none transition-all duration-500 focus:w-56 py-2 uppercase scale-90 lg:scale-100 origin-left ${isDark ? "text-white placeholder-white/40" : "text-black placeholder-black/40"}`}
+                className={`w-36 lg:w-32 xl:w-44 bg-transparent font-mono text-[16px] lg:text-[11px] font-bold tracking-[0.2em] outline-none transition-all duration-500 focus:w-48 xl:focus:w-56 py-2 uppercase scale-90 lg:scale-100 origin-left ${isDark ? "text-white placeholder-white/40" : "text-black placeholder-black/40"}`}
               />
             </div>
 
-            {/* SUGERENCIAS DEL BUSCADOR */}
+            {/* SUGERENCIAS DEL BUSCADOR  */}
             {showSuggestions && sugerencias.length > 0 && (
               <ul className={`absolute top-[110%] left-0 w-72 mt-2 border-2 shadow-[0_25px_60px_rgba(0,0,0,0.4)] z-[120] backdrop-blur-md ${isDark ? "bg-black/95 border-white" : "bg-white/95 border-black"}`}>
                 {sugerencias.map((s, i) => (
                   <li key={i} className={`border-b last:border-0 ${isDark ? "border-white/10" : "border-black/10"}`}>
-                    <button onClick={() => { navigate(s.path); closeMenu(); }} className={`w-full text-left p-4 flex flex-col transition-all group/item ${isDark ? "hover:bg-white" : "hover:bg-black"}`}>
-                      <span className={`font-black text-[10px] tracking-normal uppercase transition-colors ${isDark ? "text-white group-hover/item:text-black" : "text-black group-hover/item:text-white"}`}>{s.label}</span>
-                      <div className="flex flex-wrap gap-1.5 mt-1.5">
-                        {s.tags.map((tag, index) => (
-                          <span key={index} className={`text-[9px] font-bold font-mono px-1.5 py-0.5 border uppercase tracking-wider transition-colors ${isDark ? "border-white/30 text-white/50 group-hover/item:text-black group-hover/item:border-black/40" : "border-black/30 text-black/50 group-hover/item:text-white group-hover/item:border-white/40"}`}>#{tag}</span>
-                        ))}
-                      </div>
+                    <button 
+                      onClick={() => { navigate(s.path); closeMenu(); }} 
+                      className={`w-full text-left p-5 flex items-center transition-all group/item ${isDark ? "hover:bg-white" : "hover:bg-black"}`}
+                    >
+                      <span className={`font-black text-[11px] tracking-wider uppercase transition-colors ${isDark ? "text-white group-hover/item:text-black" : "text-black group-hover/item:text-white"}`}>
+                        {s.label}
+                      </span>
                     </button>
                   </li>
                 ))}
@@ -136,9 +136,8 @@ export default function Barra({ isDark, setIsDark }) {
           {/* SECCIÓN: DROPDOWN PROYECTOS */}
           <li className="relative group py-2">
             <Link to="/Proyectos" onClick={closeMenu} className="group">
-              <button className={`font-bold uppercase tracking-widest text-sm flex items-center gap-2 ${isDark ? "text-white" : "text-black"}`}>
+              <button className={`font-bold uppercase tracking-widest text-sm flex items-center gap-2 whitespace-nowrap ${isDark ? "text-white" : "text-black"}`}>
                 Proyectos
-                {/* CRÍTICO: Visible en Portátil (Mouse), Oculto en Tablet (Táctil) */}
                 <span className="text-[12px] group-hover:rotate-180 transition-transform duration-300 pointer-events-none hidden lg:block [@media(pointer:coarse)]:!hidden">↓</span>
               </button>
             </Link>
@@ -170,8 +169,8 @@ export default function Barra({ isDark, setIsDark }) {
           <li><Link to="/Contacto" className={linkStyles} onClick={closeMenu}>Contacto</Link></li>
 
           {/* BOTÓN DARK MODE */}
-          <li className="lg:ml-6">
-            <button onClick={() => { toggleDarkMode(); closeMenu(); }} className={`py-2 px-6 font-black uppercase italic tracking-tighter border-2 transition-all transform hover:scale-110 active:scale-95 text-sm ${isDark ? "bg-white text-black border-white" : "bg-black text-white border-black"}`}>
+          <li className="lg:ml-4">
+            <button onClick={() => { toggleDarkMode(); closeMenu(); }} className={`py-2 px-6 font-black uppercase italic tracking-tighter border-2 transition-all transform hover:scale-110 active:scale-95 text-sm whitespace-nowrap ${isDark ? "bg-white text-black border-white" : "bg-black text-white border-black"}`}>
               {isDark ? "Claro" : "Oscuro"}
             </button>
           </li>

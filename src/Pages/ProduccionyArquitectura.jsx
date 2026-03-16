@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import { ComplexTreeAssets } from "../components/arboldeCarpetas";
 import MiFoto from "../Imagenes/Foto_Mia.jpg"
@@ -39,8 +39,19 @@ export default function Documentacion({ isDark }) {
   const entriesPerPage = 2;
   const totalPages = Math.ceil(diaryEntries.length / entriesPerPage);
 
+  // --- MANEJADORES DE NAVEGACIÓN ---
   const nextPage = () => setCurrentPage((prev) => (prev + 1) % totalPages);
   const prevPage = () => setCurrentPage((prev) => (prev - 1 + totalPages) % totalPages);
+
+  // --- LÓGICA DE CAMBIO AUTOMÁTICO (AUTO-PLAY) ---
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextPage();
+    }, 3000); // Cambio cada 5 segundos
+
+    // Limpieza del intervalo al desmontar o cambiar de página manualmente
+    return () => clearInterval(interval);
+  }, [currentPage]);
 
   return (
     <main 
@@ -152,8 +163,8 @@ export default function Documentacion({ isDark }) {
         <section className="mt-40">
           <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8 gap-8">
             <h2 className="text-2xl md:text-4xl lg:text-6xl font-black uppercase italic tracking-tighter leading-none break-all md:break-normal">
-  Diario_de_<span style={{ color: accentGreen }}>Trabajo</span>
-</h2>
+              Diario de <span style={{ color: accentGreen }}>Trabajo</span>
+            </h2>
             
             <div className="flex w-full lg:w-auto gap-3">
               <button onClick={prevPage} className="flex-1 lg:flex-none whitespace-nowrap px-6 py-3 border text-[10px] md:text-xs font-mono font-bold hover:bg-white/10 transition-all flex items-center justify-center gap-2" style={{ borderColor: subtleBorder }}>
@@ -180,7 +191,7 @@ export default function Documentacion({ isDark }) {
                   .map((entry, idx) => (
                     <div key={idx} className="p-8 border-l-4 relative group overflow-hidden" style={{ borderColor: accentGreen, backgroundColor: `${currentTextColor}05` }}>
                       <div className="absolute top-4 right-6 font-mono text-[60px] opacity-[0.03] font-black italic select-none">
-                        0{idx + 1 + (currentPage * entriesPerPage)}
+                        {(idx + 1 + (currentPage * entriesPerPage)).toString().padStart(2, '0')}
                       </div>
                       <span className="font-mono text-[10px] font-bold opacity-40 block mb-2 tracking-[0.1em] uppercase leading-tight">
                         PERIODO: {entry.f}
@@ -200,7 +211,8 @@ export default function Documentacion({ isDark }) {
               {[...Array(totalPages)].map((_, i) => (
                 <div 
                   key={i}
-                  className="h-1 transition-all duration-500 rounded-full"
+                  onClick={() => setCurrentPage(i)}
+                  className="h-1 transition-all duration-500 rounded-full cursor-pointer"
                   style={{ 
                     width: i === currentPage ? '60px' : '20px',
                     backgroundColor: i === currentPage ? accentGreen : `${currentTextColor}22`
@@ -215,9 +227,9 @@ export default function Documentacion({ isDark }) {
         <section className="mt-40 border-t-8 pt-20" style={{ borderColor: currentTextColor }}>
           <div className="w-full relative overflow-visible"> 
             <h2 className="text-xl md:text-3xl font-black uppercase mb-12 italic flex items-center gap-2 md:gap-4 break-words">
-  <span className="w-8 md:w-12 h-[2px] shrink-0" style={{ backgroundColor: accentGreen }}></span>
-  <span className="truncate md:whitespace-normal">Conclusiones_Finales</span>
-</h2>
+              <span className="w-8 md:w-12 h-[2px] shrink-0" style={{ backgroundColor: accentGreen }}></span>
+              <span className="truncate md:whitespace-normal">Conclusiones Finales</span>
+            </h2>
             
             <p className="text-lg md:text-2xl font-light leading-relaxed italic opacity-90 max-w-5xl mb-16">
               "Este es nuestro primer proyecto. Como <strong className="font-extrabold" style={{ color: accentGreen }}>David Jiménez</strong>, fundador de Afterbit y estudiante del curso de especialización en Videojuegos y VR, debo decir que este camino ha sido hermoso. Ha tenido sus complicaciones, como es normal al tratarse de mi primer videojuego, pero estoy feliz con el resultado. Quién me iba a decir a mí, a ese niño de 6 años, que algún día crearía un videojuego. Me alegra tener bien planteado en nuestra web oficial todo lo relacionado con nuestra primera IP, y que el juego salga de manera adecuada y totalmente profesional."
@@ -253,23 +265,23 @@ export default function Documentacion({ isDark }) {
 
               {/* SELLO DE IDENTIDAD */}
               <div className="flex items-center justify-center md:justify-start md:border-l md:pl-16" style={{ borderColor: subtleBorder }}>
-  <div className="relative group">
-    <span className="absolute -top-5 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 font-mono text-[8px] opacity-30 uppercase tracking-widest whitespace-nowrap">
-      Official_Identity_Seal
-    </span>
-    
-    <div 
-      className="w-24 h-24 md:w-32 md:h-32 bg-white flex items-center justify-center shadow-2xl rounded-sm border relative overflow-visible"
-      style={{ borderColor: `${currentTextColor}15` }}
-    >
-      <img 
-        src={Firma} 
-        alt="Firma Gigante David Jiménez" 
-        className="absolute w-full h-full object-contain p-0 transform scale-[2.2] origin-center opacity-80 top-[10%] left-[-9%]" 
-      />
-    </div>
-  </div>
-</div>
+                <div className="relative group">
+                  <span className="absolute -top-5 left-1/2 -translate-x-1/2 md:left-0 md:translate-x-0 font-mono text-[8px] opacity-30 uppercase tracking-widest whitespace-nowrap">
+                    Official_Identity_Seal
+                  </span>
+                  
+                  <div 
+                    className="w-24 h-24 md:w-32 md:h-32 bg-white flex items-center justify-center shadow-2xl rounded-sm border relative overflow-visible"
+                    style={{ borderColor: `${currentTextColor}15` }}
+                  >
+                    <img 
+                      src={Firma} 
+                      alt="Firma Gigante David Jiménez" 
+                      className="absolute w-full h-full object-contain p-0 transform scale-[2.2] origin-center opacity-80 top-[10%] left-[-9%]" 
+                    />
+                  </div>
+                </div>
+              </div>
 
             </div>
           </div>
