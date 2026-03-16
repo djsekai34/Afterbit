@@ -8,7 +8,7 @@ import { sections } from "../data/SeccionSR";
 
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
-import GDDRodolfo from "../PDF/GDDSuperRodolfoylasEsferasdelSantoReino.pdf"
+import GDDRodolfo from "../PDF/GDDSuperRodolfoylasEsferasdelSantoReino.pdf";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -136,7 +136,7 @@ export default function SuperRodolfoGDD({ isDark }) {
             </div>
             <div className="space-y-4">
               <h2
-                className="text-lg md:text-xl font-black uppercase tracking-widest italic"
+                className="text-xl font-black uppercase tracking-widest italic"
                 style={{ color: accentGreen }}
               >
                 // SINOPSIS
@@ -145,17 +145,41 @@ export default function SuperRodolfoGDD({ isDark }) {
                 className="text-base md:text-xl opacity-90 leading-relaxed italic border-l-4 pl-6"
                 style={{ borderColor: accentGreen }}
               >
-                "En las tierras del Santo Reino, la armonía se ha quebrado. Solo
-                Rodolfo, un héroe inesperado, emprenderá una épica travesía...
-                Su misión es recuperar las{" "}
+                "En las tierras del <span className="font-bold">Santo Reino</span>, la armonía se ha quebrado. Solo <span className="font-bold uppercase" style={{ color: accentGreen }}>Rodolfo</span>, un héroe inesperado, emprenderá una épica travesía que lo llevará a recorrer cada rincón del reino: desde sus sierras más profundas hasta sus pueblos y fortalezas más antiguas. Su misión es recuperar las{" "}
                 <span className="font-bold" style={{ color: accentGreen }}>
                   bolas mágicas
                 </span>{" "}
-                para resucitar a sus amigos caídos y devolver la paz."
+                esparcidas por todo el reino con un único fin:{" "}
+                <span className="font-bold" style={{ color: accentGreen }}>
+                  resucitar a sus amigos caídos y devolver la paz a su hogar
+                </span>
+                . En este viaje, no estará solo; deberá enfrentarse a legiones de enemigos atraídos por el poder de las bolas, quienes ansían reclamarlas para alcanzar la inmortalidad y someter al reino bajo su control eterno."
               </p>
             </div>
           </div>
         </div>
+      </Motion.section>
+
+      {/* --- TEXTO INTRODUCTORIO GDD --- */}
+      <Motion.section
+        variants={itemVariants}
+        className="max-w-3xl mx-auto mb-12 text-center"
+      >
+        <div
+          className="inline-block px-6 py-2 border-x-2 mb-6"
+          style={{ borderColor: accentGreen }}
+        >
+          <span className="font-mono text-xs font-bold tracking-[0.3em] uppercase opacity-60">
+            Game Design Document (GDD)
+          </span>
+        </div>
+        <p className="text-lg opacity-70 italic">
+          A continuación se presenta el{" "}
+          <span className="font-bold">Game Design Document</span> detallado. Un
+          desglose técnico y creativo donde se analizan las mecánicas, la
+          narrativa y la arquitectura que dan vida a este proyecto. Explora cada
+          sección para conocer el proceso de desarrollo.
+        </p>
       </Motion.section>
 
       {/* --- ÍNDICE --- */}
@@ -297,7 +321,7 @@ export default function SuperRodolfoGDD({ isDark }) {
               // ¿Quieres verlo resumido en una hoja?
             </p>
             <a
-              href= {GDDRodolfo}
+              href={GDDRodolfo}
               download
               className={`group relative px-8 py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 border-red-600 transition-all duration-300 flex items-center justify-center gap-3 hover:text-white ${
                 isDark ? "text-white" : "text-black"
