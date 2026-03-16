@@ -92,13 +92,13 @@ export default function Barra({ isDark, setIsDark }) {
         </div>
 
         {/* SECCIÓN: NAVEGACIÓN PRINCIPAL */}
-        <ul className={`flex flex-col lg:flex-row items-center lg:gap-8 xl:gap-10 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
+        <ul className={`flex flex-col lg:flex-row items-center lg:gap-4 xl:gap-10 absolute lg:static left-0 w-full lg:w-auto transition-all duration-500 ease-in-out
           ${isOpen ? "top-[95px] opacity-100 p-8" : "top-[-800px] opacity-0 lg:opacity-100"}
           ${isDark ? "bg-black" : "bg-white"} lg:bg-transparent`}>
           
-          {/* COMPONENTE: BUSCADOR */}
-          <li className="relative py-2 lg:py-0 lg:mr-2 xl:mr-6" ref={searchRef}>
-            <div className={`flex items-center group border-b-2 transition-all duration-300 lg:min-w-[180px] xl:min-w-[220px] ${isDark ? "border-white/30 focus-within:border-white shadow-[0_1px_0_0_rgba(255,255,255,0.1)]" : "border-black/30 focus-within:border-black shadow-[0_1px_0_0_rgba(0,0,0,0.05)]"}`}>
+          {/* COMPONENTE: BUSCADOR (Ajustado para tablets y Opera GX) */}
+          <li className="relative py-2 lg:py-0 lg:mr-1 xl:mr-6" ref={searchRef}>
+            <div className={`flex items-center group border-b-2 transition-all duration-300 lg:w-[150px] xl:w-[220px] focus-within:lg:w-[190px] focus-within:xl:w-[260px] ${isDark ? "border-white/30 focus-within:border-white shadow-[0_1px_0_0_rgba(255,255,255,0.1)]" : "border-black/30 focus-within:border-black shadow-[0_1px_0_0_rgba(0,0,0,0.05)]"}`}>
               <span className={`font-mono text-[12px] font-black px-2 transition-all duration-300 ${searchQuery || showSuggestions ? "opacity-100 scale-110" : "opacity-50"} ${isDark ? "text-white" : "text-black"}`}>
                 {">"}
               </span>
@@ -108,11 +108,11 @@ export default function Barra({ isDark, setIsDark }) {
                 value={searchQuery}
                 onFocus={() => setShowSuggestions(true)}
                 onChange={(e) => { setSearchQuery(e.target.value); setShowSuggestions(true); }}
-                className={`w-36 lg:w-32 xl:w-44 bg-transparent font-mono text-[16px] lg:text-[11px] font-bold tracking-[0.2em] outline-none transition-all duration-500 focus:w-48 xl:focus:w-56 py-2 uppercase scale-90 lg:scale-100 origin-left ${isDark ? "text-white placeholder-white/40" : "text-black placeholder-black/40"}`}
+                className={`w-full bg-transparent font-mono text-[16px] lg:text-[10px] xl:text-[11px] font-bold tracking-[0.15em] outline-none py-2 uppercase scale-90 lg:scale-100 origin-left ${isDark ? "text-white placeholder-white/40" : "text-black placeholder-black/40"}`}
               />
             </div>
 
-            {/* SUGERENCIAS DEL BUSCADOR  */}
+            {/* SUGERENCIAS DEL BUSCADOR (SOLO LABELS) */}
             {showSuggestions && sugerencias.length > 0 && (
               <ul className={`absolute top-[110%] left-0 w-72 mt-2 border-2 shadow-[0_25px_60px_rgba(0,0,0,0.4)] z-[120] backdrop-blur-md ${isDark ? "bg-black/95 border-white" : "bg-white/95 border-black"}`}>
                 {sugerencias.map((s, i) => (
@@ -168,9 +168,9 @@ export default function Barra({ isDark, setIsDark }) {
           <li><Link to="/SobreMi" className={linkStyles} onClick={closeMenu}>Sobre mí</Link></li>
           <li><Link to="/Contacto" className={linkStyles} onClick={closeMenu}>Contacto</Link></li>
 
-          {/* BOTÓN DARK MODE */}
-          <li className="lg:ml-4">
-            <button onClick={() => { toggleDarkMode(); closeMenu(); }} className={`py-2 px-6 font-black uppercase italic tracking-tighter border-2 transition-all transform hover:scale-110 active:scale-95 text-sm whitespace-nowrap ${isDark ? "bg-white text-black border-white" : "bg-black text-white border-black"}`}>
+          {/* BOTÓN DARK MODE AJUSTADO */}
+          <li className="lg:ml-2">
+            <button onClick={() => { toggleDarkMode(); closeMenu(); }} className={`py-2 px-4 xl:px-6 font-black uppercase italic tracking-tighter border-2 transition-all transform hover:scale-110 active:scale-95 text-xs xl:text-sm whitespace-nowrap ${isDark ? "bg-white text-black border-white" : "bg-black text-white border-black"}`}>
               {isDark ? "Claro" : "Oscuro"}
             </button>
           </li>
