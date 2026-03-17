@@ -23,13 +23,13 @@ export default function Eventos({ isDark }) {
     year: viewDate.getFullYear(),
   });
 
-  // --- LÓGICA DE EXPORTACIÓN FINAL (REPARADA CON CONDICIONAL DE TURNO PARTIDO) ---
+  // --- LÓGICA DE EXPORTACIÓN FINAL ---
 
   const pad = (n) => String(n).padStart(2, "0");
 
   const formatLocal = (date, timeStr, addDay = false) => {
     const d = new Date(date);
-    if (addDay) d.setDate(d.getDate() + 1); // Ajuste para que Google no llore
+    if (addDay) d.setDate(d.getDate() + 1);
     const y = d.getFullYear();
     const m = pad(d.getMonth() + 1);
     const day = pad(d.getDate());
@@ -56,7 +56,6 @@ export default function Eventos({ isDark }) {
           const descConHorarios = `⏰ HORARIO REAL: ${hrs.map(h => `${h.inicio}-${h.fin}`).join(" y ")}\n\n${commonDesc}`;
           links.push({
             label: `GOOGLE: DÍA ${dateStr}`,
-            // FECHA FINAL +1 DÍA PARA QUE GOOGLE ACEPTE EL "TODO EL DÍA"
             url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(descConHorarios)}&location=${encodeURIComponent(event.ubicacion)}&dates=${formatLocal(dateObj)}/${formatLocal(dateObj, null, true)}&ctz=Europe/Madrid`
           });
         } else {
@@ -71,15 +70,20 @@ export default function Eventos({ isDark }) {
         }
       });
     } else {
-      const firstDate = event.especificos ? event.especificos[0] : event.inicio;
-      const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
-      const start = formatLocal(firstDate, event.horarios?.[0]?.inicio);
-      const end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin);
+      // DESGLOSE POR DÍAS PARA RANGOS (Ej: 23 al 25)
+      const startD = new Date(event.inicio);
+      const endD = new Date(event.fin || event.inicio);
+      
+      for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+        const dateStr = d.toLocaleDateString("es-ES");
+        const start = formatLocal(d, event.horarios?.[0]?.inicio);
+        const end = formatLocal(d, event.horarios?.[event.horarios.length - 1]?.fin, !event.horarios);
 
-      links.push({
-        label: "GOOGLE CALENDAR",
-        url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(commonDesc)}&location=${encodeURIComponent(event.ubicacion)}&dates=${start}/${end}&ctz=Europe/Madrid`
-      });
+        links.push({
+          label: `GOOGLE: DÍA ${dateStr}`,
+          url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(commonDesc)}&location=${encodeURIComponent(event.ubicacion)}&dates=${start}/${end}&ctz=Europe/Madrid`
+        });
+      }
     }
     return links;
   };
@@ -98,7 +102,7 @@ export default function Eventos({ isDark }) {
           events.push(
             "BEGIN:VEVENT",
             `DTSTART;VALUE=DATE:${formatLocal(dateObj)}`,
-            `DTEND;VALUE=DATE:${formatLocal(dateObj, null, true)}`, // Apple también prefiere el +1 día para eventos de día completo
+            `DTEND;VALUE=DATE:${formatLocal(dateObj, null, true)}`,
             `SUMMARY:${event.titulo}`,
             `DESCRIPTION:${horariStr}\\n\\n${event.descripcion.replace(/\n/g, "\\n")}${extraDesc}`,
             `LOCATION:${event.ubicacion}`,
@@ -119,13 +123,26 @@ export default function Eventos({ isDark }) {
         }
       });
     } else {
-      const firstDate = event.especificos ? event.especificos[0] : event.inicio;
-      const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
+      // DESGLOSE POR DÍAS PARA RANGOS EN ICS
+      const startD = new Date(event.inicio);
+      const endD = new Date(event.fin || event.inicio);
       const isAllDay = !event.horarios;
       const vProp = isAllDay ? ";VALUE=DATE" : "";
-      const start = formatLocal(firstDate, event.horarios?.[0]?.inicio);
-      const end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin, isAllDay);
-      events.push("BEGIN:VEVENT", `DTSTART${vProp}:${start}`, `DTEND${vProp}:${end}`, `SUMMARY:${event.titulo}`, `DESCRIPTION:${event.descripcion.replace(/\n/g, "\\n")}${extraDesc}`, `LOCATION:${event.ubicacion}`, "END:VEVENT");
+
+      for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+        const start = formatLocal(d, event.horarios?.[0]?.inicio);
+        const end = formatLocal(d, event.horarios?.[event.horarios.length - 1]?.fin, isAllDay);
+        
+        events.push(
+          "BEGIN:VEVENT",
+          `DTSTART${vProp}:${start}`,
+          `DTEND${vProp}:${end}`,
+          `SUMMARY:${event.titulo}`,
+          `DESCRIPTION:${event.descripcion.replace(/\n/g, "\\n")}${extraDesc}`,
+          `LOCATION:${event.ubicacion}`,
+          "END:VEVENT"
+        );
+      }
     }
 
     const icsContent = [...commonHeader, ...events, "END:VCALENDAR"].join("\n");
@@ -294,7 +311,6 @@ export default function Eventos({ isDark }) {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
         <div className="lg:col-span-8">
           <div className={`relative border-2 ${isDark ? "border-zinc-800 bg-zinc-900/20" : "border-zinc-200 bg-zinc-50"} p-6 shadow-2xl`}>
-            {/* NAVEGACIÓN */}
             <div className="flex justify-between items-center mb-8">
               <button onClick={() => changeMonth(-1)} className="hover:scale-125 transition-transform p-2 font-black text-xl">{"<<"}</button>
               <div className="relative">
