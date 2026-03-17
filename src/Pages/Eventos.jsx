@@ -27,8 +27,9 @@ export default function Eventos({ isDark }) {
 
   const pad = (n) => String(n).padStart(2, "0");
 
-  const formatLocal = (date, timeStr) => {
+  const formatLocal = (date, timeStr, addDay = false) => {
     const d = new Date(date);
+    if (addDay) d.setDate(d.getDate() + 1); // Ajuste para que Google no llore
     const y = d.getFullYear();
     const m = pad(d.getMonth() + 1);
     const day = pad(d.getDate());
@@ -51,15 +52,14 @@ export default function Eventos({ isDark }) {
         const dateObj = new Date(parseInt(ts));
         const dateStr = dateObj.toLocaleDateString("es-ES");
         
-        // SI TIENE MÁS DE UN TURNO (PARTIDO), HACEMOS LA "MENTIRA" DEL DÍA COMPLETO
         if (hrs.length > 1) {
           const descConHorarios = `⏰ HORARIO REAL: ${hrs.map(h => `${h.inicio}-${h.fin}`).join(" y ")}\n\n${commonDesc}`;
           links.push({
             label: `GOOGLE: DÍA ${dateStr}`,
-            url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(descConHorarios)}&location=${encodeURIComponent(event.ubicacion)}&dates=${formatLocal(dateObj)}/${formatLocal(dateObj)}&ctz=Europe/Madrid`
+            // FECHA FINAL +1 DÍA PARA QUE GOOGLE ACEPTE EL "TODO EL DÍA"
+            url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(descConHorarios)}&location=${encodeURIComponent(event.ubicacion)}&dates=${formatLocal(dateObj)}/${formatLocal(dateObj, null, true)}&ctz=Europe/Madrid`
           });
         } else {
-          // SI ES TURNO ÚNICO, MANTENEMOS TU LÓGICA ORIGINAL DE HORAS PRECISAS
           hrs.forEach((turno) => {
             const start = formatLocal(dateObj, turno.inicio);
             const end = formatLocal(dateObj, turno.fin);
@@ -93,20 +93,18 @@ export default function Eventos({ isDark }) {
     if (event.horariosPorDia) {
       Object.entries(event.horariosPorDia).forEach(([ts, hrs]) => {
         const dateObj = new Date(parseInt(ts));
-        // MENTIRA SOLO SI ES PARTIDO
         if (hrs.length > 1) {
           const horariStr = `⏰ HORARIO REAL: ${hrs.map(h => `${h.inicio}-${h.fin}`).join(" y ")}`;
           events.push(
             "BEGIN:VEVENT",
             `DTSTART;VALUE=DATE:${formatLocal(dateObj)}`,
-            `DTEND;VALUE=DATE:${formatLocal(dateObj)}`,
+            `DTEND;VALUE=DATE:${formatLocal(dateObj, null, true)}`, // Apple también prefiere el +1 día para eventos de día completo
             `SUMMARY:${event.titulo}`,
             `DESCRIPTION:${horariStr}\\n\\n${event.descripcion.replace(/\n/g, "\\n")}${extraDesc}`,
             `LOCATION:${event.ubicacion}`,
             "END:VEVENT"
           );
         } else {
-          // HORARIO NORMAL PARA DÍAS DE UN SOLO TURNO
           hrs.forEach((turno) => {
             events.push(
               "BEGIN:VEVENT",
@@ -126,7 +124,7 @@ export default function Eventos({ isDark }) {
       const isAllDay = !event.horarios;
       const vProp = isAllDay ? ";VALUE=DATE" : "";
       const start = formatLocal(firstDate, event.horarios?.[0]?.inicio);
-      const end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin);
+      const end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin, isAllDay);
       events.push("BEGIN:VEVENT", `DTSTART${vProp}:${start}`, `DTEND${vProp}:${end}`, `SUMMARY:${event.titulo}`, `DESCRIPTION:${event.descripcion.replace(/\n/g, "\\n")}${extraDesc}`, `LOCATION:${event.ubicacion}`, "END:VEVENT");
     }
 
@@ -139,8 +137,6 @@ export default function Eventos({ isDark }) {
     link.click();
     document.body.removeChild(link);
   };
-
-  // --- EL RESTO DEL CÓDIGO SE MANTIENE INTACTO (ESTILOS, FORMATDATE, JSX) ---
 
   const getVisibleColor = (hexColor) => {
     if (!hexColor) return accentGreen;
