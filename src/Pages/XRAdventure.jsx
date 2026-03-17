@@ -321,7 +321,7 @@ export default function XRAdventureExplicacion({ isDark }) {
           </a>
 
           <a
-            href="https://github.com/FTorrent-63"
+            href="https://sites.google.com/view/dumbahh-studios/inicio"
             target="_blank"
             rel="noopener noreferrer"
             className="flex-1 max-w-sm"
@@ -331,7 +331,7 @@ export default function XRAdventureExplicacion({ isDark }) {
               style={{ borderColor: currentTextColor }}
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                PARTNER_PROFILE
+                DUMBAHH_STUDIOS_WEB
               </span>
               <div
                 className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"

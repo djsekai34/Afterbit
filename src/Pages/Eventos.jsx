@@ -38,38 +38,42 @@ export default function Eventos({ isDark }) {
     return `${y}${m}${day}`;
   };
 
-  const generateGoogleCalendarLink = (event) => {
+  const generateGoogleCalendarLinks = (event) => {
     const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
-    let start, end, scheduleDesc = `📍 UBICACIÓN: ${event.ubicacion}\n`;
+    const links = [];
     
-    // AÑADIMOS EL ENLACE EN LA DESCRIPCIÓN
-    if (event.url) scheduleDesc += `🔗 ENLACE: ${event.url}\n\n`;
-    else scheduleDesc += `\n`;
-
-    scheduleDesc += `--- HORARIOS ---\n`;
+    let commonDesc = `${event.descripcion}\n\n📍 UBICACIÓN: ${event.ubicacion}\n`;
+    if (event.url) commonDesc += `🔗 ENLACE: ${event.url}\n`;
 
     if (event.horariosPorDia) {
-      const dayKeys = Object.keys(event.horariosPorDia).sort();
-      const firstDay = dayKeys[0];
-      const lastDay = dayKeys[dayKeys.length - 1];
-      
-      // Para Google, para evitar que se vea como un bloque infinito en la vista de cuadrícula,
-      // enviamos el rango pero detallamos los cortes en la descripción:
-      start = formatLocal(parseInt(firstDay), event.horariosPorDia[firstDay][0].inicio);
-      end = formatLocal(parseInt(lastDay), event.horariosPorDia[lastDay][event.horariosPorDia[lastDay].length - 1].fin);
-      
+      // Si hay horarios distintos, creamos un link por cada día para que Google respete las horas exactas
       Object.entries(event.horariosPorDia).sort().forEach(([ts, hrs]) => {
-        const dateStr = new Date(parseInt(ts)).toLocaleDateString("es-ES");
-        scheduleDesc += `• ${dateStr}: ${hrs.map(h => `${h.inicio} a ${h.fin}`).join(" y ")}\n`;
+        const dateObj = new Date(parseInt(ts));
+        const dateStr = dateObj.toLocaleDateString("es-ES");
+        
+        hrs.forEach((turno, idx) => {
+          const start = formatLocal(dateObj, turno.inicio);
+          const end = formatLocal(dateObj, turno.fin);
+          const title = `${event.titulo} (${dateStr})`;
+          
+          links.push({
+            label: `GOOGLE: DÍA ${dateStr}`,
+            url: `${baseUrl}&text=${encodeURIComponent(title)}&details=${encodeURIComponent(commonDesc)}&location=${encodeURIComponent(event.ubicacion)}&dates=${start}/${end}&ctz=Europe/Madrid`
+          });
+        });
       });
     } else {
       const firstDate = event.especificos ? event.especificos[0] : event.inicio;
       const lastDate = event.especificos ? event.especificos[event.especificos.length - 1] : (event.fin || event.inicio);
-      start = formatLocal(firstDate, event.horarios?.[0]?.inicio);
-      end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin);
-    }
+      const start = formatLocal(firstDate, event.horarios?.[0]?.inicio);
+      const end = formatLocal(lastDate, event.horarios?.[event.horarios.length - 1]?.fin);
 
-    return `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(event.descripcion + "\n\n" + scheduleDesc)}&location=${encodeURIComponent(event.ubicacion)}&dates=${start}/${end}&ctz=Europe/Madrid`;
+      links.push({
+        label: "GOOGLE CALENDAR",
+        url: `${baseUrl}&text=${encodeURIComponent(event.titulo)}&details=${encodeURIComponent(commonDesc)}&location=${encodeURIComponent(event.ubicacion)}&dates=${start}/${end}&ctz=Europe/Madrid`
+      });
+    }
+    return links;
   };
 
   const downloadIcsFile = (event) => {
@@ -286,8 +290,23 @@ export default function Eventos({ isDark }) {
                     </div>
                     <div className="mt-8 pt-6 border-t border-zinc-500/20 space-y-3">
                       <p className="text-[9px] opacity-50 uppercase tracking-widest">// GUARDAR EN AGENDA</p>
-                      <a href={generateGoogleCalendarLink(selectedEvent)} target="_blank" rel="noopener noreferrer" className={`flex items-center justify-center py-2 px-4 border font-black transition-all ${isDark ? "bg-white text-black" : "bg-black text-white"}`}>GOOGLE CALENDAR</a>
-                      <button onClick={() => downloadIcsFile(selectedEvent)} className="w-full py-2 px-4 border border-zinc-500/30 font-black hover:bg-zinc-500/10">APPLE / OUTLOOK (.ICS)</button>
+                      
+                      {/* BOTONES DE GOOGLE (Uno o varios según los horarios) */}
+                      <div className="flex flex-col gap-2">
+                        {generateGoogleCalendarLinks(selectedEvent).map((link, i) => (
+                          <a 
+                            key={i} 
+                            href={link.url} 
+                            target="_blank" 
+                            rel="noopener noreferrer" 
+                            className={`flex items-center justify-center py-2 px-4 border font-black transition-all text-center ${isDark ? "bg-white text-black" : "bg-black text-white"}`}
+                          >
+                            {link.label}
+                          </a>
+                        ))}
+                      </div>
+
+                      <button onClick={() => downloadIcsFile(selectedEvent)} className="w-full py-2 px-4 border border-zinc-500/30 font-black hover:bg-zinc-500/10 uppercase">Apple / Outlook (.ics)</button>
                     </div>
                   </div>
                 </Motion.div>

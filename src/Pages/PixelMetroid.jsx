@@ -46,7 +46,7 @@ export default function PixelMetroidExplicacion({ isDark }) {
             // ACADEMIC_MODULE: CORE_SKILLS
           </span>
 
-          <h1 className="text-5xl md:text-8xl lg:text-9xl font-black italic uppercase leading-[0.8] tracking-tighter break-words md:whitespace-nowrap">
+          <h1 className="text-4xl md:text-7xl lg:text-8xl font-black italic uppercase leading-[0.8] tracking-tighter break-words md:whitespace-nowrap">
             PIXEL METROID <span style={{ color: accentColor }}>2D</span>
           </h1>
           <div className="flex flex-col md:flex-row justify-between items-center md:items-end gap-6 mt-4">
