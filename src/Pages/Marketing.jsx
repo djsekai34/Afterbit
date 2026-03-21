@@ -409,180 +409,451 @@ const PaginaMarketing = ({ isDark, headerLineColor, titleColor }) => {
           </motion.button>
         </motion.section>
 
-       {/* === SECCIÓN 02: ESTRATEGIA DE MARKETING === */}
-<motion.section
-  variants={itemVariants}
-  className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-20"
->
-  <div className="space-y-8">
-    <div className="space-y-4">
-      <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
-        ¡Estrategia <span style={{ color: accentGreen }}>Máxima</span>!
-      </h2>
-      <div
-        className={`h-2 w-32`}
-        style={{ backgroundColor: accentGreen, skewX: "-20deg" }}
-      ></div>
-    </div>
-
-    <p
-      className={`text-xl leading-relaxed font-bold italic ${isDark ? "text-zinc-200" : "text-zinc-800"}`}
-    >
-      ¡Nuestra energía no se queda solo tras la pantalla! Vamos a elevar
-      nuestro KI en el entorno digital y físico para que el fenómeno{" "}
-      <span
-        className="uppercase text-2xl"
-        style={{ color: accentGreen }}
-      >
-        Super Rodolfo
-      </span>{" "}
-      alcance su fase definitiva.
-    </p>
-
-    <div
-      className={`space-y-6 text-lg ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
-    >
-      <p>
-        ¡Dominaremos las
-        <span
-          className={`mx-1 font-black italic tracking-tight uppercase text-xl ${isDark ? "text-white" : "text-black"}`}
-          style={{
-            textShadow: isDark
-              ? `2px 2px 0px ${accentGreen}55`
-              : `2px 2px 0px ${accentGreen}aa`,
-          }}
+        {/* === SECCIÓN 02: ESTRATEGIA DE MARKETING === */}
+        <motion.section
+          variants={itemVariants}
+          className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start mb-20"
         >
-          {" "}
-          REDES SOCIALES{" "}
-        </span>
-        con un impacto viral masivo! Pero también conquistaremos las
-        calles empapelando cada rincón con nuestro:
-      </p>
-      <Link
-        to="/Proyectos/SuperRodolfo/AnalisisyPreproduccion"
-        className="inline-block font-black italic text-2xl underline decoration-4 underline-offset-4 hover:scale-105 transition-transform"
-        style={{
-          textDecorationColor: accentGreen,
-          color: isDark ? "white" : "black",
-        }}
-      >
-        ¡MOODBOARD OFICIAL!
-      </Link>
-      <p>
-        ¡La batalla real empieza en vivo! No te pierdas las fechas de
-        los eventos que estamos organizando y asistiendo en nuestra:
-      </p>
-      <Link
-        to="/Eventos"
-        className="inline-block font-black italic text-2xl underline decoration-4 underline-offset-4 hover:scale-105 transition-transform"
-        style={{
-          textDecorationColor: accentGreen,
-          color: isDark ? "white" : "black",
-        }}
-      >
-        ¡SECCIÓN DE EVENTOS!
-      </Link>
-    </div>
-  </div>
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <h2 className="text-4xl md:text-6xl font-black italic uppercase tracking-tighter">
+                ¡Estrategia <span style={{ color: accentGreen }}>Máxima</span>!
+              </h2>
+              <div
+                className={`h-2 w-32`}
+                style={{ backgroundColor: accentGreen, skewX: "-20deg" }}
+              ></div>
+            </div>
 
-  {/* PANEL DE ESTADO */}
-  <div className="space-y-6">
-    <div
-      className={`relative p-8 border-4 rotate-1 ${isDark ? "bg-zinc-900/60" : "bg-white shadow-xl"}`}
-      style={{
-        borderColor: accentGreen,
-        borderRadius: "20px 0px 20px 0px",
-      }}
-    >
-      <div
-        className="absolute -top-3 -right-3 w-12 h-12 rounded-full border-4 flex items-center justify-center font-black"
-        style={{
-          borderColor: accentGreen,
-          backgroundColor: isDark ? "#18181b" : "white",
-        }}
-      >
-        GO!
-      </div>
-      <h3 className="font-black italic text-xl tracking-widest mb-8 uppercase flex items-center gap-2">
-        <span
-          className="w-3 h-3 rounded-full animate-ping"
-          style={{ backgroundColor: accentGreen }}
-        ></span>
-        Estado del Poder
-      </h3>
-      <ul className="space-y-8 font-black italic text-base">
-        <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
-          <div className="flex justify-between items-center">
-            <span>IMPACTO VISUAL TERRESTRE</span>
-            <span
-              className="text-sm px-3 py-1 rounded-full text-white"
-              style={{ backgroundColor: accentGreen }}
+            <p
+              className={`text-xl leading-relaxed font-bold italic ${isDark ? "text-zinc-200" : "text-zinc-800"}`}
             >
-              ¡LISTO!
-            </span>
-          </div>
-          <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
-            Diseños del Moodboard Desplegados
-          </span>
-        </li>
-        <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
-          <div className="flex justify-between items-center">
-            <span>COMUNIDAD DIGITAL</span>
-            <span
-              className="text-sm px-3 py-1 rounded-full text-white"
-              style={{ backgroundColor: accentGreen }}
+              ¡Nuestra energía no se queda solo tras la pantalla! Vamos a elevar
+              nuestro KI en el entorno digital y físico para que el fenómeno{" "}
+              <span
+                className="uppercase text-2xl"
+                style={{ color: accentGreen }}
+              >
+                Super Rodolfo
+              </span>{" "}
+              alcance su fase definitiva.
+            </p>
+
+            <div
+              className={`space-y-6 text-lg ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
             >
-              ¡ACTIVO!
-            </span>
+              <p>
+                ¡Dominaremos las
+                <span
+                  className={`mx-1 font-black italic tracking-tight uppercase text-xl ${isDark ? "text-white" : "text-black"}`}
+                  style={{
+                    textShadow: isDark
+                      ? `2px 2px 0px ${accentGreen}55`
+                      : `2px 2px 0px ${accentGreen}aa`,
+                  }}
+                >
+                  {" "}
+                  REDES SOCIALES{" "}
+                </span>
+                con un impacto viral masivo! Pero también conquistaremos las
+                calles empapelando cada rincón con nuestro:
+              </p>
+              <Link
+                to="/Proyectos/SuperRodolfo/AnalisisyPreproduccion"
+                className="inline-block font-black italic text-2xl underline decoration-4 underline-offset-4 hover:scale-105 transition-transform"
+                style={{
+                  textDecorationColor: accentGreen,
+                  color: isDark ? "white" : "black",
+                }}
+              >
+                ¡MOODBOARD OFICIAL!
+              </Link>
+              <p>
+                ¡La batalla real empieza en vivo! No te pierdas las fechas de
+                los eventos que estamos organizando y asistiendo en nuestra:
+              </p>
+              <Link
+                to="/Eventos"
+                className="inline-block font-black italic text-2xl underline decoration-4 underline-offset-4 hover:scale-105 transition-transform"
+                style={{
+                  textDecorationColor: accentGreen,
+                  color: isDark ? "white" : "black",
+                }}
+              >
+                ¡SECCIÓN DE EVENTOS!
+              </Link>
+            </div>
           </div>
-          <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
-            Nivel de Ki en Redes: Máximo
-          </span>
-        </li>
-        <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
-          <div className="flex justify-between items-center">
-            <span>TORNEO DE EVENTOS</span>
-            <span
-              className="text-sm px-3 py-1 rounded-full animate-bounce text-white"
-              style={{ backgroundColor: accentGreen }}
+
+          {/* PANEL DE ESTADO */}
+          <div className="space-y-6">
+            <div
+              className={`relative p-8 border-4 rotate-1 ${isDark ? "bg-zinc-900/60" : "bg-white shadow-xl"}`}
+              style={{
+                borderColor: accentGreen,
+                borderRadius: "20px 0px 20px 0px",
+              }}
             >
-              ¡PRÓXIMAMENTE!
-            </span>
+              <div
+                className="absolute -top-3 -right-3 w-12 h-12 rounded-full border-4 flex items-center justify-center font-black"
+                style={{
+                  borderColor: accentGreen,
+                  backgroundColor: isDark ? "#18181b" : "white",
+                }}
+              >
+                GO!
+              </div>
+              <h3 className="font-black italic text-xl tracking-widest mb-8 uppercase flex items-center gap-2">
+                <span
+                  className="w-3 h-3 rounded-full animate-ping"
+                  style={{ backgroundColor: accentGreen }}
+                ></span>
+                Estado del Poder
+              </h3>
+              <ul className="space-y-8 font-black italic text-base">
+                <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
+                  <div className="flex justify-between items-center">
+                    <span>IMPACTO VISUAL TERRESTRE</span>
+                    <span
+                      className="text-sm px-3 py-1 rounded-full text-white"
+                      style={{ backgroundColor: accentGreen }}
+                    >
+                      ¡LISTO!
+                    </span>
+                  </div>
+                  <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
+                    Diseños del Moodboard Desplegados
+                  </span>
+                </li>
+                <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
+                  <div className="flex justify-between items-center">
+                    <span>COMUNIDAD DIGITAL</span>
+                    <span
+                      className="text-sm px-3 py-1 rounded-full text-white"
+                      style={{ backgroundColor: accentGreen }}
+                    >
+                      ¡ACTIVO!
+                    </span>
+                  </div>
+                  <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
+                    Nivel de Ki en Redes: Máximo
+                  </span>
+                </li>
+                <li className="flex flex-col gap-2 border-b-2 border-zinc-800/20 pb-4">
+                  <div className="flex justify-between items-center">
+                    <span>TORNEO DE EVENTOS</span>
+                    <span
+                      className="text-sm px-3 py-1 rounded-full animate-bounce text-white"
+                      style={{ backgroundColor: accentGreen }}
+                    >
+                      ¡PRÓXIMAMENTE!
+                    </span>
+                  </div>
+                  <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
+                    Consultar Sección de Eventos
+                  </span>
+                </li>
+              </ul>
+
+              {/* BLOQUE DE PRESUPUESTO AÑADIDO */}
+              <div
+                className={`mt-8 p-4 border-2 border-dashed flex justify-between items-center ${isDark ? "bg-white/5 border-white/20" : "bg-black/5 border-black/20"}`}
+              >
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-mono opacity-60 uppercase">
+                    Inversión Total Marketing
+                  </span>
+                  <span className="text-2xl font-black italic">1.000€</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-[10px] font-mono opacity-60 uppercase block">
+                    Eficiencia
+                  </span>
+                  <span
+                    className="text-sm font-bold"
+                    style={{ color: accentGreen }}
+                  >
+                    100% OPTIMIZADO
+                  </span>
+                </div>
+              </div>
+
+              <div className="mt-8 flex items-end gap-1 h-8">
+                {[40, 70, 100, 85, 60, 95].map((height, i) => (
+                  <motion.div
+                    key={i}
+                    initial={{ height: 0 }}
+                    animate={{ height: `${height}%` }}
+                    className="w-3"
+                    style={{ backgroundColor: accentGreen }}
+                  />
+                ))}
+              </div>
+            </div>
           </div>
-          <span className="text-xs opacity-60 uppercase tracking-widest font-mono">
-            Consultar Sección de Eventos
-          </span>
-        </li>
-      </ul>
+        </motion.section>
 
-      {/* BLOQUE DE PRESUPUESTO AÑADIDO */}
-      <div className={`mt-8 p-4 border-2 border-dashed flex justify-between items-center ${isDark ? "bg-white/5 border-white/20" : "bg-black/5 border-black/20"}`}>
-        <div className="flex flex-col">
-          <span className="text-[10px] font-mono opacity-60 uppercase">Inversión Total Marketing</span>
-          <span className="text-2xl font-black italic">1.000€</span>
-        </div>
-        <div className="text-right">
-          <span className="text-[10px] font-mono opacity-60 uppercase block">Eficiencia</span>
-          <span className="text-sm font-bold" style={{ color: accentGreen }}>100% OPTIMIZADO</span>
-        </div>
-      </div>
+        {/* === SECCIÓN 03: PLAN DE ASALTO=== */}
+        <motion.section
+          variants={itemVariants}
+          className="mt-60 mb-40 relative"
+        >
+          <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-5 pointer-events-none" />
 
-      <div className="mt-8 flex items-end gap-1 h-8">
-        {[40, 70, 100, 85, 60, 95].map((height, i) => (
-          <motion.div
-            key={i}
-            initial={{ height: 0 }}
-            animate={{ height: `${height}%` }}
-            className="w-3"
-            style={{ backgroundColor: accentGreen }}
-          />
-        ))}
-      </div>
-    </div>
-  </div>
-</motion.section>
+          <div className="flex flex-col gap-2 mb-16 relative">
+            <h2 className="text-6xl md:text-8xl font-black italic uppercase tracking-tighter leading-[0.8]">
+              HOJA DE
+              <span
+                className="text-transparent"
+                style={{
+                  WebkitTextStroke: `1px ${isDark ? "white" : "black"}`,
+                }}
+              >
+                {" "}
+                RUTA
+              </span>
+              <span style={{ color: accentGreen }}>.</span>
+            </h2>
+          </div>
 
-        {/* === SECCIÓN 03: ARQUITECTURA VISUAL Y PALETA === */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 relative">
+            {/* --- COLUMNA IZQUIERDA --- */}
+            <div className="lg:col-span-8 flex flex-col gap-6">
+              {/* BLOQUE: CRONOGRAMA */}
+              <div
+                className={`p-8 border-2 ${isDark ? "bg-zinc-900/40 border-zinc-800" : "bg-white border-zinc-200"} relative overflow-hidden`}
+              >
+                <motion.div
+                  animate={{ translateY: ["0%", "400%"] }}
+                  transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
+                  className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#008012] to-transparent opacity-20 z-10"
+                />
+
+                <div className="flex justify-between items-center mb-12">
+                  <h3 className="font-black italic text-2xl tracking-tight uppercase">
+                    Despliegue Temporal
+                  </h3>
+                  <div className="font-mono text-[10px] opacity-40">
+                    2026_SCHEDULE
+                  </div>
+                </div>
+
+                <div className="space-y-0 relative">
+                  <div className="absolute left-[15px] top-2 bottom-2 w-[1px] bg-zinc-800" />
+
+                  {[
+                    {
+                      t: "MARZO",
+                      title: "TRAILER OFICIAL",
+                      desc: "Se lanza el trailer oficlal de nuestro juego con su correspondiente habilitacion de whilist en steam y itchio.",
+                      tag: "MARKETING",
+                    },
+                    {
+                      t: "ABRIL",
+                      title: "PRESENTACIÓN",
+                      desc: "Presentacion de la demo en nuestro canal oficial de discrod, con las personas que estan dentro y la prensa.",
+                      tag: "COMMUNITY",
+                    },
+                    {
+                      t: "MAYO",
+                      title: "LANZAMIENTO DEMO",
+                      desc: "Lanzamos una demo jugable a la gente que tenga el juego reservado mas prensa.",
+                      tag: "ALPHA_TEST",
+                    },
+                    {
+                      t: "MAY/JUN",
+                      title: "RELEASE FINAL",
+                      desc: "A final de mayo y principios de junio publicamos el juego en Steam e itch.io + Directo oficial.",
+                      active: true,
+                      tag: "LIVE_NOW",
+                    },
+                  ].map((fase, i) => (
+                    <motion.div
+                      key={i}
+                      whileHover={{ x: 10 }}
+                      className="relative pl-12 pb-10 last:pb-0 group transition-all"
+                    >
+                      <div
+                        className={`absolute left-0 top-1.5 w-[32px] h-[32px] -translate-x-[15px] flex items-center justify-center bg-black border-2 transition-colors ${fase.active ? "border-[#008012]" : "border-zinc-800 group-hover:border-zinc-600"}`}
+                      >
+                        <div
+                          className={`w-2 h-2 ${fase.active ? "bg-[#008012] shadow-[0_0_10px_#008012]" : "bg-zinc-800"}`}
+                        />
+                      </div>
+                      <div className="flex flex-col md:flex-row md:items-start gap-4">
+                        <span
+                          className={`font-mono text-sm font-black w-24 ${fase.active ? "text-[#008012]" : "opacity-30"}`}
+                        >
+                          {fase.t}
+                        </span>
+                        <div className="flex-1">
+                          <h4
+                            className={`text-xl font-black uppercase italic leading-none mb-2 ${fase.active ? "text-white" : "opacity-70"}`}
+                          >
+                            {fase.title}
+                          </h4>
+                          <p className="text-sm opacity-50 max-w-lg leading-relaxed">
+                            {fase.desc}
+                          </p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* DETALLE DE LANZAMIENTO */}
+              <div className={`grid grid-cols-1 md:grid-cols-2 gap-6`}>
+                <div
+                  className={`p-6 border-2 border-zinc-800 ${isDark ? "bg-zinc-900/20" : "bg-zinc-50"}`}
+                >
+                  <h4 className="font-mono text-[10px] tracking-widest opacity-40 uppercase mb-4">
+                    // LIVE_EVENT_PROTOCOL
+                  </h4>
+                  <p className="text-xs font-bold italic uppercase leading-tight">
+                    El{" "}
+                    <span style={{ color: accentGreen }}>Directo Oficial</span>{" "}
+                    incluirá gameplay extendido, sesión de Q&A con el equipo y
+                    sorteo de claves exclusivas para la comunidad de Discord.
+                  </p>
+                </div>
+                <div
+                  className={`p-6 border-2 border-[#008012]/30 bg-[#008012]/5 flex items-center justify-between`}
+                >
+                  <div>
+                    <span className="block font-mono text-[9px] opacity-40 uppercase tracking-widest">
+                      Fase_Actual
+                    </span>
+                    <span className="text-xl font-black italic uppercase text-white leading-none">
+                      Pre-
+                      <br />
+                      Lanzamiento
+                    </span>
+                  </div>
+                  <div className="text-right">
+                    <span className="block font-mono text-[9px] opacity-40 uppercase tracking-widest">
+                      Estabilidad
+                    </span>
+                    <span
+                      className="text-xl font-black italic uppercase"
+                      style={{ color: accentGreen }}
+                    >
+                      99.9%
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* --- COLUMNA DERECHA  --- */}
+            <div className="lg:col-span-4 flex flex-col gap-6">
+              <div
+                className={`p-6 border-2 ${isDark ? "bg-zinc-900/80 border-zinc-800" : "bg-white border-zinc-200"}`}
+              >
+                <h3 className="font-mono text-[10px] tracking-[0.3em] opacity-40 mb-6 uppercase">
+                  Canales de enlace
+                </h3>
+                <div className="space-y-3">
+                  {[
+                    {
+                      label: "X / TWITTER",
+                      detail:
+                        "Foco en GIFs del juego mas tweets de avances del juego.",
+                    },
+                    {
+                      label: "DISCORD",
+                      detail: "Hub de comunidad, soporte y feedback directo.",
+                    },
+                    {
+                      label: "REDDIT",
+                      detail: "Participación en r/IndieDev y Devlogs.",
+                    },
+                    {
+                      label: "INSTAGRAM",
+                      detail: "Showcase visual: Personajes y arte pixelado.",
+                    },
+                    {
+                      label: "YOUTUBE",
+                      detail:
+                        "Entrevistas a los desarrolladores mas videos del juego y directos.",
+                    },
+                  ].map((social, i) => (
+                    <div
+                      key={i}
+                      className="p-3 border border-zinc-800/50 hover:border-[#008012] transition-colors"
+                    >
+                      <span className="block font-black italic text-xs text-[#008012] uppercase">
+                        {social.label}
+                      </span>
+                      <p className="text-[10px] font-mono opacity-50 mt-1">
+                        {social.detail}
+                      </p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="p-6 bg-black border-2 border-[#008012] relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-2 opacity-10">
+                  <svg
+                    width="40"
+                    height="40"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="white"
+                  >
+                    <path d="M21 12H3m18 0l-4-4m4 4l-4 4" strokeWidth="2" />
+                  </svg>
+                </div>
+
+                <h3 className="font-black italic text-xl text-white mb-6 uppercase tracking-tighter">
+                  Métricas
+                </h3>
+
+                <div className="space-y-6">
+                  {/* BARRA DE WISHLIST */}
+                  <div>
+                    <div className="flex justify-between text-[10px] font-mono mb-2">
+                      <span className="opacity-50 uppercase tracking-widest">
+                        Deseados_Steam
+                      </span>
+                      <span style={{ color: accentGreen }}>OBJETIVO_MAX</span>
+                    </div>
+                    <div className="h-1.5 w-full bg-zinc-800">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "90%" }}
+                        className="h-full bg-[#008012]"
+                      />
+                    </div>
+                  </div>
+
+                  {/* GRID DE ESTADÍSTICAS */}
+                  <div className="grid grid-cols-2 gap-4">
+                    <div className="border-l-2 border-[#008012]/30 pl-3">
+                      <span className="block text-[9px] font-mono opacity-40 uppercase tracking-widest">
+                        Fidelización
+                      </span>
+                      <span className="font-black italic text-white text-xs uppercase">
+                        Optimizada
+                      </span>
+                    </div>
+                    <div className="border-l-2 border-[#008012]/30 pl-3">
+                      <span className="block text-[9px] font-mono opacity-40 uppercase tracking-widest">
+                        Comunidad
+                      </span>
+                      <span className="font-black italic text-[#008012] text-xs">
+                        9000+
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
+
+        {/* === SECCIÓN 04: ARQUITECTURA VISUAL Y PALETA === */}
         <motion.section
           variants={itemVariants}
           className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center border-t border-zinc-800 pt-20"

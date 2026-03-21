@@ -126,8 +126,8 @@ export const eventsData = [
   {
     id: 6,
     titulo: "Presentacion del primer gameplay",
-    inicio: new Date(2026, 2, 18),
-    fin: new Date(2026, 2, 20),
+    inicio: new Date(2026, 3, 27),
+    fin: new Date(2026, 3, 29),
     horariosPorDia: {
       [new Date(2026, 2, 18).getTime()]: [{ inicio: "10:00", fin: "14:00" }],
       [new Date(2026, 2, 19).getTime()]: [{ inicio: "17:00", fin: "19:00" }],

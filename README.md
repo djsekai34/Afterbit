@@ -24,9 +24,11 @@ Dada mi base como **desarrollador web**, decidí que la mejor forma de documenta
 * **GDD Interactivo:** Un espacio dedicado a desglosar las entrañas de mi proyecto final, mucho más allá de una simple página estática.
 
 ### 🕹️ Proyectos Destacados:
-* **SUPER RODOLFO**: Juego final de especialización (Unity 2D / C#).
+* **SUPER RODOLFO Y LAS ESFERAS DEL SANTO REINO**: Juego final de especialización (Unity 2D / C#).
+* **SUPER RODOLFO STRIKE**: Spinoff de Super Rodolfo juego movil para jugar a los bolos.
 * **PIXEL METROID**: Desarrollo core y arquitectura de software en 2D.
 * **XR ADVENTURE**: Experiencias inmersivas con Realidad Mixta (Google ARCore).
+* **EL MALAGUEÑO VS LOS NASTIQUEROS**: Videojuego shooter 3D.
 
 ---
 
@@ -49,7 +51,7 @@ Si quieres clonar este sistema en tu entorno local, sigue estos comandos:
 
 ### 1. Clonar el repositorio
 ```bash
-git clone [https://github.com/tu-usuario/afterbit.git](https://github.com/tu-usuario/afterbit.git)
+git clone https://github.com/djsekai34/Afterbit
 cd afterbit
 ```
 ## 🚀 SETUP DE INSTALACIÓN
@@ -75,6 +77,8 @@ npm run dev
   
 ### 🎨 Assets
 * **`src/Imagenes/`**: Repositorio central de assets visuales, logotipos.
+* **`src/Video/`**: Trailer del videojuego Super Rodolfo y las esferas del Santo Reino.
+* **`src/audio/`**: Sountrack del videojuego Super Rodolfo y las esferas del Santo Reino.
 
 ---
 
