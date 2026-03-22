@@ -7,4 +7,5 @@ export default defineConfig({
   // En Vercel no hace falta el base del repo de GitHub
   base: '/', 
   plugins: [react(), tailwindcss()],
+  assetsInclude: ['**/*.apk'],
 })
