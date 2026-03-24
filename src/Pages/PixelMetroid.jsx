@@ -2,6 +2,7 @@ import React from "react";
 import { motion as Motion } from "framer-motion";
 import ImagenMetroid from "../Imagenes/Pixelmetroid.png";
 import JuegoMetroid from "../Imagenes/Pixelmetroidjuego.png";
+import ArchivoRar from "../rar/PixelMetroid2D.rar";
 
 // 1. Definimos la coreografía: los hijos aparecen uno tras otro (Stagger)
 const containerVariants = {
@@ -320,9 +321,8 @@ export default function PixelMetroidExplicacion({ isDark }) {
 
         <div className="mt-16 flex justify-center">
           <a
-            href="https://github.com/djsekai34/PixelMetroid2D"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={ArchivoRar} 
+            download="PixelMetroid2D_Game.rar" 
             className="w-full md:w-auto"
           >
             <button
@@ -330,7 +330,7 @@ export default function PixelMetroidExplicacion({ isDark }) {
               style={{ borderColor: currentTextColor }}
             >
               <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                GITHUB_REPOSITORY // VIEW_SOURCE_CODE
+                DOWNLOAD_SOURCE // GET_GAME_PACKAGE
               </span>
               <div className="absolute -inset-y-1 -left-1 -right-1 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
             </button>
