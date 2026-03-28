@@ -23,6 +23,7 @@ import SuperRodolfoStrike from './Pages/SuperRodolfoStrike.jsx';
 import Eventos from './Pages/Eventos.jsx';
 import IA from "./components/IA.jsx"
 import Marketing from "./Pages/Marketing.jsx"
+import MalaguenoVSNastiquero from "./Pages/MalaguenoVsNastiquero.jsx"
 import "./index.css";
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
         <Route path="/Proyectos/PixelMetroid2D" element={<PixelMetroid isDark={isDark} />} />
         <Route path="/Proyectos/XRAdventure" element={<XRAdventure isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
+        <Route path="/Proyectos/MalaguenoVSNastiquero" element={<MalaguenoVSNastiquero isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo" element={<SuperRodolfoGDD isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/AnalisisyPreproduccion" element={<SuperRodolfoAnalisis isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/GuionyNarrativa" element={<SuperRodolfoGuion isDark={isDark} />} />

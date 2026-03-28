@@ -5,12 +5,15 @@ import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import ImagenRodolfoStrike from "../Imagenes/LogoSRS.png";
 import ImagenMetroid from "../Imagenes/Pixelmetroid.png";
 import ImagenXR from "../Imagenes/XRAdventure.jpeg";
+import ImagenMVSN from "../Imagenes/LogoMVSN.png";
 import { Link } from "react-router-dom";
 
 export default function Proyectos({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
   const accentColor = isDark ? "#ff0000" : "#cc0000";
   const rodolfoGreen = "#008012";
+  const malagaBlue = "#a7d6f5";
+  const nasticRed = "#96232c";
 
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
@@ -342,6 +345,78 @@ export default function Proyectos({ isDark }) {
                 <div className="absolute -inset-y-1 -left-1 -right-1 bg-blue-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
               </button>
             </Link>
+          </div>
+        </Motion.section>
+        {/* --- SECCIÓN 04: El Malagueño vs los Nastiqueros --- */}
+        <Motion.section
+          id="MalagaVSNastic"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
+          style={{ borderColor: currentTextColor }}
+          initial="hidden"
+          animate="visible"
+          variants={itemVariants}
+        >
+          <div className="lg:col-span-5 space-y-6">
+            <span className="font-mono text-xs font-bold opacity-50 uppercase tracking-[0.4em] block">
+              [ CODE_05 ] // FPS GAME
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black italic uppercase leading-[0.9] tracking-tighter">
+              El Málagueño VS los Nastiqueros
+            </h2>
+            <div className="flex flex-wrap justify-center lg:justify-center gap-3 py-6 w-full">
+              {["Unity 3D", "C#", "FPS Project", "POOL OBJETCS"].map((tag) => (
+                <span
+                  key={tag}
+                  className="border-2 px-3 py-1 text-[10px] font-black uppercase italic"
+                  style={{ borderColor: currentTextColor }}
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
+            <p
+              className="text-lg opacity-90 leading-tight font-medium border-l-4 pl-4"
+              style={{ borderColor: nasticRed }}
+            >
+              Videojuego FPS en 3D en primera persona en el que encarnamos a un{" "}
+              <span style={{ color: malagaBlue }} className="font-bold">
+                malaguista
+              </span>{" "}
+              que debe enfrentarse a aficionados del{" "}
+              <span style={{ color: nasticRed }} className="font-bold">
+                Nàstic
+              </span>{" "}
+              furiosos por lo ocurrido en el ascenso a Segunda División.{" "}
+            </p>
+            <Link
+              to="/Proyectos/MalaguenoVSNastiquero"
+              className="w-full md:w-auto"
+            >
+              <button
+                className="group relative w-full md:w-auto border-4 py-4 px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
+                style={{ borderColor: currentTextColor }}
+              >
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-black">
+                  Ejecutar_MVSN.exe
+                </span>
+                <div
+                  className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
+                  style={{ backgroundColor: malagaBlue }}
+                />
+              </button>
+            </Link>
+          </div>
+          <div
+            className={`lg:col-span-7 group relative aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 ${
+              isDark ? "bg-zinc-900" : "bg-zinc-500"
+            }`}
+            style={{ borderColor: currentTextColor }}
+          >
+            <img
+              src={ImagenMVSN}
+              alt="Rodolfo Logo"
+              className="w-full h-full object-contain p-4 md:p-6 scale-125 md:scale-110 group-hover:scale-145 md:group-hover:scale-125 transition-transform duration-500"
+            />
           </div>
         </Motion.section>
       </div>

@@ -484,64 +484,87 @@ export default function SuperRodolfoStrike({ isDark }) {
         </Motion.div>
 
         {/* SECTION_05: CALL_TO_ACTION_&_GAME_PREVIEW */}
-          <Motion.section
-            initial="hidden"
-            animate="visible"
-            variants={fadeIn}
-            className="mt-25 flex flex-col items-center text-center pb-20 mb-25"
+        <Motion.section
+          initial="hidden"
+          whileInView="visible" // Cambiado para que se dispare al verlo
+          viewport={{ once: true }}
+          variants={fadeIn}
+          className="mt-25 flex flex-col items-center text-center pb-20 mb-25"
+        >
+          <div
+            className="p-8 md:p-12 font-sans text-base border-2 rounded-xl shadow-2xl transition-all duration-500 w-full max-w-2xl"
+            style={{
+              backgroundColor: isDark ? "#050505" : "#f0f0f0",
+              borderColor: srsGreen,
+              color: currentTextColor,
+            }}
           >
-            <div
-              className="p-8 md:p-12 font-sans text-base border-2 rounded-xl shadow-2xl transition-all duration-500 w-full max-w-2xl"
-              style={{
-                backgroundColor: isDark ? "#050505" : "#f0f0f0",
-                borderColor: srsGreen,
-                color: currentTextColor,
-              }}
+            <h2
+              className="text-4xl md:text-5xl font-black mb-4 leading-tight italic"
+              style={{ color: srsGreen }}
             >
-              <h2
-                className="text-4xl md:text-5xl font-black mb-4 leading-tight italic"
-                style={{ color: srsGreen }}
-              >
-                ¡La Bolera Comienza!
-              </h2>
-              <p className="text-lg opacity-90 mb-8 max-w-prose mx-auto">
-                Descarga{" "}
-                <span className="font-bold" style={{ color: srsGreen }}>
-                  Super Rodolfo Strike
-                </span>{" "}
-                y pon a prueba tu puntería contra los enemigos del Santo Reino.
+              ¡La Bolera Comienza!
+            </h2>
+            <p className="text-lg opacity-90 mb-8 max-w-prose mx-auto">
+              Descarga{" "}
+              <span className="font-bold" style={{ color: srsGreen }}>
+                Super Rodolfo Strike
+              </span>{" "}
+              y pon a prueba tu puntería contra los enemigos del Santo Reino.
+            </p>
+
+            <div className="mb-10 relative group">
+              <img
+                src={JuegoRodolfo}
+                alt="Portada de Super Rodolfo Strike"
+                className="w-full max-w-xs mx-auto rounded-lg shadow-lg"
+              />
+              <p className="font-mono text-[10px] mt-4 opacity-40">
+                / BUILD_VERSION: 1.2.0 / LAST_UPDATE: 2026.02.21
               </p>
-              <div className="mb-10 relative group">
-                <img
-                  src={JuegoRodolfo}
-                  alt="Portada de Super Rodolfo Strike"
-                  className="w-full max-w-xs mx-auto rounded-lg shadow-lg"
-                />
-                <p className="font-mono text-[10px] mt-4 opacity-40">
-                  / BUILD_VERSION: 1.2.0 / LAST_UPDATE: 2026.02.21
-                </p>
-              </div>
-              <a
-  href={SuperRodolfoAPK} // Aquí usas la importación de tu archivo
-  download="SuperRodolfoStrike.apk" // Nombre que tendrá el archivo al descargarse
-  className="relative inline-flex items-center justify-center px-10 py-4 font-black tracking-tighter text-white transition-all duration-300 group"
->
-  <span className="absolute inset-0 w-full h-full rounded-xl bg-gradient-to-r from-green-400 to-green-600 blur-sm opacity-50 group-hover:opacity-100 group-hover:blur-md transition-all duration-500"></span>
-  <span className="absolute inset-0 w-full h-full rounded-xl bg-black border-2 border-green-500"></span>
-
-  <span className="absolute bottom-0 left-0 h-1 bg-green-400 transition-all duration-500 w-0 group-hover:w-full"></span>
-
-  <span className="relative flex items-center gap-3">
-    <span className="text-xl animate-bounce group-hover:scale-125 transition-transform">
-      📲
-    </span>
-    <span className="uppercase italic text-lg lg:text-xl">
-      ¡DESCARGAR APK!
-    </span>
-  </span>
-</a>
             </div>
-          </Motion.section>
+
+            {/* BOTÓN DE DESCARGA */}
+            <a
+              href={SuperRodolfoAPK}
+              download="SuperRodolfoStrike.apk"
+              className="relative inline-flex items-center justify-center px-10 py-4 font-black tracking-tighter text-white transition-all duration-300 group mb-6"
+            >
+              <span className="absolute inset-0 w-full h-full rounded-xl bg-gradient-to-r from-green-400 to-green-600 blur-sm opacity-50 group-hover:opacity-100 group-hover:blur-md transition-all duration-500"></span>
+              <span className="absolute inset-0 w-full h-full rounded-xl bg-black border-2 border-green-500"></span>
+              <span className="absolute bottom-0 left-0 h-1 bg-green-400 transition-all duration-500 w-0 group-hover:w-full"></span>
+              <span className="relative flex items-center gap-3">
+                <span className="text-xl animate-bounce group-hover:scale-125 transition-transform">
+                  📲
+                </span>
+                <span className="uppercase italic text-lg lg:text-xl">
+                  ¡DESCARGAR APK!
+                </span>
+              </span>
+            </a>
+
+            {/* BLOQUE DE SEGURIDAD ANDROID */}
+            <div
+              className="flex flex-col items-center gap-3 opacity-80 w-full mt-4 border-t border-dashed pt-6"
+              style={{ borderColor: `${srsGreen}40` }}
+            >
+              <div className="flex items-center justify-center gap-2">
+                <span className="text-[10px] font-mono bg-green-500/20 text-green-500 px-2 py-0.5 rounded border border-green-500/30 flex items-center gap-1">
+                  🛡️ SCAN_CLEAN [0%_VIRUS]
+                </span>
+                <span className="text-[10px] font-mono bg-blue-500/20 text-blue-500 px-2 py-0.5 rounded border border-blue-500/30">
+                  ANDROID_PACKAGE
+                </span>
+              </div>
+
+              <p className="text-[10px] font-mono leading-tight uppercase italic text-center max-w-md">
+                * ARCHIVO VERIFICADO LIBRE DE MALWARE. PARA INSTALARLO, DEBERÁS
+                ACTIVAR LA OPCIÓN "INSTALAR APLICACIONES DESCONOCIDAS" EN LOS
+                AJUSTES DE TU NAVEGADOR O EXPLORADOR DE ARCHIVOS.
+              </p>
+            </div>
+          </div>
+        </Motion.section>
 
         {/* Bolera 4 */}
         <Motion.div

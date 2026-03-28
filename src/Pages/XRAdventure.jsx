@@ -1,6 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import ImagenVerticalAR from "../Imagenes/XRAdventure.jpeg";
+import XRAPK from "../apk/XRAdventure.apk"
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -300,25 +301,42 @@ export default function XRAdventureExplicacion({ isDark }) {
 
         {/* --- SECCIÓN: BOTONES DE ACCIÓN --- */}
         <div className="mt-16 flex flex-col md:flex-row gap-6 justify-center">
-          <a
-            href="https://github.com/FTorrent-63/XRAdventure"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex-1 max-w-sm"
-          >
-            <button
-              className="group relative border-4 py-6 px-12 font-black italic uppercase overflow-hidden transition-all duration-300 w-full"
-              style={{ borderColor: currentTextColor }}
+          <div className="flex-1 max-w-sm space-y-4">
+            <a
+              href={XRAPK} // Asegúrate de que la ruta al archivo sea correcta
+              download="XRAdventure.apk"
+              className="block"
             >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                VIEW_REPOSITORY
-              </span>
-              <div
-                className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
-                style={{ backgroundColor: accentColor }}
-              />
-            </button>
-          </a>
+              <button
+                className="group relative border-4 py-6 px-12 font-black italic uppercase overflow-hidden transition-all duration-300 w-full"
+                style={{ borderColor: currentTextColor }}
+              >
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                  INSTALAR_APP.APK
+                </span>
+                <div
+                  className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
+                  style={{ backgroundColor: accentColor }}
+                />
+              </button>
+            </a>
+
+            {/* NOTA DE SEGURIDAD */}
+            <div className="flex flex-col items-center gap-2 opacity-70 w-full mt-4">
+              <div className="flex items-center justify-center gap-2 w-full">
+                <span className="text-[10px] font-mono bg-green-500/20 text-green-500 px-2 py-0.5 rounded border border-green-500/30">
+                  SAFE_FILE
+                </span>
+                <span className="text-[10px] font-mono bg-blue-500/20 text-blue-500 px-2 py-0.5 rounded border border-blue-500/30">
+                  OPEN_SOURCE
+                </span>
+              </div>
+              <p className="text-[10px] font-mono leading-tight uppercase italic text-center max-w-[280px]">
+                * ARCHIVO VERIFICADO LIBRE DE MALWARE. REQUIERE ACTIVAR
+                "ORÍGENES DESCONOCIDOS" EN ANDROID PARA LA INSTALACIÓN.
+              </p>
+            </div>
+          </div>
 
           <a
             href="https://sites.google.com/view/dumbahh-studios/inicio"

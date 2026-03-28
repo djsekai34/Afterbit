@@ -5,6 +5,7 @@ export const mapaWeb = [
   { label: "Super Rodolfo Strike", path: "/Proyectos/SuperRodolfoStrike", tags: ["Super Rodolfo", "strike", "Bolos", "spinoff", "Movil"] },
   { label: "Pixel Metroid 2D", path: "/Proyectos/PixelMetroid2D", tags: ["metroid", "retro", "primer juego", "unity"] },
   { label: "XR Adventure", path: "/Proyectos/XRAdventure", tags: ["vr", "XR", "adventure", "pokemons", "nube"] },
+  { label: "El Malagueño VS los Nastiqueros", path: "/Proyectos/MalaguenoVSNastiquero", tags: ["FPS", "Malagueño", "Nastiquero", "Malaga", "Tarragona", "Primera persona"] },
   // Submenu SR y las esferas del SR
   { label: "01. Conceptos y Objetivos", path: "/Proyectos/SuperRodolfo/ConceptoyObjetivos", tags: ["Conceptos", "Objetivos", "BRAINSTORMING", "Datos"] },
   { label: "02. Análisis y Preproducción", path: "/Proyectos/SuperRodolfo/AnalisisyPreproduccion", tags: ["moodboard", "Estudio Mercado", "Referentes", "Dafo", "Came", "Financiacion"] },

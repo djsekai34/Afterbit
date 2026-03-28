@@ -9,6 +9,14 @@ const ChatIA = ({ isDark }) => {
   const [isOffline, setIsOffline] = useState(false); // Nuevo estado para el error
   const scrollRef = useRef(null);
 
+  const fechaActual = new Date().toLocaleString("es-ES", {
+    weekday: "long",
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
   useEffect(() => {
     if (scrollRef.current) {
       scrollRef.current.scrollTop = scrollRef.current.scrollHeight;
@@ -107,15 +115,18 @@ REGLAS PARA PROYECTOS:
    - Super Rodolfo y las esferas del santo reino: Es un proyecto integral final de especialización (/Proyectos/SuperRodolfo).
    - Super Rodolfo Strike: Spinoff de la saga Super Rodolfo donde jugamos a los bolos (/Proyectos/SuperRodolfoStrike).
    - XR Adventure: Es un proyecto colaborativo de Realidad Extendida que carga contenido desde la nube con Pokémon interactivos (/Proyectos/XRAdventure).
+   - El Malagueño vs los Nastiqueros: Es un juego FPS 3D en primera persona (/Proyectos/MalaguenoVSNastiquero).
    Si desea ver los demás proyectos, diríjase a /Proyectos."
 
-2. SI PREGUNTAN POR UNO ESPECÍFICO (Rodolfo, Metroid, XR o Strike):
+2. SI PREGUNTAN POR UNO ESPECÍFICO (Rodolfo, Metroid, XR, Strike o Malagueño):
    - Empieza: "[Nombre Completo]: Es un proyecto de David..." (o "proyecto colaborativo" si es XR Adventure).
-   - Detalla lo técnico: Pixel Metroid (físicas Unity), Super Rodolfo (final de curso, GDD, guion), Super Rodolfo Strike (uso de la clase touch screen y botones personalizados), XR Adventure (colaborativo, Pokémon, carga desde la nube).
+   - Detalla lo técnico: Pixel Metroid (físicas Unity), Super Rodolfo (final de curso, GDD, guion), Super Rodolfo Strike (uso de la clase touch screen y botones personalizados), XR Adventure (colaborativo, Pokémon, carga desde la nube), El Malagueño vs los Nastiqueros (FPS 3D donde se implementó un sistema de Pool de Objetos para optimizar el rendimiento y ahorrar memoria en el sistema de disparos).
    - Incluye siempre su ruta entre paréntesis: (/Proyectos/Nombre).
    - Termina: "Si desea ver los demás proyectos, diríjase a /Proyectos."
 
-REGLAS DE ORO:
+REGLAS ESPECIALES:
+- FECHA Y HORA ACTUAL: La fecha y hora real de este momento es: ${fechaActual}. Responde siempre de forma muy educada. Si el usuario pregunta qué día es hoy, qué hora es, o consulta fechas futuras (ej. "qué día es mañana" o "qué día es el próximo martes"), calcula la respuesta basándote exclusivamente en el dato proporcionado. No inventes fechas del pasado ni de 2024.
+- ENTRADAS SIN SENTIDO: Si el usuario escribe texto aleatorio (ej. "afdsadhas") o algo que no esté relacionado con Afterbit, David, tecnología o sus proyectos (Pixel Metroid, Super Rodolfo, Super Rodolfo Strike, XR Adventure o El Malagueño vs los Nastiqueros), responde: "Disculpa, no he podido comprender tu mensaje. Como asistente de Afterbit, solo puedo ayudarte con información sobre David Jiménez, como contactar con el y sus proyectos de programación y videojuegos. ¿En qué puedo ayudarte?".REGLAS DE ORO:
 - Prohibido inventar datos.
 - Usa siempre las rutas y URLs exactas proporcionadas.
 - En la frase de GitHub usa siempre: "revisar sus proyectos en GitHub".
@@ -142,7 +153,11 @@ REGLAS DE ORO:
         setIsOffline(true);
         setHistorial((prev) => [
           ...prev,
-          { rol: "ai", texto: "Lo siento, he recibido demasiadas consultas. Por favor, inténtalo de nuevo en un minuto." },
+          {
+            rol: "ai",
+            texto:
+              "Lo siento, he recibido demasiadas consultas. Por favor, inténtalo de nuevo en un minuto.",
+          },
         ]);
         return;
       }
@@ -199,7 +214,9 @@ REGLAS DE ORO:
             <div className="flex items-center gap-3">
               <div className="relative">
                 {/* Lógica de la luz parpadeante apagada si es Offline */}
-                <div className={`w-2.5 h-2.5 rounded-full ${isOffline ? "bg-zinc-600" : "bg-green-500"}`}></div>
+                <div
+                  className={`w-2.5 h-2.5 rounded-full ${isOffline ? "bg-zinc-600" : "bg-green-500"}`}
+                ></div>
                 {!isOffline && (
                   <div className="absolute inset-0 w-2.5 h-2.5 rounded-full bg-green-500 animate-ping opacity-60"></div>
                 )}
@@ -277,7 +294,11 @@ REGLAS DE ORO:
                 onChange={(e) => setMensaje(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && enviarPregunta()}
                 disabled={isOffline} // Bloquea input si está offline para evitar spam
-                placeholder={isOffline ? "Sistema saturado..." : "Escribe tu consulta aquí..."}
+                placeholder={
+                  isOffline
+                    ? "Sistema saturado..."
+                    : "Escribe tu consulta aquí..."
+                }
                 className={`w-full p-4 pr-14 rounded-2xl text-xs md:text-sm outline-none transition-all duration-300 border-2 ${
                   isDark
                     ? "bg-zinc-900 border-zinc-800 focus:border-blue-500/50 text-white placeholder:text-zinc-600"
@@ -288,7 +309,9 @@ REGLAS DE ORO:
                 onClick={enviarPregunta}
                 disabled={isOffline}
                 className={`absolute right-2.5 top-2.5 w-10 h-10 text-white rounded-xl transition-all active:scale-90 flex items-center justify-center shadow-lg ${
-                  isOffline ? "bg-zinc-600 shadow-none cursor-not-allowed" : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/20"
+                  isOffline
+                    ? "bg-zinc-600 shadow-none cursor-not-allowed"
+                    : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/20"
                 }`}
               >
                 <svg
@@ -307,12 +330,12 @@ REGLAS DE ORO:
               </button>
             </div>
             <div className="flex flex-col items-center mt-3 gap-1 opacity-50 transition-opacity hover:opacity-80">
-               <p className="text-[8px] uppercase tracking-[0.3em] font-black">
-                 Afterbit IA System 
-               </p>
-               <span className="text-[7px] font-bold uppercase tracking-widest">
-                 Powered by <span className="text-blue-500">Gemini</span>
-               </span>
+              <p className="text-[8px] uppercase tracking-[0.3em] font-black">
+                Afterbit IA System
+              </p>
+              <span className="text-[7px] font-bold uppercase tracking-widest">
+                Powered by <span className="text-blue-500">Gemini</span>
+              </span>
             </div>
           </div>
         </div>

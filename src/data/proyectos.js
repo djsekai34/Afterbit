@@ -2,6 +2,7 @@ import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import Metroid2d from "../Imagenes/Pixelmetroid.png";
 import XRAdventure from "../Imagenes/XRAdventure.jpeg";
 import SuperRodolofStrike from "../Imagenes/LogoSRS.png";
+import MalaguenoVsNastiquero from "../Imagenes/LogoMVSN.png";
 
 export const proyectos = [
   {
@@ -35,5 +36,13 @@ export const proyectos = [
     tag: "Mobile Game",
     image: SuperRodolofStrike,
     link: "/Proyectos/SuperRodolfoStrike",
+  },
+  {
+    id: 5,
+    title: "El Málagueño VS los nastiqueros",
+    desc: "Videojuego FPS 3D en primera persona basado en el partido Nastic vs Málaga.",
+    tag: "FPS Game",
+    image: MalaguenoVsNastiquero,
+    link: "/Proyectos/MalaguenoVSNastiquero",
   },
 ];
