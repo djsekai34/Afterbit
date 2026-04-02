@@ -8,6 +8,7 @@ const ChatIA = ({ isDark }) => {
   const [cargando, setCargando] = useState(false);
   const [isOffline, setIsOffline] = useState(false); // Nuevo estado para el error
   const scrollRef = useRef(null);
+  const chatContainerRef = useRef(null);
 
   const fechaActual = new Date().toLocaleString("es-ES", {
     weekday: "long",
@@ -85,6 +86,20 @@ const ChatIA = ({ isDark }) => {
       return parte;
     });
   };
+
+  useEffect(() => {
+    const handleClickFuera = (event) => {
+      if (
+        isOpen &&
+        chatContainerRef.current &&
+        !chatContainerRef.current.contains(event.target)
+      ) {
+        setIsOpen(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickFuera);
+    return () => document.removeEventListener("mousedown", handleClickFuera);
+  }, [isOpen]);
 
   const enviarPregunta = async () => {
     if (!mensaje.trim()) return;
@@ -181,7 +196,10 @@ REGLAS ESPECIALES:
   };
 
   return (
-    <div className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] font-sans">
+    <div
+      ref={chatContainerRef}
+      className="fixed bottom-4 right-4 sm:bottom-6 sm:right-6 z-[9999] font-sans"
+    >
       <div className="relative group">
         {!isOpen && (
           <span className="absolute inset-0 rounded-2xl bg-blue-500/40 animate-ping pointer-events-none"></span>
@@ -213,7 +231,6 @@ REGLAS ESPECIALES:
           <div className="px-6 py-5 border-b border-zinc-500/10 flex justify-between items-center bg-gradient-to-r from-transparent via-blue-500/5 to-transparent">
             <div className="flex items-center gap-3">
               <div className="relative">
-                {/* Lógica de la luz parpadeante apagada si es Offline */}
                 <div
                   className={`w-2.5 h-2.5 rounded-full ${isOffline ? "bg-zinc-600" : "bg-green-500"}`}
                 ></div>
@@ -293,13 +310,13 @@ REGLAS ESPECIALES:
                 value={mensaje}
                 onChange={(e) => setMensaje(e.target.value)}
                 onKeyDown={(e) => e.key === "Enter" && enviarPregunta()}
-                disabled={isOffline} // Bloquea input si está offline para evitar spam
+                disabled={isOffline}
                 placeholder={
                   isOffline
                     ? "Sistema saturado..."
                     : "Escribe tu consulta aquí..."
                 }
-                className={`w-full p-4 pr-14 rounded-2xl text-xs md:text-sm outline-none transition-all duration-300 border-2 ${
+                className={`w-full p-4 pr-14 rounded-2xl text-base md:text-sm outline-none transition-all duration-300 border-2 ${
                   isDark
                     ? "bg-zinc-900 border-zinc-800 focus:border-blue-500/50 text-white placeholder:text-zinc-600"
                     : "bg-white border-zinc-200 focus:border-blue-500 text-black shadow-inner"
@@ -308,7 +325,7 @@ REGLAS ESPECIALES:
               <button
                 onClick={enviarPregunta}
                 disabled={isOffline}
-                className={`absolute right-2.5 top-2.5 w-10 h-10 text-white rounded-xl transition-all active:scale-90 flex items-center justify-center shadow-lg ${
+                className={`absolute right-2.5 top-1/2 -translate-y-1/2 w-10 h-10 text-white rounded-xl transition-all active:scale-90 flex items-center justify-center shadow-lg ${
                   isOffline
                     ? "bg-zinc-600 shadow-none cursor-not-allowed"
                     : "bg-blue-600 hover:bg-blue-500 shadow-blue-600/20"

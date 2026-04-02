@@ -2,14 +2,14 @@
  * ==========================================================================================
  * AFTERBIT EVENT SYSTEM - MANUAL DE MANTENIMIENTO Y CREACIÓN
  * ==========================================================================================
- * Este archivo gestiona la agenda de la empresa. Para añadir un evento, inserta un objeto 
+ * Este archivo gestiona la agenda de la empresa. Para añadir un evento, inserta un objeto
  * en el array 'eventsData'. Sigue estas reglas para que el calendario lo pinte correctamente:
  * * ------------------------------------------------------------------------------------------
  * 1. CAMPOS OBLIGATORIOS (EL "ESQUELETO"):
  * ------------------------------------------------------------------------------------------
  * - id: (Número) Único. Si el último es 9, el siguiente es 10.
  * - titulo: (String) Nombre del evento. Sé breve y directo.
- * - inicio: (Date) Objeto fecha: 'new Date(AÑO, MES, DIA)'. 
+ * - inicio: (Date) Objeto fecha: 'new Date(AÑO, MES, DIA)'.
  * ⚠️ OJO: Los meses en JavaScript empiezan en 0 (Enero = 0, Diciembre = 11).
  * Ejemplo Octubre: 'new Date(2025, 9, 1)'.
  * - fin: Le fecha de finalizacion
@@ -26,14 +26,14 @@
  * -> Configuración: Define 'inicio', pon 'fin: null' y NO añadidas 'horarios'.
  * * CASO B: EVENTO DE VARIOS DÍAS CON HORARIO FIJO (Ejemplo: Id 3, 7 u 8)
  * -> Uso: El evento dura varios días y todos los días se abre y cierra a la misma hora.
- * -> Configuración: 
+ * -> Configuración:
  * fin: new Date(...) // Fecha de fin
  * horarios: [{ inicio: "08:15", fin: "13:45" }]
  * * CASO C: HORARIO DE MAÑANA Y TARDE FIJO (Ejemplo: Id 5)
  * -> Uso: Todos los días del evento tienen un descanso al mediodía.
  * -> Configuración: Añade dos objetos al array de horarios:
  * horarios: [
- * { inicio: "10:00", fin: "14:00" }, 
+ * { inicio: "10:00", fin: "14:00" },
  * { inicio: "17:00", fin: "20:00" }
  * ]
  * * CASO D: HORARIOS VARIABLES POR DÍA (Ejemplo: Id 6 o Granada Gaming)
@@ -42,7 +42,7 @@
  * horariosPorDia: {
  * [new Date(2026, 2, 18).getTime()]: [{ inicio: "10:00", fin: "14:00" }],
  * [new Date(2026, 2, 20).getTime()]: [ // Este día tiene mañana y tarde
- * { inicio: "10:00", fin: "14:00" }, 
+ * { inicio: "10:00", fin: "14:00" },
  * { inicio: "17:00", fin: "20:00" }
  * ]
  * }
@@ -62,7 +62,8 @@ export const eventsData = [
     inicio: new Date(2025, 9, 1),
     fin: null,
     color: "#008000",
-    descripcion: "Fundación de Afterbit como empresa de desarrollo de videojuegos para el curso de especialización.",
+    descripcion:
+      "Fundación de Afterbit como empresa de desarrollo de videojuegos para el curso de especialización.",
     ubicacion: "IES Virgen del Carmen",
     url: "http://googleusercontent.com/maps.google.com/9",
     tipo: "FUNDACIÓN",
@@ -79,7 +80,8 @@ export const eventsData = [
       [new Date(2026, 11, 10).getTime()]: [{ inicio: "11:45", fin: "13:45" }],
     },
     color: "#ff4500",
-    descripcion: "Presentación del proyecto de realidad extendida con demostraciones jugables y charla sobre el desarrollo.",
+    descripcion:
+      "Presentación del proyecto de realidad extendida con demostraciones jugables y charla sobre el desarrollo.",
     ubicacion: "IES Virgen del Carmen",
     url: "http://googleusercontent.com/maps.google.com/9",
     tipo: "Presentacion",
@@ -91,7 +93,8 @@ export const eventsData = [
     fin: new Date(2025, 11, 19),
     horarios: [{ inicio: "08:15", fin: "13:45" }],
     color: "#8a2be2",
-    descripcion: "Presentamos el videjuego de Pixel Metroid 2D con charlas sobre el desarrollo, diseño del juego.",
+    descripcion:
+      "Presentamos el videjuego de Pixel Metroid 2D con charlas sobre el desarrollo, diseño del juego.",
     ubicacion: "IES Virgen del Carmen",
     url: "http://googleusercontent.com/maps.google.com/9",
     tipo: "Presentacion",
@@ -103,7 +106,8 @@ export const eventsData = [
     fin: new Date(2026, 0, 8),
     horarios: [{ inicio: "10:00", fin: "13:00" }],
     color: "#aae40b",
-    descripcion: "Presentamos el proyecto a posibles inversores. Cada día tiene un horario de atención diferente.",
+    descripcion:
+      "Presentamos el proyecto a posibles inversores. Cada día tiene un horario de atención diferente.",
     ubicacion: "Alcalá la Real",
     url: "https://goo.gl/maps/AlcalaReal",
     tipo: "Exposición",
@@ -115,10 +119,11 @@ export const eventsData = [
     fin: new Date(2026, 0, 22),
     horarios: [
       { inicio: "10:00", fin: "14:00" },
-      { inicio: "17:00", fin: "20:00" }
+      { inicio: "17:00", fin: "20:00" },
     ],
     color: "#12122B",
-    descripcion: "Presentamos el videojuego Super Rodolfo Strike con demostraciones jugables.",
+    descripcion:
+      "Presentamos el videojuego Super Rodolfo Strike con demostraciones jugables.",
     ubicacion: "IES Virgen del Carmen",
     url: "http://googleusercontent.com/maps.google.com/9",
     tipo: "Presentacion",
@@ -132,8 +137,8 @@ export const eventsData = [
       [new Date(2026, 2, 18).getTime()]: [{ inicio: "10:00", fin: "14:00" }],
       [new Date(2026, 2, 19).getTime()]: [{ inicio: "17:00", fin: "19:00" }],
       [new Date(2026, 2, 20).getTime()]: [
-        { inicio: "10:00", fin: "14:00" }, 
-        { inicio: "17:00", fin: "20:00" }
+        { inicio: "10:00", fin: "14:00" },
+        { inicio: "17:00", fin: "20:00" },
       ],
     },
     color: "#aae40b",
@@ -148,11 +153,10 @@ export const eventsData = [
     titulo: "Presentacion de el Malagueño vs los nastiqueros",
     inicio: new Date(2026, 2, 23),
     fin: new Date(2026, 2, 25),
-     horarios: [
-      { inicio: "08:15", fin: "13:45" },
-    ],
+    horarios: [{ inicio: "08:15", fin: "13:45" }],
     color: "#a7d6f5",
-    descripcion: "Presentamos el gameplay de nuestro juego Shooter el Malageueño vs el Nastiquero, tambien se presnta su version VR.",
+    descripcion:
+      "Presentamos el gameplay de nuestro juego Shooter el Malagueño vs los nastiqueros, tambien se presnta su version VR.",
     ubicacion: "IES Virgen del Carmen",
     url: "https://maps.app.goo.gl/S3R1aTRSbLYZBXsP9",
     tipo: "Gameplay Reveal",
@@ -163,9 +167,7 @@ export const eventsData = [
     titulo: "Gamergy 2026",
     inicio: new Date(2026, 11, 12),
     fin: new Date(2026, 11, 14),
-     horarios: [
-      { inicio: "08:15", fin: "13:45" },
-    ],
+    horarios: [{ inicio: "08:15", fin: "13:45" }],
     color: "#a7d6f5",
     descripcion: "Feria de videojuegos realizada en Madrid en el IFEMA.",
     ubicacion: "Madrid",
@@ -189,18 +191,31 @@ export const eventsData = [
     tipo: "Feria de Videojuegos",
   },
 
-    {
+  {
     id: 9,
     titulo: "RetroBarcelona 2026",
     inicio: new Date(2026, 4, 16),
     fin: new Date(2026, 4, 17),
-   horarios: [
-      { inicio: "10:00", fin: "20:00" },
-    ],
+    horarios: [{ inicio: "10:00", fin: "20:00" }],
     color: "#a50044",
-    descripcion: "Feria de videojuegos realizada en L’Hospitalet de Llobregat (Barcelona), enfocada en los videojuegos retro",
+    descripcion:
+      "Feria de videojuegos realizada en L’Hospitalet de Llobregat (Barcelona), enfocada en los videojuegos retro",
     ubicacion: "Centro Comercial La Farga (L’Hospitalet de Llobregat)",
     url: "https://maps.app.goo.gl/wT8FP29kvDb1ZriR8",
     tipo: "Feria de Videojuegos",
+  },
+
+  {
+    id: 10,
+    titulo: " III Feria Provincial de FP",
+    inicio: new Date(2026, 3, 15),
+    fin: new Date(2026, 3, 15),
+    horarios: [{ inicio: "09:00", fin: "18:00" }],
+    color: "#1b7443",
+    descripcion:
+      "Es un encuentro educativo y empresarial que reúne a 43 centros de formación para mostrar la oferta de FP de la provincia y conectar a los estudiantes con el mercado laboral.",
+    ubicacion: "Pabellón Ferial de Andújar (Jaén) ",
+    url: "https://maps.app.goo.gl/JfBsiJXVAJNE5jMBA",
+    tipo: "Feria de FP",
   },
 ];

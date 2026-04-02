@@ -43,6 +43,7 @@ export default function Eventos({ isDark }) {
   const generateGoogleCalendarLinks = (event) => {
     const baseUrl = "https://calendar.google.com/calendar/render?action=TEMPLATE";
     const links = [];
+    const today = new Date().setHours(0, 0, 0, 0); // Timestamp de hoy sin horas
     
     let commonDesc = `${event.descripcion}\n\n📍 UBICACIÓN: ${event.ubicacion}\n`;
     if (event.url) commonDesc += `🔗 ENLACE: ${event.url}\n`;
@@ -50,6 +51,9 @@ export default function Eventos({ isDark }) {
     if (event.horariosPorDia) {
       Object.entries(event.horariosPorDia).sort().forEach(([ts, hrs]) => {
         const dateObj = new Date(parseInt(ts));
+        // FILTRO: Solo si el día del evento es hoy o futuro
+        if (dateObj.getTime() < today) return;
+
         const dateStr = dateObj.toLocaleDateString("es-ES");
         
         if (hrs.length > 1) {
@@ -70,11 +74,13 @@ export default function Eventos({ isDark }) {
         }
       });
     } else {
-      // DESGLOSE POR DÍAS PARA RANGOS (Ej: 23 al 25)
       const startD = new Date(event.inicio);
       const endD = new Date(event.fin || event.inicio);
       
       for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+        // FILTRO: Solo si el día del bucle es hoy o futuro
+        if (d.getTime() < today) continue;
+
         const dateStr = d.toLocaleDateString("es-ES");
         const start = formatLocal(d, event.horarios?.[0]?.inicio);
         const end = formatLocal(d, event.horarios?.[event.horarios.length - 1]?.fin, !event.horarios);
@@ -90,6 +96,7 @@ export default function Eventos({ isDark }) {
 
   const downloadIcsFile = (event) => {
     const events = [];
+    const today = new Date().setHours(0, 0, 0, 0);
     const commonHeader = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Afterbit//Calendar//ES", "X-WR-TIMEZONE:Europe/Madrid"];
     let extraDesc = `\\n\\n📍 UBICACIÓN: ${event.ubicacion}`;
     if (event.url) extraDesc += `\\n🔗 ENLACE: ${event.url}`;
@@ -97,6 +104,9 @@ export default function Eventos({ isDark }) {
     if (event.horariosPorDia) {
       Object.entries(event.horariosPorDia).forEach(([ts, hrs]) => {
         const dateObj = new Date(parseInt(ts));
+        // FILTRO: No añadir al ICS si ya pasó
+        if (dateObj.getTime() < today) return;
+
         if (hrs.length > 1) {
           const horariStr = `⏰ HORARIO REAL: ${hrs.map(h => `${h.inicio}-${h.fin}`).join(" y ")}`;
           events.push(
@@ -123,13 +133,15 @@ export default function Eventos({ isDark }) {
         }
       });
     } else {
-      // DESGLOSE POR DÍAS PARA RANGOS EN ICS
       const startD = new Date(event.inicio);
       const endD = new Date(event.fin || event.inicio);
       const isAllDay = !event.horarios;
       const vProp = isAllDay ? ";VALUE=DATE" : "";
 
       for (let d = new Date(startD); d <= endD; d.setDate(d.getDate() + 1)) {
+        // FILTRO: No añadir al ICS si ya pasó
+        if (d.getTime() < today) continue;
+
         const start = formatLocal(d, event.horarios?.[0]?.inicio);
         const end = formatLocal(d, event.horarios?.[event.horarios.length - 1]?.fin, isAllDay);
         
@@ -144,6 +156,9 @@ export default function Eventos({ isDark }) {
         );
       }
     }
+
+    // Si después de filtrar no queda ningún día futuro, no descargamos nada
+    if (events.length === 0) return;
 
     const icsContent = [...commonHeader, ...events, "END:VCALENDAR"].join("\n");
     const blob = new Blob([icsContent], { type: "text/calendar;charset=utf-8" });
@@ -433,7 +448,12 @@ export default function Eventos({ isDark }) {
                               {link.label}
                             </a>
                           ))}
-                          <button onClick={() => downloadIcsFile(selectedEvent)} className={`flex items-center justify-center py-2 px-4 border font-black transition-all hover:scale-[1.02] active:scale-95 ${isDark ? "border-zinc-700 text-zinc-400 hover:text-white" : "border-zinc-300 text-zinc-600 hover:text-black"}`}>APPLE / OUTLOOK (.ICS)</button>
+                          {generateGoogleCalendarLinks(selectedEvent).length > 0 && (
+                            <button onClick={() => downloadIcsFile(selectedEvent)} className={`flex items-center justify-center py-2 px-4 border font-black transition-all hover:scale-[1.02] active:scale-95 ${isDark ? "border-zinc-700 text-zinc-400 hover:text-white" : "border-zinc-300 text-zinc-600 hover:text-black"}`}>APPLE / OUTLOOK (.ICS)</button>
+                          )}
+                          {generateGoogleCalendarLinks(selectedEvent).length === 0 && (
+                            <p className="text-[9px] opacity-40 text-center italic">No hay fechas próximas disponibles para guardar.</p>
+                          )}
                         </div>
                       </div>
                     )}

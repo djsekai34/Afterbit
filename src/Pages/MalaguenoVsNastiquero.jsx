@@ -199,20 +199,28 @@ const MalaguenoPage = ({ isDark }) => {
                   </h3>
                   <ul className="font-mono text-[11px] md:text-xs space-y-5 uppercase tracking-wider">
                     <li
-                      className="flex flex-col gap-1 border-b pb-3"
+                      className="flex flex-col gap-0.5 border-b pb-2"
                       style={{ borderColor: `${currentTextColor}20` }}
                     >
-                      <span className="opacity-40 text-[9px]">LOCATION:</span>
-                      <span className="font-bold">NOU_ESTADI_TARRAGONA</span>
+                      <span className="opacity-40 text-[8px] tracking-wider">
+                        LOCATION:
+                      </span>
+                      <span className="font-bold text-[13px] md:text-sm leading-tight">
+                        NOU_ESTADI_TARRAGONA
+                      </span>
                     </li>
+
                     <li
-                      className="flex flex-col gap-1 border-b pb-3"
+                      className="flex flex-col gap-0.5 border-b pb-2"
                       style={{ borderColor: `${currentTextColor}20` }}
                     >
-                      <span className="opacity-40 text-[9px]">
+                      <span className="opacity-40 text-[8px] tracking-wider">
                         TARGET_OBJECTIVE:
                       </span>
-                      <span className="font-bold" style={{ color: "#96232c" }}>
+                      <span
+                        className="font-bold text-[13px] md:text-sm leading-tight"
+                        style={{ color: "#96232c" }}
+                      >
                         LLORONES_DEL_NASTIC
                       </span>
                     </li>
@@ -432,8 +440,12 @@ const MalaguenoPage = ({ isDark }) => {
                 initial={{ x: 0, opacity: 0 }}
                 animate={{
                   x:
-                    typeof window !== "undefined" && window.innerWidth < 768
-                      ? [0, 100]
+                    typeof window !== "undefined"
+                      ? window.innerWidth < 768
+                        ? [0, 100] // Móvil
+                        : window.innerWidth < 1024
+                          ? [0, 420] // TABLET VERTICAL (Evita que atraviese el escudo)
+                          : [0, 750] // PC
                       : [0, 750],
                   opacity: [0, 1, 1, 0],
                 }}
@@ -726,7 +738,9 @@ const MalaguenoPage = ({ isDark }) => {
                     ROJA
                   </span>{" "}
                   que indicará que ha perdido vida. Cuando cojamos el{" "}
-                  <span className="text-white font-bold italic uppercase">
+                  <span
+                    className={`font-bold italic uppercase ${isDark ? "text-white" : "text-black"}`}
+                  >
                     POWER UP
                   </span>
                   , esta se rellena a tope devolviendo todas las vidas al
@@ -810,8 +824,12 @@ const MalaguenoPage = ({ isDark }) => {
                 initial={{ x: 0, opacity: 0 }}
                 animate={{
                   x:
-                    typeof window !== "undefined" && window.innerWidth < 768
-                      ? [0, 100]
+                    typeof window !== "undefined"
+                      ? window.innerWidth < 768
+                        ? [0, 100] // Móvil
+                        : window.innerWidth < 1024
+                          ? [0, 420] // TABLET
+                          : [0, 750] // PC
                       : [0, 750],
                   opacity: [0, 1, 1, 0],
                 }}
@@ -1179,7 +1197,7 @@ const MalaguenoPage = ({ isDark }) => {
         {/* ══ SECCIÓN 5: DESPLIEGUE ══ */}
         <Motion.section
           initial="hidden"
-          whileInView="visible" // Cambiado a whileInView para que la animación salte al hacer scroll
+          whileInView="visible"
           viewport={{ once: true }}
           variants={fadeIn}
           className="mt-12 md:mt-25 mb-20 md:mb-50 px-4 md:px-0"
@@ -1198,7 +1216,7 @@ const MalaguenoPage = ({ isDark }) => {
             </div>
 
             <div className="relative z-10 flex flex-col items-center text-center">
-              {/* CABECERA DE ALERTA: Texto más pequeño en móvil */}
+              {/* CABECERA DE ALERTA*/}
               <div className="flex items-center gap-2 md:gap-4 mb-6 md:mb-8">
                 <div className="h-[1px] md:h-[2px] w-8 sm:w-16 md:w-24 bg-current opacity-30" />
                 <span
@@ -1471,7 +1489,10 @@ const MalaguenoPage = ({ isDark }) => {
                     className="text-xs md:text-sm leading-relaxed opacity-80 italic border-l-2 pl-4"
                     style={{ color: currentTextColor, borderColor: nasticRed }}
                   >
-                    "Acabas de ver la victoria del Málaga en Tarragona. Una legión de nastiqueros va a por ti por la rabia y lo visto en el campo. Deberás armarte con tu mejor arma para matarlos y celebrar el ascenso en paz y tranquilidad."
+                    "Acabas de ver la victoria del Málaga en Tarragona. Una
+                    legión de nastiqueros va a por ti por la rabia y lo visto en
+                    el campo. Deberás armarte con tu mejor arma para matarlos y
+                    celebrar el ascenso en paz y tranquilidad."
                   </p>
                 </div>
 

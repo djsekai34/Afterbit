@@ -1,7 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import { Link } from "react-router-dom";
-import { proyectos } from "../data/proyectos"; // Importación del nuevo archivo
+import { proyectos } from "../data/proyectos"; 
 
 export default function Cuerpo({ isDark }) {
   const fadeInUp = {
@@ -256,85 +256,109 @@ export default function Cuerpo({ isDark }) {
         </Motion.h2>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
-  {proyectos.map((proyecto, index) => (
-    <Link 
-      key={proyecto.id} 
-      to={proyecto.link}
-      /* LÓGICA DE CENTRADO: Si es el último y el total es impar, ocupa 2 columnas */
-      className={`${
-        proyectos.length % 2 !== 0 && index === proyectos.length - 1 
-          ? "md:col-span-2 md:max-w-[50%] md:mx-auto w-full" 
-          : ""
-      }`}
-    >
-      <Motion.div
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, margin: "-50px" }}
-        variants={fadeInUp}
-        whileHover={{ y: -8 }}
-        /* Mantenemos tus clases exactas */
-        className="group relative p-8 border-2 transition-all duration-700 overflow-hidden cursor-pointer min-h-[400px] flex flex-col justify-end"
-        style={{ borderColor: currentTextColor }}
-      >
-        {/* ... Resto de tu código (Imagen, Gradiante, Textos) igual ... */}
-        <div
-          className="absolute inset-0 z-0 grayscale contrast-110 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 opacity-30 group-hover:opacity-70"
-          style={{
-            backgroundImage: `url(${proyecto.image})`,
-            backgroundSize:
-              proyecto.id === 1 || proyecto.id === 4
-                ? "80% auto"
-                : "cover",
-            backgroundRepeat: "no-repeat",
-            backgroundPosition:
-              proyecto.id === 1 || proyecto.id === 4
-                ? "top center"
-                : "center",
-            paddingTop: "0px",
-            backgroundOrigin: "content-box",
-          }}
-        ></div>
-        
-        {/* Capas de diseño y textos (sin tocar nada) */}
-        <div
-          className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500"
-          style={{
-            background: isDark
-              ? "linear-gradient(to top, rgba(255,255,255,0.98) 10%, rgba(255,255,255,0.4) 100%)"
-              : "linear-gradient(to top, rgba(0,0,0,0.98) 10%, rgba(0,0,0,0.4) 100%)",
-          }}
-        ></div>
+          {proyectos.map((proyecto, index) => (
+            <Link
+              key={proyecto.id}
+              to={proyecto.link}
+              className={`${
+                proyectos.length % 2 !== 0 && index === proyectos.length - 1
+                  ? "md:col-span-2 md:max-w-[50%] md:mx-auto w-full"
+                  : ""
+              }`}
+            >
+              <Motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+                variants={fadeInUp}
+                whileHover={{ y: -8 }}
+                className="group relative p-8 border-2 transition-all duration-700 overflow-hidden cursor-pointer min-h-[400px] flex flex-col justify-end"
+                style={{ borderColor: currentTextColor }}
+              >
+                <div
+                  className="absolute inset-0 z-0 grayscale contrast-110 transition-all duration-1000 group-hover:grayscale-0 group-hover:scale-105 opacity-30 group-hover:opacity-70"
+                  style={{
+                    backgroundImage: `url(${proyecto.image})`,
+                    backgroundSize:
+                      proyecto.id === 1 ||
+                      proyecto.id === 4 ||
+                      proyecto.id === 5
+                        ? "80% auto"
+                        : "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition:
+                      proyecto.id === 1 ||
+                      proyecto.id === 4 ||
+                      proyecto.id === 5
+                        ? "top center"
+                        : "center",
+                    paddingTop: "0px",
+                    backgroundOrigin: "content-box",
+                  }}
+                ></div>
 
-        <div className="absolute top-5 right-6 text-6xl font-black opacity-20 group-hover:opacity-100 transition-all duration-500 z-20 italic">
-          <span className={isDark ? "group-hover:text-black" : "group-hover:text-white"}>
-            0{proyecto.id}
-          </span>
-        </div>
+                <div
+                  className="absolute inset-0 z-10 opacity-0 group-hover:opacity-100 transition-all duration-500"
+                  style={{
+                    background: isDark
+                      ? "linear-gradient(to top, rgba(255,255,255,0.98) 10%, rgba(255,255,255,0.4) 100%)"
+                      : "linear-gradient(to top, rgba(0,0,0,0.98) 10%, rgba(0,0,0,0.4) 100%)",
+                  }}
+                ></div>
 
-        <div className="relative z-30 w-full">
-          <div className={isDark ? "group-hover:text-black" : "group-hover:text-white"}>
-            <span className={`font-mono tracking-widest uppercase border border-current px-2 py-1 ${proyecto.id === 3 ? "text-[8px] md:text-xs" : "text-xs"}`}>
-              {proyecto.tag}
-            </span>
-            <h3 className={`font-black mt-5 mb-3 uppercase italic tracking-tighter leading-[0.9] transition-transform duration-500 group-hover:translate-x-2 ${
-              proyecto.id === 4  ? "text-4xl" : proyecto.id === 3  ? "text-2xl md:text-4xl lg:text-5xl" : proyecto.title.length > 25 ? "text-2xl md:text-3xl" : "text-4xl md:text-5xl"
-            }`}>
-              {proyecto.title}
-            </h3>
-            <p className="text-base md:text-lg opacity-90 max-w-2xl font-normal leading-tight mb-6">
-              {proyecto.desc}
-            </p>
-            <div className="flex items-center gap-4">
-              <div className="h-[2px] w-10 bg-current transition-all duration-500 group-hover:w-16"></div>
-              <span className="text-xl font-black italic tracking-tighter uppercase">Ver Proyecto</span>
-            </div>
-          </div>
+                <div className="absolute top-5 right-6 text-6xl font-black opacity-20 group-hover:opacity-100 transition-all duration-500 z-20 italic">
+                  <span
+                    className={
+                      isDark
+                        ? "group-hover:text-black"
+                        : "group-hover:text-white"
+                    }
+                  >
+                    0{proyecto.id}
+                  </span>
+                </div>
+
+                <div className="relative z-30 w-full">
+                  <div
+                    className={
+                      isDark
+                        ? "group-hover:text-black"
+                        : "group-hover:text-white"
+                    }
+                  >
+                    <span
+                      className={`font-mono tracking-widest uppercase border border-current px-2 py-1 ${proyecto.id === 3 ? "text-[8px] md:text-xs" : "text-xs"}`}
+                    >
+                      {proyecto.tag}
+                    </span>
+                    <h3
+                      className={`font-black mt-5 mb-3 uppercase italic tracking-tighter leading-[0.9] transition-transform duration-500 group-hover:translate-x-2 ${
+                        proyecto.id === 4 || proyecto.id === 5
+                          ? "text-4xl"
+                          : proyecto.id === 3
+                            ? "text-2xl md:text-4xl lg:text-5xl"
+                            : proyecto.title.length > 25
+                              ? "text-2xl md:text-3xl"
+                              : "text-4xl md:text-5xl"
+                      }`}
+                    >
+                      {proyecto.title}
+                    </h3>
+                    <p className="text-base md:text-lg opacity-90 max-w-2xl font-normal leading-tight mb-6">
+                      {proyecto.desc}
+                    </p>
+                    <div className="flex items-center gap-4">
+                      <div className="h-[2px] w-10 bg-current transition-all duration-500 group-hover:w-16"></div>
+                      <span className="text-xl font-black italic tracking-tighter uppercase">
+                        Ver Proyecto
+                      </span>
+                    </div>
+                  </div>
+                </div>
+              </Motion.div>
+            </Link>
+          ))}
         </div>
-      </Motion.div>
-    </Link>
-  ))}
-</div>
       </section>
 
       {/* SECCIÓN: MARQUESINA */}
