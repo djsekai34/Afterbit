@@ -6,9 +6,7 @@ import LogoMalaguenoVR from "../Imagenes/LogoMVSNVR.png";
 import LogoMalaga from "../Imagenes/Malaga.png";
 import LogoNastic from "../Imagenes/Nastic.png";
 import Ak47Real from "../Imagenes/AK47.png";
-import MVSN from "../rar/ElmalaguenoVSlosnastiqueros.rar";
 import RFEF from "../Imagenes/LogoRFEF.png";
-import MVSNVR from "../apk/MalaguenoVsNastiquerVR.apk";
 
 const MalaguenoPage = ({ isDark }) => {
   const location = useLocation();

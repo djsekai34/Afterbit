@@ -8,7 +8,6 @@ import boloImg2 from "../Imagenes/ImagenesSR/Cell Perfecto.png";
 import boloImg3 from "../Imagenes/ImagenesSR/Broly.png";
 import boloImg4 from "../Imagenes/ImagenesSR/Janemba.png";
 import bolaImg from "../Imagenes/ImagenesSR/RodolfoHud.png";
-import SuperRodolfoAPK from "../apk/SuperRodolfoStrike.apk";
 
 export default function SuperRodolfoStrike({ isDark }) {
   const currentTextColor = isDark ? "#ffffff" : "#000000";

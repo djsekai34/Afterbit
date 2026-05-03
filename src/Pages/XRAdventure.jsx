@@ -1,7 +1,6 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import ImagenVerticalAR from "../Imagenes/XRAdventure.jpeg";
-import XRAPK from "../apk/XRAdventure.apk";
 
 const containerVariants = {
   hidden: { opacity: 0 },
