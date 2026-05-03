@@ -9,6 +9,7 @@ import { sections } from "../data/SeccionSR";
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
 import GDDRodolfo from "../PDF/GDDSuperRodolfoylasEsferasdelSantoReino.pdf";
+import SRylasEsferasdelSR from "../rar/Super Rodolfo y las esferas del santo reino.rar";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -145,7 +146,19 @@ export default function SuperRodolfoGDD({ isDark }) {
                 className="text-base md:text-xl opacity-90 leading-relaxed italic border-l-4 pl-6"
                 style={{ borderColor: accentGreen }}
               >
-                "En las tierras del <span className="font-bold">Santo Reino</span>, la armonía se ha quebrado. Solo <span className="font-bold uppercase" style={{ color: accentGreen }}>Rodolfo</span>, un héroe inesperado, emprenderá una épica travesía que lo llevará a recorrer cada rincón del reino: desde sus sierras más profundas hasta sus pueblos y fortalezas más antiguas. Su misión es recuperar las{" "}
+                "En las tierras del{" "}
+                <span className="font-bold">Santo Reino</span>, la armonía se ha
+                quebrado. Solo{" "}
+                <span
+                  className="font-bold uppercase"
+                  style={{ color: accentGreen }}
+                >
+                  Rodolfo
+                </span>
+                , un héroe inesperado, emprenderá una épica travesía que lo
+                llevará a recorrer cada rincón del reino: desde sus sierras más
+                profundas hasta sus pueblos y fortalezas más antiguas. Su misión
+                es recuperar las{" "}
                 <span className="font-bold" style={{ color: accentGreen }}>
                   bolas mágicas
                 </span>{" "}
@@ -153,7 +166,10 @@ export default function SuperRodolfoGDD({ isDark }) {
                 <span className="font-bold" style={{ color: accentGreen }}>
                   resucitar a sus amigos caídos y devolver la paz a su hogar
                 </span>
-                . En este viaje, no estará solo; deberá enfrentarse a legiones de enemigos atraídos por el poder de las bolas, quienes ansían reclamarlas para alcanzar la inmortalidad y someter al reino bajo su control eterno."
+                . En este viaje, no estará solo; deberá enfrentarse a legiones
+                de enemigos atraídos por el poder de las bolas, quienes ansían
+                reclamarlas para alcanzar la inmortalidad y someter al reino
+                bajo su control eterno."
               </p>
             </div>
           </div>
@@ -296,10 +312,10 @@ export default function SuperRodolfoGDD({ isDark }) {
             <p className="font-mono text-[10px] uppercase tracking-[0.3em] opacity-50">
               // <span className="mr-1">¿</span>Deseas jugar?
             </p>
+
             <a
-              href="https://github.com/djsekai34"
-              target="_blank"
-              rel="noopener noreferrer"
+              href={SRylasEsferasdelSR}
+              download="Proyecto_Rodolfo.rar"
               className="group relative px-8 py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:!text-white flex items-center justify-center gap-3"
               style={{
                 borderColor: accentGreen,
@@ -311,8 +327,43 @@ export default function SuperRodolfoGDD({ isDark }) {
                 size={22}
                 className="shrink-0 transition-colors duration-300"
               />
-              <span>Ver Repositorio y Jugar</span>
+              <span>Descargar y Jugar (.RAR)</span>
             </a>
+
+            <div className="mt-2 p-4 border-l-2 border-yellow-500/50 bg-yellow-500/5 backdrop-blur-sm">
+              <p className="text-[10px] font-mono leading-relaxed opacity-80">
+                <span className="text-yellow-500 font-bold tracking-tighter">
+                  ⚠️ AVISO DE WINDOWS SMART SCREEN:
+                </span>
+                <br />
+                Al no ser un software comercial con certificado de pago y al no
+                tener la firma digital Windows lo mostrara como un archivo no
+                seguro en ventana de protección.
+                <br />
+                <br />
+                <span className="text-white bg-zinc-800 px-1 font-bold">
+                  PASOS PARA INSTALAR:
+                </span>
+                <ol className="mt-2 space-y-1 list-decimal list-inside opacity-90">
+                  <li>
+                    Haz clic en{" "}
+                    <span className="underline italic">"Más información"</span>{" "}
+                    en la ventana azul.
+                  </li>
+                  <li>
+                    Pulsa el botón{" "}
+                    <span className="text-green-500 font-bold">
+                      "Ejecutar de todas formas"
+                    </span>{" "}
+                    que aparecerá abajo.
+                  </li>
+                </ol>
+                <span className="block mt-2 text-[9px] italic opacity-60">
+                  * El archivo es 100% seguro, libre de malware y desarrollado
+                  íntegramente por mí.
+                </span>
+              </p>
+            </div>
           </div>
 
           {/* BOTÓN 2: DESCARGAR PDF */}
@@ -349,6 +400,82 @@ export default function SuperRodolfoGDD({ isDark }) {
           </div>
         </div>
       </Motion.div>
+      {/*Disclamer Legal y academico */}
+          <Motion.footer
+            variants={itemVariants}
+            className="mt-24 pt-8 pb-8 border-t border-zinc-500/10 px-6 max-w-6xl mx-auto"
+          >
+            <div className="flex flex-col gap-10 opacity-50 hover:opacity-100 transition-opacity duration-700">
+              <div className="flex flex-col gap-4 text-center md:text-left">
+                <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
+                  Este{" "}
+                  <span
+                    className={isDark ? "text-white" : "text-black font-bold"}
+                  >
+                    videojuego y página web
+                  </span>{" "}
+                  es un proyecto académico sin fines de lucro, desarrollado por{" "}
+                  <span
+                    className={
+                      isDark ? "text-white font-black" : "text-black font-black"
+                    }
+                  >
+                    David Jiménez Villena
+                  </span>{" "}
+                  como pieza de portfolio personal dentro del{" "}
+                  <span className="italic">
+                    Curso de Especialización en Desarrollo de Videojuegos y
+                    Realidad Virtual
+                  </span>
+                  .
+                </p>
+                <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
+                  El objetivo de este proyecto es demostrar competencias
+                  técnicas en programación, diseño de niveles, integración en el
+                  motor{" "}
+                  <span
+                    className={isDark ? "text-white" : "text-black font-bold"}
+                  >
+                    Unity
+                  </span>
+                  , así como el{" "}
+                  <span
+                    className={
+                      isDark ? "text-white font-bold" : "text-black font-bold"
+                    }
+                  >
+                    desarrollo y gestión de un GDD
+                  </span>{" "}
+                  profesional de un videojuego.
+                </p>
+              </div>
+
+              <div
+                className={`p-6 border-x-2 border-y font-mono ${isDark ? "bg-zinc-900/30 border-white/5" : "bg-zinc-100/50 border-black/5"}`}
+              >
+                <p className="text-[9px] md:text-[10px] tracking-[0.2em] leading-loose uppercase text-center max-w-5xl mx-auto">
+                  Los personajes, música y recursos artísticos pertenecientes a
+                  la franquicia
+                  <span
+                    className={
+                      isDark ? "text-zinc-300" : "text-zinc-700 font-bold"
+                    }
+                  >
+                    {" "}
+                    Dragon Ball (incluyendo sus etapas original, Z y Super){" "}
+                  </span>
+                  son propiedad intelectual de Akira Toriyama, Bird Studio,
+                  Shueisha y Toei Animation. Estos elementos se utilizan aquí de
+                  forma excepcional y exclusivamente con fines demostrativos de
+                  desarrollo técnico y aprendizaje,{" "}
+                  <span className="font-black underline decoration-[#008012]">
+                    sin ninguna intención de explotación comercial
+                  </span>
+                  .
+                </p>
+              </div>
+            </div>
+          </Motion.footer>
     </Motion.div>
   );
 }

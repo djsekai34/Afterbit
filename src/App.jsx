@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useLocation } from "react-router-dom";
 import './App.css'
 import Menu from './components/Menu.jsx';
 import Footer from './components/Footer.jsx';
@@ -24,17 +24,28 @@ import Eventos from './Pages/Eventos.jsx';
 import IA from "./components/IA.jsx"
 import Marketing from "./Pages/Marketing.jsx"
 import MalaguenoVSNastiquero from "./Pages/MalaguenoVsNastiquero.jsx"
+import FormularioTesteo from "./Pages/FormularioTesteo.jsx"
+import ResultadoTest from "./Pages/ResultadoTest.jsx"
 import "./index.css";
 
 function App() {
   const [isDark, setIsDark] = useState(true);
-  
+  const location = useLocation();
+
+  // Definimos las rutas que usarán la interfaz simplificada
+  const rutasSimplificadas = ["/FormularioTesteo", "/ResultadoTest"];
+  const isFormPage = rutasSimplificadas.includes(location.pathname);
+  // Definimos rutas donde queremos ocultar el footer (si es necesario)
+  const rutasSinFooter = ["/FormularioTesteo"];
+  const ocultarFooter = rutasSinFooter.includes(window.location.pathname);
+
   return (
     <div className={`min-h-screen transition-colors duration-500 ${isDark ? 'bg-black' : 'bg-white'}`}>
       
       <ScrollToTop />
       
-      <Menu isDark={isDark} setIsDark={setIsDark} />
+      {/* Pasamos isFormPage calculado dinámicamente */}
+      <Menu isDark={isDark} setIsDark={setIsDark} isFormPage={isFormPage} />
       
       <Routes>
         <Route path="/" element={<HomePage isDark={isDark} />} />
@@ -56,11 +67,15 @@ function App() {
         <Route path="/Proyectos/SuperRodolfo/ProduccionyArquitectura" element={<SuperRodolfoProduccion isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/ConceptoyObjetivos" element={<SuperRodolfoConceptos isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/Marketing" element={<Marketing isDark={isDark} />} />
-
+        <Route path="/FormularioTesteo" element={<FormularioTesteo isDark={isDark} />} />
+        <Route path="/ResultadoTest" element={<ResultadoTest isDark={isDark} />} />
       </Routes>
-      <IA/>
-      <Footer isDark={isDark} setIsDark={setIsDark}/>
-    </div>
+
+      {/* Solo mostramos IA y Footer si NO es una página de formulario/resultado */}
+      {!isFormPage && <IA />}
+{(!isFormPage || window.location.pathname === "/ResultadoTest") && !ocultarFooter && (
+  <Footer isDark={isDark} setIsDark={setIsDark} />
+)}    </div>
   );
 }
 

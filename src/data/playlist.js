@@ -34,6 +34,7 @@ import audioTorredonjimeno from "../audio/NivelTorredonjimeno.mp3";
 import audioAlcala from "../audio/NivelAlcala.mp3";
 import audioIntroudccion from "../audio/Introduccion.mp3";
 import audioFinalMalo from "../audio/FinalMalo.mp3"
+import audiogracias from "../audio/Musica gracias.mp3"
 
 export const playlist = [
   {
@@ -188,5 +189,14 @@ export const playlist = [
     url: audioFinalMalo,
     cover: img16,
     experiencia: "Le ofrecemos una experencia triste al jugador nuestro heroe favorito ahora se ha convertido en mala persona, lo cual es un momento triste y se lo reflejamos asi.",
+  },
+  {
+    id: "18",
+    title: "Gracias por jugar al juego",
+    desc: "Musica para dar las gracias al usuario por jugar nuestro videojuego ❤️.",
+    type: "star",
+    url: audiogracias,
+    cover: img15,
+    experiencia: "Le ofrecemos una musica tranquila chill y de felicidad tras toda la aventura para dar las gracias al usuario por jugar a nuestro videojuego.",
   },
 ];
