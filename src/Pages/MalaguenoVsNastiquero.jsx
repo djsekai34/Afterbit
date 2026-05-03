@@ -1266,13 +1266,12 @@ const MalaguenoPage = ({ isDark }) => {
                 <div className="absolute inset-0 bg-red-600 rounded-full blur-2xl opacity-0 group-hover:opacity-20 transition-all duration-700 animate-pulse" />
 
                 <a
-                  href={MVSN}
-                  download="MALAGA_VS_NASTIC.rar"
+                  href="https://github.com/djsekai34/Afterbit/releases/download/MalaguenoVSNastiquero/ElMalaguenoVSlosNastiqueros.rar"
                   className="relative w-full sm:w-auto px-6 sm:px-12 md:px-16 py-4 md:py-5 bg-transparent border-[3px] md:border-4 font-black text-lg sm:text-xl md:text-3xl uppercase italic tracking-tighter transition-all duration-300 hover:skew-x-[-6deg] active:scale-95 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] md:shadow-[8px_8px_0px_0px_rgba(0,0,0,1)] flex items-center justify-center gap-3 no-underline"
                   style={{
                     borderColor: nasticRed,
                     color: nasticRed,
-                    backgroundColor: isDark ? "transparent" : "transparent",
+                    backgroundColor: "transparent",
                   }}
                 >
                   OBTENER EL VIDEOJUEGO
@@ -1504,7 +1503,7 @@ const MalaguenoPage = ({ isDark }) => {
                   }}
                 >
                   <a
-                    href={MVSNVR}
+                    href="https://github.com/djsekai34/Afterbit/releases/download/MalaguenoVSNastiquero/MalaguenoVsNastiquerVR.apk"
                     className="w-full sm:w-auto px-6 py-3 text-white text-xs font-black uppercase tracking-widest transition-all hover:scale-105 active:translate-y-0.5 shadow-md text-center"
                     style={{ backgroundColor: nasticRed }}
                   >

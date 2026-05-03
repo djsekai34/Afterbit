@@ -319,41 +319,40 @@ export default function PixelMetroidExplicacion({ isDark }) {
           </div>
         </section>
 
-        <div className="mt-16 flex flex-col items-center gap-4">
-          <a
-            href={ArchivoRar}
-            download="PixelMetroid2D_Game.rar"
-            className="w-full md:w-auto"
-          >
-            <button
-              className="group relative border-4 py-6 px-12 font-black italic uppercase overflow-hidden transition-all duration-300 w-full md:w-auto"
-              style={{ borderColor: currentTextColor }}
-            >
-              <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
-                DOWNLOAD_SOURCE // GET_GAME_PACKAGE
-              </span>
-              <div className="absolute -inset-y-1 -left-1 -right-1 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
-            </button>
-          </a>
+       <div className="mt-16 flex flex-col items-center gap-4">
+  <a
+    href="https://github.com/djsekai34/Afterbit/releases/download/PixelMetroid/PixelMetroid2D.rar"
+    className="w-full md:w-auto"
+  >
+    <button
+      className="group relative border-4 py-6 px-12 font-black italic uppercase overflow-hidden transition-all duration-300 w-full md:w-auto"
+      style={{ borderColor: currentTextColor }}
+    >
+      <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+        DOWNLOAD_SOURCE // GET_GAME_PACKAGE
+      </span>
+      <div className="absolute -inset-y-1 -left-1 -right-1 bg-red-600 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0" />
+    </button>
+  </a>
 
-          {/* BLOQUE DE SEGURIDAD WINDOWS */}
-          <div className="flex flex-col items-center gap-2 opacity-80 w-full max-w-md">
-            <div className="flex items-center justify-center gap-2">
-              <span className="text-[10px] font-mono bg-green-500/20 text-green-500 px-2 py-0.5 rounded border border-green-500/30">
-                SCAN_CLEAN [0%_VIRUS]
-              </span>
-              <span className="text-[10px] font-mono bg-orange-500/20 text-orange-500 px-2 py-0.5 rounded border border-orange-500/30">
-                WINDOWS_VERIFIED
-              </span>
-            </div>
+  {/* BLOQUE DE SEGURIDAD WINDOWS */}
+  <div className="flex flex-col items-center gap-2 opacity-80 w-full max-w-md">
+    <div className="flex items-center justify-center gap-2">
+      <span className="text-[10px] font-mono bg-green-500/20 text-green-500 px-2 py-0.5 rounded border border-green-500/30">
+        SCAN_CLEAN [0%_VIRUS]
+      </span>
+      <span className="text-[10px] font-mono bg-orange-500/20 text-orange-500 px-2 py-0.5 rounded border border-orange-500/30">
+        WINDOWS_VERIFIED
+      </span>
+    </div>
 
-            <p className="text-[10px] font-mono leading-tight uppercase italic text-center text-zinc-400">
-              * ARCHIVO LIBRE DE MALWARE. WINDOWS DEFENDER PUEDE MOSTRAR UN
-              AVISO DE "EDITOR DESCONOCIDO" POR FALTA DE FIRMA DIGITAL; PULSE EN
-              "MÁS INFORMACIÓN" Y "EJECUTAR DE TODAS FORMAS".
-            </p>
-          </div>
-        </div>
+    <p className="text-[10px] font-mono leading-tight uppercase italic text-center text-zinc-400">
+      * ARCHIVO LIBRE DE MALWARE. WINDOWS DEFENDER PUEDE MOSTRAR UN
+      AVISO DE "EDITOR DESCONOCIDO" POR FALTA DE FIRMA DIGITAL; PULSE EN
+      "MÁS INFORMACIÓN" Y "EJECUTAR DE TODAS FORMAS".
+    </p>
+  </div>
+</div>
       </Motion.main>
     </Motion.div>
   );

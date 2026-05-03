@@ -9,7 +9,6 @@ import { sections } from "../data/SeccionSR";
 import LogoRodolfo from "../Imagenes/LogoJuego.png";
 import RodolfoHola from "../Imagenes/ImagenesSR/RodolfoHola.png";
 import GDDRodolfo from "../PDF/GDDSuperRodolfoylasEsferasdelSantoReino.pdf";
-import SRylasEsferasdelSR from "../rar/Super Rodolfo y las esferas del santo reino.rar";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -314,8 +313,7 @@ export default function SuperRodolfoGDD({ isDark }) {
             </p>
 
             <a
-              href={SRylasEsferasdelSR}
-              download="Proyecto_Rodolfo.rar"
+              href="https://github.com/djsekai34/Afterbit/releases/download/SRylasEsferasdelSR/SuperRodolfoylasEsferasdelSantoReino.rar"
               className="group relative px-8 py-6 font-mono text-xs md:text-sm font-black uppercase tracking-widest overflow-hidden border-2 transition-all duration-300 hover:!text-white flex items-center justify-center gap-3"
               style={{
                 borderColor: accentGreen,
@@ -401,81 +399,74 @@ export default function SuperRodolfoGDD({ isDark }) {
         </div>
       </Motion.div>
       {/*Disclamer Legal y academico */}
-          <Motion.footer
-            variants={itemVariants}
-            className="mt-24 pt-8 pb-8 border-t border-zinc-500/10 px-6 max-w-6xl mx-auto"
-          >
-            <div className="flex flex-col gap-10 opacity-50 hover:opacity-100 transition-opacity duration-700">
-              <div className="flex flex-col gap-4 text-center md:text-left">
-                <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
-                  Este{" "}
-                  <span
-                    className={isDark ? "text-white" : "text-black font-bold"}
-                  >
-                    videojuego y página web
-                  </span>{" "}
-                  es un proyecto académico sin fines de lucro, desarrollado por{" "}
-                  <span
-                    className={
-                      isDark ? "text-white font-black" : "text-black font-black"
-                    }
-                  >
-                    David Jiménez Villena
-                  </span>{" "}
-                  como pieza de portfolio personal dentro del{" "}
-                  <span className="italic">
-                    Curso de Especialización en Desarrollo de Videojuegos y
-                    Realidad Virtual
-                  </span>
-                  .
-                </p>
-                <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
-                  El objetivo de este proyecto es demostrar competencias
-                  técnicas en programación, diseño de niveles, integración en el
-                  motor{" "}
-                  <span
-                    className={isDark ? "text-white" : "text-black font-bold"}
-                  >
-                    Unity
-                  </span>
-                  , así como el{" "}
-                  <span
-                    className={
-                      isDark ? "text-white font-bold" : "text-black font-bold"
-                    }
-                  >
-                    desarrollo y gestión de un GDD
-                  </span>{" "}
-                  profesional de un videojuego.
-                </p>
-              </div>
-
-              <div
-                className={`p-6 border-x-2 border-y font-mono ${isDark ? "bg-zinc-900/30 border-white/5" : "bg-zinc-100/50 border-black/5"}`}
+      <Motion.footer
+        variants={itemVariants}
+        className="mt-24 pt-8 pb-8 border-t border-zinc-500/10 px-6 max-w-6xl mx-auto"
+      >
+        <div className="flex flex-col gap-10 opacity-50 hover:opacity-100 transition-opacity duration-700">
+          <div className="flex flex-col gap-4 text-center md:text-left">
+            <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
+              Este{" "}
+              <span className={isDark ? "text-white" : "text-black font-bold"}>
+                videojuego y página web
+              </span>{" "}
+              es un proyecto académico sin fines de lucro, desarrollado por{" "}
+              <span
+                className={
+                  isDark ? "text-white font-black" : "text-black font-black"
+                }
               >
-                <p className="text-[9px] md:text-[10px] tracking-[0.2em] leading-loose uppercase text-center max-w-5xl mx-auto">
-                  Los personajes, música y recursos artísticos pertenecientes a
-                  la franquicia
-                  <span
-                    className={
-                      isDark ? "text-zinc-300" : "text-zinc-700 font-bold"
-                    }
-                  >
-                    {" "}
-                    Dragon Ball (incluyendo sus etapas original, Z y Super){" "}
-                  </span>
-                  son propiedad intelectual de Akira Toriyama, Bird Studio,
-                  Shueisha y Toei Animation. Estos elementos se utilizan aquí de
-                  forma excepcional y exclusivamente con fines demostrativos de
-                  desarrollo técnico y aprendizaje,{" "}
-                  <span className="font-black underline decoration-[#008012]">
-                    sin ninguna intención de explotación comercial
-                  </span>
-                  .
-                </p>
-              </div>
-            </div>
-          </Motion.footer>
+                David Jiménez Villena
+              </span>{" "}
+              como pieza de portfolio personal dentro del{" "}
+              <span className="italic">
+                Curso de Especialización en Desarrollo de Videojuegos y Realidad
+                Virtual
+              </span>
+              .
+            </p>
+            <p className="font-mono text-[10px] md:text-[11px] tracking-[0.15em] leading-relaxed uppercase">
+              El objetivo de este proyecto es demostrar competencias técnicas en
+              programación, diseño de niveles, integración en el motor{" "}
+              <span className={isDark ? "text-white" : "text-black font-bold"}>
+                Unity
+              </span>
+              , así como el{" "}
+              <span
+                className={
+                  isDark ? "text-white font-bold" : "text-black font-bold"
+                }
+              >
+                desarrollo y gestión de un GDD
+              </span>{" "}
+              profesional de un videojuego.
+            </p>
+          </div>
+
+          <div
+            className={`p-6 border-x-2 border-y font-mono ${isDark ? "bg-zinc-900/30 border-white/5" : "bg-zinc-100/50 border-black/5"}`}
+          >
+            <p className="text-[9px] md:text-[10px] tracking-[0.2em] leading-loose uppercase text-center max-w-5xl mx-auto">
+              Los personajes, música y recursos artísticos pertenecientes a la
+              franquicia
+              <span
+                className={isDark ? "text-zinc-300" : "text-zinc-700 font-bold"}
+              >
+                {" "}
+                Dragon Ball (incluyendo sus etapas original, Z y Super){" "}
+              </span>
+              son propiedad intelectual de Akira Toriyama, Bird Studio, Shueisha
+              y Toei Animation. Estos elementos se utilizan aquí de forma
+              excepcional y exclusivamente con fines demostrativos de desarrollo
+              técnico y aprendizaje,{" "}
+              <span className="font-black underline decoration-[#008012]">
+                sin ninguna intención de explotación comercial
+              </span>
+              .
+            </p>
+          </div>
+        </div>
+      </Motion.footer>
     </Motion.div>
   );
 }

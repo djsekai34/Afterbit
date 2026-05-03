@@ -526,8 +526,7 @@ export default function SuperRodolfoStrike({ isDark }) {
 
             {/* BOTÓN DE DESCARGA */}
             <a
-              href={SuperRodolfoAPK}
-              download="SuperRodolfoStrike.apk"
+              href="https://github.com/djsekai34/Afterbit/releases/download/SRStrike/SuperRodolfoStrike.apk"
               className="relative inline-flex items-center justify-center px-10 py-4 font-black tracking-tighter text-white transition-all duration-300 group mb-6"
             >
               <span className="absolute inset-0 w-full h-full rounded-xl bg-gradient-to-r from-green-400 to-green-600 blur-sm opacity-50 group-hover:opacity-100 group-hover:blur-md transition-all duration-500"></span>

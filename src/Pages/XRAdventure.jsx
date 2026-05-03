@@ -1,7 +1,7 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
 import ImagenVerticalAR from "../Imagenes/XRAdventure.jpeg";
-import XRAPK from "../apk/XRAdventure.apk"
+import XRAPK from "../apk/XRAdventure.apk";
 
 const containerVariants = {
   hidden: { opacity: 0 },
@@ -303,8 +303,7 @@ export default function XRAdventureExplicacion({ isDark }) {
         <div className="mt-16 flex flex-col md:flex-row gap-6 justify-center">
           <div className="flex-1 max-w-sm space-y-4">
             <a
-              href={XRAPK} // Asegúrate de que la ruta al archivo sea correcta
-              download="XRAdventure.apk"
+              href="https://github.com/djsekai34/Afterbit/releases/download/XRAdventure/XRAdventure.apk"
               className="block"
             >
               <button
