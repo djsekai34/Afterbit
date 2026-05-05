@@ -36,6 +36,8 @@ const itemVariants = {
   },
 };
 
+
+
 const FormularioFeedback = ({ isDark }) => {
   const [enviado, setEnviado] = useState(false);
   const [errorExperiencia, setErrorExperiencia] = useState(false);
@@ -137,8 +139,15 @@ const FormularioFeedback = ({ isDark }) => {
     };
 
     const { error } = await supabase.from("feedback_juego").insert([payload]);
-    if (!error) setEnviado(true);
-    else console.error("Error al enviar:", error);
+
+    if (!error) {
+      await supabase.functions.invoke("dynamic-processor", {
+      body: { record: payload } 
+    });
+      setEnviado(true);
+    } else {
+      console.error("Error al enviar:", error);
+    }
   };
 
   {/* Si el formulario ya fue enviado, mostramos una pantalla de agradecimiento. De lo contrario, mostramos el formulario. */}
@@ -203,7 +212,7 @@ const FormularioFeedback = ({ isDark }) => {
                 <span
                   className={`${isDark ? "text-[#008012]" : "text-[#00640e]"} font-black`}
                 >
-                  Super Rodolfo y las Esferas del Santo Reino
+                  Super Rodolfo y las Esferas del Santo Reino {" "}
                 </span>
                 <span
                   className={`font-black animate-pulse ${isDark ? "text-white" : "text-[#008012]"}`}
@@ -213,7 +222,7 @@ const FormularioFeedback = ({ isDark }) => {
                       : "0 0 8px rgba(0, 128, 18, 0.3)",
                   }}
                 >
-                  Muchas gracias
+                   Muchas gracias
                 </span>{" "}
                 por ser parte de la{" "}
                 <span className="text-[#ff0000] font-black">
@@ -326,6 +335,8 @@ const FormularioFeedback = ({ isDark }) => {
                 </span>
                 <a
                   href="/contacto"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="text-[10px] font-black underline hover:text-[#008012] transition-colors"
                 >
                   CONTACTO →
