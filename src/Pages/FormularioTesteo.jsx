@@ -3,11 +3,17 @@ import { createClient } from "@supabase/supabase-js";
 import { motion as Motion, AnimatePresence } from "framer-motion";
 import logoJuego from "../Imagenes/LogoJuego.png";
 
+{
+  /* Traemos la contraseña y la url de Supabase y creamos un cliente */
+}
+
 const supabaseUrl = import.meta.env.VITE_SUPABASE_URL;
 const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY;
-
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+{
+  /* Esqueleto de la seccion */
+}
 const Section = ({ title, children, isDark }) => (
   <div
     className={`mb-10 p-6 border rounded-sm transition-colors duration-500 
@@ -36,12 +42,13 @@ const itemVariants = {
   },
 };
 
-
-
 const FormularioFeedback = ({ isDark }) => {
   const [enviado, setEnviado] = useState(false);
   const [errorExperiencia, setErrorExperiencia] = useState(false);
 
+  {
+    /* Como se mostrara los campos de primeras en el formulario */
+  }
   const [formData, setFormData] = useState({
     // 01. Datos generales
     nombre: "",
@@ -50,7 +57,7 @@ const FormularioFeedback = ({ isDark }) => {
     juegos_similares: "",
     // 02. Primeras impresiones
     opinion_inicial: "",
-    entendiste_sin_ayuda: null, 
+    entendiste_sin_ayuda: null,
     detalle_ayuda: "",
     algo_confuso: null,
     detalle_confusion: "",
@@ -101,6 +108,9 @@ const FormularioFeedback = ({ isDark }) => {
 
     const txt = (v) => (v && v.trim() !== "" ? v : null);
 
+    {
+      /* Para enviar los datos del formulario a la base de datos*/
+    }
     const payload = {
       nombre: txt(formData.nombre),
       edad: formData.edad ? parseInt(formData.edad) : null,
@@ -139,19 +149,16 @@ const FormularioFeedback = ({ isDark }) => {
     };
 
     const { error } = await supabase.from("feedback_juego").insert([payload]);
-
-    if (!error) {
-      await supabase.functions.invoke("dynamic-processor", {
-      body: { record: payload } 
-    });
-      setEnviado(true);
-    } else {
-      console.error("Error al enviar:", error);
-    }
+    if (!error) setEnviado(true);
+    else console.error("Error al enviar:", error);
   };
 
-  {/* Si el formulario ya fue enviado, mostramos una pantalla de agradecimiento. De lo contrario, mostramos el formulario. */}
-  if (enviado)
+  {
+    /* Si el formulario ya ha pasado la fecha límite, mostramos un mensaje de cierre */
+  }
+  const fechaLimite = new Date("2026-05-24T23:59:00");
+  const hoy = new Date();
+  if (hoy >= fechaLimite)
     return (
       <div
         className={`h-screen flex items-center justify-center font-mono transition-colors duration-500 px-6 overflow-hidden ${
@@ -159,11 +166,10 @@ const FormularioFeedback = ({ isDark }) => {
         }`}
       >
         <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(18,16,16,0)_50%,rgba(0,0,0,0.25)_50%),linear-gradient(90deg,rgba(255,0,0,0.06),rgba(0,255,0,0.02),rgba(0,0,255,0.06))] bg-[length:100%_2px,3px_100%]" />
-
         <Motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className={`max-w-2xl w-full p-8 md:p-12 border-2 relative ${
+          className={`max-w-xl w-full p-8 md:p-12 border-2 relative text-center ${
             isDark
               ? "border-[#008012]/30 bg-black shadow-[0_0_50px_rgba(0,128,18,0.1)]"
               : "border-[#008012] bg-white shadow-xl"
@@ -173,88 +179,144 @@ const FormularioFeedback = ({ isDark }) => {
           <div className="absolute top-0 right-0 w-4 h-4 border-t-2 border-r-2 border-[#008012]" />
           <div className="absolute bottom-0 left-0 w-4 h-4 border-b-2 border-l-2 border-[#008012]" />
           <div className="absolute bottom-0 right-0 w-4 h-4 border-b-2 border-r-2 border-[#008012]" />
-
-          <div className="absolute top-0 left-0 w-full h-1 bg-[#008012] overflow-hidden">
+          <div className="absolute top-0 left-0 w-full h-1 bg-[#008012]/30 overflow-hidden">
             <Motion.div
-              animate={{ x: ["-100%", "100%"] }}
-              transition={{ repeat: Infinity, duration: 2, ease: "linear" }}
-              className="w-1/3 h-full bg-white/50 shadow-[0_0_10px_white]"
+              animate={{ x: ["-300%", "300%"] }}
+              transition={{
+                repeat: Infinity,
+                duration: 4,
+                ease: "linear",
+              }}
+              className="w-1/3 h-full bg-[#008012]/50 absolute"
             />
           </div>
-
-          <div className="relative z-10 flex flex-col items-center">
-            <div className="mb-6 max-w-[180px] md:max-w-[220px]">
-              <img
-                src={logoJuego}
-                alt="Super Rodolfo y las Esferas del Santo Reino"
-                className="w-full h-auto drop-shadow-[0_0_10px_rgba(0,128,18,0.3)]"
-              />
-            </div>
-            <h1 className="text-4xl md:text-5xl font-black italic text-[#008012] mb-4 tracking-tighter uppercase text-center">
-              ¡Feedback Transmitido!
-            </h1>
-            <div className="w-16 h-[2px] bg-[#ff0000] mb-8" />{" "}
-            <div className="space-y-6 mb-10 text-center">
-              <p
-                className={`text-sm md:text-lg leading-relaxed font-bold tracking-tight ${isDark ? "text-white" : "text-black"}`}
-              >
-                Los datos del formulario han sido{" "}
-                <span className="text-[#008012]">
-                  encriptados y almacenados
-                </span>{" "}
-                en la base de datos de Afterbit.
-              </p>
-
-              <p
-                className={`text-[11px] md:text-xs leading-relaxed max-w-sm mx-auto uppercase tracking-widest ${isDark ? "opacity-50" : "opacity-70"}`}
-              >
-                Tu aporte es vital para la optimización y mejora de{" "}
-                <span
-                  className={`${isDark ? "text-[#008012]" : "text-[#00640e]"} font-black`}
-                >
-                  Super Rodolfo y las Esferas del Santo Reino {" "}
-                </span>
-                <span
-                  className={`font-black animate-pulse ${isDark ? "text-white" : "text-[#008012]"}`}
-                  style={{
-                    textShadow: isDark
-                      ? "0 0 10px rgba(0, 128, 18, 0.8), 0 0 20px rgba(0, 128, 18, 0.4)"
-                      : "0 0 8px rgba(0, 128, 18, 0.3)",
-                  }}
-                >
-                   Muchas gracias
-                </span>{" "}
-                por ser parte de la{" "}
-                <span className="text-[#ff0000] font-black">
-                  fase de pruebas
-                </span>{" "}
-                de nuestro videojuego.
-              </p>
-            </div>
-            <Motion.div
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
-              className="w-full md:w-auto"
+          <div className="mb-6 max-w-[190px] mx-auto">
+            <img
+              src={logoJuego}
+              alt="Super Rodolfo y las Esferas del Santo Reino"
+              className="w-full h-auto scale-125 drop-shadow-[0_0_10px_rgba(0,128,18,0.3)]"
+            />
+          </div>
+          <div className="w-10 h-[2px] bg-[#ff0000] mx-auto mb-6" />
+          <h1 className="text-3xl md:text-4xl font-black italic text-[#008012] mb-4 tracking-tighter uppercase">
+            Fase de Testeo Cerrada
+          </h1>
+          <p
+            className={`text-sm leading-relaxed font-bold mb-4 ${isDark ? "text-white" : "text-black"}`}
+          >
+            El periodo oficial de recogida de testeo de{" "}
+            <span
+              className="italic tracking-tight"
+              style={{ color: "#008012" }}
             >
-              <a
-                href="/"
-                className={`group relative flex items-center justify-center px-12 py-4 font-black uppercase tracking-[0.4em] text-xs transition-all border-2 ${
-                  isDark
-                    ? "border-[#008012] text-[#008012] hover:bg-[#008012] hover:text-white"
-                    : "border-[#008012] text-[#008012] hover:bg-[#008012] hover:text-white"
-                }`}
-              >
-                <span className="relative z-10">Ir a la página principal</span>
-              </a>
-            </Motion.div>
-            <div className="mt-12 flex justify-between w-full border-t border-[#008012]/10 pt-4">
-              <div className="text-[7px] opacity-30 font-mono uppercase tracking-[0.2em]">
-                ID: SR-2026 // ADDR: 0xAFTERBIT
-              </div>
-              <div className="text-[7px] text-[#008012] font-black animate-pulse uppercase tracking-[0.2em]">
-                Connection: Stable
-              </div>
-            </div>
+              Super Rodolfo y las Esferas del Santo Reino
+            </span>{" "}
+            ha concluido.
+          </p>
+          <p
+            className={`text-[11px] uppercase tracking-widest leading-relaxed max-w-sm mx-auto mb-8 ${isDark ? "opacity-50" : "opacity-60"}`}
+          >
+            <Motion.span
+              animate={{
+                textShadow: isDark
+                  ? [
+                      "0 0 5px #fff",
+                      "0 0 20px #fff, 0 0 40px #fff, 0 0 60px #ffffff",
+                      "0 0 5px #fff",
+                    ]
+                  : [
+                      "0 0 0px rgba(0,0,0,0)",
+                      "0 0 12px rgba(0,0,0,0.5)",
+                      "0 0 0px rgba(0,0,0,0)",
+                    ],
+                scale: [1, 1.05, 1],
+              }}
+              transition={{
+                duration: 1.5,
+                repeat: Infinity,
+                ease: "circIn",
+              }}
+              className={`font-black inline-block ${isDark ? "text-white" : "text-black"}`}
+            >
+              Gracias a todos
+            </Motion.span>{" "}
+            los que participaron en el testeo del videojuego. Vuestro feedback
+            es fundamental para el desarrollo y mejora del juego.
+          </p>
+          <Motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+            <a
+              href="/"
+              className={`inline-flex items-center justify-center px-10 py-4 font-black uppercase tracking-[0.4em] text-xs border-2 transition-all ${
+                isDark
+                  ? "border-[#008012] text-[#008012] hover:bg-[#008012] hover:text-white"
+                  : "border-[#008012] text-[#008012] hover:bg-[#008012] hover:text-white"
+              }`}
+            >
+              Volver al inicio
+            </a>
+          </Motion.div>
+        </Motion.div>
+      </div>
+    );
+
+  {
+    /* Si el formulario ya fue enviado, mostramos una pantalla de agradecimiento. De lo contrario, mostramos el formulario. */
+  }
+  if (enviado)
+    return (
+      <div
+        className={`h-screen flex items-center justify-center font-mono transition-colors duration-500 px-6 ${
+          isDark ? "bg-neutral-950 text-white" : "bg-neutral-50 text-black"
+        }`}
+      >
+        <Motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className={`max-w-2xl w-full text-center p-8 md:p-16 border-2 shadow-2xl relative overflow-hidden ${
+            isDark
+              ? "border-green-500/30 bg-black"
+              : "border-green-600 bg-white"
+          }`}
+        >
+          <div className="absolute top-0 left-0 w-full h-1 bg-green-500 animate-pulse"></div>
+
+          <h1 className="text-4xl md:text-6xl font-black italic text-green-500 mb-6 tracking-tighter">
+            !FEEDBACK RECIBIDO!
+          </h1>
+
+          <div className="space-y-6 mb-10">
+            <p
+              className={`text-sm md:text-base leading-relaxed font-bold ${isDark ? "text-white" : "text-black"}`}
+            >
+              Los datos han sido integrados en el sistema de Afterbit con éxito.
+            </p>
+
+            <p className="text-xs md:text-sm opacity-70 leading-relaxed max-w-md mx-auto">
+              Gracias por enviarnos tu feedback; se usará para mejorar el
+              videojuego. Esperamos que te haya gustado la experiencia y que
+              juegues la{" "}
+              <span className="text-green-500 font-bold uppercase">
+                versión final
+              </span>
+              .
+            </p>
+          </div>
+
+          <Motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+            <a
+              href="/"
+              className={`inline-block w-full md:w-auto px-10 py-4 font-black uppercase tracking-[0.3em] text-xs transition-all ${
+                isDark
+                  ? "bg-white text-black hover:bg-green-500"
+                  : "bg-black text-white hover:bg-green-600"
+              }`}
+            >
+              Volver al inicio
+            </a>
+          </Motion.div>
+
+          <div className="mt-8 text-[8px] opacity-20 font-mono uppercase tracking-widest">
+            Protocol_id: SR-2026 // Status: Sync_Complete
           </div>
         </Motion.div>
       </div>
@@ -324,20 +386,17 @@ const FormularioFeedback = ({ isDark }) => {
                   para mejorar el juego. Desde{" "}
                   <span className="font-bold">Afterbit</span> aseguramos que no
                   se compartirá tu información con terceros y que se usará
-                  exclusivamente para el desarrollo de Super Rodolfo y futuros
-                  proyectos.
+                  exclusivamente para el desarrollo de Super Rodolfo y las esferas del Santo Reino.
                 </p>
               </div>
 
-              <div className="mt-6 pt-4 border-t border-dashed border-current opacity-30 flex justify-between items-center">
-                <span className="text-[9px] uppercase font-bold">
+              <div className="mt-6 pt-4 border-t border-dashed border-current opacity-30 flex flex-col sm:flex-row justify-between items-center gap-2">
+                <span className="text-[8px] md:text-[9px] uppercase font-bold text-center md:text-left">
                   ¿Necesitas soporte técnico?
                 </span>
                 <a
                   href="/contacto"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[10px] font-black underline hover:text-[#008012] transition-colors"
+                  className="text-[9px] md:text-[10px] font-black underline hover:text-[#008012] transition-colors tracking-tighter sm:tracking-normal"
                 >
                   CONTACTO →
                 </a>
