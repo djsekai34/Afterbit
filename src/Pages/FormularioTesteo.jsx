@@ -149,8 +149,14 @@ const FormularioFeedback = ({ isDark }) => {
     };
 
     const { error } = await supabase.from("feedback_juego").insert([payload]);
-    if (!error) setEnviado(true);
-    else console.error("Error al enviar:", error);
+    if (!error) {
+      await supabase.functions.invoke("dynamic-processor", {
+      body: { record: payload } 
+    });
+      setEnviado(true);
+    } else {
+      console.error("Error al enviar:", error);
+    }
   };
 
   {
