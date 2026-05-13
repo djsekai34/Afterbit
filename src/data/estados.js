@@ -25,9 +25,9 @@ export const estadosData = [
   },
   {
     titulo: "Pantallas de Información",
-    definicion: "Estados de consulta (Créditos / Controles).",
+    definicion: "Estados de consulta (Explicación gameplay, Créditos / Controles).",
     queOcurre:
-      "Mapeo de teclas de Rodolfo (Shift, Q, Espacio, AD) y los creditos del videjuego.",
+      "Mapeo de teclas de Rodolfo (Shift, Q, Espacio, AD), explicamos como es el gameplay y los creditos del videjuego.",
     transicion: "Botón Menú → Menú Principal.",
   },
   {

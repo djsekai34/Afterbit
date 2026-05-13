@@ -129,7 +129,7 @@ const SRDiagrama = ({ isDark }) => {
     },
     {
       id: "controles",
-      data: { label: "Controles" },
+      data: { label: "Explicación Gameplay más Controles" },
       position: { x: 670, y: 250 },
       style: {
         ...nodeStyle,
@@ -415,7 +415,7 @@ const SRDiagrama = ({ isDark }) => {
             {
               label: "Menús / Info",
               color: colors.accentBlue,
-              desc: "Créditos/Controles",
+              desc: "Explicación Gameplay + Créditos/Controles",
               smallerDesc: true, // Flag para reducir tamaño desc
             },
             {

@@ -130,17 +130,35 @@ export default function ProtocoloUI({ isDark, currentTextColor }) {
                         className={`absolute ${isEven ? "lg:-right-12 lg:left-auto" : "lg:-left-12"} -left-8 top-0 bottom-0 w-8 flex items-center justify-center`}
                       >
                         <span className="font-mono text-[9px] font-bold text-blue-500 uppercase [writing-mode:vertical-lr] rotate-180 tracking-[0.3em]">
-                          DETALLE
+                          DETALLES
                         </span>
                       </div>
+
+                      {/* Contenedor que se adapta: si hay dos, las pone en grid. Si hay una, ocupa todo */}
                       <div
-                        className={`border-2 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden shadow-xl`}
+                        className={`grid ${p.imgExtra2 ? "grid-cols-2" : "grid-cols-1"} gap-4`}
                       >
-                        <img
-                          src={p.imgExtra}
-                          alt="Extra"
-                          className="w-full h-auto"
-                        />
+                        <div
+                          className={`border-2 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden shadow-xl`}
+                        >
+                          <img
+                            src={p.imgExtra}
+                            alt="Extra 1"
+                            className="w-full h-auto object-cover"
+                          />
+                        </div>
+
+                        {p.imgExtra2 && (
+                          <div
+                            className={`border-2 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden shadow-xl`}
+                          >
+                            <img
+                              src={p.imgExtra2}
+                              alt="Extra 2"
+                              className="w-full h-auto object-cover"
+                            />
+                          </div>
+                        )}
                       </div>
                     </div>
                   )}

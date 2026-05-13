@@ -72,7 +72,7 @@ export default function Documentacion({ isDark }) {
   useEffect(() => {
     const interval = setInterval(() => {
       nextPage();
-    }, 3000); // Cambio cada 5 segundos
+    }, 5000); // Cambio cada 5 segundos
 
     // Limpieza del intervalo al desmontar o cambiar de página manualmente
     return () => clearInterval(interval);

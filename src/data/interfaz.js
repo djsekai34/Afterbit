@@ -2,7 +2,7 @@
 import MenuConcepto from "../Imagenes/Interfaz/Concepto/MenuPrincipal.png";
 import SelectorConcepto from "../Imagenes/Interfaz/Concepto/SelectorNivel.png";
 import CreditosConcpeto from "../Imagenes/Interfaz/Concepto/Creditos.png";
-import ControlesConcepto from "../Imagenes/Interfaz/Concepto/Controles.png";
+import ControlesConcepto from "../Imagenes/Interfaz/Concepto/ControlesGameplay.png";
 import HudConcepto from "../Imagenes/Interfaz/Concepto/Juego.png";
 import PausaGeneralConcepto from "../Imagenes/Interfaz/Concepto/Pausa.png";
 import PausaSelectorConcepto from "../Imagenes/Interfaz/Concepto/PausaSelectorNivel.png";
@@ -19,6 +19,7 @@ import PausaSelectorFinal from "../Imagenes/Interfaz/ResultadoFinal/PausaFinalSN
 import MuerteFinal from "../Imagenes/Interfaz/ResultadoFinal/MuerteFinal.png";
 import MuerteSelectorFinal from "../Imagenes/Interfaz/ResultadoFinal/MuerteFinalSN.png";
 import hud from "../Imagenes/Interfaz/ResultadoFinal/Hud.png";
+import hudExtra from "../Imagenes/Interfaz/ResultadoFinal/HudExtra.png";
 
 export const pantallas = [
   {
@@ -70,11 +71,11 @@ export const pantallas = [
   },
   {
     id: "04",
-    titulo: "Controles",
-    desc: "Mapeo detallado de acciones que puede realizar el jugador en nuestro videojuego.",
-    elementos: ["Texto de controles", "Volver al menu"],
+    titulo: "Explicación Gameplay + Controles",
+    desc: "Mapeo detallado de acciones que puede realizar el jugador en nuestro videojuego y le explicamos como es el gameplay de nuestro videojuego.",
+    elementos: ["Texto de controles", "Texto de explicativo del Gameplay", "Volver al menu"],
     interactividad:
-      "Visual Key Feedback + visualizacion del texto de los controles",
+      "Visual Key Feedback + visualizacion del texto de los controles y del gameplay ",
     justificacion:
       "Buscamos un diseño sencillo y efectivo donde se pueda leer fácilmente a un tamaño de letra adecuado.",
     imgBoceto: ControlesConcepto,
@@ -91,6 +92,7 @@ export const pantallas = [
     imgBoceto: HudConcepto,
     imgFinal: HudFinal,
     imgExtra: hud, // AQUÍ VA TU TERCERA IMAGEN EXTRA
+    imgExtra2: hudExtra, // AQUÍ VA TU CUARTA IMAGEN EXTRA
   },
   {
     id: "06",
