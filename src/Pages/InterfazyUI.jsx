@@ -62,12 +62,12 @@ export default function ProtocoloUI({ isDark, currentTextColor }) {
               {/* ELEMENTO CRÍTICO: IDENTIFICADOR NUMÉRICO DE FONDO */}
               <span
                 className={`
-    absolute -top-32 
-    ${isEven ? "lg:-right-16 lg:left-auto" : "lg:-left-16"} 
-    left-0 text-[120px] md:text-[240px] font-black 
-    pointer-events-none select-none italic
-    ${isDark ? "opacity-[0.07] text-zinc-200" : "opacity-[0.05] text-black"}
-  `}
+                absolute -top-32 
+                ${isEven ? "lg:-right-16 lg:left-auto" : "lg:-left-16"} 
+                left-0 text-[120px] md:text-[240px] font-black 
+                pointer-events-none select-none italic
+                ${isDark ? "opacity-[0.07] text-zinc-200" : "opacity-[0.05] text-black"}
+              `}
               >
                 {p.id}
               </span>
@@ -122,6 +122,28 @@ export default function ProtocoloUI({ isDark, currentTextColor }) {
                       )}
                     </div>
                   </div>
+
+                  {/* SUB-BLOQUE: RESULTADO FINAL 2 (AÑADIDO PARA MOSTRAR LA SEGUNDA CAPTURA FINAL) */}
+                  {p.imgFinal2 && (
+                    <div className="relative">
+                      <div
+                        className={`absolute ${isEven ? "lg:-right-12 lg:left-auto" : "lg:-left-12"} -left-8 top-0 bottom-0 w-8 flex items-center justify-center`}
+                      >
+                        <span className="font-mono text-[9px] font-bold text-green-600 uppercase [writing-mode:vertical-lr] rotate-180 tracking-[0.3em]">
+                          RESULTADO 2
+                        </span>
+                      </div>
+                      <div
+                        className={`border-2 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden shadow-2xl`}
+                      >
+                        <img
+                          src={p.imgFinal2}
+                          alt="Final 2"
+                          className="w-full h-auto"
+                        />
+                      </div>
+                    </div>
+                  )}
 
                   {/* SUB-BLOQUE: DETALLE ADICIONAL */}
                   {p.imgExtra && (

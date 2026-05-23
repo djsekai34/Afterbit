@@ -39,7 +39,7 @@ import audiogracias from "../audio/Musica gracias.mp3"
 export const playlist = [
   {
     id: "01",
-    title: "Menú Principal / Selector de Nivel / Créditos / Controles",
+    title: "Menú Principal / Selector de Nivel / Explicación Gameplay + Créditos / Controles",
     desc: "Música de fondo para navegación entre menús del videojuego",
     type: "music",
     url: audioMenuPrincipal,

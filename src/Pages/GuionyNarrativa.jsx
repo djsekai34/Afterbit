@@ -903,19 +903,23 @@ export default function NarrativaPage({ isDark }) {
             className={`relative p-8 md:p-20 border-4 ${isDark ? "border-zinc-800" : "border-zinc-200"} overflow-hidden flex flex-col items-center text-center`}
           >
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
-              <div className="text-[15rem] md:text-[25rem] font-black italic opacity-[0.03] uppercase tracking-tighter">
+              <div
+                className={`text-[15rem] md:text-[25rem] font-black italic uppercase tracking-tighter ${isDark ? "opacity-[0.03] text-zinc-200" : "opacity-[0.02] text-black"}`}
+              >
                 Core
               </div>
             </div>
 
             <div className="relative z-10 max-w-4xl w-full">
-              <h2 className="text-2xl md:text-3xl lg:text-5xl font-black italic uppercase tracking-tighter mb-10 leading-[0.9] lg:whitespace-nowrap">
+              <h2
+                className={`text-2xl md:text-3xl lg:text-5xl font-black italic uppercase tracking-tighter mb-10 leading-[0.9] lg:whitespace-nowrap ${isDark ? "text-white" : "text-black"}`}
+              >
                 Relación <br className="lg:hidden" />
                 <span style={{ color: accentGreen }}>Narrativa / Mecánica</span>
               </h2>
 
               <div
-                className={`space-y-8 text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-500"}`}
+                className={`space-y-8 text-lg md:text-xl leading-relaxed ${isDark ? "text-zinc-400" : "text-zinc-600"}`}
               >
                 <p>
                   En{" "}
@@ -927,21 +931,28 @@ export default function NarrativaPage({ isDark }) {
                   , las mecánicas y la narrativa están intrínsecamente
                   relacionadas. Para explorar cada rincón, nos movemos con las
                   teclas{" "}
-                  <span className="font-bold text-zinc-900 dark:text-white underline decoration-accentGreen">
+                  <span
+                    className={`font-bold underline decoration-accentGreen ${isDark ? "text-white" : "text-zinc-900"}`}
+                  >
                     A y D o las flechas
                   </span>
                   , utilizando el{" "}
-                  <span className="font-bold text-zinc-900 dark:text-white">
+                  <span
+                    className={`font-bold ${isDark ? "text-white" : "text-zinc-900"}`}
+                  >
                     Shift
                   </span>{" "}
-                  para correr ante el peligro y el
-                  <span className="font-bold text-zinc-900 dark:text-white italic">
-                    {" "}
+                  para correr ante el peligro y el{" "}
+                  <span
+                    className={`font-bold italic ${isDark ? "text-white" : "text-zinc-900"}`}
+                  >
                     Espacio
                   </span>{" "}
                   para saltar sobre los obstáculos. Incluso en el fragor de la
                   batalla, siempre podemos pulsar{" "}
-                  <span className="font-bold text-zinc-900 dark:text-white">
+                  <span
+                    className={`font-bold ${isDark ? "text-white" : "text-zinc-900"}`}
+                  >
                     Esc
                   </span>{" "}
                   para tomarnos una necesaria pausa.
@@ -950,7 +961,9 @@ export default function NarrativaPage({ isDark }) {
                 <p>
                   Cuando atacamos para derrotar a nuestros enemigos, pulsamos la
                   tecla{" "}
-                  <span className="font-bold text-zinc-900 dark:text-white">
+                  <span
+                    className={`font-bold ${isDark ? "text-white" : "text-zinc-900"}`}
+                  >
                     Q
                   </span>{" "}
                   para utilizar la técnica del{" "}
@@ -961,13 +974,17 @@ export default function NarrativaPage({ isDark }) {
                     Shagami-dō
                   </span>
                   . Nuestra misión requiere la recolección de las{" "}
-                  <span className="italic font-semibold">bolas mágicas</span>{" "}
+                  <span
+                    className={`italic font-semibold ${isDark ? "text-zinc-200" : "text-zinc-800"}`}
+                  >
+                    bolas mágicas
+                  </span>{" "}
                   para obtener nuestro deseo final. Además, contamos con el
                   apoyo de nuestros aliados, a quienes veremos en el cielo para
                   otorgarnos una{" "}
                   <span
                     style={{ color: accentGreen }}
-                    className="text-500 font-bold uppercase tracking-wider"
+                    className="font-bold uppercase tracking-wider"
                   >
                     vida extra
                   </span>{" "}

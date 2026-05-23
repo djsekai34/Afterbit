@@ -479,82 +479,91 @@ const Mecanicas = ({ isDark, currentTextColor }) => {
         </Motion.section>
 
         {/* SECTION 05: UX (Sensación de juego y Pilares) */}
-        <Motion.section
-          variants={itemVariants}
-          className="pt-10 pb-20 relative overflow-hidden"
-        >
-          <div className="absolute inset-0 pointer-events-none opacity-5 flex items-center justify-center">
-            <span className="text-[20vw] font-black italic select-none uppercase">
-              Rodolfo
-            </span>
+       <Motion.section
+  variants={itemVariants}
+  className="pt-10 pb-20 relative overflow-hidden"
+>
+  {/* TEXTO DE FONDO AJUSTADO PARA MODO CLARO */}
+  <div className="absolute inset-0 pointer-events-none flex items-center justify-center">
+    <span className={`text-[20vw] font-black italic select-none uppercase ${isDark ? "opacity-[0.03] text-zinc-200" : "opacity-[0.03] text-black"}`}>
+      Rodolfo
+    </span>
+  </div>
+  
+  <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
+    <div className={`inline-block px-3 py-1 border rounded-full font-mono text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] opacity-50 truncate ${isDark ? "border-zinc-500 text-zinc-400" : "border-zinc-300 text-zinc-600"}`}>
+      // Final_User_Experience_Report_v1.0
+    </div>
+    
+    {/* TÍTULO PRINCIPAL ADAPTATIVO */}
+    <h2 className={`text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-[0.85] ${isDark ? "text-white" : "text-black"}`}>
+      MÁXIMA <span style={{ color: accentGreen }}>PRECISIÓN</span>{" "}
+      <br />
+      <span className={`${isDark ? "opacity-20 text-white" : "opacity-15 text-black"}`}>FLUJO CONSTANTE</span>
+    </h2>
+    
+    <div
+      className={`relative p-6 md:p-10 border ${isDark ? "border-zinc-800 bg-zinc-900/40" : "border-zinc-200 bg-zinc-50/50"} rounded-3xl backdrop-blur-sm`}
+    >
+      <div
+        className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2"
+        style={{ borderColor: accentGreen }}
+      ></div>
+      <div
+        className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2"
+        style={{ borderColor: accentGreen }}
+      ></div>
+      
+      {/* TEXTO CENTRAL CORREGIDO */}
+      <p
+        className={`text-lg md:text-2xl font-light italic leading-relaxed ${isDark ? "text-zinc-300" : "text-zinc-800"}`}
+      >
+        "El objetivo es que el jugador alcance un estado de{" "}
+        <span className="font-bold underline decoration-[#008012]">
+          flow
+        </span>{" "}
+        where la pulsación de teclas sea una extensión del pensamiento.
+        Rodolfo no solo se mueve, se desliza por un mundo donde{" "}
+        {/* CORRECCIÓN CRÍTICA: Cambia de blanco a gris oscuro según el modo */}
+        <span className={`font-bold ${isDark ? "text-white" : "text-zinc-900"}`}> cada píxel cuenta</span>
+        , generando una fluidez orgánica que elimina la frustración y
+        permite disfrutar la maestría del control de principio a fin."
+      </p>
+    </div>
+    
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
+      {[
+        {
+          t: "Inmersión",
+          d: "Sincronía total entre el input y el movimiento pixel-perfect.",
+        },
+        {
+          t: "Desafío",
+          d: "Curva de aprendizaje basada puramente en la habilidad del usuario.",
+        },
+        {
+          t: "Catarsis",
+          d: "Satisfacción táctica al dominar el Shagami-dō en situaciones críticas.",
+        },
+      ].map((pilar, i) => (
+        <div key={i} className="space-y-2 group">
+          <div
+            className="font-mono text-sm font-black uppercase tracking-[0.2em]"
+            style={{ color: accentGreen }}
+          >
+            {pilar.t}
           </div>
-          <div className="max-w-4xl mx-auto text-center space-y-8 relative z-10">
-            <div className="inline-block px-3 py-1 border border-zinc-500 rounded-full font-mono text-[8px] md:text-[10px] uppercase tracking-[0.2em] md:tracking-[0.4em] opacity-50 truncate">
-              // Final_User_Experience_Report_v1.0
-            </div>
-            <h2 className="text-5xl md:text-8xl font-black italic uppercase tracking-tighter leading-[0.85]">
-              MÁXIMA <span style={{ color: accentGreen }}>PRECISIÓN</span>{" "}
-              <br />
-              <span className="opacity-20">FLUJO CONSTANTE</span>
-            </h2>
-            <div
-              className={`relative p-6 md:p-10 border ${isDark ? "border-zinc-800 bg-zinc-900/40" : "border-zinc-200 bg-zinc-50/50"} rounded-3xl backdrop-blur-sm`}
-            >
-              <div
-                className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2"
-                style={{ borderColor: accentGreen }}
-              ></div>
-              <div
-                className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2"
-                style={{ borderColor: accentGreen }}
-              ></div>
-              <p
-                className={`text-lg md:text-2xl font-light italic leading-relaxed ${isDark ? "text-zinc-300" : "text-zinc-700"}`}
-              >
-                "El objetivo es que el jugador alcance un estado de{" "}
-                <span className="font-bold underline decoration-[#008012]">
-                  flow
-                </span>{" "}
-                donde la pulsación de teclas sea una extensión del pensamiento.
-                Rodolfo no solo se mueve, se desliza por un mundo donde{" "}
-                <span className="font-bold text-white"> cada píxel cuenta</span>
-                , generando una fluidez orgánica que elimina la frustración y
-                permite disfrutar la maestría del control de principio a fin."
-              </p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-6">
-              {[
-                {
-                  t: "Inmersión",
-                  d: "Sincronía total entre el input y el movimiento pixel-perfect.",
-                },
-                {
-                  t: "Desafío",
-                  d: "Curva de aprendizaje basada puramente en la habilidad del usuario.",
-                },
-                {
-                  t: "Catarsis",
-                  d: "Satisfacción táctica al dominar el Shagami-dō en situaciones críticas.",
-                },
-              ].map((pilar, i) => (
-                <div key={i} className="space-y-2 group">
-                  <div
-                    className="font-mono text-sm font-black uppercase tracking-[0.2em]"
-                    style={{ color: accentGreen }}
-                  >
-                    {pilar.t}
-                  </div>
-                  <p
-                    className={`text-xs md:text-sm font-medium italic leading-relaxed border-l-2 pl-4 transition-opacity duration-300 ${isDark ? "text-zinc-400 opacity-80" : "text-zinc-600 opacity-90"}`}
-                    style={{ borderColor: `${accentGreen}40` }}
-                  >
-                    {pilar.d}
-                  </p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </Motion.section>
+          <p
+            className={`text-xs md:text-sm font-medium italic leading-relaxed border-l-2 pl-4 transition-opacity duration-300 ${isDark ? "text-zinc-400 opacity-80" : "text-zinc-700 opacity-90"}`}
+            style={{ borderColor: `${accentGreen}40` }}
+          >
+            {pilar.d}
+          </p>
+        </div>
+      ))}
+    </div>
+  </div>
+</Motion.section>
       </div>
     </Motion.div>
   );

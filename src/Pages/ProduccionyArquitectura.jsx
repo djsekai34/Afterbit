@@ -230,7 +230,7 @@ export default function Documentacion({ isDark }) {
                 </span>
               </h2>
 
-              <ComplexTreeAssets />
+              <ComplexTreeAssets isDark={isDark} />
 
               <div className="mt-8 space-y-4">
                 <h3 className="font-black text-xl italic uppercase tracking-tighter">

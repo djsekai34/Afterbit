@@ -188,10 +188,17 @@ const SeccionSonido = ({ isDark }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black font-mono text-white"
+          className={`fixed inset-0 z-[100] flex items-center justify-center font-mono transition-colors duration-300 ${
+            isDark ? "bg-black text-white" : "bg-white text-black"
+          }`}
         >
           <div className="flex flex-col items-center gap-4">
-            <div className="w-12 h-12 border-4 border-[#008012] border-t-transparent rounded-full animate-spin"></div>
+            <div
+              className={`w-12 h-12 border-4 border-[#008012] rounded-full animate-spin ${
+                isDark ? "border-t-transparent" : "border-t-zinc-200"
+              }`}
+            ></div>
+
             <p className="tracking-[0.5em] text-[10px] font-bold animate-pulse uppercase">
               Cargando_Tracklist_oficial_SR
             </p>

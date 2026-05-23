@@ -20,6 +20,7 @@ import MuerteFinal from "../Imagenes/Interfaz/ResultadoFinal/MuerteFinal.png";
 import MuerteSelectorFinal from "../Imagenes/Interfaz/ResultadoFinal/MuerteFinalSN.png";
 import hud from "../Imagenes/Interfaz/ResultadoFinal/Hud.png";
 import hudExtra from "../Imagenes/Interfaz/ResultadoFinal/HudExtra.png";
+import SelectorFinal2 from "../Imagenes/Interfaz/ResultadoFinal/SelectorNivelFinal2.png";
 
 export const pantallas = [
   {
@@ -52,6 +53,7 @@ export const pantallas = [
       "Buscamos un diseño intuitivo y atractivo donde veamos una imagen del nivel y el usuario pueda acceder al nivel deseado sabiendo de que sitio se encuentra.",
     imgBoceto: SelectorConcepto,
     imgFinal: SelectorFinal,
+    imgFinal2: SelectorFinal2,
   },
   {
     id: "03",
@@ -91,8 +93,8 @@ export const pantallas = [
       "Buscamos un diseño sencillo donde el hud moleste lo menos posible y se muestre la información necesaria.",
     imgBoceto: HudConcepto,
     imgFinal: HudFinal,
-    imgExtra: hud, // AQUÍ VA TU TERCERA IMAGEN EXTRA
-    imgExtra2: hudExtra, // AQUÍ VA TU CUARTA IMAGEN EXTRA
+    imgExtra: hud, 
+    imgExtra2: hudExtra, 
   },
   {
     id: "06",

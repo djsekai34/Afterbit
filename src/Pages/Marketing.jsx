@@ -724,7 +724,11 @@ const PaginaMarketing = ({ isDark, headerLineColor, titleColor }) => {
                     <span className="block font-mono text-[9px] opacity-40 uppercase tracking-widest">
                       Fase_Actual
                     </span>
-                    <span className="text-xl font-black italic uppercase text-white leading-none">
+                    <span
+                      className={`text-xl font-black italic uppercase leading-none transition-colors duration-300 ${
+                        isDark ? "text-white" : "text-black"
+                      }`}
+                    >
                       Pre-
                       <br />
                       Lanzamiento
@@ -793,20 +797,33 @@ const PaginaMarketing = ({ isDark, headerLineColor, titleColor }) => {
                 </div>
               </div>
 
-              <div className="p-6 bg-black border-2 border-[#008012] relative overflow-hidden">
+              <div
+                className={`p-6 border-2 relative overflow-hidden transition-colors duration-300 ${
+                  isDark
+                    ? "bg-black border-[#008012]"
+                    : "bg-zinc-50 border-zinc-300"
+                }`}
+              >
+                {/* ICONO DE FONDO SVG ADAPTATIVO */}
                 <div className="absolute top-0 right-0 p-2 opacity-10">
                   <svg
                     width="40"
                     height="40"
                     viewBox="0 0 24 24"
                     fill="none"
-                    stroke="white"
+                    stroke={isDark ? "white" : "black"}
+                    transition-colors="true"
                   >
                     <path d="M21 12H3m18 0l-4-4m4 4l-4 4" strokeWidth="2" />
                   </svg>
                 </div>
 
-                <h3 className="font-black italic text-xl text-white mb-6 uppercase tracking-tighter">
+                {/* TÍTULO DE LA TARJETA */}
+                <h3
+                  className={`font-black italic text-xl mb-6 uppercase tracking-tighter ${
+                    isDark ? "text-white" : "text-black"
+                  }`}
+                >
                   Métricas
                 </h3>
 
@@ -814,12 +831,27 @@ const PaginaMarketing = ({ isDark, headerLineColor, titleColor }) => {
                   {/* BARRA DE WISHLIST */}
                   <div>
                     <div className="flex justify-between text-[10px] font-mono mb-2">
-                      <span className="opacity-50 uppercase tracking-widest">
+                      <span
+                        className={`uppercase tracking-widest ${
+                          isDark ? "text-white/50" : "text-zinc-500"
+                        }`}
+                      >
                         Deseados_Steam
                       </span>
-                      <span style={{ color: accentGreen }}>OBJETIVO_MAX</span>
+                      <span
+                        style={{ color: accentGreen }}
+                        className="font-bold"
+                      >
+                        OBJETIVO_MAX
+                      </span>
                     </div>
-                    <div className="h-1.5 w-full bg-zinc-800">
+
+                    {/* Carril de fondo de la barra de progreso */}
+                    <div
+                      className={`h-1.5 w-full transition-colors duration-300 ${
+                        isDark ? "bg-zinc-800" : "bg-zinc-200"
+                      }`}
+                    >
                       <motion.div
                         initial={{ width: 0 }}
                         whileInView={{ width: "90%" }}
@@ -830,16 +862,35 @@ const PaginaMarketing = ({ isDark, headerLineColor, titleColor }) => {
 
                   {/* GRID DE ESTADÍSTICAS */}
                   <div className="grid grid-cols-2 gap-4">
-                    <div className="border-l-2 border-[#008012]/30 pl-3">
-                      <span className="block text-[9px] font-mono opacity-40 uppercase tracking-widest">
+                    {/* Fidelización */}
+                    <div
+                      className={`border-l-2 pl-3 ${isDark ? "border-[#008012]/30" : "border-zinc-300"}`}
+                    >
+                      <span
+                        className={`block text-[9px] font-mono uppercase tracking-widest ${
+                          isDark ? "text-white/40" : "text-zinc-500"
+                        }`}
+                      >
                         Fidelización
                       </span>
-                      <span className="font-black italic text-white text-xs uppercase">
+                      <span
+                        className={`font-black italic text-xs uppercase ${
+                          isDark ? "text-white" : "text-zinc-900"
+                        }`}
+                      >
                         Optimizada
                       </span>
                     </div>
-                    <div className="border-l-2 border-[#008012]/30 pl-3">
-                      <span className="block text-[9px] font-mono opacity-40 uppercase tracking-widest">
+
+                    {/* Comunidad */}
+                    <div
+                      className={`border-l-2 pl-3 ${isDark ? "border-[#008012]/30" : "border-zinc-300"}`}
+                    >
+                      <span
+                        className={`block text-[9px] font-mono uppercase tracking-widest ${
+                          isDark ? "text-white/40" : "text-zinc-500"
+                        }`}
+                      >
                         Comunidad
                       </span>
                       <span className="font-black italic text-[#008012] text-xs">
