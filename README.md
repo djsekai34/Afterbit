@@ -173,16 +173,13 @@ afterbit/
 </div>
 
 ---
-
 <div align="center">
 <pre>
-```
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
 
   "Desarrollando el futuro bit a bit."
   Copyright © 2026 // AFTERBIT CORE STATION
 
 ▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓▓
-```
 </pre>
 </div>
