@@ -86,7 +86,7 @@ const MalaguenoPage = ({ isDark }) => {
         >
           <div className="relative z-10 flex flex-col gap-6">
             <span className="font-mono text-[12px] md:text-sm font-bold opacity-60 tracking-[0.3em] md:tracking-[0.5em] block text-center uppercase mt-6 md:mt-0">
-              // ACADEMIC_MODULE: SHOOTER_SYSTEM
+              // ACADEMIC_MODULE: SHOOTER_GAME
             </span>
 
             <h1 className="text-2xl md:text-5xl lg:text-6xl font-black italic uppercase leading-[0.8] tracking-tighter break-words text-center">
@@ -1133,7 +1133,7 @@ const MalaguenoPage = ({ isDark }) => {
                 />
               </div>
               <div className="text-xl md:text-3xl font-black text-white tracking-tighter">
-                124:00
+                122:00
               </div>
             </div>
 

@@ -1,12 +1,13 @@
 import React from "react";
 import { motion as Motion } from "framer-motion";
+import { Link } from "react-router-dom";
 
 import ImagenRodolfo from "../Imagenes/LogoJuego.png";
 import ImagenRodolfoStrike from "../Imagenes/LogoSRS.png";
 import ImagenMetroid from "../Imagenes/Pixelmetroid.png";
 import ImagenXR from "../Imagenes/XRAdventure.jpeg";
 import ImagenMVSN from "../Imagenes/LogoMVSN.png";
-import { Link } from "react-router-dom";
+import ImagenSupervivencia from "../Imagenes/LogoSupervivencia.png";
 
 export default function Proyectos({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
@@ -57,7 +58,7 @@ export default function Proyectos({ isDark }) {
             <h2 className="text-4xl md:text-5xl font-black italic uppercase leading-[0.9] tracking-tighter">
               Super Rodolfo y las esferas del santo reino
             </h2>
-            <div className="flex flex-wrap justify-center lg:justify-center gap-3 py-6 w-full">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 py-6 w-full">
               {["Unity 2D", "C#", "Final Project", "Symmetry & Logic"].map(
                 (tag) => (
                   <span
@@ -118,7 +119,7 @@ export default function Proyectos({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* --- SECCIÓN 02: SUPER RODOLFO STRIKE   --- */}
+        {/* --- SECCIÓN 02: SUPER RODOLFO STRIKE (Imagen Izq | Texto Der) --- */}
         <Motion.section
           id="rodolfo-strike"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -148,7 +149,7 @@ export default function Proyectos({ isDark }) {
             <h2 className="text-3xl md:text-5xl font-black italic uppercase leading-[0.85] tracking-tighter">
               Super Rodolfo Strike
             </h2>
-            <div className="flex flex-wrap justify-center lg:justify-center gap-2 py-4 w-full">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 py-4 w-full">
               {["Unity Mobile", "Android", "C#", "Touch Controls"].map(
                 (tag) => (
                   <span
@@ -209,7 +210,7 @@ export default function Proyectos({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* --- SECCIÓN 03: PIXEL METROID --- */}
+        {/* --- SECCIÓN 03: PIXEL METROID (Texto Izq | Imagen Der) --- */}
         <Motion.section
           id="metroid"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -226,7 +227,7 @@ export default function Proyectos({ isDark }) {
             <h2 className="text-5xl md:text-7xl font-black italic uppercase leading-[0.85] tracking-tighter">
               Pixel Metroid 2D
             </h2>
-            <div className="flex flex-wrap justify-center lg:justify-center gap-2 py-4 w-full">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-2 py-4 w-full">
               {[
                 "Unity 2D",
                 "Sprite Animation",
@@ -281,7 +282,7 @@ export default function Proyectos({ isDark }) {
           </div>
         </Motion.section>
 
-        {/* --- SECCIÓN 04: XR ADVENTURE --- */}
+        {/* --- SECCIÓN 04: XR ADVENTURE (Imagen Izq | Texto Der) --- */}
         <Motion.section
           id="xr"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
@@ -308,7 +309,7 @@ export default function Proyectos({ isDark }) {
             <h2 className="text-5xl md:text-6xl font-black italic uppercase leading-[0.85] tracking-tighter">
               XR Adventure
             </h2>
-            <div className="flex flex-wrap justify-center lg:justify-center gap-1.5 py-4 w-full">
+            <div className="flex flex-wrap justify-center lg:justify-start gap-1.5 py-4 w-full">
               {[
                 "ANDROID_BUILD",
                 "Google ARCore",
@@ -347,13 +348,15 @@ export default function Proyectos({ isDark }) {
             </Link>
           </div>
         </Motion.section>
-        {/* --- SECCIÓN 04: El Malagueño vs los Nastiqueros --- */}
+
+        {/* --- SECCIÓN 05: EL MALAGUEÑO VS LOS NASTIQUEROS (Texto Izq | Imagen Der) --- */}
         <Motion.section
           id="MalagaVSNastic"
           className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
           style={{ borderColor: currentTextColor }}
           initial="hidden"
-          animate="visible"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
           variants={itemVariants}
         >
           <div className="lg:col-span-5 space-y-6">
@@ -363,8 +366,8 @@ export default function Proyectos({ isDark }) {
             <h2 className="text-4xl md:text-5xl font-black italic uppercase leading-[0.9] tracking-tighter">
               El Málagueño VS los Nastiqueros
             </h2>
-            <div className="flex flex-wrap justify-center lg:justify-center gap-3 py-6 w-full">
-              {["Unity 3D", "C#", "FPS Project", "POOL OBJETCS"].map((tag) => (
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 py-6 w-full">
+              {["Unity 3D", "C#", "FPS Project", "POOL OBJECTS"].map((tag) => (
                 <span
                   key={tag}
                   className="border-2 px-3 py-1 text-[10px] font-black uppercase italic"
@@ -386,7 +389,7 @@ export default function Proyectos({ isDark }) {
               <span style={{ color: nasticRed }} className="font-bold">
                 Nàstic
               </span>{" "}
-              furiosos por lo ocurrido en el ascenso a Segunda División.{" "}
+              furiosos por lo ocurrido en el ascenso a Segunda División.
             </p>
             <Link
               to="/Proyectos/MalaguenoVSNastiquero"
@@ -414,9 +417,89 @@ export default function Proyectos({ isDark }) {
           >
             <img
               src={ImagenMVSN}
-              alt="Rodolfo Logo"
+              alt="MVSN Logo"
               className="w-full h-full object-contain p-4 md:p-6 scale-125 md:scale-110 group-hover:scale-145 md:group-hover:scale-125 transition-transform duration-500"
             />
+          </div>
+        </Motion.section>
+
+        {/* --- SECCIÓN 06: HONOR Y RENCOR (Imagen Izq | Texto Der) --- */}
+        <Motion.section
+          id="MalagaBosque"
+          className="grid grid-cols-1 lg:grid-cols-12 gap-10 border-t-4 pt-12"
+          style={{ borderColor: currentTextColor }}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
+          variants={itemVariants}
+        >
+          {/* Imagen colocada a la izquierda en pantallas grandes con order-2 lg:order-1 */}
+          <div
+            className={`lg:col-span-7 order-2 lg:order-1 group relative aspect-video overflow-hidden border-4 flex items-center justify-center transition-colors duration-300 ${
+              isDark ? "bg-zinc-900" : "bg-zinc-500"
+            }`}
+            style={{ borderColor: currentTextColor }}
+          >
+            <img
+              src={ImagenSupervivencia}
+              alt="Honor y Rencor Logo"
+              className="w-full h-full object-contain p-4 md:p-6 scale-125 md:scale-110 group-hover:scale-145 md:group-hover:scale-125 transition-transform duration-500"
+            />
+          </div>
+
+          {/* Texto colocado a la derecha en pantallas grandes con order-1 lg:order-2 */}
+          <div className="lg:col-span-5 order-1 lg:order-2 space-y-6">
+            <span className="font-mono text-xs font-bold opacity-50 uppercase tracking-[0.4em] block">
+              [ CODE_06 ] // SURVIVAL GAME
+            </span>
+            <h2 className="text-4xl md:text-5xl font-black italic uppercase leading-[0.9] tracking-tighter">
+              Honor y Rencor: la pesadilla blanquiazul
+            </h2>
+            <div className="flex flex-wrap justify-center lg:justify-start gap-3 py-6 w-full">
+              {["Unity 3D", "C#", "Survival Project", "ScriptableObjects"].map(
+                (tag) => (
+                  <span
+                    key={tag}
+                    className="border-2 px-3 py-1 text-[10px] font-black uppercase italic"
+                    style={{ borderColor: currentTextColor }}
+                  >
+                    {tag}
+                  </span>
+                ),
+              )}
+            </div>
+            <p
+              className="text-lg opacity-90 leading-tight font-medium border-l-4 pl-4"
+              style={{ borderColor: malagaBlue }}
+            >
+              Videojuego de supervivencia en 3D donde estaremos en un{" "}
+              <span style={{ color: malagaBlue }} className="font-bold">
+                bosque tras el partido
+              </span>{" "}
+              y debemos escapar sobreviviendo a los{" "}
+              <span style={{ color: malagaBlue }} className="font-bold italic">
+                peligros
+              </span>{" "}
+              que nos acechan, evitando la muerte alimentándonos, bebiendo,
+              durmiendo etc.
+            </p>
+            <Link
+              to="/Proyectos/MalaguenoSupervivencia"
+              className="w-full md:w-auto"
+            >
+              <button
+                className="group relative w-full md:w-auto border-4 py-4 px-8 font-black italic uppercase overflow-hidden transition-all duration-300"
+                style={{ borderColor: currentTextColor }}
+              >
+                <span className="relative z-10 transition-colors duration-300 group-hover:text-white">
+                  Ejecutar_Supervivencia.exe
+                </span>
+                <div
+                  className="absolute -inset-y-1 -left-1 -right-1 translate-y-full group-hover:translate-y-0 transition-transform duration-300 z-0"
+                  style={{ backgroundColor: malagaBlue }}
+                />
+              </button>
+            </Link>
           </div>
         </Motion.section>
       </div>

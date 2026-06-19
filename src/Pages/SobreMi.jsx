@@ -5,6 +5,8 @@ import MiFoto from "../Imagenes/Foto_Mia.jpg";
 import LogoGithubBlanco from "../Imagenes/githubBlanco.png";
 import LogoGithubNegro from "../Imagenes/githubNegro.png";
 import Linkedin from "../Imagenes/Linkedin.png";
+import LogoWeb from "../Imagenes/IconoPortfolio.svg"; // Asegúrate de tener esta imagen
+
 
 export default function SobreMi({ isDark }) {
   const currentTextColor = isDark ? "white" : "black";
@@ -80,57 +82,86 @@ export default function SobreMi({ isDark }) {
           </Motion.p>
 
           {/* BOTONES GITHUB Y LINKEDIN */}
-          <Motion.div
-            className="flex space-x-10 mt-12 justify-center w-full"
-            variants={itemVariants}
-          >
-            <a
-              href="https://github.com/djsekai34"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3 transition-all duration-300"
-            >
-              <div
-                className={`w-20 h-20 flex items-center justify-center border-2 transition-all duration-500 transform group-hover:-translate-y-3 ${
-                  isDark
-                    ? "border-white/10 group-hover:border-white group-hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
-                    : "border-black/10 group-hover:border-black group-hover:shadow-[0_0_30px_rgba(0,0,0,0.1)]"
-                }`}
-              >
-                <img
-                  src={isDark ? LogoGithubBlanco : LogoGithubNegro}
-                  alt="GitHub"
-                  className="w-12 h-12 object-contain"
-                />
-              </div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 group-hover:translate-y-[-4px] transition-all">
-                GitHub
-              </span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/david-jimenez-villena/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group flex flex-col items-center gap-3 transition-all duration-300"
-            >
-              <div
-                className={`w-20 h-20 flex items-center justify-center border-2 transition-all duration-500 transform group-hover:-translate-y-3 ${
-                  isDark
-                    ? "border-white/10 group-hover:border-[#0077b5] group-hover:shadow-[0_0_30px_rgba(0,119,181,0.4)]"
-                    : "border-black/10 group-hover:border-[#0077b5] group-hover:shadow-[0_0_30px_rgba(0,119,181,0.2)]"
-                }`}
-              >
-                <img
-                  src={Linkedin}
-                  alt="LinkedIn"
-                  className="w-12 h-12 object-contain"
-                />
-              </div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 group-hover:translate-y-[-4px] transition-all">
-                LinkedIn
-              </span>
-            </a>
-          </Motion.div>
+         <Motion.div
+  className="flex space-x-6 sm:space-x-10 mt-12 justify-center w-full"
+  variants={itemVariants}
+>
+  {/* GITHUB */}
+  <a
+    href="https://github.com/djsekai34"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex flex-col items-center gap-3 transition-all duration-300"
+  >
+    <div
+      className={`w-20 h-20 flex items-center justify-center border-2 transition-all duration-500 transform group-hover:-translate-y-3 ${
+        isDark
+          ? "border-white/10 group-hover:border-white group-hover:shadow-[0_0_30px_rgba(255,255,255,0.3)]"
+          : "border-black/10 group-hover:border-black group-hover:shadow-[0_0_30px_rgba(0,0,0,0.1)]"
+      }`}
+    >
+      <img
+        src={isDark ? LogoGithubBlanco : LogoGithubNegro}
+        alt="GitHub"
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+    <span className="font-mono text-[11px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 group-hover:translate-y-[-4px] transition-all">
+      GitHub
+    </span>
+  </a>
+
+  {/* LINKEDIN */}
+  <a
+    href="https://www.linkedin.com/in/david-jimenez-villena/"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex flex-col items-center gap-3 transition-all duration-300"
+  >
+    <div
+      className={`w-20 h-20 flex items-center justify-center border-2 transition-all duration-500 transform group-hover:-translate-y-3 ${
+        isDark
+          ? "border-white/10 group-hover:border-[#0077b5] group-hover:shadow-[0_0_30px_rgba(0,119,181,0.4)]"
+          : "border-black/10 group-hover:border-[#0077b5] group-hover:shadow-[0_0_30px_rgba(0,119,181,0.2)]"
+      }`}
+    >
+      <img
+        src={Linkedin}
+        alt="LinkedIn"
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+    <span className="font-mono text-[11px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 group-hover:translate-y-[-4px] transition-all">
+      LinkedIn
+    </span>
+  </a>
+
+  {/* NUEVO: PORTFOLIO WEB */}
+  <a
+    href="https://djvportfolio.vercel.app" // Pon aquí la URL de destino de tu portfolio general si no es esta misma página
+    target="_blank"
+    rel="noopener noreferrer"
+    className="group flex flex-col items-center gap-3 transition-all duration-300"
+    
+  >
+    <div
+      className={`w-20 h-20 flex items-center justify-center border-2 transition-all duration-500 transform group-hover:-translate-y-3 ${
+        isDark
+          ? "border-white/10 group-hover:border-cyan-500 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.4)]"
+          : "border-black/10 group-hover:border-cyan-600 group-hover:shadow-[0_0_30px_rgba(6,182,212,0.2)]"
+      }`}
+    >
+      <img
+        src={LogoWeb} // Asegúrate de importar tus imágenes para el icono web
+        alt="Portfolio"
+        className="w-12 h-12 object-contain"
+      />
+    </div>
+    <span className="font-mono text-[11px] uppercase tracking-[0.3em] opacity-40 group-hover:opacity-100 group-hover:translate-y-[-4px] transition-all">
+      Portfolio Web
+    </span>
+  </a>
+</Motion.div>
         </div>
 
         {/* COLUMNA CONTENIDO PRINCIPAL */}

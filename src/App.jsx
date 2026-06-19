@@ -26,6 +26,7 @@ import Marketing from "./Pages/Marketing.jsx"
 import MalaguenoVSNastiquero from "./Pages/MalaguenoVsNastiquero.jsx"
 import FormularioTesteo from "./Pages/FormularioTesteo.jsx"
 import ResultadoTest from "./Pages/ResultadoTest.jsx"
+import MalaguenoSupervivencia from "./Pages/MalaguenoSupervivencia.jsx"
 import "./index.css";
 
 function App() {
@@ -57,6 +58,7 @@ function App() {
         <Route path="/Proyectos/XRAdventure" element={<XRAdventure isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfoStrike" element={<SuperRodolfoStrike isDark={isDark} />} />
         <Route path="/Proyectos/MalaguenoVSNastiquero" element={<MalaguenoVSNastiquero isDark={isDark} />} />
+        <Route path="/Proyectos/MalaguenoSupervivencia" element={<MalaguenoSupervivencia isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo" element={<SuperRodolfoGDD isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/AnalisisyPreproduccion" element={<SuperRodolfoAnalisis isDark={isDark} />} />
         <Route path="/Proyectos/SuperRodolfo/GuionyNarrativa" element={<SuperRodolfoGuion isDark={isDark} />} />

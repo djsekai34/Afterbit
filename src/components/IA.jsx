@@ -131,6 +131,7 @@ REGLAS PARA PROYECTOS:
    - Super Rodolfo Strike: Spinoff de la saga Super Rodolfo donde jugamos a los bolos (/Proyectos/SuperRodolfoStrike).
    - XR Adventure: Es un proyecto colaborativo de Realidad Extendida que carga contenido desde la nube con Pokémon interactivos (/Proyectos/XRAdventure).
    - El Malagueño vs los Nastiqueros: Es un juego FPS 3D en primera persona (/Proyectos/MalaguenoVSNastiquero).
+   - Honor y Rencor: La pesadilla blaquiazul: Videojuego Supervivencia donde tienes que escapar de un bosque tras lo ocurrido en Tarragona (/Proyectos/MalaguenoSupervivencia).
    Si desea ver los demás proyectos, diríjase a /Proyectos."
 
 2. SI PREGUNTAN POR UNO ESPECÍFICO (Rodolfo, Metroid, XR, Strike o Malagueño):

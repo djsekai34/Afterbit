@@ -3,6 +3,7 @@ import Metroid2d from "../Imagenes/Pixelmetroid.png";
 import XRAdventure from "../Imagenes/XRAdventure.jpeg";
 import SuperRodolofStrike from "../Imagenes/LogoSRS.png";
 import MalaguenoVsNastiquero from "../Imagenes/LogoMVSN.png";
+import MalaguenoSupervivencia from "../Imagenes/LogoSupervivencia.png";
 
 export const proyectos = [
   {
@@ -44,5 +45,13 @@ export const proyectos = [
     tag: "FPS Game",
     image: MalaguenoVsNastiquero,
     link: "/Proyectos/MalaguenoVSNastiquero",
+  },
+  {
+    id: 6,
+    title: "Honor y Rencor: la pesadilla blanquiazul",
+    desc: "Videojuego de supervivencia en primera persona ambientado en un bosque tras el partido de Nastic vs Málaga.",
+    tag: "Survival Game",
+    image: MalaguenoSupervivencia,
+    link: "/Proyectos/MalaguenoSupervivencia",
   },
 ];
